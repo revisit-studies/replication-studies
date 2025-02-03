@@ -1,0 +1,134 @@
+{
+  "$schema": "https://raw.githubusercontent.com/reVISit-studies/study/main/src/parser/StudyConfigSchema.json",
+  "studyMetadata": {
+      "title": "Recreate Pattern Design Study",
+      "version": "pilot",
+      "authors": [
+          "Tingying He"
+      ],
+      "date": "2025-01-20",
+      "description": "Recreate the pattern design study",
+      "organizations": [
+          "University of Utah",
+          "INRIA"
+      ]
+  },
+  "uiConfig": {
+      "contactEmail": "contact@revisit.dev",
+      "helpTextPath": "basic-questionnaire-study/assets/help.md",
+      "logoPath": "revisitAssets/revisitLogoSquare.svg",
+      "withProgressBar": true,
+      "autoDownloadStudy": false,
+      "sidebar": true
+  },  
+  "importedLibraries": [
+    "demographics"
+  ],
+  "components": {
+      "welcome": {
+          "type": "markdown",
+          "path": "pattern-design-study/assets/pages/welcome.md",
+          "response": []
+      },    
+      "consent": {
+        "type": "markdown",
+        "path": "pattern-design-study/assets/pages/consent.md",
+        "nextButtonText": "Yes, I agree",
+        "response": [
+          {
+            "id": "signature",
+            "prompt": "Your signature",
+            "location": "belowStimulus",
+            "type": "shortText",
+            "placeholder": "Please provide your signature"
+          }
+        ]
+      },
+      "description": {
+        "type": "markdown",
+        "path": "pattern-design-study/assets/pages/description.md",
+        "response": []
+      },
+      "tutorial": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 0,
+          "condition_texture": 0,
+          "pageLink": "assets/pages/tutorial.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "Please click the button to start the tutorial",
+          "hidden": true
+        }]
+      },
+      "bar_geo_first": {
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/bar_geo.html",
+        "response": []
+      },
+      "bar_icon":{
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/bar_icon.html",
+        "response": []
+      },
+      "pie_geo": {
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/pie_geo.html",
+        "response": []
+      },
+      "pie_icon":{
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/pie_icon.html",
+        "response": []
+      },
+      "map_geo": {
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/map_geo.html",
+        "response": []
+      },
+      "map_icon":{
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/map_icon.html",
+        "response": []
+      },
+      "between_two_design":{
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/between_two_design.html",
+        "response": []
+      },
+      "question_design_strategies":{
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/question_design_strategies.html",
+        "response": []
+      },
+      "question_compare_texture":{
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/question_compare_texture.html",
+        "response": []
+      },
+      "question_different_chart_icon_texture":{
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/question_different_chart_icon_texture.html",
+        "response": []
+      },
+      "question_different_chart_geo_texture":{
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/question_different_chart_geo_texture.html",
+        "response": []
+      }
+  },
+  "sequence": {
+      "order": "fixed",
+      "components": [
+          "welcome",
+          "consent",
+          "$demographics.co.demographics",
+          "description",
+          "tutorial"
+
+      ]
+  }
+}
