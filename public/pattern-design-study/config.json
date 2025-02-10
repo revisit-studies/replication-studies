@@ -26,8 +26,8 @@
   ],
   "components": {
       "welcome": {
-          "type": "markdown",
-          "path": "pattern-design-study/assets/pages/welcome.md",
+          "type": "website",
+          "path": "pattern-design-study/assets/pages/welcome.html",
           "response": []
       },    
       "consent": {
@@ -45,8 +45,8 @@
         ]
       },
       "description": {
-        "type": "markdown",
-        "path": "pattern-design-study/assets/pages/description.md",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/description.html",
         "response": []
       },
       "tutorial": {
@@ -60,7 +60,7 @@
         "response": [{
           "type": "reactive",
           "id": "answer",
-          "prompt": "Please click the button to start the tutorial",
+          "prompt": "get-measurements",
           "hidden": true
         }]
       },
