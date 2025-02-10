@@ -64,7 +64,7 @@
           "hidden": true
         }]
       },
-      "bar_geo_first": {
+      "bar_geo": {
         "type": "website",
         "path": "pattern-design-study/assets/pages/bar_geo.html",
         "response": []
@@ -127,8 +127,18 @@
           "consent",
           "$demographics.co.demographics",
           "description",
-          "tutorial"
-
+          "tutorial",
+          "bar_geo",
+          "bar_icon",
+          "pie_geo",
+          "pie_icon",
+          "map_geo",
+          "map_icon",
+          "between_two_design",
+          "question_design_strategies",
+          "question_compare_texture",
+          "question_different_chart_icon_texture",
+          "question_different_chart_geo_texture"
       ]
   }
 }
