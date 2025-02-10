@@ -63,7 +63,7 @@
     </div>
     <div class="row">
         <div class="col">
-            <button id="tutorial_next_btn" class="btn btn-primary float-end">Start Real Experiment</button>
+            <!-- <button id="tutorial_next_btn" class="btn btn-primary float-end">Start Real Experiment</button> -->
         </div>
     </div>
 </div>
@@ -378,28 +378,28 @@
     // Start the tour
     tour.start();
 
-    document.getElementById('tutorial_next_btn').onclick = function(){
+    // document.getElementById('tutorial_next_btn').onclick = function(){
         //send demographics data to server
-        let data_demographics = {
-            'participant_id':measurements['participant_id'],
-            'trial_num':measurements['trial_num'],
-            'condition_chart':measurements['condition_chart'],
-            'condition_texture':measurements['condition_texture'],
-            'gender':measurements['gender'],
-            'age':measurements['age'],
-            'experience':measurements['experience']
-        }
+        // let data_demographics = {
+        //     'participant_id':measurements['participant_id'],
+        //     'trial_num':measurements['trial_num'],
+        //     'condition_chart':measurements['condition_chart'],
+        //     'condition_texture':measurements['condition_texture'],
+        //     'gender':measurements['gender'],
+        //     'age':measurements['age'],
+        //     'experience':measurements['experience']
+        // }
 
-        $.ajax({
-            url: '../ajax/results_demographics_csv.php', //path to the script who handles this
-            type: 'POST',
-            data: JSON.stringify(data_demographics),
-            contentType: 'application/json',
-            async: false, // Make the request synchronous
-            success: function (data) {
-                console.log('success')
-            }
-        })
+        // $.ajax({
+        //     url: '../ajax/results_demographics_csv.php', //path to the script who handles this
+        //     type: 'POST',
+        //     data: JSON.stringify(data_demographics),
+        //     contentType: 'application/json',
+        //     async: false, // Make the request synchronous
+        //     success: function (data) {
+        //         console.log('success')
+        //     }
+        // })
 
         //timestamp of tutorial end
         measurements["timestamp_tutorial"] = Date.now()
@@ -429,47 +429,47 @@
         localStorage.setItem('measurements', JSON.stringify(measurements))
 
         //clear the previous design data and jump to first design page
-        switch (condition_chart) {
-            case 0:
-                switch (condition_texture){
-                    case 0:
-                        // localStorage.removeItem('barGeoparametersList')
-                        window.location.href = 'bar_geo.php';
-                        break;
-                    case 1:
-                        // localStorage.removeItem('barIconparametersList')
-                        window.location.href = 'bar_icon.php';
-                        break;
-                }
-                break;
-            case 1:
-                switch (condition_texture){
-                    case 0:
-                        // localStorage.removeItem('pieGeoparametersList')
-                        window.location.href = 'pie_geo.php';
-                        break;
-                    case 1:
-                        // localStorage.removeItem('pieIconparametersList')
-                        window.location.href = 'pie_icon.php';
-                        break;
-                }
-                break;
-            case 2:
-                switch (condition_texture){
-                    case 0:
-                        // localStorage.removeItem('mapGeoparametersList')
-                        window.location.href = 'map_geo.php';
-                        break;
-                    case 1:
-                        // localStorage.removeItem('mapIconparametersList')
-                        window.location.href = 'map_icon.php';
-                        break;
-                }
-                break;
-            default:
-                console.log(`has problem with condition_chart`);
-        }
-    }
+    //     switch (condition_chart) {
+    //         case 0:
+    //             switch (condition_texture){
+    //                 case 0:
+    //                     // localStorage.removeItem('barGeoparametersList')
+    //                     window.location.href = 'bar_geo.php';
+    //                     break;
+    //                 case 1:
+    //                     // localStorage.removeItem('barIconparametersList')
+    //                     window.location.href = 'bar_icon.php';
+    //                     break;
+    //             }
+    //             break;
+    //         case 1:
+    //             switch (condition_texture){
+    //                 case 0:
+    //                     // localStorage.removeItem('pieGeoparametersList')
+    //                     window.location.href = 'pie_geo.php';
+    //                     break;
+    //                 case 1:
+    //                     // localStorage.removeItem('pieIconparametersList')
+    //                     window.location.href = 'pie_icon.php';
+    //                     break;
+    //             }
+    //             break;
+    //         case 2:
+    //             switch (condition_texture){
+    //                 case 0:
+    //                     // localStorage.removeItem('mapGeoparametersList')
+    //                     window.location.href = 'map_geo.php';
+    //                     break;
+    //                 case 1:
+    //                     // localStorage.removeItem('mapIconparametersList')
+    //                     window.location.href = 'map_icon.php';
+    //                     break;
+    //             }
+    //             break;
+    //         default:
+    //             console.log(`has problem with condition_chart`);
+    //     }
+    // }
 
 
 </script>

@@ -1,4 +1,4 @@
-import { Text } from '@mantine/core';
+// import { Text } from '@mantine/core';
 import { StimulusParams } from '../../../store/types';
 
 
@@ -20,7 +20,7 @@ export default function Example({ parameters, setAnswer }: StimulusParams<{condi
   return     <iframe
   src={parameters.pageLink}
   style={{
-    minHeight: '500px',
+    minHeight: '1500px',
     width: '100%',
     border: 0,
   }}
