@@ -6,6 +6,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Geometric Texture Bar Chart</title>
+    <script src="../../../revisitUtilities/revisit-communicate.js"></script>
+
 
     <script type="text/javascript" src="/pattern-design-study/assets/lib/jquery.min.js"></script>
     <script type="text/javascript" src="/pattern-design-study/assets/lib/d3.v7.min.js"></script>
@@ -70,11 +72,15 @@
 <script src="/pattern-design-study/assets/pages/texture_functions.js"></script>
 <script src="/pattern-design-study/assets/pages/texture_constants.js"></script>
 
-<script>
+<script type="module">
+    import { createTrrack } from '/pattern-design-study/assets/pages/trrack.js';
+    
+    // Move all code that uses createTrrack into this module script
+    createTrrack()
+    
     let timestamp_bar_geo_start = Date.now() //the starting time for this design
-
     let chartName = 'barGeo'
-
+    
     drawToolbar('toolbar')
     drawDragDropInfo('dragdrop')
     document.getElementById('toolbar').appendChild(drawSelectDefaultGeoTexture())
@@ -82,12 +88,9 @@
     geoTextures(d3.select('#chartA'),fruits)
     drawGeoControllers()
 
-</script>
-<script src="/pattern-design-study/assets/pages/texture_ui_elements.js"></script>
-<script>
     //data
     let data = getDatasetForChart()
-
+    const {trrack, actions: trrack_actions} = createTrrack()
     drawGeoBarWithTexture(data, barWidth, barHeight, 'chart')
     drawBarIndicators(data, barWidth, barHeight, 'chart', 30)
 
@@ -99,9 +102,8 @@
     setSelectCat(chartName)
     //switch texture by drag and drop
     geo_switchTextures(chartName)
-
-
 </script>
+<script src="/pattern-design-study/assets/pages/texture_ui_elements.js"></script>
 <script>
     let measurements = JSON.parse(localStorage.getItem('measurements'))
     let condition_texture = measurements['condition_texture']
