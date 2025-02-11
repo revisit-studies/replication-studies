@@ -369,12 +369,35 @@
           "condition_texture": 0,
           "pageLink": "assets/pages/question-design-strategies.html"
         },
-        "response": [{
+        "response": [
+          {
           "type": "reactive",
           "id": "answer",
           "prompt": "get-measurements",
           "hidden": true
-        }]
+          },
+          {
+            "id": "q-name",
+            "prompt": "What kind of **goals** did you want to achieve when you designed the representation?",
+            "location": "belowStimulus",
+            "type": "longText",
+            "placeholder": "Please write your answer here."
+          },
+          {
+            "id": "q-name",
+            "prompt": "When you chose the parameters for the **geometric textures**, did you use any methods or principles?",
+            "location": "belowStimulus",
+            "type": "longText",
+            "placeholder": "Please write your answer here."
+          },
+          {
+            "id": "q-name",
+            "prompt": "When you chose the parameters for the **iconic textures**, did you use any methods or principles?",
+            "location": "belowStimulus",
+            "type": "longText",
+            "placeholder": "Please write your answer here."
+          }
+      ]
       },
       "question-design-strategies_bar_icon-geo": {
         "type": "react-component",
@@ -384,12 +407,35 @@
           "condition_texture": 1,
           "pageLink": "assets/pages/question-design-strategies.html"
         },
-        "response": [{
+        "response": [
+          {
           "type": "reactive",
           "id": "answer",
           "prompt": "get-measurements",
           "hidden": true
-        }]
+          },
+          {
+            "id": "q-name",
+            "prompt": "What kind of **goals** did you want to achieve when you designed the representation?",
+            "location": "belowStimulus",
+            "type": "longText",
+            "placeholder": "Please write your answer here."
+          },
+          {
+            "id": "q-name",
+            "prompt": "When you chose the parameters for the **iconic textures**, did you use any methods or principles?",
+            "location": "belowStimulus",
+            "type": "longText",
+            "placeholder": "Please write your answer here."
+          },
+          {
+            "id": "q-name",
+            "prompt": "When you chose the parameters for the **geometric textures**, did you use any methods or principles?",
+            "location": "belowStimulus",
+            "type": "longText",
+            "placeholder": "Please write your answer here."
+          }
+      ]
       },
       "question-design-strategies_pie_geo-icon": {
         "type": "react-component",
@@ -399,12 +445,35 @@
           "condition_texture": 0,
           "pageLink": "assets/pages/question-design-strategies.html"
         },
-        "response": [{
+        "response": [
+          {
           "type": "reactive",
           "id": "answer",
           "prompt": "get-measurements",
           "hidden": true
-        }]
+        },
+        {
+          "id": "q-name",
+          "prompt": "What kind of **goals** did you want to achieve when you designed the representation?",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": "Please write your answer here."
+        },
+        {
+          "id": "q-name",
+          "prompt": "When you chose the parameters for the **geometric textures**, did you use any methods or principles?",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": "Please write your answer here."
+        },
+        {
+          "id": "q-name",
+          "prompt": "When you chose the parameters for the **iconic textures**, did you use any methods or principles?",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": "Please write your answer here."
+        }
+      ]
       },
       "question-design-strategies_pie_icon-geo": {
         "type": "react-component",
@@ -414,12 +483,35 @@
           "condition_texture": 1,
           "pageLink": "assets/pages/question-design-strategies.html"
         },
-        "response": [{
+        "response": [
+          {
           "type": "reactive",
           "id": "answer",
           "prompt": "get-measurements",
           "hidden": true
-        }]
+        },
+        {
+          "id": "q-name",
+          "prompt": "What kind of **goals** did you want to achieve when you designed the representation?",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": "Please write your answer here."
+        },
+        {
+          "id": "q-name",
+          "prompt": "When you chose the parameters for the **iconic textures**, did you use any methods or principles?",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": "Please write your answer here."
+        },
+        {
+          "id": "q-name",
+          "prompt": "When you chose the parameters for the **geometric textures**, did you use any methods or principles?",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": "Please write your answer here."
+        }
+      ]
       },
       "question-design-strategies_map_geo-icon": {
         "type": "react-component",
@@ -429,12 +521,34 @@
           "condition_texture": 0,
           "pageLink": "assets/pages/question-design-strategies.html"
         },
-        "response": [{
+        "response": [
+          {
           "type": "reactive",
           "id": "answer",
           "prompt": "get-measurements",
           "hidden": true
-        }]
+        },          {
+          "id": "q-name",
+          "prompt": "What kind of **goals** did you want to achieve when you designed the representation?",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": "Please write your answer here."
+        },
+        {
+          "id": "q-name",
+          "prompt": "When you chose the parameters for the **geometric textures**, did you use any methods or principles?",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": "Please write your answer here."
+        },
+        {
+          "id": "q-name",
+          "prompt": "When you chose the parameters for the **iconic textures**, did you use any methods or principles?",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": "Please write your answer here."
+        }
+      ]
       },
       "question-design-strategies_map_icon-geo": {
         "type": "react-component",
@@ -444,12 +558,35 @@
           "condition_texture": 1,
           "pageLink": "assets/pages/question-design-strategies.html"
         },
-        "response": [{
+        "response": [
+          {
           "type": "reactive",
           "id": "answer",
           "prompt": "get-measurements",
           "hidden": true
-        }]
+        },
+        {
+          "id": "q-name",
+          "prompt": "What kind of **goals** did you want to achieve when you designed the representation?",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": "Please write your answer here."
+        },
+        {
+          "id": "q-name",
+          "prompt": "When you chose the parameters for the **iconic textures**, did you use any methods or principles?",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": "Please write your answer here."
+        },
+        {
+          "id": "q-name",
+          "prompt": "When you chose the parameters for the **geometric textures**, did you use any methods or principles?",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": "Please write your answer here."
+        }
+      ]
       },
       "question-compare-texture_bar_geo-icon": {
         "type": "react-component",
