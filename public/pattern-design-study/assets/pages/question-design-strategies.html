@@ -49,7 +49,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
         <div class="col">
             <div class="content">
                 <div class="mb-3">
@@ -90,7 +90,7 @@
                 <button id="strategy_next_btn" class="btn btn-primary float-end" disabled>Next</button>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 
 <script src="/pattern-design-study/assets/pages/texture_functions.js"></script>
@@ -202,96 +202,96 @@
     }
 
     //show ui elements based on condition
-    let strategy_first_design_textarea = document.createElement('textarea')
-    document.getElementById('strategy_first_design_div').appendChild(strategy_first_design_textarea)
+    // let strategy_first_design_textarea = document.createElement('textarea')
+    // document.getElementById('strategy_first_design_div').appendChild(strategy_first_design_textarea)
 
-    strategy_first_design_textarea.placeholder = 'Please write your answer here.'
-    strategy_first_design_textarea.className = 'form-control'
-    strategy_first_design_textarea.rows = '4'
-    strategy_first_design_textarea.cols = '80'
-    strategy_first_design_textarea.id = 'strategy_first_design_textarea'
+    // strategy_first_design_textarea.placeholder = 'Please write your answer here.'
+    // strategy_first_design_textarea.className = 'form-control'
+    // strategy_first_design_textarea.rows = '4'
+    // strategy_first_design_textarea.cols = '80'
+    // strategy_first_design_textarea.id = 'strategy_first_design_textarea'
 
-    let strategy_second_design_textarea = document.createElement('textarea')
-    document.getElementById('strategy_second_design_div').appendChild(strategy_second_design_textarea)
+    // let strategy_second_design_textarea = document.createElement('textarea')
+    // document.getElementById('strategy_second_design_div').appendChild(strategy_second_design_textarea)
 
-    strategy_second_design_textarea.placeholder = 'Please write your answer here.'
-    strategy_second_design_textarea.className = 'form-control'
-    strategy_second_design_textarea.rows = '4'
-    strategy_second_design_textarea.cols = '80'
-    strategy_second_design_textarea.id = 'strategy_second_design_textarea'
+    // strategy_second_design_textarea.placeholder = 'Please write your answer here.'
+    // strategy_second_design_textarea.className = 'form-control'
+    // strategy_second_design_textarea.rows = '4'
+    // strategy_second_design_textarea.cols = '80'
+    // strategy_second_design_textarea.id = 'strategy_second_design_textarea'
 
-    if(condition_texture == 0){
-        document.getElementById('first_design_texture_name').innerHTML = 'geometric'
-        document.getElementById('second_design_texture_name').innerHTML = 'iconic'
-    }
+    // if(condition_texture == 0){
+    //     document.getElementById('first_design_texture_name').innerHTML = 'geometric'
+    //     document.getElementById('second_design_texture_name').innerHTML = 'iconic'
+    // }
 
-    if(condition_texture == 1){
-        document.getElementById('first_design_texture_name').innerHTML = 'iconic'
-        document.getElementById('second_design_texture_name').innerHTML = 'geometric'
-    }
+    // if(condition_texture == 1){
+    //     document.getElementById('first_design_texture_name').innerHTML = 'iconic'
+    //     document.getElementById('second_design_texture_name').innerHTML = 'geometric'
+    // }
 
 
 
     //record participants' answer status and answer
-    let strategy_goal_answered = false
-    let strategy_goal_answer = 'no_input'
+    // let strategy_goal_answered = false
+    // let strategy_goal_answer = 'no_input'
 
-    document.getElementById('strategy_goal').oninput = function (){
-        if(this.value){
-            strategy_goal_answered = true
-        }else{
-            strategy_goal_answered = false
-        }
+    // document.getElementById('strategy_goal').oninput = function (){
+    //     if(this.value){
+    //         strategy_goal_answered = true
+    //     }else{
+    //         strategy_goal_answered = false
+    //     }
 
-        strategy_goal_answer = this.value
+    //     strategy_goal_answer = this.value
 
-        //Check if all required questions have been answered
-        if (strategy_goal_answered && strategy_first_design_answered && strategy_second_design_answered){
-            nextBtn.disabled = false
-        }else{
-            nextBtn.disabled = true
-        }
-    }
+    //     //Check if all required questions have been answered
+    //     if (strategy_goal_answered && strategy_first_design_answered && strategy_second_design_answered){
+    //         nextBtn.disabled = false
+    //     }else{
+    //         nextBtn.disabled = true
+    //     }
+    // }
 
-    let strategy_first_design_answered = false
-    let strategy_first_design_answer = 'no_input'
+    // let strategy_first_design_answered = false
+    // let strategy_first_design_answer = 'no_input'
 
-    document.getElementById('strategy_first_design_textarea').oninput = function (){
-        if(this.value){
-            strategy_first_design_answered = true
-        }else{
-            strategy_first_design_answered = false
-        }
+    // document.getElementById('strategy_first_design_textarea').oninput = function (){
+    //     if(this.value){
+    //         strategy_first_design_answered = true
+    //     }else{
+    //         strategy_first_design_answered = false
+    //     }
 
-        strategy_first_design_answer = this.value
+    //     strategy_first_design_answer = this.value
 
-        if (strategy_goal_answered && strategy_first_design_answered && strategy_second_design_answered){
-            nextBtn.disabled = false
-        }else{
-            nextBtn.disabled = true
-        }
-    }
+    //     if (strategy_goal_answered && strategy_first_design_answered && strategy_second_design_answered){
+    //         nextBtn.disabled = false
+    //     }else{
+    //         nextBtn.disabled = true
+    //     }
+    // }
 
 
 
-    let strategy_second_design_answered = false
-    let strategy_second_design_answer = 'no_input'
+    // let strategy_second_design_answered = false
+    // let strategy_second_design_answer = 'no_input'
 
-    document.getElementById('strategy_second_design_textarea').oninput = function (){
-        if(this.value){
-            strategy_second_design_answered = true
-        }else{
-            strategy_second_design_answered = false
-        }
+    // document.getElementById('strategy_second_design_textarea').oninput = function (){
+    //     if(this.value){
+    //         strategy_second_design_answered = true
+    //     }else{
+    //         strategy_second_design_answered = false
+    //     }
 
-        strategy_second_design_answer = this.value
+    //     strategy_second_design_answer = this.value
 
-        if (strategy_goal_answered && strategy_first_design_answered && strategy_second_design_answered){
-            nextBtn.disabled = false
-        }else{
-            nextBtn.disabled = true
-        }
-    }
+    //     if (strategy_goal_answered && strategy_first_design_answered && strategy_second_design_answered){
+    //         nextBtn.disabled = false
+    //     }else{
+    //         nextBtn.disabled = true
+    //     }
+    // }
 
     //when clicking "Same As Before" button, fill the textarea with 'same'
     document.getElementById('strategy_same_answer_btn').onclick = function (){
@@ -345,7 +345,7 @@
 
 
         //jump to next page
-        window.location.href = 'question_compare_texture.php'
+        // window.location.href = 'question_compare_texture.php'
     }
 </script>
 
