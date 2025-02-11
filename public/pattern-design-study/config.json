@@ -44,12 +44,49 @@
           }
         ]
       },
-      "description": {
-        "type": "website",
-        "path": "pattern-design-study/assets/pages/description.html",
-        "response": []
+      "description_bar": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 0,
+          "pageLink": "assets/pages/description.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
       },
-      "tutorial": {
+      "description_pie": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 1,
+          "pageLink": "assets/pages/description.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "description_map": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 2,
+          "pageLink": "assets/pages/description.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "tutorial_bar_geo-icon": {
         "type": "react-component",
         "path": "pattern-design-study/assets/PatternComponent.tsx",
         "parameters": {
@@ -64,81 +101,627 @@
           "hidden": true
         }]
       },
-      "bar_geo": {
+      "tutorial_bar_icon-geo": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 0,
+          "condition_texture": 1,
+          "pageLink": "assets/pages/tutorial.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "tutorial_pie_geo-icon": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 1,
+          "condition_texture": 0,
+          "pageLink": "assets/pages/tutorial.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "tutorial_pie_icon-geo": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 1,
+          "condition_texture": 1,
+          "pageLink": "assets/pages/tutorial.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "tutorial_map_geo-icon": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 2,
+          "condition_texture": 0,
+          "pageLink": "assets/pages/tutorial.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "tutorial_map_icon-geo": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 2,
+          "condition_texture": 1,
+          "pageLink": "assets/pages/tutorial.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "bar-geo_geo-icon": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 0,
+          "condition_texture": 0,
+          "pageLink": "assets/pages/bar-geo.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "bar-geo_icon-geo": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 0,
+          "condition_texture": 1,
+          "pageLink": "assets/pages/bar-geo.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "bar-icon_geo-icon": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 0,
+          "condition_texture": 0,
+          "pageLink": "assets/pages/bar-icon.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "bar-icon_icon-geo": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 0,
+          "condition_texture": 1,
+          "pageLink": "assets/pages/bar-icon.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "pie-geo_geo-icon": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 1,
+          "condition_texture": 0,
+          "pageLink": "assets/pages/pie-geo.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "pie-geo_icon-geo": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 1,
+          "condition_texture": 1,
+          "pageLink": "assets/pages/pie-geo.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "pie-icon_geo-icon": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 1,
+          "condition_texture": 0,
+          "pageLink": "assets/pages/pie-icon.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "pie-icon_icon-geo": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 1,
+          "condition_texture": 1,
+          "pageLink": "assets/pages/pie-icon.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "map-geo_geo-icon": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 2,
+          "condition_texture": 0,
+          "pageLink": "assets/pages/map-geo.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "map-geo_icon-geo": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 2,
+          "condition_texture": 1,
+          "pageLink": "assets/pages/map-geo.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "map-icon_geo-icon": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 2,
+          "condition_texture": 0,
+          "pageLink": "assets/pages/map-icon.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "map-icon_icon-geo": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 2,
+          "condition_texture": 1,
+          "pageLink": "assets/pages/map-icon.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "between-two-design":{
         "type": "website",
-        "path": "pattern-design-study/assets/pages/bar_geo.html",
+        "path": "pattern-design-study/assets/pages/between-two-design.html",
         "response": []
       },
-      "bar_icon":{
-        "type": "website",
-        "path": "pattern-design-study/assets/pages/bar_icon.html",
-        "response": []
+      "question-design-strategies_bar_geo-icon": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 0,
+          "condition_texture": 0,
+          "pageLink": "assets/pages/question-design-strategies.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
       },
-      "pie_geo": {
-        "type": "website",
-        "path": "pattern-design-study/assets/pages/pie_geo.html",
-        "response": []
+      "question-design-strategies_bar_icon-geo": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 0,
+          "condition_texture": 1,
+          "pageLink": "assets/pages/question-design-strategies.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
       },
-      "pie_icon":{
-        "type": "website",
-        "path": "pattern-design-study/assets/pages/pie_icon.html",
-        "response": []
+      "question-design-strategies_pie_geo-icon": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 1,
+          "condition_texture": 0,
+          "pageLink": "assets/pages/question-design-strategies.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
       },
-      "map_geo": {
-        "type": "website",
-        "path": "pattern-design-study/assets/pages/map_geo.html",
-        "response": []
+      "question-design-strategies_pie_icon-geo": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 1,
+          "condition_texture": 1,
+          "pageLink": "assets/pages/question-design-strategies.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
       },
-      "map_icon":{
-        "type": "website",
-        "path": "pattern-design-study/assets/pages/map_icon.html",
-        "response": []
+      "question-design-strategies_map_geo-icon": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 2,
+          "condition_texture": 0,
+          "pageLink": "assets/pages/question-design-strategies.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
       },
-      "between_two_design":{
-        "type": "website",
-        "path": "pattern-design-study/assets/pages/between_two_design.html",
-        "response": []
+      "question-design-strategies_map_icon-geo": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 2,
+          "condition_texture": 1,
+          "pageLink": "assets/pages/question-design-strategies.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
       },
-      "question_design_strategies":{
-        "type": "website",
-        "path": "pattern-design-study/assets/pages/question_design_strategies.html",
-        "response": []
+      "question-compare-texture_bar_geo-icon": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 0,
+          "condition_texture": 0,
+          "pageLink": "assets/pages/question-compare-texture.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
       },
-      "question_compare_texture":{
-        "type": "website",
-        "path": "pattern-design-study/assets/pages/question_compare_texture.html",
-        "response": []
+      "question-compare-texture_bar_icon-geo": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 0,
+          "condition_texture": 1,
+          "pageLink": "assets/pages/question-compare-texture.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
       },
-      "question_different_chart_icon_texture":{
-        "type": "website",
-        "path": "pattern-design-study/assets/pages/question_different_chart_icon_texture.html",
-        "response": []
+      "question-compare-texture_pie_geo-icon": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 1,
+          "condition_texture": 0,
+          "pageLink": "assets/pages/question-compare-texture.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
       },
-      "question_different_chart_geo_texture":{
-        "type": "website",
-        "path": "pattern-design-study/assets/pages/question_different_chart_geo_texture.html",
-        "response": []
+      "question-compare-texture_pie_icon-geo": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 1,
+          "condition_texture": 1,
+          "pageLink": "assets/pages/question-compare-texture.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "question-compare-texture_map_geo-icon": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 2,
+          "condition_texture": 0,
+          "pageLink": "assets/pages/question-compare-texture.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "question-compare-texture_map_icon-geo": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 2,
+          "condition_texture": 1,
+          "pageLink": "assets/pages/question-compare-texture.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "question-different-chart-geo_bar": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 0,
+          "pageLink": "assets/pages/question-different-chart-geo-texture.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "question-different-chart-geo_pie": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 1,
+          "pageLink": "assets/pages/question-different-chart-geo-texture.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "question-different-chart-geo_map": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 2,
+          "pageLink": "assets/pages/question-different-chart-geo-texture.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "question-different-chart-icon_bar": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 0,
+          "pageLink": "assets/pages/question-different-chart-icon-texture.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "question-different-chart-icon_pie": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 1,
+          "pageLink": "assets/pages/question-different-chart-icon-texture.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
+      },
+      "question-different-chart-icon_map": {
+        "type": "react-component",
+        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "parameters": {
+          "condition_chart": 2,
+          "pageLink": "assets/pages/question-different-chart-icon-texture.html"
+        },
+        "response": [{
+          "type": "reactive",
+          "id": "answer",
+          "prompt": "get-measurements",
+          "hidden": true
+        }]
       }
   },
   "sequence": {
-      "order": "fixed",
+  "order": "fixed",
+  "components": [
+    "welcome",
+    "consent",
+    {
+      "order": "latinSquare",
+      "numSamples": 1,
       "components": [
-          "welcome",
-          "consent",
-          "$demographics.co.demographics",
-          "description",
-          "tutorial",
-          "bar_geo",
-          "bar_icon",
-          "pie_geo",
-          "pie_icon",
-          "map_geo",
-          "map_icon",
-          "between_two_design",
-          "question_design_strategies",
-          "question_compare_texture",
-          "question_different_chart_icon_texture",
-          "question_different_chart_geo_texture"
+        {
+          "order": "fixed",
+          "components": [
+            "description_bar",
+            "tutorial_bar_geo-icon",
+            "bar-geo_geo-icon",
+            "between-two-design",
+            "bar-icon_geo-icon",
+            "question-design-strategies_bar_geo-icon",
+            "question-compare-texture_bar_geo-icon",
+            "question-different-chart-geo_bar",
+            "question-different-chart-icon_bar"
+          ]
+        },
+        {
+          "order": "fixed",
+          "components": [
+            "description_bar",
+            "tutorial_bar_icon-geo",
+            "bar-icon_icon-geo",
+            "between-two-design",
+            "bar-geo_icon-geo",
+            "question-design-strategies_bar_icon-geo",
+            "question-compare-texture_bar_icon-geo",
+            "question-different-chart-geo_bar",
+            "question-different-chart-icon_bar"
+          ]
+        },
+        {
+          "order": "fixed",
+          "components": [
+            "description_pie",
+            "tutorial_pie_geo-icon",
+            "pie-geo_geo-icon",
+            "between-two-design",
+            "pie-icon_geo-icon",
+            "question-design-strategies_pie_geo-icon",
+            "question-compare-texture_pie_geo-icon",
+            "question-different-chart-geo_pie",
+            "question-different-chart-icon_pie"
+          ]
+        },
+        {
+          "order": "fixed",
+          "components": [
+            "description_pie",
+            "tutorial_pie_icon-geo",
+            "pie-icon_icon-geo",
+            "between-two-design",
+            "pie-geo_icon-geo",
+            "question-design-strategies_pie_icon-geo",
+            "question-compare-texture_pie_icon-geo",
+            "question-different-chart-geo_pie",
+            "question-different-chart-icon_pie"
+          ]
+        },
+        {
+          "order": "fixed",
+          "components": [
+            "description_map",
+            "tutorial_map_geo-icon",
+            "map-geo_geo-icon",
+            "between-two-design",
+            "map-icon_geo-icon",
+            "question-design-strategies_map_geo-icon",
+            "question-compare-texture_map_geo-icon",
+            "question-different-chart-geo_map",
+            "question-different-chart-icon_map"
+          ]
+        },
+        {
+          "order": "fixed",
+          "components": [
+            "description_map",
+            "tutorial_map_icon-geo",
+            "map-icon_icon-geo",
+            "between-two-design",
+            "map-geo_icon-geo",
+            "question-design-strategies_map_icon-geo",
+            "question-compare-texture_map_icon-geo",
+            "question-different-chart-geo_map",
+            "question-different-chart-icon_map"
+          ]
+        }
       ]
-  }
+    }
+  ]
+}
+
 }
