@@ -79,6 +79,7 @@ export function ResponseBlock({
   }, [reactiveAnswers]);
 
   useEffect(() => {
+    console.log(reactiveProvenance)
     if (reactiveProvenance) {
       setProvenanceGraph(reactiveProvenance);
     }

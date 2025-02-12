@@ -45,6 +45,7 @@ export function IframeController({ currentConfig }: { currentConfig: WebsiteComp
     [ref, iframeId],
   );
 
+  console.log(PREFIX)
   useEffect(() => {
     const handler = (e: MessageEvent) => {
       const { data } = e;
@@ -64,6 +65,7 @@ export function IframeController({ currentConfig }: { currentConfig: WebsiteComp
             storeDispatch(setreactiveAnswers(data.message));
             break;
           case `${PREFIX}/PROVENANCE`:
+            console.log('SETTNIG PROV')
             storeDispatch(setreactiveProvenance(data.message));
             break;
           default:

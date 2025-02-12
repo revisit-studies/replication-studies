@@ -31,12 +31,13 @@ export function createTrrack(){
     }
 );
 
-const updatePieIconParameters = registry.register(
-  "update-pie-icon-parameters",
-  (state, parameters) => {
-    state.pieicon = parameters
-  }
-);
+  const updatePieIconParameters = registry.register(
+    "update-pie-icon-parameters",
+    (state, parameters) => {
+      state.pieicon = parameters
+      console.log('pieIconParameters updated')
+    }
+  );
 
 const updateMapGeoParameters = registry.register(
   "update-map-geo-parameters",
