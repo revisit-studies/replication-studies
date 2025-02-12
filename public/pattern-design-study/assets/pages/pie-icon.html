@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Iconic Texture Pie Chart</title>
 
+    <script src="../../../revisitUtilities/revisit-communicate.js"></script>
     <script type="text/javascript" src="/pattern-design-study/assets/lib/jquery.min.js"></script>
     <script type="text/javascript" src="/pattern-design-study/assets/lib/d3.v7.min.js"></script>
 
@@ -26,7 +27,7 @@
 <div class="container">
     <div class="row">
         <div class="col bg-light textContent">
-            <h2>Now it’s your turn to design an effective set of textures for data visualization</h2>
+            <h2>Now it's your turn to design an effective set of textures for data visualization</h2>
             <div style="width:680px">
 
                 <p>Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. <span id="fruit_survey_description"></span>
@@ -177,13 +178,19 @@
         document.getElementById("This chart shows the result of a survey about people's favourite vegetables.")
     }
 </script>
-<script src="/pattern-design-study/assets/pages/texture_functions.js"></script>
-<script src="/pattern-design-study/assets/pages/texture_constants.js"></script>
 <script type="module">
     // Move all code that uses createTrrack into this module script
     import { createTrrack } from '/pattern-design-study/assets/pages/trrack.js';
     const {trrack, actions: trrack_actions} = createTrrack()
+    
+    // Make trrack and actions globally available
+    window.trrack = trrack;
+    window.trrack_actions = trrack_actions;
+    window.action = trrack_actions;
 </script>
+<script src="/pattern-design-study/assets/pages/texture_functions.js"></script>
+<script src="/pattern-design-study/assets/pages/texture_constants.js"></script>
+
 <script>
     const chartName = 'pieIcon'
 
