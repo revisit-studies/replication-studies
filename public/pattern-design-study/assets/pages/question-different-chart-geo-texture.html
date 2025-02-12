@@ -45,7 +45,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
         <div class="col">
             <p>Do you think they still work in this context? Please explain.</p>
             <div class="mb-3">
@@ -57,7 +57,7 @@
             </div>
             <button id="different_chart_geo_next_btn" class="btn btn-primary float-end" disabled>Next</button>
         </div>
-    </div>
+    </div> -->
 </div>
 
 <script src="texture_functions.js"></script>
@@ -167,76 +167,76 @@
         }
     }
 
-    document.getElementById('different_chart_geo_next_btn').onclick = function(){
-        //write data to measurements
-        measurements['different_chart_geo'] = '"'+different_chart_geo_answer+'"'
+    // document.getElementById('different_chart_geo_next_btn').onclick = function(){
+    //     //write data to measurements
+    //     measurements['different_chart_geo'] = '"'+different_chart_geo_answer+'"'
 
-        //update measurements to localStorage
-        localStorage.setItem('measurements', JSON.stringify(measurements))
+    //     //update measurements to localStorage
+    //     localStorage.setItem('measurements', JSON.stringify(measurements))
 
-        //jump to next page
-        switch (condition_texture){
-            case 0: //geo_icon
-                window.location.href = 'question_different_chart_icon_texture.php';
-                break;
-            case 1: //icon_geo
-                measurements["timestamp_end"] = Date.now()
+    //     //jump to next page
+    //     switch (condition_texture){
+    //         case 0: //geo_icon
+    //             window.location.href = 'question_different_chart_icon_texture.php';
+    //             break;
+    //         case 1: //icon_geo
+    //             measurements["timestamp_end"] = Date.now()
 
-                let date = new Date();
-                let y = date.getFullYear();
-                let m = date.getMonth() + 1;
-                let d = date.getDate();
-                let h = date.getHours();
-                let min = date.getMinutes();
-                let s = date.getSeconds();
+    //             let date = new Date();
+    //             let y = date.getFullYear();
+    //             let m = date.getMonth() + 1;
+    //             let d = date.getDate();
+    //             let h = date.getHours();
+    //             let min = date.getMinutes();
+    //             let s = date.getSeconds();
 
-                // add leading zeros if necessary
-                if (m < 10) m = '0' + m;
-                if (d < 10) d = '0' + d;
-                if (h < 10) h = '0' + h;
-                if (min < 10) min = '0' + min;
-                if (s < 10) s = '0' + s;
+    //             // add leading zeros if necessary
+    //             if (m < 10) m = '0' + m;
+    //             if (d < 10) d = '0' + d;
+    //             if (h < 10) h = '0' + h;
+    //             if (min < 10) min = '0' + min;
+    //             if (s < 10) s = '0' + s;
 
-                let yymmdd = y + '' + m + '' + d;
-                let hhmmss = h + ':' + min + ':' + s;
+    //             let yymmdd = y + '' + m + '' + d;
+    //             let hhmmss = h + ':' + min + ':' + s;
 
-                let formattedDate = yymmdd + ' ' + hhmmss;
+    //             let formattedDate = yymmdd + ' ' + hhmmss;
 
-                measurements["formatted_data_end"] = formattedDate
+    //             measurements["formatted_data_end"] = formattedDate
 
 
 
-                //update measurements to localStorage
-                localStorage.setItem('measurements', JSON.stringify(measurements))
+    //             //update measurements to localStorage
+    //             localStorage.setItem('measurements', JSON.stringify(measurements))
 
-                //send json results to server
-                $.ajax({
-                    url: '../ajax/results_json.php', //path to the script who handles this
-                    type: 'POST',
-                    data: JSON.stringify(measurements),
-                    contentType: 'application/json',
-                    dataType: "json",
-                    async: false, // Make the request synchronous
-                    success: function (data) {
-                        console.log('success')
-                    }
-                })
+    //             //send json results to server
+    //             $.ajax({
+    //                 url: '../ajax/results_json.php', //path to the script who handles this
+    //                 type: 'POST',
+    //                 data: JSON.stringify(measurements),
+    //                 contentType: 'application/json',
+    //                 dataType: "json",
+    //                 async: false, // Make the request synchronous
+    //                 success: function (data) {
+    //                     console.log('success')
+    //                 }
+    //             })
 
-                //send csv results to server
-                $.ajax({
-                    url: '../ajax/results_csv.php', //path to the script who handles this
-                    type: 'POST',
-                    data: JSON.stringify(measurements),
-                    contentType: 'application/json',
-                    async: false, // Make the request synchronous
-                    success: function (data) {
-                        console.log('success')
-                    }
-                })
-                window.location.href = 'end.php';
-                break;
-        }
-    }
+    //             //send csv results to server
+    //             $.ajax({
+    //                 url: '../ajax/results_csv.php', //path to the script who handles this
+    //                 type: 'POST',
+    //                 data: JSON.stringify(measurements),
+    //                 contentType: 'application/json',
+    //                 async: false, // Make the request synchronous
+    //                 success: function (data) {
+    //                     console.log('success')
+    //                 }
+    //             })
+    //             window.location.href = 'end.php';
+    //             break;
+    //     }
+    // }
 </script>
 
 </body>
