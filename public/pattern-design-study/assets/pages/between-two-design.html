@@ -32,7 +32,7 @@
                 <p>You will now move to your 2nd and final design. </p>
 
                 <p>This design will use a different set of textures than the ones you use before, but the interface is largely the same.</p>
-                <button id="between_next_btn" class="btn btn-primary float-right">Start 2nd Design</button>
+                <!-- <button id="between_next_btn" class="btn btn-primary float-right">Start 2nd Design</button> -->
             </div>
         </div>
     </div>
@@ -43,48 +43,48 @@
     let condition_chart = measurements['condition_chart']
     let condition_texture = measurements['condition_texture']
 
-    document.getElementById('between_next_btn').onclick = function(){
+    // document.getElementById('between_next_btn').onclick = function(){
         //write data to measurements
         // measurements['timestamp_second_design_starts'] = Date.now()
 
         //update measurements to localStorage
-        localStorage.setItem('measurements', JSON.stringify(measurements))
+        // localStorage.setItem('measurements', JSON.stringify(measurements))
 
         //jump to next page
-        switch (condition_chart) {
-            case 0:
-                switch (condition_texture){
-                    case 0:
-                        window.location.href = 'bar_icon.php';
-                        break;
-                    case 1:
-                        window.location.href = 'bar_geo.php';
-                        break;
-                }
-                break;
-            case 1:
-                switch (condition_texture){
-                    case 0:
-                        window.location.href = 'pie_icon.php';
-                        break;
-                    case 1:
-                        window.location.href = 'pie_geo.php';
-                        break;
-                }
-                break;
-            case 2:
-                switch (condition_texture){
-                    case 0:
-                        window.location.href = 'map_icon.php';
-                        break;
-                    case 1:
-                        window.location.href = 'map_geo.php';
-                        break;
-                }
-                break;
-            default:
-                console.log(`has problem with condition_chart`);
-        }
+        // switch (condition_chart) {
+        //     case 0:
+        //         switch (condition_texture){
+        //             case 0:
+        //                 window.location.href = 'bar_icon.php';
+        //                 break;
+        //             case 1:
+        //                 window.location.href = 'bar_geo.php';
+        //                 break;
+        //         }
+        //         break;
+        //     case 1:
+        //         switch (condition_texture){
+        //             case 0:
+        //                 window.location.href = 'pie_icon.php';
+        //                 break;
+        //             case 1:
+        //                 window.location.href = 'pie_geo.php';
+        //                 break;
+        //         }
+        //         break;
+        //     case 2:
+        //         switch (condition_texture){
+        //             case 0:
+        //                 window.location.href = 'map_icon.php';
+        //                 break;
+        //             case 1:
+        //                 window.location.href = 'map_geo.php';
+        //                 break;
+        //         }
+        //         break;
+        //     default:
+        //         console.log(`has problem with condition_chart`);
+        // }
     }
 </script>
 

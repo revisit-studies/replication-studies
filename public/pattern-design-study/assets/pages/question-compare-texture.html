@@ -42,7 +42,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
         <div class="col">
             <div class="mb-3">
                 <label for="compare_texture_textarea"
@@ -59,7 +59,7 @@
             </div>
             <button id="compare_texture_next_btn" class="btn btn-primary float-end" disabled>Next</button>
         </div>
-    </div>
+    </div> -->
 </div>
 
 <script>
@@ -203,23 +203,23 @@
 
     }
 
-    document.getElementById('compare_texture_next_btn').onclick = function(){
-        //write data to measurements
-        measurements['compare_texture'] = '"'+ compare_texture_answer + '"'
+    // document.getElementById('compare_texture_next_btn').onclick = function(){
+    //     //write data to measurements
+    //     measurements['compare_texture'] = '"'+ compare_texture_answer + '"'
 
-        //update measurements to localStorage
-        localStorage.setItem('measurements', JSON.stringify(measurements))
+    //     //update measurements to localStorage
+    //     localStorage.setItem('measurements', JSON.stringify(measurements))
 
-        //jump to next page
-        switch (condition_texture){
-            case 0: //geo_icon
-                window.location.href = 'question_different_chart_geo_texture.php';
-                break;
-            case 1: //icon_geo
-                window.location.href = 'question_different_chart_icon_texture.php';
-                break;
-        }
-    }
+    //     //jump to next page
+    //     switch (condition_texture){
+    //         case 0: //geo_icon
+    //             window.location.href = 'question_different_chart_geo_texture.php';
+    //             break;
+    //         case 1: //icon_geo
+    //             window.location.href = 'question_different_chart_icon_texture.php';
+    //             break;
+    //     }
+    // }
 </script>
 
 </body>

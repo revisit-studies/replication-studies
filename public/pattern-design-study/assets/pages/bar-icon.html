@@ -57,12 +57,12 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
         <div class="col">
             <button id="bar_icon_next_btn" class="btn btn-primary float-end">Next
             </button>
         </div>
-    </div>
+    </div> -->
 </div>
 
 <script>
@@ -80,84 +80,84 @@
     }
 
 
-    document.getElementById('bar_icon_next_btn').onclick = function(){
+    // document.getElementById('bar_icon_next_btn').onclick = function(){
 
-        //write data to measurements
-        // measurements['parameters_bar_icon'] = JSON.stringify(parameters)
-        // measurements['timestamp_design_finished_bar_icon'] = Date.now()
+    //     //write data to measurements
+    //     // measurements['parameters_bar_icon'] = JSON.stringify(parameters)
+    //     // measurements['timestamp_design_finished_bar_icon'] = Date.now()
 
-        let timestamp_bar_icon_end = Date.now() //the end time for this design
-        let bar_icon_design_time = timestamp_bar_icon_end - timestamp_bar_icon_start // time used for this design
+    //     let timestamp_bar_icon_end = Date.now() //the end time for this design
+    //     let bar_icon_design_time = timestamp_bar_icon_end - timestamp_bar_icon_start // time used for this design
 
-        //update measurements to localStorage
-        localStorage.setItem('measurements', JSON.stringify(measurements))
-
-
-        //send the svg of chart design to server
-        //remove the indicators
-        let indicatorsSVG = document.getElementById('indicator_group').outerHTML
-        let fullSVG = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="600">' + $("#chartA")[0].innerHTML + $("#chart")[0].innerHTML  + $("#chartWhiteStroke")[0].innerHTML + $("#chartBlackStroke")[0].innerHTML + '</svg>'
-        let svgData = fullSVG.replace(indicatorsSVG, '')
-
-        //send the svg and the parameters
-        let obj = {}
-        obj.svgData = svgData
-        obj.filename = 'bar_icon_'+ measurements['participant_id'] + '_v' + measurements['trial_num']
-        obj.parameters = parameters
-
-        $.ajax({
-            url: '../ajax/results_svg.php',
-            type: 'POST',
-            data: JSON.stringify(obj),
-            contentType: 'application/json',
-            dataType: "json",
-            async: false, // Make the request synchronous
-            success: function () {
-                console.log('success')
-            },
-            error:function (e){
-                console.log('Getting svg failed')
-            }
-        })
-
-        $.ajax({
-            url: '../ajax/results_texture_parameters.php',
-            type: 'POST',
-            data: JSON.stringify(obj),
-            contentType: 'application/json',
-            dataType: "json",
-            async: false, // Make the request synchronous
-            success: function () {
-                console.log('success')
-            },
-            error:function (e){
-                console.log('Getting json failed')
-            }
-        })
+    //     //update measurements to localStorage
+    //     localStorage.setItem('measurements', JSON.stringify(measurements))
 
 
-        //jump to next page
-        switch (condition_texture){
-            case 0: //geo_icon: this design (bar_icon) is the second design
+    //     //send the svg of chart design to server
+    //     //remove the indicators
+    //     let indicatorsSVG = document.getElementById('indicator_group').outerHTML
+    //     let fullSVG = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="600">' + $("#chartA")[0].innerHTML + $("#chart")[0].innerHTML  + $("#chartWhiteStroke")[0].innerHTML + $("#chartBlackStroke")[0].innerHTML + '</svg>'
+    //     let svgData = fullSVG.replace(indicatorsSVG, '')
 
-                measurements['second_design_time'] = bar_icon_design_time
+    //     //send the svg and the parameters
+    //     let obj = {}
+    //     obj.svgData = svgData
+    //     obj.filename = 'bar_icon_'+ measurements['participant_id'] + '_v' + measurements['trial_num']
+    //     obj.parameters = parameters
 
-                //update measurements to localStorage
-                localStorage.setItem('measurements', JSON.stringify(measurements))
+    //     $.ajax({
+    //         url: '../ajax/results_svg.php',
+    //         type: 'POST',
+    //         data: JSON.stringify(obj),
+    //         contentType: 'application/json',
+    //         dataType: "json",
+    //         async: false, // Make the request synchronous
+    //         success: function () {
+    //             console.log('success')
+    //         },
+    //         error:function (e){
+    //             console.log('Getting svg failed')
+    //         }
+    //     })
 
-                window.location.href = 'question_design_strategies.php';
-                break;
-            case 1: //icon_geo: this design (bar_icon) is the first design
+    //     $.ajax({
+    //         url: '../ajax/results_texture_parameters.php',
+    //         type: 'POST',
+    //         data: JSON.stringify(obj),
+    //         contentType: 'application/json',
+    //         dataType: "json",
+    //         async: false, // Make the request synchronous
+    //         success: function () {
+    //             console.log('success')
+    //         },
+    //         error:function (e){
+    //             console.log('Getting json failed')
+    //         }
+    //     })
 
-                measurements['first_design_time'] = bar_icon_design_time
 
-                //update measurements to localStorage
-                localStorage.setItem('measurements', JSON.stringify(measurements))
+    //     //jump to next page
+    //     switch (condition_texture){
+    //         case 0: //geo_icon: this design (bar_icon) is the second design
 
-                window.location.href = 'between_two_design.php';
-                break;
-        }
-    }
+    //             measurements['second_design_time'] = bar_icon_design_time
+
+    //             //update measurements to localStorage
+    //             localStorage.setItem('measurements', JSON.stringify(measurements))
+
+    //             window.location.href = 'question_design_strategies.php';
+    //             break;
+    //         case 1: //icon_geo: this design (bar_icon) is the first design
+
+    //             measurements['first_design_time'] = bar_icon_design_time
+
+    //             //update measurements to localStorage
+    //             localStorage.setItem('measurements', JSON.stringify(measurements))
+
+    //             window.location.href = 'between_two_design.php';
+    //             break;
+    //     }
+    // }
 </script>
 
 

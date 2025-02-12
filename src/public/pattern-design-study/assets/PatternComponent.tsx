@@ -20,7 +20,7 @@ export default function Example({ parameters, setAnswer }: StimulusParams<{condi
   return     <iframe
   src={parameters.pageLink}
   style={{
-    minHeight: '1500px',
+    minHeight: '1200px',
     width: '100%',
     border: 0,
   }}

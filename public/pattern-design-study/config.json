@@ -19,7 +19,7 @@
       "logoPath": "revisitAssets/revisitLogoSquare.svg",
       "withProgressBar": true,
       "autoDownloadStudy": false,
-      "sidebar": true
+      "sidebar": false
   },  
   "importedLibraries": [
     "demographics"
@@ -43,6 +43,16 @@
             "placeholder": "Please provide your signature"
           }
         ]
+      },
+      "between-two-design":{
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/between-two-design.html",
+        "response": []
+      },
+      "lastpage":{
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/end.html",
+        "response": []
       },
       "description_bar": {
         "type": "react-component",
@@ -356,11 +366,6 @@
           "hidden": true
         }]
       },
-      "between-two-design":{
-        "type": "website",
-        "path": "pattern-design-study/assets/pages/between-two-design.html",
-        "response": []
-      },
       "question-design-strategies_bar_geo-icon": {
         "type": "react-component",
         "path": "pattern-design-study/assets/PatternComponent.tsx",
@@ -377,21 +382,21 @@
           "hidden": true
           },
           {
-            "id": "q-name",
+            "id": "design-strategies-goals",
             "prompt": "What kind of **goals** did you want to achieve when you designed the representation?",
             "location": "belowStimulus",
             "type": "longText",
             "placeholder": "Please write your answer here."
           },
           {
-            "id": "q-name",
+            "id": "design-strategies-geometric-textures",
             "prompt": "When you chose the parameters for the **geometric textures**, did you use any methods or principles?",
             "location": "belowStimulus",
             "type": "longText",
             "placeholder": "Please write your answer here."
           },
           {
-            "id": "q-name",
+            "id": "design-strategies-iconic-textures",
             "prompt": "When you chose the parameters for the **iconic textures**, did you use any methods or principles?",
             "location": "belowStimulus",
             "type": "longText",
@@ -415,21 +420,21 @@
           "hidden": true
           },
           {
-            "id": "q-name",
+            "id": "design-strategies-goals",
             "prompt": "What kind of **goals** did you want to achieve when you designed the representation?",
             "location": "belowStimulus",
             "type": "longText",
             "placeholder": "Please write your answer here."
           },
           {
-            "id": "q-name",
+            "id": "design-strategies-iconic-textures",
             "prompt": "When you chose the parameters for the **iconic textures**, did you use any methods or principles?",
             "location": "belowStimulus",
             "type": "longText",
             "placeholder": "Please write your answer here."
           },
           {
-            "id": "q-name",
+            "id": "design-strategies-geometric-textures",
             "prompt": "When you chose the parameters for the **geometric textures**, did you use any methods or principles?",
             "location": "belowStimulus",
             "type": "longText",
@@ -453,21 +458,21 @@
           "hidden": true
         },
         {
-          "id": "q-name",
+          "id": "design-strategies-goals",
           "prompt": "What kind of **goals** did you want to achieve when you designed the representation?",
           "location": "belowStimulus",
           "type": "longText",
           "placeholder": "Please write your answer here."
         },
         {
-          "id": "q-name",
+          "id": "design-strategies-geometric-textures",
           "prompt": "When you chose the parameters for the **geometric textures**, did you use any methods or principles?",
           "location": "belowStimulus",
           "type": "longText",
           "placeholder": "Please write your answer here."
         },
         {
-          "id": "q-name",
+          "id": "design-strategies-iconic-textures",
           "prompt": "When you chose the parameters for the **iconic textures**, did you use any methods or principles?",
           "location": "belowStimulus",
           "type": "longText",
@@ -491,21 +496,21 @@
           "hidden": true
         },
         {
-          "id": "q-name",
+          "id": "design-strategies-goals",
           "prompt": "What kind of **goals** did you want to achieve when you designed the representation?",
           "location": "belowStimulus",
           "type": "longText",
           "placeholder": "Please write your answer here."
         },
         {
-          "id": "q-name",
+          "id": "design-strategies-iconic-textures",
           "prompt": "When you chose the parameters for the **iconic textures**, did you use any methods or principles?",
           "location": "belowStimulus",
           "type": "longText",
           "placeholder": "Please write your answer here."
         },
         {
-          "id": "q-name",
+          "id": "design-strategies-geometric-textures",
           "prompt": "When you chose the parameters for the **geometric textures**, did you use any methods or principles?",
           "location": "belowStimulus",
           "type": "longText",
@@ -528,21 +533,21 @@
           "prompt": "get-measurements",
           "hidden": true
         },          {
-          "id": "q-name",
+          "id": "design-strategies-goals",
           "prompt": "What kind of **goals** did you want to achieve when you designed the representation?",
           "location": "belowStimulus",
           "type": "longText",
           "placeholder": "Please write your answer here."
         },
         {
-          "id": "q-name",
+          "id": "design-strategies-geometric-textures",
           "prompt": "When you chose the parameters for the **geometric textures**, did you use any methods or principles?",
           "location": "belowStimulus",
           "type": "longText",
           "placeholder": "Please write your answer here."
         },
         {
-          "id": "q-name",
+          "id": "design-strategies-iconic-textures",
           "prompt": "When you chose the parameters for the **iconic textures**, did you use any methods or principles?",
           "location": "belowStimulus",
           "type": "longText",
@@ -566,21 +571,21 @@
           "hidden": true
         },
         {
-          "id": "q-name",
+          "id": "design-strategies-goals",
           "prompt": "What kind of **goals** did you want to achieve when you designed the representation?",
           "location": "belowStimulus",
           "type": "longText",
           "placeholder": "Please write your answer here."
         },
         {
-          "id": "q-name",
+          "id": "design-strategies-iconic-textures",
           "prompt": "When you chose the parameters for the **iconic textures**, did you use any methods or principles?",
           "location": "belowStimulus",
           "type": "longText",
           "placeholder": "Please write your answer here."
         },
         {
-          "id": "q-name",
+          "id": "design-strategies-geometric-textures",
           "prompt": "When you chose the parameters for the **geometric textures**, did you use any methods or principles?",
           "location": "belowStimulus",
           "type": "longText",
@@ -596,12 +601,21 @@
           "condition_texture": 0,
           "pageLink": "assets/pages/question-compare-texture.html"
         },
-        "response": [{
+        "response": [
+          {
           "type": "reactive",
           "id": "answer",
           "prompt": "get-measurements",
           "hidden": true
-        }]
+        },
+        {
+          "id": "compare-texture",
+          "prompt": "What’s your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": "Please write your answer here."
+        }
+      ]
       },
       "question-compare-texture_bar_icon-geo": {
         "type": "react-component",
@@ -611,12 +625,21 @@
           "condition_texture": 1,
           "pageLink": "assets/pages/question-compare-texture.html"
         },
-        "response": [{
+        "response": [
+          {
           "type": "reactive",
           "id": "answer",
           "prompt": "get-measurements",
           "hidden": true
-        }]
+        },
+        {
+          "id": "compare-texture",
+          "prompt": "What’s your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": "Please write your answer here."
+        }
+      ]
       },
       "question-compare-texture_pie_geo-icon": {
         "type": "react-component",
@@ -626,12 +649,21 @@
           "condition_texture": 0,
           "pageLink": "assets/pages/question-compare-texture.html"
         },
-        "response": [{
+        "response": [
+          {
           "type": "reactive",
           "id": "answer",
           "prompt": "get-measurements",
           "hidden": true
-        }]
+        },
+        {
+          "id": "compare-texture",
+          "prompt": "What’s your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": "Please write your answer here."
+        }
+      ]
       },
       "question-compare-texture_pie_icon-geo": {
         "type": "react-component",
@@ -641,12 +673,21 @@
           "condition_texture": 1,
           "pageLink": "assets/pages/question-compare-texture.html"
         },
-        "response": [{
+        "response": [
+          {
           "type": "reactive",
           "id": "answer",
           "prompt": "get-measurements",
           "hidden": true
-        }]
+        },
+        {
+          "id": "compare-texture",
+          "prompt": "What’s your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": "Please write your answer here."
+        }
+      ]
       },
       "question-compare-texture_map_geo-icon": {
         "type": "react-component",
@@ -656,12 +697,21 @@
           "condition_texture": 0,
           "pageLink": "assets/pages/question-compare-texture.html"
         },
-        "response": [{
+        "response": [
+          {
           "type": "reactive",
           "id": "answer",
           "prompt": "get-measurements",
           "hidden": true
-        }]
+        },
+        {
+          "id": "compare-texture",
+          "prompt": "What’s your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": "Please write your answer here."
+        }
+      ]
       },
       "question-compare-texture_map_icon-geo": {
         "type": "react-component",
@@ -671,12 +721,21 @@
           "condition_texture": 1,
           "pageLink": "assets/pages/question-compare-texture.html"
         },
-        "response": [{
+        "response": [
+          {
           "type": "reactive",
           "id": "answer",
           "prompt": "get-measurements",
           "hidden": true
-        }]
+        },
+        {
+          "id": "compare-texture",
+          "prompt": "What’s your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": "Please write your answer here."
+        }
+      ]
       },
       "question-different-chart-geo_bar": {
         "type": "react-component",
@@ -685,12 +744,21 @@
           "condition_chart": 0,
           "pageLink": "assets/pages/question-different-chart-geo-texture.html"
         },
-        "response": [{
+        "response": [
+          {
           "type": "reactive",
           "id": "answer",
           "prompt": "get-measurements",
           "hidden": true
-        }]
+        },
+        {
+          "id": "different-chart-geo",
+          "prompt": "Do you think they still work in this context? Please explain.",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": "Please write your answer here."
+        }
+      ]
       },
       "question-different-chart-geo_pie": {
         "type": "react-component",
@@ -699,12 +767,21 @@
           "condition_chart": 1,
           "pageLink": "assets/pages/question-different-chart-geo-texture.html"
         },
-        "response": [{
+        "response": [
+          {
           "type": "reactive",
           "id": "answer",
           "prompt": "get-measurements",
           "hidden": true
-        }]
+        },
+        {
+          "id": "different-chart-geo",
+          "prompt": "Do you think they still work in this context? Please explain.",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": "Please write your answer here."
+        }
+      ]
       },
       "question-different-chart-geo_map": {
         "type": "react-component",
@@ -713,12 +790,21 @@
           "condition_chart": 2,
           "pageLink": "assets/pages/question-different-chart-geo-texture.html"
         },
-        "response": [{
+        "response": [
+          {
           "type": "reactive",
           "id": "answer",
           "prompt": "get-measurements",
           "hidden": true
-        }]
+        },
+        {
+          "id": "different-chart-geo",
+          "prompt": "Do you think they still work in this context? Please explain.",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": "Please write your answer here."
+        }
+      ]
       },
       "question-different-chart-icon_bar": {
         "type": "react-component",
@@ -727,12 +813,21 @@
           "condition_chart": 0,
           "pageLink": "assets/pages/question-different-chart-icon-texture.html"
         },
-        "response": [{
+        "response": [
+          {
           "type": "reactive",
           "id": "answer",
           "prompt": "get-measurements",
           "hidden": true
-        }]
+        },
+        {
+          "id": "different-chart-icon",
+          "prompt": "Do you think they still work in this context? Please explain.",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": "Please write your answer here."
+        }
+      ]
       },
       "question-different-chart-icon_pie": {
         "type": "react-component",
@@ -741,12 +836,21 @@
           "condition_chart": 1,
           "pageLink": "assets/pages/question-different-chart-icon-texture.html"
         },
-        "response": [{
+        "response": [
+          {
           "type": "reactive",
           "id": "answer",
           "prompt": "get-measurements",
           "hidden": true
-        }]
+        },
+        {
+          "id": "different-chart-icon",
+          "prompt": "Do you think they still work in this context? Please explain.",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": "Please write your answer here."
+        }
+      ]
       },
       "question-different-chart-icon_map": {
         "type": "react-component",
@@ -755,12 +859,21 @@
           "condition_chart": 2,
           "pageLink": "assets/pages/question-different-chart-icon-texture.html"
         },
-        "response": [{
+        "response": [
+          {
           "type": "reactive",
           "id": "answer",
           "prompt": "get-measurements",
           "hidden": true
-        }]
+        },
+        {
+          "id": "different-chart-icon",
+          "prompt": "Do you think they still work in this context? Please explain.",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": "Please write your answer here."
+        }
+      ]
       }
   },
   "sequence": {
@@ -857,7 +970,8 @@
           ]
         }
       ]
-    }
+    },
+    "lastpage"
   ]
 }
 

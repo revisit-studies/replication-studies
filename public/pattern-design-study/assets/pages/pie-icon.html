@@ -26,9 +26,21 @@
 <div class="container">
     <div class="row">
         <div class="col bg-light textContent">
-            <?php
-            include '../modules/design_task_description.php';
-            ?>
+            <h2>Now it’s your turn to design an effective set of textures for data visualization</h2>
+            <div style="width:680px">
+
+                <p>Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. <span id="fruit_survey_description"></span>
+                </p>
+                <p>
+                    Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.
+                </p>
+                <p>
+                    Please optimize for datasets in general. Click the change data set button (<img src="./img/icons/change_data.png" class="img-button-in-description">) to test your design on different random data sets, and click the default data set button (<img src="./img/icons/default_data.png" class="img-button-in-description">) to test your design on a default data set.
+                </p>
+                <p>
+                    When you finish designing, click on the <span style="color:#1E90FF;font-weight: bold">Next</span> button in the bottom right corner of the page.</p>
+                </p>
+            </div>
             <p>
                 There is no time limit for this task<span id="last_task"></span>
             </p>
@@ -55,12 +67,12 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
         <div class="col">
             <button id="pie_icon_next_btn" class="btn btn-primary float-end">Next
             </button>
         </div>
-    </div>
+    </div> -->
 </div>
 
 <script>
@@ -77,84 +89,94 @@
             break;
     }
 
-    document.getElementById('pie_icon_next_btn').onclick = function(){
+    // document.getElementById('pie_icon_next_btn').onclick = function(){
 
-        //write data to measurements
-        // measurements['parameters_pie_icon'] = JSON.stringify(parameters)
-        // measurements['timestamp_design_finished_pie_icon'] = Date.now()
+    //     //write data to measurements
+    //     // measurements['parameters_pie_icon'] = JSON.stringify(parameters)
+    //     // measurements['timestamp_design_finished_pie_icon'] = Date.now()
 
-        let timestamp_pie_icon_end = Date.now() //the end time for this design
-        let pie_icon_design_time = timestamp_pie_icon_end - timestamp_pie_icon_start // time used for this design
+    //     let timestamp_pie_icon_end = Date.now() //the end time for this design
+    //     let pie_icon_design_time = timestamp_pie_icon_end - timestamp_pie_icon_start // time used for this design
 
-        //update measurements to localStorage
-        localStorage.setItem('measurements', JSON.stringify(measurements))
+    //     //update measurements to localStorage
+    //     localStorage.setItem('measurements', JSON.stringify(measurements))
 
-        //send the svg of chart design to server
-        //remove the indicators
-        let indicatorsSVG = document.getElementById('indicator_group').outerHTML
-        let fullSVG = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="600">' + $("#chartA")[0].innerHTML + $("#chart")[0].innerHTML  + $("#chartWhiteStroke")[0].innerHTML + $("#chartBlackStroke")[0].innerHTML + '</svg>'
-        let svgData = fullSVG.replace(indicatorsSVG, '')
+    //     //send the svg of chart design to server
+    //     //remove the indicators
+    //     let indicatorsSVG = document.getElementById('indicator_group').outerHTML
+    //     let fullSVG = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="600">' + $("#chartA")[0].innerHTML + $("#chart")[0].innerHTML  + $("#chartWhiteStroke")[0].innerHTML + $("#chartBlackStroke")[0].innerHTML + '</svg>'
+    //     let svgData = fullSVG.replace(indicatorsSVG, '')
 
-        //send the svg and the parameters
-        let obj = {}
-        obj.svgData = svgData
-        obj.filename = 'pie_icon_'+ measurements['participant_id'] + '_v' + measurements['trial_num']
-        obj.parameters = parameters
+    //     //send the svg and the parameters
+    //     let obj = {}
+    //     obj.svgData = svgData
+    //     obj.filename = 'pie_icon_'+ measurements['participant_id'] + '_v' + measurements['trial_num']
+    //     obj.parameters = parameters
 
-        $.ajax({
-            url: '../ajax/results_svg.php',
-            type: 'POST',
-            data: JSON.stringify(obj),
-            contentType: 'application/json',
-            dataType: "json",
-            async: false, // Make the request synchronous
-            success: function () {
-                console.log('success')
-            },
-            error:function (e){
-                console.log('Getting svg failed')
-            }
-        })
+    //     $.ajax({
+    //         url: '../ajax/results_svg.php',
+    //         type: 'POST',
+    //         data: JSON.stringify(obj),
+    //         contentType: 'application/json',
+    //         dataType: "json",
+    //         async: false, // Make the request synchronous
+    //         success: function () {
+    //             console.log('success')
+    //         },
+    //         error:function (e){
+    //             console.log('Getting svg failed')
+    //         }
+    //     })
 
-        $.ajax({
-            url: '../ajax/results_texture_parameters.php',
-            type: 'POST',
-            data: JSON.stringify(obj),
-            contentType: 'application/json',
-            dataType: "json",
-            async: false, // Make the request synchronous
-            success: function () {
-                console.log('success')
-            },
-            error:function (e){
-                console.log('Getting json failed')
-            }
-        })
+    //     $.ajax({
+    //         url: '../ajax/results_texture_parameters.php',
+    //         type: 'POST',
+    //         data: JSON.stringify(obj),
+    //         contentType: 'application/json',
+    //         dataType: "json",
+    //         async: false, // Make the request synchronous
+    //         success: function () {
+    //             console.log('success')
+    //         },
+    //         error:function (e){
+    //             console.log('Getting json failed')
+    //         }
+    //     })
 
-        //jump to next page
-        switch (condition_texture){
-            case 0: //geo_icon: this design (pie_icon) is the second design
+    //     //jump to next page
+    //     switch (condition_texture){
+    //         case 0: //geo_icon: this design (pie_icon) is the second design
 
-                measurements['second_design_time'] = pie_icon_design_time
+    //             measurements['second_design_time'] = pie_icon_design_time
 
-                //update measurements to localStorage
-                localStorage.setItem('measurements', JSON.stringify(measurements))
+    //             //update measurements to localStorage
+    //             localStorage.setItem('measurements', JSON.stringify(measurements))
 
-                window.location.href = 'question_design_strategies.php';
-                break;
-            case 1: //icon_geo: this design (pie_icon) is the first design
+    //             window.location.href = 'question_design_strategies.php';
+    //             break;
+    //         case 1: //icon_geo: this design (pie_icon) is the first design
 
-                measurements['first_design_time'] = pie_icon_design_time
+    //             measurements['first_design_time'] = pie_icon_design_time
 
-                //update measurements to localStorage
-                localStorage.setItem('measurements', JSON.stringify(measurements))
+    //             //update measurements to localStorage
+    //             localStorage.setItem('measurements', JSON.stringify(measurements))
 
-                window.location.href = 'between_two_design.php';
-                break;
-        }
+    //             window.location.href = 'between_two_design.php';
+    //             break;
+    //     }
+    // }
+</script>
+<script>
+    let task_description_measurements = JSON.parse(localStorage.getItem('measurements'))
+    let task_description_condition_texture = task_description_measurements['condition_texture']
+    let task_description_condition_chart = task_description_measurements['condition_chart']
+
+    if(task_description_condition_chart == 2){ //map
+        document.getElementById('fruit_survey_description').innerHTML = 'This map shows the favorite vegetable of the residents of each French department.'
+    }else{ //bar or pie
+        document.getElementById("This chart shows the result of a survey about people's favourite vegetables.")
     }
 </script>
-
 <script src="/pattern-design-study/assets/pages/texture_functions.js"></script>
 <script src="/pattern-design-study/assets/pages/texture_constants.js"></script>
 <script type="module">
