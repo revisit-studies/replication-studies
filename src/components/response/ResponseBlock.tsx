@@ -107,6 +107,8 @@ export function ResponseBlock({
   }, [matrixAnswers]);
 
   useEffect(() => {
+    console.log('being called')
+
     storeDispatch(
       updateResponseBlockValidation({
         location,

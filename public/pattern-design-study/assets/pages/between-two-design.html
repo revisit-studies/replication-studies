@@ -5,8 +5,8 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-
+    <title>Between Two Designs</title>
+    <script src="../../../revisitUtilities/revisit-communicate.js"></script>
 <!--    <script type="text/javascript" src="../lib/jquery.min.js"></script>-->
 <!--    <script type="text/javascript" src="../lib/d3.v7.min.js"></script>-->
 
@@ -37,7 +37,11 @@
         </div>
     </div>
 </div>
-
+<script>
+    Revisit.onDataReceive((data) => {
+        localStorage.setItem("measurements", JSON.stringify({condition_chart: data.condition_chart, condition_texture: data.condition_texture}));
+    })
+</script>
 <script>
     let measurements = JSON.parse(localStorage.getItem('measurements'))
     let condition_chart = measurements['condition_chart']

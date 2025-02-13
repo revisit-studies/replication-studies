@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Iconic Texture Map</title>
-
+    <script src="../../../revisitUtilities/revisit-communicate.js"></script>
     <script type="text/javascript" src="/pattern-design-study/assets/lib/jquery.min.js"></script>
     <script type="text/javascript" src="/pattern-design-study/assets/lib/d3.v7.min.js"></script>
 
@@ -75,7 +75,11 @@
         </div>
     </div> -->
 </div>
-
+<script>
+    Revisit.onDataReceive((data) => {
+        localStorage.setItem("measurements", JSON.stringify({condition_chart: data.condition_chart, condition_texture: data.condition_texture}));
+    })
+</script>
 <script>
     let timestamp_map_icon_start = Date.now() //the starting time for this design
 
@@ -181,13 +185,20 @@
         document.getElementById("This chart shows the result of a survey about people's favourite vegetables.")
     }
 </script>
-<script src="/pattern-design-study/assets/pages/texture_functions.js"></script>
-<script src="/pattern-design-study/assets/pages/texture_constants.js"></script>
 <script type="module">
     // Move all code that uses createTrrack into this module script
     import { createTrrack } from '/pattern-design-study/assets/pages/trrack.js';
     const {trrack, actions: trrack_actions} = createTrrack()
+    
+    // Make trrack and actions globally available
+    window.trrack = trrack;
+    window.trrack_actions = trrack_actions;
+    window.action = trrack_actions;
 </script>
+
+<script src="/pattern-design-study/assets/pages/texture_functions.js"></script>
+<script src="/pattern-design-study/assets/pages/texture_constants.js"></script>
+
 <script>
     const chartName = "mapIcon"
     const csvName = "random"

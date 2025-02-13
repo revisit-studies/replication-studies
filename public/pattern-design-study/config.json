@@ -55,151 +55,91 @@
         "response": []
       },
       "description_bar": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/description.html",
         "parameters": {
-          "condition_chart": 0,
-          "pageLink": "assets/pages/description.html"
+          "condition_chart": 0
         },
-        "response": [{
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        }]
+        "response": []
       },
       "description_pie": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/description.html",
         "parameters": {
-          "condition_chart": 1,
-          "pageLink": "assets/pages/description.html"
+          "condition_chart": 1
         },
-        "response": [{
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        }]
+        "response": []
       },
       "description_map": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/description.html",
         "parameters": {
-          "condition_chart": 2,
-          "pageLink": "assets/pages/description.html"
+          "condition_chart": 2
         },
-        "response": [{
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        }]
+        "response": []
       },
       "tutorial_bar_geo-icon": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/tutorial.html",
         "parameters": {
           "condition_chart": 0,
-          "condition_texture": 0,
-          "pageLink": "assets/pages/tutorial.html"
+          "condition_texture": 0
         },
-        "response": [{
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        }]
+        "response": []
       },
       "tutorial_bar_icon-geo": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/tutorial.html",
         "parameters": {
           "condition_chart": 0,
-          "condition_texture": 1,
-          "pageLink": "assets/pages/tutorial.html"
+          "condition_texture": 1
         },
-        "response": [{
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        }]
+        "response": []
       },
       "tutorial_pie_geo-icon": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/tutorial.html",
         "parameters": {
           "condition_chart": 1,
-          "condition_texture": 0,
-          "pageLink": "assets/pages/tutorial.html"
+          "condition_texture": 0
         },
-        "response": [{
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        }]
+        "response": []
       },
       "tutorial_pie_icon-geo": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/tutorial.html",
         "parameters": {
           "condition_chart": 1,
-          "condition_texture": 1,
-          "pageLink": "assets/pages/tutorial.html"
+          "condition_texture": 1
         },
-        "response": [{
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        }]
+        "response": []
       },
       "tutorial_map_geo-icon": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/tutorial.html",
         "parameters": {
           "condition_chart": 2,
-          "condition_texture": 0,
-          "pageLink": "assets/pages/tutorial.html"
+          "condition_texture": 0
         },
-        "response": [{
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        }]
+        "response": []
       },
       "tutorial_map_icon-geo": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/tutorial.html",
         "parameters": {
           "condition_chart": 2,
-          "condition_texture": 1,
-          "pageLink": "assets/pages/tutorial.html"
+          "condition_texture": 1
         },
-        "response": [{
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        }]
+        "response": []
       },
       "bar-geo_geo-icon": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/bar-geo.html",
         "parameters": {
           "condition_chart": 0,
-          "condition_texture": 0,
-          "pageLink": "assets/pages/bar-geo.html"
+          "condition_texture": 0
         },
-        "response": [{
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        }]
+        "response": []
       },
       "bar-geo_icon-geo": {
         "type": "react-component",
@@ -217,19 +157,13 @@
         }]
       },
       "bar-icon_geo-icon": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/bar-icon.html",
         "parameters": {
           "condition_chart": 0,
-          "condition_texture": 0,
-          "pageLink": "assets/pages/bar-icon.html"
+          "condition_texture": 0
         },
-        "response": [{
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        }]
+        "response": []
       },
       "bar-icon_icon-geo": {
         "type": "react-component",
@@ -247,140 +181,85 @@
         }]
       },
       "pie-geo_geo-icon": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/pie-geo.html",
         "parameters": {
           "condition_chart": 1,
-          "condition_texture": 0,
-          "pageLink": "assets/pages/pie-geo.html"
+          "condition_texture": 0
         },
-        "response": [{
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        }]
+        "response": []
       },
       "pie-geo_icon-geo": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/pie-geo.html",
         "parameters": {
           "condition_chart": 1,
-          "condition_texture": 1,
-          "pageLink": "assets/pages/pie-geo.html"
+          "condition_texture": 1
         },
-        "response": [{
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        }]
+        "response": []
       },
       "pie-icon_geo-icon": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/pie-icon.html",
         "parameters": {
           "condition_chart": 1,
-          "condition_texture": 0,
-          "pageLink": "assets/pages/pie-icon.html"
+          "condition_texture": 0
         },
-        "response": [{
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        }]
+        "response": []
       },
       "pie-icon_icon-geo": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/pie-icon.html",
         "parameters": {
           "condition_chart": 1,
-          "condition_texture": 1,
-          "pageLink": "assets/pages/pie-icon.html"
+          "condition_texture": 1
         },
-        "response": [{
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        }]
+        "response": []
       },
       "map-geo_geo-icon": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/map-geo.html",
         "parameters": {
           "condition_chart": 2,
-          "condition_texture": 0,
-          "pageLink": "assets/pages/map-geo.html"
+          "condition_texture": 0
         },
-        "response": [{
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        }]
+        "response": []
       },
       "map-geo_icon-geo": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/map-geo.html",
         "parameters": {
           "condition_chart": 2,
-          "condition_texture": 1,
-          "pageLink": "assets/pages/map-geo.html"
+          "condition_texture": 1
         },
-        "response": [{
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        }]
+        "response": []
       },
       "map-icon_geo-icon": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/map-icon.html",
         "parameters": {
           "condition_chart": 2,
-          "condition_texture": 0,
-          "pageLink": "assets/pages/map-icon.html"
+          "condition_texture": 0
         },
-        "response": [{
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        }]
+        "response": []
       },
       "map-icon_icon-geo": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/map-icon.html",
         "parameters": {
           "condition_chart": 2,
-          "condition_texture": 1,
-          "pageLink": "assets/pages/map-icon.html"
+          "condition_texture": 1
         },
-        "response": [{
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        }]
+        "response": []
       },
       "question-design-strategies_bar_geo-icon": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/question-design-strategies.html",
         "parameters": {
           "condition_chart": 0,
-          "condition_texture": 0,
-          "pageLink": "assets/pages/question-design-strategies.html"
+          "condition_texture": 0
         },
         "response": [
-          {
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-          },
           {
             "id": "design-strategies-goals",
             "prompt": "What kind of **goals** did you want to achieve when you designed the representation?",
@@ -405,20 +284,13 @@
       ]
       },
       "question-design-strategies_bar_icon-geo": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/question-design-strategies.html",
         "parameters": {
           "condition_chart": 0,
-          "condition_texture": 1,
-          "pageLink": "assets/pages/question-design-strategies.html"
+          "condition_texture": 1
         },
         "response": [
-          {
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-          },
           {
             "id": "design-strategies-goals",
             "prompt": "What kind of **goals** did you want to achieve when you designed the representation?",
@@ -443,20 +315,13 @@
       ]
       },
       "question-design-strategies_pie_geo-icon": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/question-design-strategies.html",
         "parameters": {
           "condition_chart": 1,
-          "condition_texture": 0,
-          "pageLink": "assets/pages/question-design-strategies.html"
+          "condition_texture": 0
         },
         "response": [
-          {
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        },
         {
           "id": "design-strategies-goals",
           "prompt": "What kind of **goals** did you want to achieve when you designed the representation?",
@@ -481,20 +346,13 @@
       ]
       },
       "question-design-strategies_pie_icon-geo": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/question-design-strategies.html",
         "parameters": {
           "condition_chart": 1,
-          "condition_texture": 1,
-          "pageLink": "assets/pages/question-design-strategies.html"
+          "condition_texture": 1
         },
         "response": [
-          {
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        },
         {
           "id": "design-strategies-goals",
           "prompt": "What kind of **goals** did you want to achieve when you designed the representation?",
@@ -519,20 +377,14 @@
       ]
       },
       "question-design-strategies_map_geo-icon": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/question-design-strategies.html",
         "parameters": {
           "condition_chart": 2,
-          "condition_texture": 0,
-          "pageLink": "assets/pages/question-design-strategies.html"
+          "condition_texture": 0
         },
         "response": [
-          {
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        },          {
+        {
           "id": "design-strategies-goals",
           "prompt": "What kind of **goals** did you want to achieve when you designed the representation?",
           "location": "belowStimulus",
@@ -556,20 +408,13 @@
       ]
       },
       "question-design-strategies_map_icon-geo": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/question-design-strategies.html",
         "parameters": {
           "condition_chart": 2,
-          "condition_texture": 1,
-          "pageLink": "assets/pages/question-design-strategies.html"
+          "condition_texture": 1
         },
         "response": [
-          {
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        },
         {
           "id": "design-strategies-goals",
           "prompt": "What kind of **goals** did you want to achieve when you designed the representation?",
@@ -594,20 +439,13 @@
       ]
       },
       "question-compare-texture_bar_geo-icon": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/question-compare-texture.html",
         "parameters": {
           "condition_chart": 0,
-          "condition_texture": 0,
-          "pageLink": "assets/pages/question-compare-texture.html"
+          "condition_texture": 0
         },
         "response": [
-          {
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        },
         {
           "id": "compare-texture",
           "prompt": "What’s your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
@@ -618,20 +456,13 @@
       ]
       },
       "question-compare-texture_bar_icon-geo": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/question-compare-texture.html",
         "parameters": {
           "condition_chart": 0,
-          "condition_texture": 1,
-          "pageLink": "assets/pages/question-compare-texture.html"
+          "condition_texture": 1
         },
         "response": [
-          {
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        },
         {
           "id": "compare-texture",
           "prompt": "What’s your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
@@ -642,20 +473,13 @@
       ]
       },
       "question-compare-texture_pie_geo-icon": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/question-compare-texture.html",
         "parameters": {
           "condition_chart": 1,
-          "condition_texture": 0,
-          "pageLink": "assets/pages/question-compare-texture.html"
+          "condition_texture": 0
         },
         "response": [
-          {
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        },
         {
           "id": "compare-texture",
           "prompt": "What’s your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
@@ -666,20 +490,13 @@
       ]
       },
       "question-compare-texture_pie_icon-geo": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/question-compare-texture.html",
         "parameters": {
           "condition_chart": 1,
-          "condition_texture": 1,
-          "pageLink": "assets/pages/question-compare-texture.html"
+          "condition_texture": 1
         },
         "response": [
-          {
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        },
         {
           "id": "compare-texture",
           "prompt": "What’s your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
@@ -690,20 +507,13 @@
       ]
       },
       "question-compare-texture_map_geo-icon": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/question-compare-texture.html",
         "parameters": {
           "condition_chart": 2,
-          "condition_texture": 0,
-          "pageLink": "assets/pages/question-compare-texture.html"
+          "condition_texture": 0
         },
         "response": [
-          {
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        },
         {
           "id": "compare-texture",
           "prompt": "What’s your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
@@ -714,20 +524,13 @@
       ]
       },
       "question-compare-texture_map_icon-geo": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/question-compare-texture.html",
         "parameters": {
           "condition_chart": 2,
-          "condition_texture": 1,
-          "pageLink": "assets/pages/question-compare-texture.html"
+          "condition_texture": 1
         },
         "response": [
-          {
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        },
         {
           "id": "compare-texture",
           "prompt": "What’s your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
@@ -738,19 +541,12 @@
       ]
       },
       "question-different-chart-geo_bar": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/question-different-chart-geo-texture.html",
         "parameters": {
-          "condition_chart": 0,
-          "pageLink": "assets/pages/question-different-chart-geo-texture.html"
+          "condition_chart": 0
         },
         "response": [
-          {
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        },
         {
           "id": "different-chart-geo",
           "prompt": "Do you think they still work in this context? Please explain.",
@@ -761,19 +557,12 @@
       ]
       },
       "question-different-chart-geo_pie": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/question-different-chart-geo-texture.html",
         "parameters": {
-          "condition_chart": 1,
-          "pageLink": "assets/pages/question-different-chart-geo-texture.html"
+          "condition_chart": 1
         },
         "response": [
-          {
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        },
         {
           "id": "different-chart-geo",
           "prompt": "Do you think they still work in this context? Please explain.",
@@ -784,19 +573,12 @@
       ]
       },
       "question-different-chart-geo_map": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/question-different-chart-geo-texture.html",
         "parameters": {
-          "condition_chart": 2,
-          "pageLink": "assets/pages/question-different-chart-geo-texture.html"
+          "condition_chart": 2
         },
         "response": [
-          {
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        },
         {
           "id": "different-chart-geo",
           "prompt": "Do you think they still work in this context? Please explain.",
@@ -807,19 +589,12 @@
       ]
       },
       "question-different-chart-icon_bar": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/question-different-chart-icon-texture.html",
         "parameters": {
-          "condition_chart": 0,
-          "pageLink": "assets/pages/question-different-chart-icon-texture.html"
+          "condition_chart": 0
         },
         "response": [
-          {
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        },
         {
           "id": "different-chart-icon",
           "prompt": "Do you think they still work in this context? Please explain.",
@@ -830,19 +605,12 @@
       ]
       },
       "question-different-chart-icon_pie": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/question-different-chart-icon-texture.html",
         "parameters": {
-          "condition_chart": 1,
-          "pageLink": "assets/pages/question-different-chart-icon-texture.html"
+          "condition_chart": 1
         },
         "response": [
-          {
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        },
         {
           "id": "different-chart-icon",
           "prompt": "Do you think they still work in this context? Please explain.",
@@ -853,19 +621,12 @@
       ]
       },
       "question-different-chart-icon_map": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/question-different-chart-icon-texture.html",
         "parameters": {
-          "condition_chart": 2,
-          "pageLink": "assets/pages/question-different-chart-icon-texture.html"
+          "condition_chart": 2
         },
         "response": [
-          {
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        },
         {
           "id": "different-chart-icon",
           "prompt": "Do you think they still work in this context? Please explain.",

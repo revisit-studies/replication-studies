@@ -10,7 +10,7 @@ import { PREFIX as BASE_PREFIX } from '../utils/Prefix';
 const PREFIX = '@REVISIT_COMMS';
 
 const defaultStyle = {
-  minHeight: '500px',
+  minHeight: '1300px',
   width: '100%',
   border: 0,
 };
@@ -45,7 +45,6 @@ export function IframeController({ currentConfig }: { currentConfig: WebsiteComp
     [ref, iframeId],
   );
 
-  console.log(PREFIX)
   useEffect(() => {
     const handler = (e: MessageEvent) => {
       const { data } = e;
@@ -67,6 +66,7 @@ export function IframeController({ currentConfig }: { currentConfig: WebsiteComp
           case `${PREFIX}/PROVENANCE`:
             console.log('SETTNIG PROV')
             storeDispatch(setreactiveProvenance(data.message));
+            console.log(data.message)
             break;
           default:
             break;

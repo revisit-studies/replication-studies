@@ -75,7 +75,11 @@
         </div>
     </div> -->
 </div>
-
+<script>
+    Revisit.onDataReceive((data) => {
+        localStorage.setItem("measurements", JSON.stringify({condition_chart: data.condition_chart, condition_texture: data.condition_texture}));
+    })
+</script>
 <script>
     let timestamp_pie_icon_start = Date.now() //the starting time for this design
 

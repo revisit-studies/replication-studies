@@ -174,6 +174,7 @@ export async function studyStoreCreator(
             provenanceGraph: undefined,
           };
         }
+        console.log(payload.provenanceGraph)
         if (Object.keys(payload.values).length > 0) {
           const currentValues = state.trialValidation[payload.identifier][payload.location].values;
           state.trialValidation[payload.identifier][payload.location] = { valid: payload.status, values: { ...currentValues, ...payload.values } };
