@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Description</title>
-
+    <script src="../../../revisitUtilities/revisit-communicate.js"></script>
     <script type="text/javascript" src="../lib/jquery.min.js"></script>
 
 
@@ -55,26 +55,30 @@
         </div>
     </div>
 </div>
-
+<script>
+    Revisit.onDataReceive((data) => {
+        localStorage.setItem("measurements", JSON.stringify({condition_chart: data.condition_chart}));
+    })
+</script>
 <script type="text/javascript">
 
     let measurements = JSON.parse(localStorage.getItem('measurements'))
 
     let condition_chart = measurements['condition_chart']
 
-    // switch (condition_chart) {
-    //     case 0:
-    //         document.getElementById('chart_type').innerHTML='bar chart'
-    //         break;
-    //     case 1:
-    //         document.getElementById('chart_type').innerHTML='pie chart'
-    //         break;
-    //     case 2:
-    //         document.getElementById('chart_type').innerHTML='geographic map'
-    //         break;
-    //     default:
-    //         console.log(`has problem with condition_chart`);
-    // }
+    switch (condition_chart) {
+        case 0:
+            document.getElementById('chart_type').innerHTML='bar chart'
+            break;
+        case 1:
+            document.getElementById('chart_type').innerHTML='pie chart'
+            break;
+        case 2:
+            document.getElementById('chart_type').innerHTML='geographic map'
+            break;
+        default:
+            console.log(`has problem with condition_chart`);
+    }
 
 
     // document.getElementById('description_next_btn').onclick = function(){

@@ -81,6 +81,11 @@
     </div> -->
 </div>
 <script>
+    Revisit.onDataReceive((data) => {
+        localStorage.setItem("measurements", JSON.stringify({condition_chart: data.condition_chart, condition_texture: data.condition_texture}));
+    })
+</script>
+<script>
     let task_description_measurements = JSON.parse(localStorage.getItem('measurements'))
     let task_description_condition_texture = task_description_measurements['condition_texture']
     let task_description_condition_chart = task_description_measurements['condition_chart']
@@ -91,14 +96,20 @@
         document.getElementById("This chart shows the result of a survey about people's favourite vegetables.")
     }
 </script>
-<script src="/pattern-design-study/assets/pages/texture_functions.js"></script>
-<script src="/pattern-design-study/assets/pages/texture_constants.js"></script>
-
 <script type="module">
     // Move all code that uses createTrrack into this module script
     import { createTrrack } from '/pattern-design-study/assets/pages/trrack.js';
     const {trrack, actions: trrack_actions} = createTrrack()
+    
+    // Make trrack and actions globally available
+    window.trrack = trrack;
+    window.trrack_actions = trrack_actions;
+    window.action = trrack_actions;
 </script>
+<script src="/pattern-design-study/assets/pages/texture_functions.js"></script>
+<script src="/pattern-design-study/assets/pages/texture_constants.js"></script>
+
+
 <script>
     let timestamp_bar_geo_start = Date.now() //the starting time for this design
     let chartName = 'barGeo'

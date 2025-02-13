@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Design Strategies</title>
-
+    <script src="../../../revisitUtilities/revisit-communicate.js"></script>
     <script type="text/javascript" src="/pattern-design-study/assets/lib/jquery.min.js"></script>
     <script type="text/javascript" src="/pattern-design-study/assets/lib/d3.v7.min.js"></script>
 
@@ -92,7 +92,11 @@
         </div>
     </div> -->
 </div>
-
+<script>
+    Revisit.onDataReceive((data) => {
+        localStorage.setItem("measurements", JSON.stringify({condition_chart: data.condition_chart, condition_texture: data.condition_texture}));
+    })
+</script>
 <script src="/pattern-design-study/assets/pages/texture_functions.js"></script>
 <script src="/pattern-design-study/assets/pages/texture_constants.js"></script>
 
@@ -294,59 +298,59 @@
     // }
 
     //when clicking "Same As Before" button, fill the textarea with 'same'
-    document.getElementById('strategy_same_answer_btn').onclick = function (){
-        //fill the textarea of these questions with 'same'
-        document.getElementById('strategy_goal').value = 'same'
-        document.getElementById('strategy_first_design_textarea').value = 'same'
-        document.getElementById('strategy_second_design_textarea').value = 'same'
+    // document.getElementById('strategy_same_answer_btn').onclick = function (){
+    //     //fill the textarea of these questions with 'same'
+    //     document.getElementById('strategy_goal').value = 'same'
+    //     document.getElementById('strategy_first_design_textarea').value = 'same'
+    //     document.getElementById('strategy_second_design_textarea').value = 'same'
 
-        //record the answer
-        strategy_goal_answer = 'same'
-        strategy_first_design_answer = 'same'
-        strategy_second_design_answer = 'same'
+    //     //record the answer
+    //     strategy_goal_answer = 'same'
+    //     strategy_first_design_answer = 'same'
+    //     strategy_second_design_answer = 'same'
 
-        //record the answer status of each question
-        strategy_goal_answered = true
-        strategy_first_design_answered = true
-        strategy_second_design_answered = true
+    //     //record the answer status of each question
+    //     strategy_goal_answered = true
+    //     strategy_first_design_answered = true
+    //     strategy_second_design_answered = true
 
-        //enable the next button
-        document.getElementById('strategy_next_btn').disabled = false
-    }
+    //     //enable the next button
+    //     document.getElementById('strategy_next_btn').disabled = false
+    // }
 
-    document.getElementById('strategy_next_btn').onclick = function(){
-        //record data
-        let strategy_geo //design strategy for geometric texture
-        let strategy_icon //design strategy for iconic texture
+    // document.getElementById('strategy_next_btn').onclick = function(){
+    //     //record data
+    //     let strategy_geo //design strategy for geometric texture
+    //     let strategy_icon //design strategy for iconic texture
 
-        if(condition_texture == 0){
-            strategy_geo = strategy_first_design_answer
-            strategy_icon = strategy_second_design_answer
-        }
+    //     if(condition_texture == 0){
+    //         strategy_geo = strategy_first_design_answer
+    //         strategy_icon = strategy_second_design_answer
+    //     }
 
-        if(condition_texture == 1){
-            strategy_icon = strategy_first_design_answer
-            strategy_geo = strategy_second_design_answer
-        }
+    //     if(condition_texture == 1){
+    //         strategy_icon = strategy_first_design_answer
+    //         strategy_geo = strategy_second_design_answer
+    //     }
 
-        //write data to measurements
-        measurements['strategy_goal'] = '"'+ strategy_goal_answer+'"'
-        measurements['strategy_geo'] = '"'+ strategy_geo + '"'
-        measurements['strategy_icon'] = '"' + strategy_icon +'"'
+    //     //write data to measurements
+    //     measurements['strategy_goal'] = '"'+ strategy_goal_answer+'"'
+    //     measurements['strategy_geo'] = '"'+ strategy_geo + '"'
+    //     measurements['strategy_icon'] = '"' + strategy_icon +'"'
 
-        //update measurements to localStorage
-        localStorage.setItem('measurements', JSON.stringify(measurements))
+    //     //update measurements to localStorage
+    //     localStorage.setItem('measurements', JSON.stringify(measurements))
 
-        //send the svg of chart design in default data set to server
-        let chart0_svg_data = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="600">' + $("#chart0A")[0].innerHTML + $("#chart0")[0].innerHTML  + $("#chart0WhiteStroke")[0].innerHTML + $("#chart0BlackStroke")[0].innerHTML + '</svg>'
+    //     //send the svg of chart design in default data set to server
+    //     let chart0_svg_data = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="600">' + $("#chart0A")[0].innerHTML + $("#chart0")[0].innerHTML  + $("#chart0WhiteStroke")[0].innerHTML + $("#chart0BlackStroke")[0].innerHTML + '</svg>'
 
         
 
 
 
-        //jump to next page
-        // window.location.href = 'question_compare_texture.php'
-    }
+    //     //jump to next page
+    //     // window.location.href = 'question_compare_texture.php'
+    // }
 </script>
 
 </body>

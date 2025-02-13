@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Geometric Texture on Different Charts</title>
-
+    <script src="../../../revisitUtilities/revisit-communicate.js"></script>
     <script type="text/javascript" src="/pattern-design-study/assets/lib/jquery.min.js"></script>
     <script type="text/javascript" src="/pattern-design-study/assets/lib/d3.v7.min.js"></script>
 
@@ -59,9 +59,13 @@
         </div>
     </div> -->
 </div>
-
-<script src="texture_functions.js"></script>
-<script src="texture_constants.js"></script>
+<script>
+    Revisit.onDataReceive((data) => {
+        localStorage.setItem("measurements", JSON.stringify({condition_chart: data.condition_chart, condition_texture: data.condition_texture}));
+    })
+</script>
+<script src="/pattern-design-study/assets/pages/texture_functions.js"></script>
+<script src="/pattern-design-study/assets/pages/texture_constants.js"></script>
 
 <script>
     //when clicking "Same As Before" button, fill the textarea with 'same'
@@ -94,7 +98,7 @@
 
 </script>
 
-<script src="texture_ui_elements.js"></script>
+<script src="/pattern-design-study/assets/pages/texture_ui_elements.js"></script>
 <script>
     drawChartDiv('chart0Div', svgWidth, svgHeight, 'chart0')
     drawChartDiv('chart1Div', svgWidth, svgHeight, 'chart1')
@@ -146,26 +150,26 @@
 </script>
 
 <script>
-    let nextBtn = document.getElementById('different_chart_geo_next_btn')
+    // let nextBtn = document.getElementById('different_chart_geo_next_btn')
 
-    let different_chart_geo_answered = false
-    let different_chart_geo_answer = 'no_input'
+    // let different_chart_geo_answered = false
+    // let different_chart_geo_answer = 'no_input'
 
-    document.getElementById('different_chart_geo_textarea').oninput = function (){
-        if(this.value){
-            different_chart_geo_answered = true
-        }else{
-            different_chart_geo_answered = false
-        }
+    // document.getElementById('different_chart_geo_textarea').oninput = function (){
+    //     if(this.value){
+    //         different_chart_geo_answered = true
+    //     }else{
+    //         different_chart_geo_answered = false
+    //     }
 
-        different_chart_geo_answer = this.value
+    //     different_chart_geo_answer = this.value
 
-        if (different_chart_geo_answered){
-            nextBtn.disabled = false
-        }else{
-            nextBtn.disabled = true
-        }
-    }
+    //     if (different_chart_geo_answered){
+    //         nextBtn.disabled = false
+    //     }else{
+    //         nextBtn.disabled = true
+    //     }
+    // }
 
     // document.getElementById('different_chart_geo_next_btn').onclick = function(){
     //     //write data to measurements
