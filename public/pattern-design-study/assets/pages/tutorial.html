@@ -6,17 +6,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tutorial</title>
-    <script src="../../../revisitUtilities/revisit-communicate.js"></script>
-    <script type="text/javascript" src="/pattern-design-study/assets/lib/jquery.min.js"></script>
-    <script type="text/javascript" src="/pattern-design-study/assets/lib/d3.v7.min.js"></script>
-    <script type="text/javascript" src="/pattern-design-study/assets/lib/bootstrap-tour-standalone.min.js"></script>
-    <script src="/pattern-design-study/assets/tools/loading.js"></script>
-
     <link rel="stylesheet" href="/pattern-design-study/assets/lib/bootstrap.css">
     <link rel="stylesheet" href="/pattern-design-study/assets/lib/bootstrap-tour-standalone.min.css">
-
     <link rel="stylesheet" type="text/css" href="/pattern-design-study/assets/pages/texture_style.css">
-
     <script type = "text/javascript" >
         //when you click the back button of the browser, this script prevent you from going bac
         function preventBack(){window.history.forward();}
@@ -68,12 +60,17 @@
     </div>
 </div>
 
+<!-- First, load all required scripts (in body) -->
+<script src="../../../revisitUtilities/revisit-communicate.js"></script>
+<script type="text/javascript" src="/pattern-design-study/assets/lib/jquery.min.js"></script>
+<script type="text/javascript" src="/pattern-design-study/assets/lib/d3.v7.min.js"></script>
+<script type="text/javascript" src="/pattern-design-study/assets/lib/bootstrap-tour-standalone.min.js"></script>
+<script src="/pattern-design-study/assets/tools/loading.js"></script>
 
-<script src="/pattern-design-study/assets/pages/texture_functions.js"></script>
-<script src="/pattern-design-study/assets/pages/texture_constants.js"></script>
-<script type="module">
-    // Wait for data to be loaded before proceeding
-    const dataLoadPromise = new Promise((resolve) => {
+
+<!-- Data loading promise -->
+<script>
+    window.dataLoadedPromise = new Promise((resolve) => {
         Revisit.onDataReceive((data) => {
             localStorage.setItem("measurements", JSON.stringify({
                 condition_chart: data.condition_chart,
@@ -82,10 +79,23 @@
             resolve();
         });
     });
+</script>
 
-    // Wait for data to be loaded
-    await dataLoadPromise;
-
+<!-- Main initialization script -->
+<script type="module">
+    // Wait for data and DOM to be ready
+    await Promise.all([
+        window.dataLoadedPromise,
+        new Promise(resolve => {
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', resolve);
+            } else {
+                resolve();
+            }
+        })
+    ]);
+    await import('/pattern-design-study/assets/pages/texture_functions.js');
+    await import('/pattern-design-study/assets/pages/texture_constants.js');
     // Now safely use the data
     let measurements = JSON.parse(localStorage.getItem('measurements'));
     let condition_chart = measurements['condition_chart'];
@@ -93,35 +103,40 @@
     console.log('condition_chart:' + condition_chart);
     console.log('condition_texture:' + condition_texture);
 
-    // Initialize the page with the correct data
-    let chartName;
+    // Make these variables available globally
+    window.condition_chart = condition_chart;
+    window.condition_texture = condition_texture;
+    window.chartName = '';
+
+    // Initialize the page
     let data;
-    
-    // Move all the initialization code here
+
+    // First draw the toolbar
+    drawToolbar('toolbar');
+    drawDragDropInfo('dragdrop');
+
+    // Load and execute texture_ui_elements.js content first
+    await import('/pattern-design-study/assets/pages/texture_ui_elements.js');
+
+    // Then initialize based on conditions
     switch (condition_chart) {
         case 0:
             switch (condition_texture){
                 case 0:
                     //draw bar geo texture tool
-                    chartName = 'barGeo';
-                    drawToolbar('toolbar')
-                    drawDragDropInfo('dragdrop')
-                    document.getElementById('toolbar').appendChild(drawSelectDefaultGeoTexture())
-                    drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
-                    geoTextures(d3.select('#chartA'),fruits)
-                    drawGeoControllers()
+                    window.chartName = 'barGeo';
+                    document.getElementById('toolbar').appendChild(drawSelectDefaultGeoTexture());
+                    drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart');
+                    geoTextures(d3.select('#chartA'),fruits);
+                    drawGeoControllers();
                     break;
                 case 1:
                     //draw bar icon texture tool
-                    chartName = 'barIcon'
-
-                    drawToolbar('toolbar')
-                    drawDragDropInfo('dragdrop')
-                    drawIconLegend('legend',fruits)
-                    drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
-                    iconTextures(d3.select('#chartA'),fruits)
-                    drawIconicControllers()
-
+                    window.chartName = 'barIcon';
+                    drawIconLegend('legend',fruits);
+                    drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart');
+                    iconTextures(d3.select('#chartA'),fruits);
+                    drawIconicControllers();
                     break;
             }
             break;
@@ -129,27 +144,19 @@
             switch (condition_texture){
                 case 0:
                     //draw pie geo texture tool
-                    chartName = "pieGeo"
-
-                    drawToolbar('toolbar')
-                    drawDragDropInfo('dragdrop')
-                    document.getElementById('toolbar').appendChild(drawSelectDefaultGeoTexture())
-                    drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
-                    geoTextures(d3.select('#chartA'),fruits)
-                    drawGeoControllers()
-
+                    window.chartName = "pieGeo";
+                    document.getElementById('toolbar').appendChild(drawSelectDefaultGeoTexture());
+                    drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart');
+                    geoTextures(d3.select('#chartA'),fruits);
+                    drawGeoControllers();
                     break;
                 case 1:
                     //draw pie icon texture tool
-                    chartName = 'pieIcon'
-
-                    drawToolbar('toolbar')
-                    drawDragDropInfo('dragdrop')
-                    drawIconLegend('legend',fruits)
-                    drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
-                    iconTextures(d3.select('#chartA'),fruits)
-                    drawIconicControllers()
-
+                    window.chartName = 'pieIcon';
+                    drawIconLegend('legend',fruits);
+                    drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart');
+                    iconTextures(d3.select('#chartA'),fruits);
+                    drawIconicControllers();
                     break;
             }
             break;
@@ -157,28 +164,19 @@
             switch (condition_texture){
                 case 0:
                     //draw map geo texture tool
-                    chartName = "mapGeo"
-
-                    drawToolbar('toolbar')
-                    drawDragDropInfo('dragdrop')
-                    document.getElementById('toolbar').appendChild(drawSelectDefaultGeoTexture())
-                    drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
-                    geoTextures(d3.select('#chartA'),fruits)
-                    drawGeoControllers()
-
-
+                    window.chartName = "mapGeo";
+                    document.getElementById('toolbar').appendChild(drawSelectDefaultGeoTexture());
+                    drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart');
+                    geoTextures(d3.select('#chartA'),fruits);
+                    drawGeoControllers();
                     break;
                 case 1:
                     //draw map icon texture tool
-                    chartName = "mapIcon"
-
-                    drawToolbar('toolbar')
-                    drawDragDropInfo('dragdrop')
-                    drawIconLegend('legend',fruits)
-                    drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
-                    iconTextures(d3.select('#chartA'),fruits)
-                    drawIconicControllers()
-
+                    window.chartName = "mapIcon";
+                    drawIconLegend('legend',fruits);
+                    drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart');
+                    iconTextures(d3.select('#chartA'),fruits);
+                    drawIconicControllers();
                     break;
             }
             break;
@@ -186,7 +184,90 @@
             console.log(`has problem with condition_chart`);
     }
 
-    // Initialize the tour after data is loaded
+    switch (condition_chart) {
+        case 0:
+            switch (condition_texture){
+                case 0:
+                    data = getDatasetForChart()
+
+                    drawGeoBarWithTexture(data, barWidth, barHeight, 'chart')
+                    drawBarIndicators(data, barWidth, barHeight, 'chart', 30)
+
+                    drawGeoLegend(fruits)
+
+                    //initialize
+                    geo_setInitialParameters(chartName)
+
+                    setSelectCat(chartName)
+                    //switch texture by drag and drop
+                    geo_switchTextures(chartName)
+
+                    break;
+                case 1:
+                    //data
+                    data = getDatasetForChart()
+
+                    drawIconBarWithTexture(data, barWidth,barHeight, 'chart')
+                    drawBarIndicators(data, barWidth, barHeight, 'chart', 30)
+
+                    //initialize
+                    icon_setInitialParameters(chartName)
+
+                    setSelectCat(chartName)
+
+                    icon_switchTextures(chartName)
+                    break;
+            }
+            break;
+        case 1:
+            switch (condition_texture){
+                case 0:
+                    data = getDatasetForChart()
+
+                    drawGeoPieWithTexture(data, pieRadius, 'chart')
+                    drawPieIndicators(data, pieRadius, 'chart', 30)
+                    drawGeoLegend(fruits)
+                    //initialize
+                    geo_setInitialParameters(chartName)
+
+                    setSelectCat(chartName)
+                    //switch texture by drag and drop
+                    geo_switchTextures(chartName)
+                    break;
+                case 1:
+                    data = getDatasetForChart()
+
+                    drawIconPieWithTexture(data, pieRadius, 'chart')
+                    drawPieIndicators(data, pieRadius, 'chart', 30)
+
+                    //initialize
+                    icon_setInitialParameters(chartName)
+
+                    setSelectCat(chartName)
+                    //switch texture by drag and drop
+                    icon_switchTextures(chartName)
+                    break;
+            }
+            break;
+        case 2:
+            switch (condition_texture){
+                case 0:
+                    data = getDatasetForMap()
+
+                    drawGeoMapWithTexture(data, mapWidth, mapHeight, 'chart')
+                    drawGeoLegend(fruits)
+                    break;
+                case 1:
+                    data = getDatasetForMap()
+                    drawIconMapWithTexture(data, mapWidth, mapHeight, 'chart')
+                    break;
+            }
+            break;
+        default:
+            console.log(`has problem with condition_chart`);
+    }
+
+    // Initialize tour
     if(localStorage.getItem('only_halo_tutorial') == -1){
         document.getElementById('tutorial_finished').style.display = 'block';
         document.getElementById('tutorial_next_btn').disabled = false;
