@@ -1,4 +1,5 @@
-
+// Convert the file to a module
+export default function initializeUIElements() {
     /**
      * UI elements of geometric texture charts
      */
@@ -187,3 +188,4 @@ const selectDefaultTexture = document.getElementById("selectDefaultTexture")
 
 
     const controlHalo = document.getElementById("controlHalo")
+}
