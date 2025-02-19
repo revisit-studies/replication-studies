@@ -47,7 +47,7 @@
                     In this experiment, you will design a <span id="chart_type"></span>, once with geometric textures and once with iconic textures. We would like to ask you to parameterize the textures appropriately for an effective visualization with our texture design tool.
                 </p>
                 <p>
-                    Before the experiment, let’s first go through a tutorial to get familiar with the interface and interaction of the texture design tool.
+                    Before the experiment, let's first go through a tutorial to get familiar with the interface and interaction of the texture design tool.
                 </p>
 
                 <!-- <button id="description_next_btn" class="btn btn-primary float-end">Go To Tutorial</button> -->
@@ -60,30 +60,38 @@
         localStorage.setItem("measurements", JSON.stringify({condition_chart: data.condition_chart}));
     })
 </script>
-<script type="text/javascript">
+<script type="module">
+    // Wait for data to be loaded before proceeding
+    const dataLoadPromise = new Promise((resolve) => {
+        Revisit.onDataReceive((data) => {
+            localStorage.setItem("measurements", JSON.stringify({
+                condition_chart: data.condition_chart
+            }));
+            resolve();
+        });
+    });
 
-    let measurements = JSON.parse(localStorage.getItem('measurements'))
+    // Wait for data to be loaded
+    await dataLoadPromise;
 
-    let condition_chart = measurements['condition_chart']
+    // Now safely use the data
+    let measurements = JSON.parse(localStorage.getItem('measurements'));
+    let condition_chart = measurements['condition_chart'];
+    console.log("description condition_chart: " + condition_chart);
 
     switch (condition_chart) {
         case 0:
-            document.getElementById('chart_type').innerHTML='bar chart'
+            document.getElementById('chart_type').innerHTML = 'bar chart';
             break;
         case 1:
-            document.getElementById('chart_type').innerHTML='pie chart'
+            document.getElementById('chart_type').innerHTML = 'pie chart';
             break;
         case 2:
-            document.getElementById('chart_type').innerHTML='geographic map'
+            document.getElementById('chart_type').innerHTML = 'geographic map';
             break;
         default:
             console.log(`has problem with condition_chart`);
     }
-
-
-    // document.getElementById('description_next_btn').onclick = function(){
-    //     window.location.href = 'tutorial.php';
-    // }
 </script>
 
 </body>

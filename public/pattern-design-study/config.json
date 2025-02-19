@@ -139,7 +139,14 @@
           "condition_chart": 0,
           "condition_texture": 0
         },
-        "response": []
+        "response": [
+          {
+            "id": "answer",
+            "prompt": "get-measurements",
+            "hidden": true,
+            "type": "reactive"
+          }
+        ]
       },
       "bar-geo_icon-geo": {
         "type": "react-component",
