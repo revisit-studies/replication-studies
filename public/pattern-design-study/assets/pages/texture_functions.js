@@ -4923,14 +4923,14 @@ function addParametersToList(chartName, parameters, trrack, actions){
     console.log(trrack.graph.backend)
     Revisit.postProvenance(trrack.graph.backend)
 
-    Revisit.postAnswer(
-        {
-            answer: {
-                parameters: parameters,
-                chartName: chartName,
-            }
-        }
-    )
+    // Revisit.postAnswer(
+    //     {
+    //         answer: {
+    //             parameters: parameters,
+    //             chartName: chartName,
+    //         }
+    //     }
+    // )
     //get the original parametersList from localStorage
     let parametersList = JSON.parse(localStorage.getItem(chartName+'parametersList') || '[]')
 

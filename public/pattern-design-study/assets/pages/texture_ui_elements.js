@@ -1,5 +1,6 @@
-// Convert the file to a module
-export default function initializeUIElements() {
+
+// Export the initialization function
+export function initializeUIElements() {
     /**
      * UI elements of geometric texture charts
      */
