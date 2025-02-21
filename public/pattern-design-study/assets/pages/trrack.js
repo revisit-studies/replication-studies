@@ -28,6 +28,7 @@ export function createTrrack(){
     "update-pie-geo-parameters",
     (state, parameters) => {
       state.piegeo = parameters
+      console.log("trrack updatePieGeoParameters: ", parameters)
     }
 );
 

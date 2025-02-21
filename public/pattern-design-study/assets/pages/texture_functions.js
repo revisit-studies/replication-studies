@@ -3819,6 +3819,7 @@ function geo_defaultParameters(){
 
 //drag and drop to switch textures
 function geo_switchTextures(chartName){
+    console.log('switch textures')
     for(let i=0; i < fruits.length;i++){
         let dragParameters = {}
         let dropParameters = {}
@@ -4901,27 +4902,7 @@ function cloneParameters(parameters) { //parametersList.push(parameters) will ca
  * @param parameters the new parameters we want to add to parametersList
  */
 function addParametersToList(chartName, parameters, trrack, actions){
-    if(chartName === 'barGeo'){
-        trrack.apply("BarGeoParameters", actions.updateBarGeoParameters(parameters))
-        console.log('barGeoParameters applied')
-    }else if(chartName === 'barIcon'){
-        trrack.apply("BarIconParameters", actions.updateBarIconParameters(parameters))
-        console.log('barIconParameters applied')
-    }else if(chartName === 'pieGeo'){
-        trrack.apply("PieGeoParameters", actions.updatePieGeoParameters(parameters))
-        console.log('pieGeoParameters applied')
-    }else if(chartName === 'pieIcon'){
-        trrack.apply("PieIconParameters", actions.updatePieIconParameters(parameters))
-        console.log('pieIconParameters applied')
-    }else if(chartName === 'mapGeo'){
-        trrack.apply("MapGeoParameters", actions.updateMapGeoParameters(parameters))
-        console.log('mapGeoParameters applied')
-    }else if(chartName === 'mapIcon'){
-        trrack.apply("MapIconParameters", actions.updateMapIconParameters(parameters))
-        console.log('mapIconParameters applied')
-    }
-    console.log(trrack.graph.backend)
-    Revisit.postProvenance(trrack.graph.backend)
+
 
     // Revisit.postAnswer(
     //     {
@@ -4944,36 +4925,27 @@ function addParametersToList(chartName, parameters, trrack, actions){
     let pointer = parametersList.length - 1
     localStorage.setItem(chartName+'pointer', pointer)
 
-    // if(chartName === 'barGeo'){
-    //     trrack.apply("BarGeoParameters", updateBarGeoParameters(parameters))
-    //     Revisit.postProvenance(trrack.graph.backend);
-    //     console.log('barGeoParameters applied')
-    // }
-
-    // if(chartName === 'barIcon'){
-    //     trrack.apply("BarIconParameters", updateBarIconParameters(parameters))
-    //     Revisit.postProvenance(trrack.graph.backend);
-    // }
-
-    // if(chartName === 'pieGeo'){
-    //     trrack.apply("PieGeoParameters", updatePieGeoParameters(parameters))
-    //     Revisit.postProvenance(trrack.graph.backend);
-    // }
-
-    // if(chartName === 'pieIcon'){
-    //     trrack.apply("PieIconParameters", updatePieIconParameters(parameters))
-    //     Revisit.postProvenance(trrack.graph.backend);
-    // }
-
-    // if(chartName === 'mapGeo'){
-    //     trrack.apply("MapGeoParameters", updateMapGeoParameters(parameters))
-    //     Revisit.postProvenance(trrack.graph.backend);
-    // }
-
-    // if(chartName === 'mapIcon'){
-    //     trrack.apply("MapIconParameters", updateMapIconParameters(parameters))
-    //     Revisit.postProvenance(trrack.graph.backend);
-    // }
+    if(chartName === 'barGeo'){
+        trrack.apply("BarGeoParameters", actions.updateBarGeoParameters(cloneParameters(parameters)))
+        console.log('barGeoParameters applied')
+    }else if(chartName === 'barIcon'){
+        trrack.apply("BarIconParameters", actions.updateBarIconParameters(cloneParameters(parameters)))
+        console.log('barIconParameters applied')
+    }else if(chartName === 'pieGeo'){
+        trrack.apply("PieGeoParameters", actions.updatePieGeoParameters(cloneParameters(parameters)))
+        console.log('pieGeoParameters applied')
+    }else if(chartName === 'pieIcon'){
+        trrack.apply("PieIconParameters", actions.updatePieIconParameters(cloneParameters(parameters)))
+        console.log('pieIconParameters applied')
+    }else if(chartName === 'mapGeo'){
+        trrack.apply("MapGeoParameters", actions.updateMapGeoParameters(cloneParameters(parameters)))
+        console.log('mapGeoParameters applied')
+    }else if(chartName === 'mapIcon'){
+        trrack.apply("MapIconParameters", actions.updateMapIconParameters(cloneParameters(parameters)))
+        console.log('mapIconParameters applied')
+    }
+    console.log(trrack.graph.backend)
+    Revisit.postProvenance(trrack.graph.backend)
 
 }
 
