@@ -19,7 +19,7 @@
       "logoPath": "revisitAssets/revisitLogoSquare.svg",
       "withProgressBar": true,
       "autoDownloadStudy": false,
-      "sidebar": false
+      "sidebar": true
   },  
   "importedLibraries": [
     "demographics"
@@ -85,6 +85,8 @@
           "condition_chart": 0,
           "condition_texture": 0
         },
+        "instruction": "test",
+        "instructionLocation":"sidebar",
         "response": []
       },
       "tutorial_bar_icon-geo": {
