@@ -1,3 +1,0 @@
-# Consent
-
-Add consent

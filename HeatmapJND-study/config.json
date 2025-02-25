@@ -1,0 +1,270 @@
+{
+  "$schema": "https://raw.githubusercontent.com/reVISit-studies/study/main/src/parser/StudyConfigSchema.json",
+  "studyMetadata": {
+    "title": "Heatmap Plot JND Study",
+    "version": "pilot",
+    "authors": ["The reVISit Team"],
+    "date": "2024-12-26",
+    "description": "This is a reVISit variation study of JND(Just Noticeable Difference) Heatmap Plot experiment.",
+    "organizations": ["University of Utah", "WPI", "University of Toronto"]
+  },
+  "uiConfig": {
+    "contactEmail": "contact@revisit.dev",
+    "helpTextPath": "HeatmapJND-study/assets/help.md",
+    "logoPath": "revisitAssets/revisitLogoSquare.svg",
+    "withProgressBar": true,
+    "autoDownloadStudy": false,
+    "sidebar": false,
+    "urlParticipantIdParam": "PROLIFIC_PID",
+    "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [yourProlificLink](yourProlificLink)"
+  },
+  "baseComponents": {
+    "experimentRevised": {
+      "type": "react-component",
+      "path": "jnd-replication/vistaJND/src/components/vis/JNDHeatmap.tsx",
+      "response": [{ 
+        "id": "heatmapSelections",
+        "prompt": "Select the option with the higher correlation",
+        "required": true,
+        "location": "aboveStimulus",
+        "type": "numerical",
+        "hidden": true
+      }
+      ]
+    },
+    "practiceBase": {
+      "type": "react-component",
+      "path": "jnd-replication/vistaJND/src/components/vis/PracticeHeatmap.tsx",
+      "nextButtonLocation": "belowStimulus",
+      "response": []
+    }
+  },
+  "components": {
+    "introduction": {
+      "type": "markdown",
+      "path": "HeatmapJND-study/assets/introduction.md",
+      "response": [
+        {
+            "id": "prolificId",
+            "prompt": "Please enter your Prolific ID",
+            "required": true,
+            "location": "belowStimulus",
+            "type": "shortText",
+            "placeholder": "Prolific ID",
+            "paramCapture": "PROLIFIC_PID"
+        }
+      ]
+    },
+    "training": {
+      "type": "markdown",
+      "path": "HeatmapJND-study/assets/training.md",
+      "response": []
+    },
+    "practice1": {
+      "baseComponent": "practiceBase",
+      "parameters": { "r1": 0.3, "r2": 0.7 }
+    },
+    "practice2": {
+      "baseComponent": "practiceBase",
+      "parameters": { "r1": 0.9, "r2": 0.6 }
+    },
+    "practice3": {
+      "baseComponent": "practiceBase",
+      "parameters": { "r1": 0.6, "r2": 0.3 }
+    },
+    "practice4": {
+      "baseComponent": "practiceBase",
+      "parameters": { "r1": 0.6, "r2": 0.9 }
+    },
+    "practice5": {
+      "baseComponent": "practiceBase",
+      "parameters": { "r1": 0.3, "r2": 0.1 }
+    },
+    "practice6": {
+      "baseComponent": "practiceBase",
+      "parameters": { "r1": 0.5, "r2": 0.3 }
+    },
+    "practice7": {
+      "baseComponent": "practiceBase",
+      "parameters": { "r1": 0.9, "r2": 0.8 }
+    },
+    "practice8": {
+      "baseComponent": "practiceBase",
+      "parameters": { "r1": 0.6, "r2": 0.7 }
+    },
+    "practice9": {
+      "baseComponent": "practiceBase",
+      "parameters": { "r1": 0.99, "r2": 0.9 }
+    },
+    "begin": {
+      "type": "markdown",
+      "path": "ParallelJND-study/assets/begin.md",
+      "response": []
+    },
+    "trial1": {
+      "baseComponent": "experimentRevised",
+      "parameters": {
+        "r1": 0.1,
+        "r2": 0.6,
+        "above": true
+      }
+    },
+    "trial2": {
+      "baseComponent": "experimentRevised",
+      "parameters": {
+        "r1": 0.2,
+        "r2": 0.7,
+        "above": true
+      }
+    },
+    "trial3": {
+      "baseComponent": "experimentRevised",
+      "parameters": {
+        "r1": 0.2,
+        "r2": 0.1,
+        "above": false
+      }
+    },
+    "trial4": {
+      "baseComponent": "experimentRevised",
+      "parameters": {
+        "r1": 0.3,
+        "r2": 0.8,
+        "above": true
+      }
+    },
+    "trial5": {
+      "baseComponent": "experimentRevised",
+      "parameters": {
+        "r1": 0.3,
+        "r2": 0.1,
+        "above": false
+      }
+    },
+    "trial6": {
+      "baseComponent": "experimentRevised",
+      "parameters": {
+        "r1": 0.4,
+        "r2": 0.9,
+        "above": true
+      }
+    },
+    "trial7": {
+      "baseComponent": "experimentRevised",
+      "parameters": {
+        "r1": 0.4,
+        "r2": 0.2,
+        "above": false
+      }
+    },
+    "trial8": {
+      "baseComponent": "experimentRevised",
+      "parameters": {
+        "r1": 0.5,
+        "r2": 0.7,
+        "above": true
+      }
+    },
+    "trial9": {
+      "baseComponent": "experimentRevised",
+      "parameters": {
+        "r1": 0.5,
+        "r2": 0.3,
+        "above": false
+      }
+    },
+    "trial10": {
+      "baseComponent": "experimentRevised",
+      "parameters": {
+        "r1": 0.6,
+        "r2": 0.7,
+        "above": true
+      }
+    },
+    "trial11": {
+      "baseComponent": "experimentRevised",
+      "parameters": {
+        "r1": 0.6,
+        "r2": 0.4,
+        "above": false
+      }
+    },
+    "trial12": {
+      "baseComponent": "experimentRevised",
+      "parameters": {
+        "r1": 0.7,
+        "r2": 0.9,
+        "above": true
+      }
+    },
+    "trial13": {
+      "baseComponent": "experimentRevised",
+      "parameters": {
+        "r1": 0.7,
+        "r2": 0.5,
+        "above": false
+      }
+    },
+    "trial14": {
+      "baseComponent": "experimentRevised",
+      "parameters": {
+        "r1": 0.8,
+        "r2": 0.9,
+        "above": true
+      }
+    },
+    "trial15": {
+      "baseComponent": "experimentRevised",
+      "parameters": {
+        "r1": 0.8,
+        "r2": 0.4,
+        "above": false
+      }
+    },
+    "trial16": {
+      "baseComponent": "experimentRevised",
+      "parameters": {
+        "r1": 0.9,
+        "r2": 0.7,
+        "above": false
+      }
+    }
+  },
+  "sequence": {
+    "order": "fixed",
+    "components": [
+      "introduction",
+      "training",
+      {
+        "order": "fixed",
+        "components": [
+          "practice1", "practice2", "practice3",
+          "practice4", "practice5", "practice6",
+          "practice7", "practice8", "practice9"
+        ]
+      },
+      "begin",
+      {
+        "order": "random",
+        "components": [
+          "trial1",
+          "trial2",
+          "trial3",
+          "trial4",
+          "trial5",
+          "trial6",
+          "trial7",
+          "trial8",
+          "trial9",
+          "trial10",
+          "trial11",
+          "trial12",
+          "trial13",
+          "trial14",
+          "trial15",
+          "trial16"
+        ]
+      }
+    ]
+  }
+}
