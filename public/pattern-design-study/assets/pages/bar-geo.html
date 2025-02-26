@@ -26,7 +26,7 @@
 </head>
 <body>
 <div class="container">
-    <div class="row">
+    <!-- <div class="row">
         <div class="col bg-light textContent">
             <h2>Now it’s your turn to design an effective set of textures for data visualization</h2>
             <div style="width:680px">
@@ -47,7 +47,7 @@
                 There is no time limit for this task<span id="last_task"></span>
             </p>
         </div>
-    </div>
+    </div> -->
 
     <div class="row">
         <div class="col">
@@ -100,15 +100,15 @@
 
 
 
-        let task_description_measurements = JSON.parse(localStorage.getItem('measurements'))
-    let task_description_condition_texture = task_description_measurements['condition_texture']
-    let task_description_condition_chart = task_description_measurements['condition_chart']
+    //     let task_description_measurements = JSON.parse(localStorage.getItem('measurements'))
+    // let task_description_condition_texture = task_description_measurements['condition_texture']
+    // let task_description_condition_chart = task_description_measurements['condition_chart']
 
-    if(task_description_condition_chart == 2){ //map
-        document.getElementById('fruit_survey_description').innerHTML = 'This map shows the favorite vegetable of the residents of each French department.'
-    }else{ //bar or pie
-        document.getElementById("This chart shows the result of a survey about people's favourite vegetables.")
-    }
+    // if(task_description_condition_chart == 2){ //map
+    //     document.getElementById('fruit_survey_description').innerHTML = 'This map shows the favorite vegetable of the residents of each French department.'
+    // }else{ //bar or pie
+    //     document.getElementById("This chart shows the result of a survey about people's favourite vegetables.")
+    // }
 
 
 
@@ -330,14 +330,14 @@ let mydata = getDatasetForChart()
 
     let measurements = JSON.parse(localStorage.getItem('measurements'))
     let condition_texture = measurements['condition_texture']
-    switch (condition_texture){
-        case 0: //geo_icon
-            document.getElementById('last_task').innerHTML=", but keep in mind that we will ask you to complete one other design after this one."
-            break;
-        case 1: //icon_geo
-            document.getElementById('last_task').innerHTML=". This is the last design task."
-            break;
-    }
+    // switch (condition_texture){
+    //     case 0: //geo_icon
+    //         document.getElementById('last_task').innerHTML=", but keep in mind that we will ask you to complete one other design after this one."
+    //         break;
+    //     case 1: //icon_geo
+    //         document.getElementById('last_task').innerHTML=". This is the last design task."
+    //         break;
+    // }
     // document.getElementById('bar_geo_next_btn').onclick = function(){
         //write data to measurements
         // measurements['parameters_bar_geo'] = JSON.stringify(parameters)

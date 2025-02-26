@@ -4903,15 +4903,6 @@ function cloneParameters(parameters) { //parametersList.push(parameters) will ca
  */
 function addParametersToList(chartName, parameters, trrack, actions){
 
-
-    // Revisit.postAnswer(
-    //     {
-    //         answer: {
-    //             parameters: parameters,
-    //             chartName: chartName,
-    //         }
-    //     }
-    // )
     //get the original parametersList from localStorage
     let parametersList = JSON.parse(localStorage.getItem(chartName+'parametersList') || '[]')
 
@@ -4944,8 +4935,17 @@ function addParametersToList(chartName, parameters, trrack, actions){
         trrack.apply("MapIconParameters", actions.updateMapIconParameters(cloneParameters(parameters)))
         console.log('mapIconParameters applied')
     }
-    console.log(trrack.graph.backend)
+    // console.log(trrack.graph.backend)
     Revisit.postProvenance(trrack.graph.backend)
+
+    Revisit.postAnswers(
+        {
+            answer: {
+                parameters: parameters,
+                chartName: chartName,
+            }
+        }
+    )
 
 }
 

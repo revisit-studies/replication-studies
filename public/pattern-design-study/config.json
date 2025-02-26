@@ -85,7 +85,7 @@
           "condition_chart": 0,
           "condition_texture": 0
         },
-        "instruction": "test",
+        "instruction": "**Get Familiar with the Texture Design Tool** \n\n Now you can play with the tool and try each function out. Once you are familiar with the tool, click the **Start Real Experiment** button at the bottom right of the page to start the real experiment.",
         "instructionLocation":"sidebar",
         "response": []
       },
@@ -136,15 +136,17 @@
       },
       "bar-geo_geo-icon": {
         "type": "website",
-        "path": "pattern-design-study/assets/pages/bar-geo.html",
+        "path": "pattern-design-study/assets/pages/bar-geo.html", 
         "parameters": {
           "condition_chart": 0,
           "condition_texture": 0
         },
+        "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This chart shows the result of a survey about people's favourite vegetables. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task, but keep in mind that we will ask you to complete one other design after this one.",
+        "instructionLocation": "sidebar",
         "response": [
           {
             "id": "answer",
-            "prompt": "get-measurements",
+            "prompt": "get-measurements", 
             "hidden": true,
             "type": "reactive"
           }
@@ -172,6 +174,8 @@
           "condition_chart": 0,
           "condition_texture": 0
         },
+        "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This chart shows the result of a survey about people's favourite vegetables. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task. This is the last design task.",
+        "instructionLocation": "sidebar",
         "response": []
       },
       "bar-icon_icon-geo": {

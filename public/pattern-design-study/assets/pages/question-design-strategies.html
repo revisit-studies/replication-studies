@@ -94,7 +94,10 @@
 </div>
 <script>
     Revisit.onDataReceive((data) => {
-        localStorage.setItem("measurements", JSON.stringify({condition_chart: data.condition_chart, condition_texture: data.condition_texture}));
+        Revisit.onAnswersReceive((answers) => {
+            localStorage.setItem("measurements", JSON.stringify({condition_chart: data.condition_chart, condition_texture: data.condition_texture}));
+            console.log(answers)
+        })
     })
 </script>
 <script src="/pattern-design-study/assets/pages/texture_functions.js"></script>
