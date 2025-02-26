@@ -1,25 +1,25 @@
 {
   "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.0.2/src/parser/GlobalConfigSchema.json",
   "configsList": [
-    "tutorial-simple-study",
-    "tutorial-react-and-randomization",
-    "tutorial-advanced-react",
+    "bubblechart-study",
+    "tutorial",
     "example-brush-interactions",
     "example-cleveland",
     "example-mvnv",
     "example-fairness-jnd",
+    "example-VLAT-full-randomized",
+    "example-VLAT-mini-randomized",
     "demo-html",
     "demo-html-input",
     "demo-survey",
     "demo-training",
-    "example-VLAT-full-randomized",
-    "example-VLAT-mini-randomized",
     "demo-html-trrack",
     "demo-click-accuracy-test",
     "demo-image",
+    "demo-upset",
+    "demo-vega",
     "demo-video-slider",
-    "test-audio",
-    "test-library",
+    "demo-video",
     "library-beauvis",
     "library-color-blindness",
     "library-demographics",
@@ -28,22 +28,24 @@
     "library-previs",
     "library-sus",
     "library-vlat",
+    "test-audio",
+    "test-library",
     "test-likert-matrix",
     "test-parser-errors",
-    "demo-vega",
     "test-randomization",
     "test-skip-logic",
-    "pattern-design-study"
+    "test-step-logic",
+    "ScatterJND-study",
+    "ParallelJND-study",
+    "HexbinJND-study",
+    "HeatmapJND-study"
   ],
   "configs": {
-    "tutorial-simple-study": {
-      "path": "tutorial/simple-study/config.json"
+    "bubblechart-study": {
+      "path": "bubblechart-study/config.json"
     },
-    "tutorial-react-and-randomization": {
-      "path": "tutorial/react-and-randomization/config.json"
-    },
-    "tutorial-advanced-react": {
-      "path": "tutorial/advanced-react-component/config.json"
+    "tutorial": {
+      "path": "tutorial/config.json"
     },
     "example-brush-interactions": {
       "path": "example-brush-interactions/config.json"
@@ -71,6 +73,12 @@
     },
     "demo-training": {
       "path": "demo-training/config.json"
+    },
+    "demo-upset": {
+      "path": "demo-upset/config.json"
+    },
+    "demo-video": {
+      "path": "demo-video/config.json"
     },
     "example-VLAT-full-randomized": {
       "path": "example-VLAT-full-randomized/config.json"
@@ -145,9 +153,21 @@
       "path": "test-skip-logic/config.json",
       "test": true
     },
-    "pattern-design-study": {
-      "path": "pattern-design-study/config.json",
+    "test-step-logic": {
+      "path": "test-step-logic/config.json",
       "test": true
+    },
+    "ScatterJND-study": {
+      "path": "ScatterJND-study/config.json"
+    },
+    "ParallelJND-study": {
+      "path": "ParallelJND-study/config.json"
+    },
+    "HexbinJND-study": {
+      "path": "HexbinJND-study/config.json"
+    },
+    "HeatmapJND-study": {
+      "path": "HeatmapJND-study/config.json"
     }
   }
 }
