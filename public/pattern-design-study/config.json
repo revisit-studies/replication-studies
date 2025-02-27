@@ -211,7 +211,14 @@
           "condition_chart": 1,
           "condition_texture": 0
         },
-        "response": []
+        "response": [
+          {
+            "id": "answer",
+            "prompt": "get-measurements", 
+            "hidden": true,
+            "type": "reactive"
+          }
+        ]
       },
       "pie-geo_icon-geo": {
         "type": "website",
@@ -220,7 +227,14 @@
           "condition_chart": 1,
           "condition_texture": 1
         },
-        "response": []
+        "response": [
+          {
+            "id": "answer",
+            "prompt": "get-measurements", 
+            "hidden": true,
+            "type": "reactive"
+          }
+        ]
       },
       "pie-icon_geo-icon": {
         "type": "website",
@@ -229,7 +243,14 @@
           "condition_chart": 1,
           "condition_texture": 0
         },
-        "response": []
+        "response": [
+          {
+            "id": "answer",
+            "prompt": "get-measurements", 
+            "hidden": true,
+            "type": "reactive"
+          }
+        ]
       },
       "pie-icon_icon-geo": {
         "type": "website",
@@ -238,7 +259,14 @@
           "condition_chart": 1,
           "condition_texture": 1
         },
-        "response": []
+        "response": [
+          {
+            "id": "answer",
+            "prompt": "get-measurements", 
+            "hidden": true,
+            "type": "reactive"
+          }
+        ]
       },
       "map-geo_geo-icon": {
         "type": "website",
@@ -247,7 +275,14 @@
           "condition_chart": 2,
           "condition_texture": 0
         },
-        "response": []
+        "response": [
+          {
+            "id": "answer",
+            "prompt": "get-measurements", 
+            "hidden": true,
+            "type": "reactive"
+          }
+        ]
       },
       "map-geo_icon-geo": {
         "type": "website",
@@ -256,7 +291,14 @@
           "condition_chart": 2,
           "condition_texture": 1
         },
-        "response": []
+        "response": [
+          {
+            "id": "answer",
+            "prompt": "get-measurements", 
+            "hidden": true,
+            "type": "reactive"
+          }
+        ]
       },
       "map-icon_geo-icon": {
         "type": "website",
@@ -265,7 +307,14 @@
           "condition_chart": 2,
           "condition_texture": 0
         },
-        "response": []
+        "response": [
+          {
+            "id": "answer",
+            "prompt": "get-measurements", 
+            "hidden": true,
+            "type": "reactive"
+          }
+        ]
       },
       "map-icon_icon-geo": {
         "type": "website",
@@ -274,7 +323,14 @@
           "condition_chart": 2,
           "condition_texture": 1
         },
-        "response": []
+        "response": [
+          {
+            "id": "answer",
+            "prompt": "get-measurements", 
+            "hidden": true,
+            "type": "reactive"
+          }
+        ]
       },
       "question-design-strategies_bar_geo-icon": {
         "type": "website",
