@@ -95,15 +95,15 @@
 <script src="/pattern-design-study/assets/pages/texture_functions.js"></script>
 <script src="/pattern-design-study/assets/pages/texture_constants.js"></script>
 <script>
-    Revisit.onDataReceive((data) => {
+    Revisit.onDataReceive((data, answers) => {
         console.log("onDataReceive")
-        Revisit.onAnswersReceive((answers) => {
-            console.log("print onAnswersReceive")
-            console.log(answers)
+        console.log(answers)
             localStorage.setItem("measurements", JSON.stringify({condition_chart: data.condition_chart, condition_texture: data.condition_texture}));
             
             
             
+
+        // console.log(parameters1);
 
     let measurements = JSON.parse(localStorage.getItem('measurements'))
 
@@ -114,8 +114,8 @@
         })
     }
 
-    let condition_chart = measurements['condition_chart']
-    let condition_texture = measurements['condition_texture']
+    let condition_chart = data.condition_chart
+    let condition_texture = data.condition_texture
     let condition_chart_name
     let condition_texture_name0
     let condition_texture_name1
@@ -392,8 +392,7 @@ drawChartDiv('chart0Div', svgWidth, svgHeight, 'chart0')
     }
 
 
-        })
-    })
+})
 </script>
 
 
