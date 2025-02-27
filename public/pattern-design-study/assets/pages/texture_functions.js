@@ -4941,12 +4941,13 @@ function addParametersToList(chartName, parameters, trrack, actions){
     Revisit.postAnswers(
         {
             answer: {
-                parameters: parameters,
+                parameters: cloneParameters(parameters),
                 chartName: chartName,
             }
         }
     )
-
+    console.log("postAnswers")
+    console.log(parameters)
 }
 
 function saveParameters(chartName){

@@ -172,7 +172,14 @@
         },
         "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This chart shows the result of a survey about people's favourite vegetables. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task. This is the last design task.",
         "instructionLocation": "sidebar",
-        "response": []
+        "response": [
+          {
+            "id": "answer",
+            "prompt": "get-measurements", 
+            "hidden": true,
+            "type": "reactive"
+          }
+        ]
       },
       "bar-icon_icon-geo": {
         "type": "react-component",
