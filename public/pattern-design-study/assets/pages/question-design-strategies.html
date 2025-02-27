@@ -96,6 +96,8 @@
 <script src="/pattern-design-study/assets/pages/texture_constants.js"></script>
 <script>
     Revisit.onDataReceive((data, answers) => {
+        console.log("Full answers object:", answers)
+        console.log("Answer keys:", Object.keys(answers))
         console.log("onDataReceive")
         console.log(answers)
             localStorage.setItem("measurements", JSON.stringify({condition_chart: data.condition_chart, condition_texture: data.condition_texture}));
@@ -388,7 +390,7 @@ drawChartDiv('chart0Div', svgWidth, svgHeight, 'chart0')
             // icon_parameters = icon_parametersList[icon_parametersList.length - 1]
 
             geo_parameters_key = Object.keys(answers).find(k => k.startsWith("pie-geo"));
-            
+            console.log("Found geo key:", geo_parameters_key);
 
             if (geo_parameters_key) {
                 geo_parameters = answers[geo_parameters_key]["answer"]["answer"]["parameters"];
@@ -398,6 +400,7 @@ drawChartDiv('chart0Div', svgWidth, svgHeight, 'chart0')
             }
 
             icon_parameters_key = Object.keys(answers).find(k => k.startsWith("pie-icon"));
+            console.log("Found icon key:", icon_parameters_key);
 
             if (icon_parameters_key) {
                 icon_parameters = answers[icon_parameters_key]["answer"]["answer"]["parameters"];
