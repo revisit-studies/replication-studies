@@ -89,6 +89,7 @@ export function ResponseBlock({
   }, [reactiveAnswers]);
 
   useEffect(() => {
+    console.log(reactiveProvenance)
     if (reactiveProvenance) {
       setProvenanceGraph(reactiveProvenance);
     }
@@ -116,6 +117,8 @@ export function ResponseBlock({
   }, [matrixAnswers]);
 
   useEffect(() => {
+    console.log('being called')
+
     storeDispatch(
       updateResponseBlockValidation({
         location,
