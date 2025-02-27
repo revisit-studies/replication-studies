@@ -561,7 +561,7 @@
         {
           "id": "compare-texture",
           "prompt": "What's your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
-          "location": "belowStimulus",
+          "location": "sidebar",
           "type": "longText",
           "placeholder": "Please write your answer here."
         }
@@ -578,7 +578,7 @@
         {
           "id": "compare-texture",
           "prompt": "What's your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
-          "location": "belowStimulus",
+          "location": "sidebar",
           "type": "longText",
           "placeholder": "Please write your answer here."
         }
@@ -595,7 +595,7 @@
         {
           "id": "compare-texture",
           "prompt": "What's your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
-          "location": "belowStimulus",
+          "location": "sidebar",
           "type": "longText",
           "placeholder": "Please write your answer here."
         }
@@ -612,7 +612,7 @@
         {
           "id": "compare-texture",
           "prompt": "What's your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
-          "location": "belowStimulus",
+          "location": "sidebar",
           "type": "longText",
           "placeholder": "Please write your answer here."
         }
@@ -629,7 +629,7 @@
         {
           "id": "compare-texture",
           "prompt": "What's your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
-          "location": "belowStimulus",
+          "location": "sidebar",
           "type": "longText",
           "placeholder": "Please write your answer here."
         }
@@ -646,7 +646,7 @@
         {
           "id": "compare-texture",
           "prompt": "What's your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
-          "location": "belowStimulus",
+          "location": "sidebar",
           "type": "longText",
           "placeholder": "Please write your answer here."
         }
@@ -662,7 +662,7 @@
         {
           "id": "different-chart-geo",
           "prompt": "Do you think they still work in this context? Please explain.",
-          "location": "belowStimulus",
+          "location": "sidebar",
           "type": "longText",
           "placeholder": "Please write your answer here."
         }
@@ -678,7 +678,7 @@
         {
           "id": "different-chart-geo",
           "prompt": "Do you think they still work in this context? Please explain.",
-          "location": "belowStimulus",
+          "location": "sidebar",
           "type": "longText",
           "placeholder": "Please write your answer here."
         }
@@ -694,7 +694,7 @@
         {
           "id": "different-chart-geo",
           "prompt": "Do you think they still work in this context? Please explain.",
-          "location": "belowStimulus",
+          "location": "sidebar",
           "type": "longText",
           "placeholder": "Please write your answer here."
         }
@@ -710,7 +710,7 @@
         {
           "id": "different-chart-icon",
           "prompt": "Do you think they still work in this context? Please explain.",
-          "location": "belowStimulus",
+          "location": "sidebar",
           "type": "longText",
           "placeholder": "Please write your answer here."
         }
@@ -726,7 +726,7 @@
         {
           "id": "different-chart-icon",
           "prompt": "Do you think they still work in this context? Please explain.",
-          "location": "belowStimulus",
+          "location": "sidebar",
           "type": "longText",
           "placeholder": "Please write your answer here."
         }
@@ -742,7 +742,7 @@
         {
           "id": "different-chart-icon",
           "prompt": "Do you think they still work in this context? Please explain.",
-          "location": "belowStimulus",
+          "location": "sidebar",
           "type": "longText",
           "placeholder": "Please write your answer here."
         }
