@@ -103,7 +103,7 @@
             
             
 
-        // console.log(parameters1);
+    
 
     let measurements = JSON.parse(localStorage.getItem('measurements'))
 
@@ -343,11 +343,33 @@ drawChartDiv('chart0Div', svgWidth, svgHeight, 'chart0')
     switch (condition_chart) {
         case 0: //bar
             condition_chart_name = 'bar'
-            geo_parametersList = JSON.parse(localStorage.getItem("barGeoparametersList") || "[]")
-            geo_parameters = geo_parametersList[geo_parametersList.length - 1]
+            // geo_parametersList = JSON.parse(localStorage.getItem("barGeoparametersList") || "[]")
+            // geo_parameters = geo_parametersList[geo_parametersList.length - 1]
 
-            icon_parametersList = JSON.parse(localStorage.getItem("barIconparametersList") || "[]")
-            icon_parameters = icon_parametersList[icon_parametersList.length - 1]
+            // icon_parametersList = JSON.parse(localStorage.getItem("barIconparametersList") || "[]")
+            // icon_parameters = icon_parametersList[icon_parametersList.length - 1]
+
+
+    
+            let geo_parameters_key = Object.keys(answers).find(k => k.startsWith("bar-geo"));
+            console.log("geo_parameters_key", geo_parameters_key)
+            
+
+            if (geo_parameters_key) {
+                geo_parameters = answers[geo_parameters_key]["answer"]["answer"]["parameters"];
+                console.log("got bar geo parameters");
+            } else {
+                console.log("bar geo parameters key not found");
+            }
+
+            let icon_parameters_key = Object.keys(answers).find(k => k.startsWith("bar-icon"));
+
+            if (icon_parameters_key) {
+                icon_parameters = answers[icon_parameters_key]["answer"]["answer"]["parameters"];
+                console.log("got bar icon parameters");
+            } else {
+                console.log("bar icon parameters key not found");
+            }
 
             para_geoTextures(d3.select('#chart0'),fruits, geo_parameters, 'para')
             para_iconTextures(d3.select('#chart0'), fruits, icon_parameters, 'para')

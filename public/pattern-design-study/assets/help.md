@@ -8,7 +8,7 @@ Textures can be used to represent categories of data in charts or maps. There ar
 
 **Iconic textures** resemble the data they stand for. Here are some examples of textures for vegetables:
 
-![Geometric texture](/pattern-design-study/assets/img/description_icon_texture.svg)
+![Iconic texture](/pattern-design-study/assets/img/description_icon_texture.svg)
 
 In this experiment, you will design visualization once with geometric textures and once with iconic textures. We would like to ask you to parameterize the textures appropriately for an effective visualization with our texture design tool.
 
