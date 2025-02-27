@@ -10,6 +10,6 @@ Textures can be used to represent categories of data in charts or maps. There ar
 
 ![Geometric texture](/pattern-design-study/assets/img/description_icon_texture.svg)
 
-In this experiment, you will design a <span id="chart_type" style="color: red;">**BAR CHART**</span>, once with geometric textures and once with iconic textures. We would like to ask you to parameterize the textures appropriately for an effective visualization with our texture design tool.
+In this experiment, you will design visualization once with geometric textures and once with iconic textures. We would like to ask you to parameterize the textures appropriately for an effective visualization with our texture design tool.
 
 Before the experiment, let's first go through a tutorial to get familiar with the interface and interaction of the texture design tool.

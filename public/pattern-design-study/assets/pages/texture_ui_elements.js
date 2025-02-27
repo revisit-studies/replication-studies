@@ -1,6 +1,5 @@
 
-// Export the initialization function
-export function initializeUIElements() {
+
     /**
      * UI elements of geometric texture charts
      */
@@ -189,4 +188,3 @@ const selectDefaultTexture = document.getElementById("selectDefaultTexture")
 
 
     const controlHalo = document.getElementById("controlHalo")
-}

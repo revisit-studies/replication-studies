@@ -1,10 +1,10 @@
 # IRB Consent Form 
 
-* Investigator: Tingying He 
+Investigator: Tingying He 
 
-* Contact Information: hetingying.hty@gmail.com; 801-520-1987 
+Contact Information: hetingying.hty@gmail.com; 801-520-1987 
 
-* Title of Research Study: Designing black-and-white patterns for visualizations 
+Title of Research Study: Designing black-and-white patterns for visualizations 
 
  
 

@@ -6,7 +6,6 @@
     "example-brush-interactions",
     "example-cleveland",
     "example-mvnv",
-    "example-fairness-jnd",
     "example-VLAT-full-randomized",
     "example-VLAT-mini-randomized",
     "demo-html",
@@ -35,10 +34,7 @@
     "test-randomization",
     "test-skip-logic",
     "test-step-logic",
-    "ScatterJND-study",
-    "ParallelJND-study",
-    "HexbinJND-study",
-    "HeatmapJND-study"
+    "pattern-design-study"
   ],
   "configs": {
     "bubblechart-study": {
@@ -55,9 +51,6 @@
     },
     "example-mvnv": {
       "path": "example-mvnv/config.json"
-    },
-    "example-fairness-jnd": {
-      "path": "example-fairness-jnd/config.json"
     },
     "demo-video-slider": {
       "path": "demo-video-slider/config.json"
@@ -157,17 +150,9 @@
       "path": "test-step-logic/config.json",
       "test": true
     },
-    "ScatterJND-study": {
-      "path": "ScatterJND-study/config.json"
-    },
-    "ParallelJND-study": {
-      "path": "ParallelJND-study/config.json"
-    },
-    "HexbinJND-study": {
-      "path": "HexbinJND-study/config.json"
-    },
-    "HeatmapJND-study": {
-      "path": "HeatmapJND-study/config.json"
+    "pattern-design-study": {
+      "path": "pattern-design-study/config.json",
+      "test": true
     }
   }
 }
