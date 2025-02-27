@@ -47,13 +47,6 @@
         "instructionLocation": "sidebar",
         "response": []
       },
-      "lastpage":{
-        "type": "website",
-        "path": "pattern-design-study/assets/pages/end.html",
-        "instruction": "",
-        "instructionLocation": "sidebar",
-        "response": []
-      },
       "description_bar": {
         "type": "website",
         "path": "pattern-design-study/assets/pages/description.html",
@@ -843,8 +836,7 @@
           ]
         }
       ]
-    },
-    "lastpage"
+    }
   ]
 }
 
