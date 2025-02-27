@@ -2,14 +2,15 @@ import {
   forwardRef, RefObject, useCallback, useEffect, useMemo, useRef, useState,
 } from 'react';
 import { Box } from '@mantine/core';
-import { APITypes, PlyrProps, usePlyr } from 'plyr-react';
+// import { APITypes, PlyrProps, usePlyr } from 'plyr-react';
 import { VideoComponent } from '../parser/types';
 import { PREFIX } from '../utils/Prefix';
 import { getStaticAssetByPath } from '../utils/getStaticAsset';
 import { ResourceNotFound } from '../ResourceNotFound';
-import 'plyr-react/plyr.css';
+// import 'plyr-react/plyr.css';
 import { useStoreActions, useStoreDispatch } from '../store/store';
 import { useCurrentComponent, useCurrentStep } from '../routes/utils';
+
 
 // eslint-disable-next-line react/display-name
 const CustomPlyrInstance = forwardRef<APITypes, PlyrProps & { endedCallback:() => void; errorCallback: () => void }>(

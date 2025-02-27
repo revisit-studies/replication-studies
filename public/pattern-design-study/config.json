@@ -15,7 +15,7 @@
   },
   "uiConfig": {
       "contactEmail": "contact@revisit.dev",
-      "helpTextPath": "basic-questionnaire-study/assets/help.md",
+      "helpTextPath": "pattern-design-study/assets/help.md",
       "logoPath": "revisitAssets/revisitLogoSquare.svg",
       "withProgressBar": true,
       "autoDownloadStudy": false,
@@ -28,21 +28,17 @@
       "welcome": {
           "type": "website",
           "path": "pattern-design-study/assets/pages/welcome.html",
+          "instruction": "",
+          "instructionLocation": "sidebar",
           "response": []
       },    
       "consent": {
         "type": "markdown",
         "path": "pattern-design-study/assets/pages/consent.md",
         "nextButtonText": "Yes, I agree",
-        "response": [
-          {
-            "id": "signature",
-            "prompt": "Your signature",
-            "location": "belowStimulus",
-            "type": "shortText",
-            "placeholder": "Please provide your signature"
-          }
-        ]
+        "instruction": "",
+        "instructionLocation": "sidebar",
+        "response": []
       },
       "between-two-design":{
         "type": "website",
