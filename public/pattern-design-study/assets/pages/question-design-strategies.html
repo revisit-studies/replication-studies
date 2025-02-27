@@ -338,7 +338,9 @@ const selectDefaultTexture = document.getElementById("selectDefaultTexture")
 drawChartDiv('chart0Div', svgWidth, svgHeight, 'chart0')
     drawChartDiv('chart1Div', svgWidth, svgHeight, 'chart1')
 
-    
+    let geo_parameters_key = ''
+
+    let icon_parameters_key = ''
 
     switch (condition_chart) {
         case 0: //bar
@@ -351,8 +353,7 @@ drawChartDiv('chart0Div', svgWidth, svgHeight, 'chart0')
 
 
     
-            let geo_parameters_key = Object.keys(answers).find(k => k.startsWith("bar-geo"));
-            console.log("geo_parameters_key", geo_parameters_key)
+            geo_parameters_key = Object.keys(answers).find(k => k.startsWith("bar-geo"));
             
 
             if (geo_parameters_key) {
@@ -362,7 +363,7 @@ drawChartDiv('chart0Div', svgWidth, svgHeight, 'chart0')
                 console.log("bar geo parameters key not found");
             }
 
-            let icon_parameters_key = Object.keys(answers).find(k => k.startsWith("bar-icon"));
+            icon_parameters_key = Object.keys(answers).find(k => k.startsWith("bar-icon"));
 
             if (icon_parameters_key) {
                 icon_parameters = answers[icon_parameters_key]["answer"]["answer"]["parameters"];
@@ -380,11 +381,30 @@ drawChartDiv('chart0Div', svgWidth, svgHeight, 'chart0')
             break;
         case 1: //pie
             condition_chart_name = 'pie'
-            geo_parametersList = JSON.parse(localStorage.getItem("pieGeoparametersList") || "[]")
-            geo_parameters = geo_parametersList[geo_parametersList.length - 1]
+            // geo_parametersList = JSON.parse(localStorage.getItem("pieGeoparametersList") || "[]")
+            // geo_parameters = geo_parametersList[geo_parametersList.length - 1]
 
-            icon_parametersList = JSON.parse(localStorage.getItem("pieIconparametersList") || "[]")
-            icon_parameters = icon_parametersList[icon_parametersList.length - 1]
+            // icon_parametersList = JSON.parse(localStorage.getItem("pieIconparametersList") || "[]")
+            // icon_parameters = icon_parametersList[icon_parametersList.length - 1]
+
+            geo_parameters_key = Object.keys(answers).find(k => k.startsWith("pie-geo"));
+            
+
+            if (geo_parameters_key) {
+                geo_parameters = answers[geo_parameters_key]["answer"]["answer"]["parameters"];
+                console.log("got pie geo parameters");
+            } else {
+                console.log("pie geo parameters key not found");
+            }
+
+            icon_parameters_key = Object.keys(answers).find(k => k.startsWith("pie-icon"));
+
+            if (icon_parameters_key) {
+                icon_parameters = answers[icon_parameters_key]["answer"]["answer"]["parameters"];
+                console.log("got pie icon parameters");
+            } else {
+                console.log("pie icon parameters key not found");
+            }
 
             para_geoTextures(d3.select('#chart0'),fruits, geo_parameters, 'para')
             para_iconTextures(d3.select('#chart0'), fruits, icon_parameters, 'para')
@@ -396,11 +416,31 @@ drawChartDiv('chart0Div', svgWidth, svgHeight, 'chart0')
         case 2: //map
             condition_chart_name = 'map'
 
-            geo_parametersList = JSON.parse(localStorage.getItem("mapGeoparametersList") || "[]")
-            geo_parameters = geo_parametersList[geo_parametersList.length - 1]
+            // geo_parametersList = JSON.parse(localStorage.getItem("mapGeoparametersList") || "[]")
+            // geo_parameters = geo_parametersList[geo_parametersList.length - 1]
 
-            icon_parametersList = JSON.parse(localStorage.getItem("mapIconparametersList") || "[]")
-            icon_parameters = icon_parametersList[icon_parametersList.length - 1]
+            // icon_parametersList = JSON.parse(localStorage.getItem("mapIconparametersList") || "[]")
+            // icon_parameters = icon_parametersList[icon_parametersList.length - 1]
+
+            geo_parameters_key = Object.keys(answers).find(k => k.startsWith("map-geo"));
+            console.log("geo_parameters_key", geo_parameters_key)
+
+            if (geo_parameters_key) {
+                geo_parameters = answers[geo_parameters_key]["answer"]["answer"]["parameters"];
+                console.log("got map geo parameters");
+            } else {
+                console.log("map geo parameters key not found");
+            }
+
+            icon_parameters_key = Object.keys(answers).find(k => k.startsWith("map-icon"));
+            console.log("icon_parameters_key", icon_parameters_key)
+
+            if (icon_parameters_key) {
+                icon_parameters = answers[icon_parameters_key]["answer"]["answer"]["parameters"];
+                console.log("got map icon parameters");
+            } else {
+                console.log("map icon parameters key not found");
+            }
 
             para_geoTextures(d3.select('#chart0'),fruits, geo_parameters, 'para')
             para_iconTextures(d3.select('#chart0'), fruits, icon_parameters, 'para')

@@ -26,8 +26,8 @@
   ],
   "components": {
       "welcome": {
-          "type": "website",
-          "path": "pattern-design-study/assets/pages/welcome.html",
+          "type": "markdown",
+          "path": "pattern-design-study/assets/pages/welcome.md",
           "instruction": "",
           "instructionLocation": "sidebar",
           "response": []
@@ -41,8 +41,10 @@
         "response": []
       },
       "between-two-design":{
-        "type": "website",
-        "path": "pattern-design-study/assets/pages/between-two-design.html",
+        "type": "markdown",
+        "path": "pattern-design-study/assets/pages/between-two-design.md",
+        "instruction": "",
+        "instructionLocation": "sidebar",
         "response": []
       },
       "lastpage":{
@@ -149,19 +151,22 @@
         ]
       },
       "bar-geo_icon-geo": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/bar-geo.html", 
         "parameters": {
           "condition_chart": 0,
-          "condition_texture": 1,
-          "pageLink": "assets/pages/bar-geo.html"
+          "condition_texture": 0
         },
-        "response": [{
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        }]
+        "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This chart shows the result of a survey about people's favourite vegetables. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task, but keep in mind that we will ask you to complete one other design after this one.",
+        "instructionLocation": "sidebar",
+        "response": [
+          {
+            "id": "answer",
+            "prompt": "get-measurements", 
+            "hidden": true,
+            "type": "reactive"
+          }
+        ]
       },
       "bar-icon_geo-icon": {
         "type": "website",
@@ -182,19 +187,22 @@
         ]
       },
       "bar-icon_icon-geo": {
-        "type": "react-component",
-        "path": "pattern-design-study/assets/PatternComponent.tsx",
+        "type": "website",
+        "path": "pattern-design-study/assets/pages/bar-icon.html",
         "parameters": {
           "condition_chart": 0,
-          "condition_texture": 1,
-          "pageLink": "assets/pages/bar-icon.html"
+          "condition_texture": 0
         },
-        "response": [{
-          "type": "reactive",
-          "id": "answer",
-          "prompt": "get-measurements",
-          "hidden": true
-        }]
+        "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This chart shows the result of a survey about people's favourite vegetables. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task. This is the last design task.",
+        "instructionLocation": "sidebar",
+        "response": [
+          {
+            "id": "answer",
+            "prompt": "get-measurements", 
+            "hidden": true,
+            "type": "reactive"
+          }
+        ]
       },
       "pie-geo_geo-icon": {
         "type": "website",
@@ -279,21 +287,21 @@
           {
             "id": "design-strategies-goals",
             "prompt": "What kind of **goals** did you want to achieve when you designed the representation?",
-            "location": "belowStimulus",
+            "location": "sidebar",
             "type": "longText",
             "placeholder": "Please write your answer here."
           },
           {
             "id": "design-strategies-geometric-textures",
             "prompt": "When you chose the parameters for the **geometric textures**, did you use any methods or principles?",
-            "location": "belowStimulus",
+            "location": "sidebar",
             "type": "longText",
             "placeholder": "Please write your answer here."
           },
           {
             "id": "design-strategies-iconic-textures",
             "prompt": "When you chose the parameters for the **iconic textures**, did you use any methods or principles?",
-            "location": "belowStimulus",
+            "location": "sidebar",
             "type": "longText",
             "placeholder": "Please write your answer here."
           }
@@ -310,21 +318,21 @@
           {
             "id": "design-strategies-goals",
             "prompt": "What kind of **goals** did you want to achieve when you designed the representation?",
-            "location": "belowStimulus",
+            "location": "sidebar",
             "type": "longText",
             "placeholder": "Please write your answer here."
           },
           {
             "id": "design-strategies-iconic-textures",
             "prompt": "When you chose the parameters for the **iconic textures**, did you use any methods or principles?",
-            "location": "belowStimulus",
+            "location": "sidebar",
             "type": "longText",
             "placeholder": "Please write your answer here."
           },
           {
             "id": "design-strategies-geometric-textures",
             "prompt": "When you chose the parameters for the **geometric textures**, did you use any methods or principles?",
-            "location": "belowStimulus",
+            "location": "sidebar",
             "type": "longText",
             "placeholder": "Please write your answer here."
           }
@@ -341,21 +349,21 @@
         {
           "id": "design-strategies-goals",
           "prompt": "What kind of **goals** did you want to achieve when you designed the representation?",
-          "location": "belowStimulus",
+          "location": "sidebar",
           "type": "longText",
           "placeholder": "Please write your answer here."
         },
         {
           "id": "design-strategies-geometric-textures",
           "prompt": "When you chose the parameters for the **geometric textures**, did you use any methods or principles?",
-          "location": "belowStimulus",
+          "location": "sidebar",
           "type": "longText",
           "placeholder": "Please write your answer here."
         },
         {
           "id": "design-strategies-iconic-textures",
           "prompt": "When you chose the parameters for the **iconic textures**, did you use any methods or principles?",
-          "location": "belowStimulus",
+          "location": "sidebar",
           "type": "longText",
           "placeholder": "Please write your answer here."
         }
@@ -372,21 +380,21 @@
         {
           "id": "design-strategies-goals",
           "prompt": "What kind of **goals** did you want to achieve when you designed the representation?",
-          "location": "belowStimulus",
+          "location": "sidebar",
           "type": "longText",
           "placeholder": "Please write your answer here."
         },
         {
           "id": "design-strategies-iconic-textures",
           "prompt": "When you chose the parameters for the **iconic textures**, did you use any methods or principles?",
-          "location": "belowStimulus",
+          "location": "sidebar",
           "type": "longText",
           "placeholder": "Please write your answer here."
         },
         {
           "id": "design-strategies-geometric-textures",
           "prompt": "When you chose the parameters for the **geometric textures**, did you use any methods or principles?",
-          "location": "belowStimulus",
+          "location": "sidebar",
           "type": "longText",
           "placeholder": "Please write your answer here."
         }
@@ -403,21 +411,21 @@
         {
           "id": "design-strategies-goals",
           "prompt": "What kind of **goals** did you want to achieve when you designed the representation?",
-          "location": "belowStimulus",
+          "location": "sidebar",
           "type": "longText",
           "placeholder": "Please write your answer here."
         },
         {
           "id": "design-strategies-geometric-textures",
           "prompt": "When you chose the parameters for the **geometric textures**, did you use any methods or principles?",
-          "location": "belowStimulus",
+          "location": "sidebar",
           "type": "longText",
           "placeholder": "Please write your answer here."
         },
         {
           "id": "design-strategies-iconic-textures",
           "prompt": "When you chose the parameters for the **iconic textures**, did you use any methods or principles?",
-          "location": "belowStimulus",
+          "location": "sidebar",
           "type": "longText",
           "placeholder": "Please write your answer here."
         }
@@ -434,21 +442,21 @@
         {
           "id": "design-strategies-goals",
           "prompt": "What kind of **goals** did you want to achieve when you designed the representation?",
-          "location": "belowStimulus",
+          "location": "sidebar",
           "type": "longText",
           "placeholder": "Please write your answer here."
         },
         {
           "id": "design-strategies-iconic-textures",
           "prompt": "When you chose the parameters for the **iconic textures**, did you use any methods or principles?",
-          "location": "belowStimulus",
+          "location": "sidebar",
           "type": "longText",
           "placeholder": "Please write your answer here."
         },
         {
           "id": "design-strategies-geometric-textures",
           "prompt": "When you chose the parameters for the **geometric textures**, did you use any methods or principles?",
-          "location": "belowStimulus",
+          "location": "sidebar",
           "type": "longText",
           "placeholder": "Please write your answer here."
         }
@@ -464,7 +472,7 @@
         "response": [
         {
           "id": "compare-texture",
-          "prompt": "What’s your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
+          "prompt": "What's your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
           "location": "belowStimulus",
           "type": "longText",
           "placeholder": "Please write your answer here."
@@ -481,7 +489,7 @@
         "response": [
         {
           "id": "compare-texture",
-          "prompt": "What’s your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
+          "prompt": "What's your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
           "location": "belowStimulus",
           "type": "longText",
           "placeholder": "Please write your answer here."
@@ -498,7 +506,7 @@
         "response": [
         {
           "id": "compare-texture",
-          "prompt": "What’s your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
+          "prompt": "What's your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
           "location": "belowStimulus",
           "type": "longText",
           "placeholder": "Please write your answer here."
@@ -515,7 +523,7 @@
         "response": [
         {
           "id": "compare-texture",
-          "prompt": "What’s your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
+          "prompt": "What's your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
           "location": "belowStimulus",
           "type": "longText",
           "placeholder": "Please write your answer here."
@@ -532,7 +540,7 @@
         "response": [
         {
           "id": "compare-texture",
-          "prompt": "What’s your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
+          "prompt": "What's your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
           "location": "belowStimulus",
           "type": "longText",
           "placeholder": "Please write your answer here."
@@ -549,7 +557,7 @@
         "response": [
         {
           "id": "compare-texture",
-          "prompt": "What’s your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
+          "prompt": "What's your general impression, experience, or take-away about using geometric and iconic textures for data representation?",
           "location": "belowStimulus",
           "type": "longText",
           "placeholder": "Please write your answer here."
