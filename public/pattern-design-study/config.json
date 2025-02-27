@@ -32,6 +32,48 @@
           "instructionLocation": "sidebar",
           "response": []
       },    
+      "demographics": {
+        "type": "questionnaire",
+        "description": "Basic demographic questions including gender, age, and education",
+        "response": [
+          {
+            "id": "gender",
+            "prompt": "What is your **gender**?",
+            "required": true,
+            "location": "aboveStimulus",
+            "type": "radio",
+            "withOther": true,
+            "options": [
+              "Woman",
+              "Man",
+              "Non-binary / Genderqueer / Third gender",
+              "Genderfluid / Gender non-conforming",
+              "Questioning",
+              "Prefer not to say"
+            ]
+          },
+          {
+            "id": "age",
+            "prompt": "What is your **age**?",
+            "required": true,
+            "location": "aboveStimulus",
+            "type": "numerical",
+            "placeholder": "Enter your age, range from 0 - 120",
+            "max": 120,
+            "min": 0
+          },
+          {
+            "id": "experience",
+            "prompt": "For how many years have you worked or studied in the field of visualization design?",
+            "required": true,
+            "location": "aboveStimulus",
+            "type": "numerical",
+            "placeholder": "Enter your years of experience, range from 0 - 120",
+            "max": 120,
+            "min": 0
+          }
+        ]
+      },
       "consent": {
         "type": "markdown",
         "path": "pattern-design-study/assets/pages/consent.md",
@@ -747,6 +789,7 @@
   "components": [
     "welcome",
     "consent",
+    "demographics",
     {
       "order": "latinSquare",
       "numSamples": 1,
