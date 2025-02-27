@@ -30,11 +30,13 @@
           "path": "pattern-design-study/assets/pages/welcome.md",
           "instruction": "",
           "instructionLocation": "sidebar",
+          "nextButtonLocation": "sidebar",
           "response": []
       },    
       "demographics": {
         "type": "questionnaire",
         "description": "Basic demographic questions including gender, age, and education",
+        "nextButtonLocation": "sidebar",
         "response": [
           {
             "id": "gender",
@@ -80,6 +82,7 @@
         "nextButtonText": "Yes, I agree",
         "instruction": "",
         "instructionLocation": "sidebar",
+        "nextButtonLocation": "sidebar",
         "response": []
       },
       "between-two-design":{
@@ -87,6 +90,7 @@
         "path": "pattern-design-study/assets/pages/between-two-design.md",
         "instruction": "",
         "instructionLocation": "sidebar",
+        "nextButtonLocation": "sidebar",
         "response": []
       },
       "description_bar": {
@@ -95,6 +99,7 @@
         "parameters": {
           "condition_chart": 0
         },
+        "nextButtonLocation": "sidebar",
         "instruction": "",
         "instructionLocation": "sidebar",
         "response": []
@@ -107,6 +112,7 @@
         },
         "instruction": "",
         "instructionLocation": "sidebar",
+        "nextButtonLocation": "sidebar",
         "response": []
       },
       "description_map": {
@@ -117,6 +123,7 @@
         },
         "instruction": "",
         "instructionLocation": "sidebar",
+        "nextButtonLocation": "sidebar",
         "response": []
       },
       "tutorial_bar_geo-icon": {
@@ -128,6 +135,7 @@
         },
         "instruction": "**Get Familiar with the Texture Design Tool** \n\n Now you can play with the tool and try each function out. Once you are familiar with the tool, click the **Start Real Experiment** button at the bottom right of the page to start the real experiment.",
         "instructionLocation":"sidebar",
+        "nextButtonLocation": "sidebar",
         "response": []
       },
       "tutorial_bar_icon-geo": {
@@ -139,6 +147,7 @@
         },
         "instruction": "**Get Familiar with the Texture Design Tool** \n\n Now you can play with the tool and try each function out. Once you are familiar with the tool, click the **Start Real Experiment** button at the bottom right of the page to start the real experiment.",
         "instructionLocation":"sidebar",
+        "nextButtonLocation": "sidebar",
         "response": []
       },
       "tutorial_pie_geo-icon": {
@@ -150,6 +159,7 @@
         },
         "instruction": "**Get Familiar with the Texture Design Tool** \n\n Now you can play with the tool and try each function out. Once you are familiar with the tool, click the **Start Real Experiment** button at the bottom right of the page to start the real experiment.",
         "instructionLocation":"sidebar",
+        "nextButtonLocation": "sidebar",
         "response": []
       },
       "tutorial_pie_icon-geo": {
@@ -161,6 +171,7 @@
         },
         "instruction": "**Get Familiar with the Texture Design Tool** \n\n Now you can play with the tool and try each function out. Once you are familiar with the tool, click the **Start Real Experiment** button at the bottom right of the page to start the real experiment.",
         "instructionLocation":"sidebar",
+        "nextButtonLocation": "sidebar",
         "response": []
       },
       "tutorial_map_geo-icon": {
@@ -172,6 +183,7 @@
         },
         "instruction": "**Get Familiar with the Texture Design Tool** \n\n Now you can play with the tool and try each function out. Once you are familiar with the tool, click the **Start Real Experiment** button at the bottom right of the page to start the real experiment.",
         "instructionLocation":"sidebar",
+        "nextButtonLocation": "sidebar",
         "response": []
       },
       "tutorial_map_icon-geo": {
@@ -183,6 +195,7 @@
         },
         "instruction": "**Get Familiar with the Texture Design Tool** \n\n Now you can play with the tool and try each function out. Once you are familiar with the tool, click the **Start Real Experiment** button at the bottom right of the page to start the real experiment.",
         "instructionLocation":"sidebar",
+        "nextButtonLocation": "sidebar",
         "response": []
       },
       "bar-geo_geo-icon": {
@@ -194,6 +207,7 @@
         },
         "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This chart shows the result of a survey about people's favourite vegetables. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task, but keep in mind that we will ask you to complete one other design after this one.",
         "instructionLocation": "sidebar",
+        "nextButtonLocation": "sidebar",
         "response": [
           {
             "id": "answer",
@@ -212,6 +226,7 @@
         },
         "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This chart shows the result of a survey about people's favourite vegetables. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task. This is the last design task.",
         "instructionLocation": "sidebar",
+        "nextButtonLocation": "sidebar",
         "response": [
           {
             "id": "answer",
@@ -230,6 +245,7 @@
         },
         "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This chart shows the result of a survey about people's favourite vegetables. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task. This is the last design task.",
         "instructionLocation": "sidebar",
+        "nextButtonLocation": "sidebar",
         "response": [
           {
             "id": "answer",
@@ -248,6 +264,7 @@
         },
         "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This chart shows the result of a survey about people's favourite vegetables. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task, but keep in mind that we will ask you to complete one other design after this one.",
         "instructionLocation": "sidebar",
+        "nextButtonLocation": "sidebar",
         "response": [
           {
             "id": "answer",
@@ -266,6 +283,7 @@
         },
         "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This chart shows the result of a survey about people's favourite vegetables. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task, but keep in mind that we will ask you to complete one other design after this one.",
         "instructionLocation": "sidebar",
+        "nextButtonLocation": "sidebar",
         "response": [
           {
             "id": "answer",
@@ -282,6 +300,9 @@
           "condition_chart": 1,
           "condition_texture": 1
         },
+        "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This chart shows the result of a survey about people's favourite vegetables. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task. This is the last design task.",
+        "instructionLocation": "sidebar",
+        "nextButtonLocation": "sidebar",
         "response": [
           {
             "id": "answer",
@@ -300,6 +321,7 @@
         },
         "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This chart shows the result of a survey about people's favourite vegetables. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task. This is the last design task.",
         "instructionLocation": "sidebar",
+        "nextButtonLocation": "sidebar",
         "response": [
           {
             "id": "answer",
@@ -318,6 +340,7 @@
         },
         "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This chart shows the result of a survey about people's favourite vegetables. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task, but keep in mind that we will ask you to complete one other design after this one.",
         "instructionLocation": "sidebar",
+        "nextButtonLocation": "sidebar",
         "response": [
           {
             "id": "answer",
@@ -336,6 +359,7 @@
         },
         "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This map shows the favorite vegetable of the residents of each French department. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task. This is the last design task.",
         "instructionLocation": "sidebar",
+        "nextButtonLocation": "sidebar",
         "response": [
           {
             "id": "answer",
@@ -354,6 +378,7 @@
         },
         "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This map shows the favorite vegetable of the residents of each French department. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task. This is the last design task.",
         "instructionLocation": "sidebar",
+        "nextButtonLocation": "sidebar",
         "response": [
           {
             "id": "answer",
@@ -372,6 +397,7 @@
         },
         "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This map shows the favorite vegetable of the residents of each French department. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task. This is the last design task.",
         "instructionLocation": "sidebar",
+        "nextButtonLocation": "sidebar",
         "response": [
           {
             "id": "answer",
@@ -390,6 +416,7 @@
         },
         "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This map shows the favorite vegetable of the residents of each French department. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task. This is the last design task.",
         "instructionLocation": "sidebar",
+        "nextButtonLocation": "sidebar",
         "response": [
           {
             "id": "answer",
@@ -406,6 +433,7 @@
           "condition_chart": 0,
           "condition_texture": 0
         },
+        "nextButtonLocation": "sidebar",
         "response": [
           {
             "id": "design-strategies-goals",
@@ -437,6 +465,7 @@
           "condition_chart": 0,
           "condition_texture": 1
         },
+        "nextButtonLocation": "sidebar",
         "response": [
           {
             "id": "design-strategies-goals",
@@ -468,6 +497,7 @@
           "condition_chart": 1,
           "condition_texture": 0
         },
+        "nextButtonLocation": "sidebar",
         "response": [
         {
           "id": "design-strategies-goals",
@@ -499,6 +529,7 @@
           "condition_chart": 1,
           "condition_texture": 1
         },
+        "nextButtonLocation": "sidebar",
         "response": [
         {
           "id": "design-strategies-goals",
@@ -530,6 +561,7 @@
           "condition_chart": 2,
           "condition_texture": 0
         },
+        "nextButtonLocation": "sidebar",
         "response": [
         {
           "id": "design-strategies-goals",
@@ -561,6 +593,7 @@
           "condition_chart": 2,
           "condition_texture": 1
         },
+        "nextButtonLocation": "sidebar",
         "response": [
         {
           "id": "design-strategies-goals",
@@ -592,6 +625,7 @@
           "condition_chart": 0,
           "condition_texture": 0
         },
+        "nextButtonLocation": "sidebar",
         "response": [
         {
           "id": "compare-texture",
@@ -609,6 +643,7 @@
           "condition_chart": 0,
           "condition_texture": 1
         },
+        "nextButtonLocation": "sidebar",
         "response": [
         {
           "id": "compare-texture",
@@ -626,6 +661,7 @@
           "condition_chart": 1,
           "condition_texture": 0
         },
+        "nextButtonLocation": "sidebar",
         "response": [
         {
           "id": "compare-texture",
@@ -643,6 +679,7 @@
           "condition_chart": 1,
           "condition_texture": 1
         },
+        "nextButtonLocation": "sidebar",
         "response": [
         {
           "id": "compare-texture",
@@ -660,6 +697,7 @@
           "condition_chart": 2,
           "condition_texture": 0
         },
+        "nextButtonLocation": "sidebar",
         "response": [
         {
           "id": "compare-texture",
@@ -677,6 +715,7 @@
           "condition_chart": 2,
           "condition_texture": 1
         },
+        "nextButtonLocation": "sidebar",
         "response": [
         {
           "id": "compare-texture",
@@ -693,6 +732,7 @@
         "parameters": {
           "condition_chart": 0
         },
+        "nextButtonLocation": "sidebar",
         "response": [
         {
           "id": "different-chart-geo",
@@ -709,6 +749,7 @@
         "parameters": {
           "condition_chart": 1
         },
+        "nextButtonLocation": "sidebar",
         "response": [
         {
           "id": "different-chart-geo",
@@ -725,6 +766,7 @@
         "parameters": {
           "condition_chart": 2
         },
+        "nextButtonLocation": "sidebar",
         "response": [
         {
           "id": "different-chart-geo",
@@ -741,6 +783,7 @@
         "parameters": {
           "condition_chart": 0
         },
+        "nextButtonLocation": "sidebar",
         "response": [
         {
           "id": "different-chart-icon",
@@ -757,6 +800,7 @@
         "parameters": {
           "condition_chart": 1
         },
+        "nextButtonLocation": "sidebar",
         "response": [
         {
           "id": "different-chart-icon",
@@ -773,6 +817,7 @@
         "parameters": {
           "condition_chart": 2
         },
+        "nextButtonLocation": "sidebar",
         "response": [
         {
           "id": "different-chart-icon",
