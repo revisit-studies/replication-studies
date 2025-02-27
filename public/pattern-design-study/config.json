@@ -175,7 +175,7 @@
           "condition_chart": 0,
           "condition_texture": 0
         },
-        "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This chart shows the result of a survey about people's favourite vegetables. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task, but keep in mind that we will ask you to complete one other design after this one.",
+        "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This chart shows the result of a survey about people's favourite vegetables. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task. This is the last design task.",
         "instructionLocation": "sidebar",
         "response": [
           {
@@ -211,7 +211,7 @@
           "condition_chart": 0,
           "condition_texture": 0
         },
-        "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This chart shows the result of a survey about people's favourite vegetables. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task. This is the last design task.",
+        "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This chart shows the result of a survey about people's favourite vegetables. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task, but keep in mind that we will ask you to complete one other design after this one.",
         "instructionLocation": "sidebar",
         "response": [
           {
@@ -229,6 +229,8 @@
           "condition_chart": 1,
           "condition_texture": 0
         },
+        "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This chart shows the result of a survey about people's favourite vegetables. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task, but keep in mind that we will ask you to complete one other design after this one.",
+        "instructionLocation": "sidebar",
         "response": [
           {
             "id": "answer",
@@ -261,6 +263,8 @@
           "condition_chart": 1,
           "condition_texture": 0
         },
+        "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This chart shows the result of a survey about people's favourite vegetables. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task. This is the last design task.",
+        "instructionLocation": "sidebar",
         "response": [
           {
             "id": "answer",
@@ -277,6 +281,8 @@
           "condition_chart": 1,
           "condition_texture": 1
         },
+        "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This chart shows the result of a survey about people's favourite vegetables. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task, but keep in mind that we will ask you to complete one other design after this one.",
+        "instructionLocation": "sidebar",
         "response": [
           {
             "id": "answer",
@@ -293,6 +299,8 @@
           "condition_chart": 2,
           "condition_texture": 0
         },
+        "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This map shows the favorite vegetable of the residents of each French department. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task. This is the last design task.",
+        "instructionLocation": "sidebar",
         "response": [
           {
             "id": "answer",
@@ -309,6 +317,8 @@
           "condition_chart": 2,
           "condition_texture": 1
         },
+        "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This map shows the favorite vegetable of the residents of each French department. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task. This is the last design task.",
+        "instructionLocation": "sidebar",
         "response": [
           {
             "id": "answer",
@@ -325,6 +335,8 @@
           "condition_chart": 2,
           "condition_texture": 0
         },
+        "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This map shows the favorite vegetable of the residents of each French department. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task. This is the last design task.",
+        "instructionLocation": "sidebar",
         "response": [
           {
             "id": "answer",
@@ -341,6 +353,8 @@
           "condition_chart": 2,
           "condition_texture": 1
         },
+        "instruction": "### Now it's your turn to design an effective set of textures for data visualization.\n\n Imagine you are asked to create a chart with texture for a high-resolution e-ink display which can only show black and white content. This map shows the favorite vegetable of the residents of each French department. \n\n Please adjust the texture parameters to create an aesthetically pleasing and readable visualization.\n\n Please optimize for datasets in general. Click the change data set button to test your design on different random data sets, and click the default data set button to test your design on a default data set.\n\nWhen you finish designing, click on the **Next** button in the bottom right corner of the page. There is no time limit for this task. This is the last design task.",
+        "instructionLocation": "sidebar",
         "response": [
           {
             "id": "answer",
