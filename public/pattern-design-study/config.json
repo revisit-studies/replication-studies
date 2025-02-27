@@ -50,6 +50,8 @@
       "lastpage":{
         "type": "website",
         "path": "pattern-design-study/assets/pages/end.html",
+        "instruction": "",
+        "instructionLocation": "sidebar",
         "response": []
       },
       "description_bar": {
@@ -58,6 +60,8 @@
         "parameters": {
           "condition_chart": 0
         },
+        "instruction": "",
+        "instructionLocation": "sidebar",
         "response": []
       },
       "description_pie": {
@@ -66,6 +70,8 @@
         "parameters": {
           "condition_chart": 1
         },
+        "instruction": "",
+        "instructionLocation": "sidebar",
         "response": []
       },
       "description_map": {
@@ -74,6 +80,8 @@
         "parameters": {
           "condition_chart": 2
         },
+        "instruction": "",
+        "instructionLocation": "sidebar",
         "response": []
       },
       "tutorial_bar_geo-icon": {
@@ -94,6 +102,8 @@
           "condition_chart": 0,
           "condition_texture": 1
         },
+        "instruction": "**Get Familiar with the Texture Design Tool** \n\n Now you can play with the tool and try each function out. Once you are familiar with the tool, click the **Start Real Experiment** button at the bottom right of the page to start the real experiment.",
+        "instructionLocation":"sidebar",
         "response": []
       },
       "tutorial_pie_geo-icon": {
@@ -103,6 +113,8 @@
           "condition_chart": 1,
           "condition_texture": 0
         },
+        "instruction": "**Get Familiar with the Texture Design Tool** \n\n Now you can play with the tool and try each function out. Once you are familiar with the tool, click the **Start Real Experiment** button at the bottom right of the page to start the real experiment.",
+        "instructionLocation":"sidebar",
         "response": []
       },
       "tutorial_pie_icon-geo": {
@@ -112,6 +124,8 @@
           "condition_chart": 1,
           "condition_texture": 1
         },
+        "instruction": "**Get Familiar with the Texture Design Tool** \n\n Now you can play with the tool and try each function out. Once you are familiar with the tool, click the **Start Real Experiment** button at the bottom right of the page to start the real experiment.",
+        "instructionLocation":"sidebar",
         "response": []
       },
       "tutorial_map_geo-icon": {
@@ -121,6 +135,8 @@
           "condition_chart": 2,
           "condition_texture": 0
         },
+        "instruction": "**Get Familiar with the Texture Design Tool** \n\n Now you can play with the tool and try each function out. Once you are familiar with the tool, click the **Start Real Experiment** button at the bottom right of the page to start the real experiment.",
+        "instructionLocation":"sidebar",
         "response": []
       },
       "tutorial_map_icon-geo": {
@@ -130,6 +146,8 @@
           "condition_chart": 2,
           "condition_texture": 1
         },
+        "instruction": "**Get Familiar with the Texture Design Tool** \n\n Now you can play with the tool and try each function out. Once you are familiar with the tool, click the **Start Real Experiment** button at the bottom right of the page to start the real experiment.",
+        "instructionLocation":"sidebar",
         "response": []
       },
       "bar-geo_geo-icon": {
