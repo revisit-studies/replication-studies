@@ -1,16 +1,16 @@
 {
   "$schema": "https://raw.githubusercontent.com/reVISit-studies/study/main/src/parser/StudyConfigSchema.json",
   "studyMetadata": {
-    "title": "Scatter Plot JND Study",
+    "title": "Heatmap Plot JND Study",
     "version": "pilot",
     "authors": ["The reVISit Team"],
-    "date": "2024-06-26",
-    "description": "This is a reVISit variation study of JND(Just Noticeable Difference) Scatter Plot experiment.",
+    "date": "2024-12-26",
+    "description": "This is a reVISit variation study of JND(Just Noticeable Difference) Heatmap Plot experiment.",
     "organizations": ["University of Utah", "WPI", "University of Toronto"]
   },
   "uiConfig": {
     "contactEmail": "contact@revisit.dev",
-    "helpTextPath": "ScatterJND-study/assets/help.md",
+    "helpTextPath": "HeatmapJND-study/assets/help.md",
     "logoPath": "revisitAssets/revisitLogoSquare.svg",
     "withProgressBar": false,
     "autoDownloadStudy": false,
@@ -21,27 +21,28 @@
   "baseComponents": {
     "experimentRevised": {
       "type": "react-component",
-      "path": "jnd-replication/vistaJND/src/components/vis/JNDScatterRevised.tsx",
+      "path": "jnd-replication/vistaJND/src/components/vis/JNDHeatmap.tsx",
       "response": [{ 
-        "id": "scatterSelections",
+        "id": "heatmapSelections",
         "prompt": "Select the option with the higher correlation",
-        "required": false,
+        "required": true,
         "location": "aboveStimulus",
-        "type": "reactive", 
+        "type": "numerical",
         "hidden": true
-      }]
+      }
+      ]
     },
     "practiceBase": {
-    "type": "react-component",
-    "path": "jnd-replication/vistaJND/src/components/vis/PracticeScatter.tsx",
-    "nextButtonLocation": "belowStimulus",
-    "response": []
-  }
+      "type": "react-component",
+      "path": "jnd-replication/vistaJND/src/components/vis/PracticeHeatmap.tsx",
+      "nextButtonLocation": "belowStimulus",
+      "response": []
+    }
   },
   "components": {
     "introduction": {
       "type": "markdown",
-      "path": "ScatterJND-study/assets/introduction.md",
+      "path": "HeatmapJND-study/assets/introduction.md",
       "response": [
         {
             "id": "prolificId",
@@ -81,7 +82,7 @@
     },
     "training": {
       "type": "markdown",
-      "path": "ScatterJND-study/assets/training.md",
+      "path": "HeatmapJND-study/assets/training.md",
       "response": []
     },
     "practice1": {
