@@ -608,7 +608,8 @@
       "baseComponent": "question-different-chart-icon",
       "parameters": {
         "condition_chart": 2
-      }
+      },
+      "instruction": "### Iconic Pattern on Different Charts \n\n We applied the iconic pattern you designed to a bar chart and a pie chart."
     }
   },
   "sequence": {
