@@ -4063,6 +4063,7 @@ function geo_selectDefaultTexture(){
     for(let i = 0; i < fruits.length; i++){
         geo_getParameters(i)
         geo_setCatPattern(i)
+        parameters["selectedCat"] = i
         revisitPostParameters(chartName, parameters, mytrrack, action)
     }
     controlOutline.value = parameters['outline']
