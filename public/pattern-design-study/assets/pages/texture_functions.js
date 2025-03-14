@@ -1770,8 +1770,15 @@ function drawGeoMapWithTexture(data, width, height, chart){
             d3.selectAll(".category"+i)
                 .on("click", function(event, d){// let controllers control the selected bar
                     console.log("selected pattern"+i)
+                    
                     geo_selectCat(i)
                     localStorage.setItem(chartName + "_selectedCat", i)
+
+                    parameters["chartName"] = chartName
+                    parameters["selectedCat"] = i
+                    console.log("parameters", parameters)
+                    addParametersToList(chartName, parameters)
+                    revisitPostParameters(chartName, parameters, mytrrack, action)
 
                     //add color indicator on the outline of the selected regions.
                     d3.selectAll('.blackStroke')
@@ -1964,6 +1971,14 @@ function drawIconMapWithTexture(data, width, height, chart){
 
                     icon_selectCat(i, departementIndex)
                     localStorage.setItem(chartName + "_selectedCat", i)
+
+                    localStorage.setItem(chartName + '_selectedCat', i)
+
+                    parameters["chartName"] = chartName
+                    parameters["selectedCat"] = i
+                    console.log("parameters", parameters)
+                    addParametersToList(chartName, parameters)
+                    revisitPostParameters(chartName, parameters, mytrrack, action)
 
                     d3.selectAll('.blackStroke')
                         .attr('stroke', 'black')
@@ -5060,7 +5075,7 @@ function revisitPostParameters(chartName, parameters, trrack, action){
         }
     )
     console.log("postAnswers")
-    // console.log(parameters)
+    console.log(parameters)
         
 }
 
@@ -5107,6 +5122,7 @@ function saveParameters(chartName){
  * @param chartName
  */
 function setSelectCat(chartName){
+    console.log('setSelectCat'+i)
     //select a category
     for(let i=0; i < fruits.length;i++){
         d3.selectAll('.category'+i)
@@ -5125,6 +5141,7 @@ function setSelectCat(chartName){
                 parameters["selectedCat"] = i
                 console.log("parameters", parameters)
                 addParametersToList(chartName, parameters)
+                revisitPostParameters(chartName, parameters, mytrrack, action)
             })
     }
 }
