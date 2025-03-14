@@ -62,8 +62,6 @@ export default function func({
   if (latestRealTrialKey && answers[latestRealTrialKey]?.answer) {
     lastRealAnswer = answers[latestRealTrialKey].answer.scatterSelections;
   }
-  const lastAnswerName = findLatestRealTrial(answers, 1);
-  const lastAnswer = lastAnswerName && answers[lastAnswerName].answer.scatterSelections;
 
   let lastAnswerDirection = '';
   if (lastRealAnswer) {
@@ -97,10 +95,12 @@ export default function func({
       ({ r1, r2, above } = lastRealTrialParams);
     }
 
-    if (lastAnswer) { // Correct answer
-      r2 = roundToTwo(above ? Math.max(r2 - 0.01, 0.01) : Math.max(r2 + 0.01, 0.01));
-    } else { // Incorrect answer
-      r2 = roundToTwo(above ? Math.min(r2 + 0.03, 1) : Math.max(r2 - 0.03, 0.01));
+    if (lastRealAnswer !== null) {
+      if (lastRealAnswer) { // Correct answer
+        r2 = roundToTwo(above ? Math.max(r2 - 0.01, 0.01) : Math.max(r2 + 0.01, 0.01));
+      } else { // Incorrect answer
+        r2 = roundToTwo(above ? Math.min(r2 + 0.03, 1) : Math.max(r2 - 0.03, 0.01));
+      }
     }
   }
 
