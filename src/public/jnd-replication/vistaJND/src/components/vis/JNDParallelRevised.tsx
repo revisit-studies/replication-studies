@@ -36,7 +36,7 @@ export default function JND({ setAnswer, parameters } : StimulusParams<{r1: numb
     // setCounter(counter + 1);
     setAnswer({
       status: true,
-      answers: { scatterSelections: above ? n === 2 : n === 1 },
+      answers: { participantSelections: above ? n === 2 : n === 1 },
     });
 
     setTimeout(() => {

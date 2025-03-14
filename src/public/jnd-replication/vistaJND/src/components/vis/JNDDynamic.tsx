@@ -60,7 +60,7 @@ export default function func({
   }
 
   if (latestRealTrialKey && answers[latestRealTrialKey]?.answer) {
-    lastRealAnswer = answers[latestRealTrialKey].answer.scatterSelections;
+    lastRealAnswer = answers[latestRealTrialKey].answer.participantSelections;
   }
 
   let lastAnswerDirection = '';
@@ -178,6 +178,6 @@ export default function func({
     parameters: {
       r1, r2, above, counter, shouldNegate, r1Left, isAttentionCheck, condition, correlationDirection, r1DatasetName, r2DatasetName,
     },
-    correctAnswer: [{ id: 'scatterSelections', answer: true }],
+    correctAnswer: [{ id: 'participantSelections', answer: true }],
   };
 }
