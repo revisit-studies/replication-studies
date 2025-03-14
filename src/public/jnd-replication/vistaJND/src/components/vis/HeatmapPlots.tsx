@@ -16,7 +16,9 @@ const width = 400;
 const height = 40;
 const spacing = 10;
 
-export default function HeatmapPlots({ r, onClick, shouldNegate = false }: { r: number, onClick: () => void, shouldNegate?: boolean }) {
+export default function HeatmapPlots({
+  r, onClick, shouldNegate = false, datasetName,
+}: { r: number, onClick: () => void, shouldNegate?: boolean, datasetName: string }) {
   const d3Container = useRef(null);
   const [data, setData] = useState<[number, number][]>([]);
   const [isHover, setIsHover] = useState<boolean>(false);
@@ -24,13 +26,7 @@ export default function HeatmapPlots({ r, onClick, shouldNegate = false }: { r: 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const baseCorrelations = [0.3, 0.6, 0.9];
-        const shouldScramble = baseCorrelations.includes(r);
-        const randomIndex = shouldScramble ? Math.floor(Math.random() * 5) + 1 : 1;
-
-        const filePath = shouldScramble
-          ? `${PREFIX}jnd-data/datasets/size_100/dataset_${r}_size_100_${randomIndex}.csv`
-          : `${PREFIX}jnd-data/datasets/size_100/dataset_${r}_size_100.csv`;
+        const filePath = `${PREFIX}jnd-data/datasets/size_100/${datasetName}`;
 
         const response = await fetch(filePath);
         if (!response.ok) {
