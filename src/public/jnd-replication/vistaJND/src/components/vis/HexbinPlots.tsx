@@ -17,7 +17,9 @@ import { PREFIX } from '../../../../../../utils/Prefix';
 const width = 300;
 const height = 300;
 
-export default function HexbinPlots({ r, onClick, shouldNegate = false }: { r: number, onClick: () => void, shouldNegate?: boolean }) {
+export default function HexbinPlots({
+  r, onClick, shouldNegate = false, datasetName,
+}: { r: number, onClick: () => void, shouldNegate?: boolean, datasetName: string }) {
   const d3Container = useRef(null);
   const [data, setData] = useState<[number, number][]>([]);
   const [isHover, setIsHover] = useState<boolean>(false);
@@ -25,13 +27,7 @@ export default function HexbinPlots({ r, onClick, shouldNegate = false }: { r: n
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const baseCorrelations = [0.3, 0.6, 0.9];
-        const shouldScramble = baseCorrelations.includes(r);
-        const randomIndex = shouldScramble ? Math.floor(Math.random() * 5) + 1 : 1;
-
-        const filePath = shouldScramble
-          ? `${PREFIX}jnd-data/datasets/size_1000/dataset_${r}_size_1000_${randomIndex}.csv`
-          : `${PREFIX}jnd-data/datasets/size_1000/dataset_${r}_size_1000.csv`;
+        const filePath = `${PREFIX}jnd-data/datasets/size_1000/${datasetName}`;
 
         const response = await fetch(filePath);
         if (!response.ok) {
