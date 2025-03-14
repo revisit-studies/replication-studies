@@ -1789,7 +1789,7 @@ function drawGeoMapWithTexture(data, width, height, chart){
                 })
         }
 
-        geo_switchTextures(chartName)
+        // geo_switchTextures(chartName)
 
     });
 }
@@ -1983,7 +1983,7 @@ function drawIconMapWithTexture(data, width, height, chart){
                 })
         }
 
-        icon_switchTextures(chartName)
+        // icon_switchTextures(chartName)
 
     })
 }
