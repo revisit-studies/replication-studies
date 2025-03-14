@@ -17,8 +17,8 @@ import HeatmapPlots from './HeatmapPlots';
  * @returns 2 Scatter Plots
  */
 export default function HeatmapWrapper({
-  r1, r2, shouldReRender = true, onClick, shouldNegate = false, r1Left = true,
-}: {r1: number; r2: number, shouldReRender?: boolean, onClick: (n: number) => void, shouldNegate?: boolean, r1Left?: boolean}) {
+  r1, r2, shouldReRender = true, onClick, shouldNegate = false, r1Left = true, r1DatasetName, r2DatasetName,
+}: {r1: number; r2: number, shouldReRender?: boolean, onClick: (n: number) => void, shouldNegate?: boolean, r1Left?: boolean, r1DatasetName: string, r2DatasetName: string}) {
   const [key, setKey] = useState<number>(0);
   const buttonARef = useRef<HTMLButtonElement | null>(null);
   const buttonBRef = useRef<HTMLButtonElement | null>(null);
@@ -54,22 +54,22 @@ export default function HeatmapWrapper({
   return r1Left ? (
     <Group style={{ gap: '100px' }}>
       <Stack style={{ alignItems: 'center' }}>
-        <HeatmapPlots key={key} onClick={() => handleClick(1)} r={r1} shouldNegate={shouldNegate} />
+        <HeatmapPlots key={key} onClick={() => handleClick(1)} r={r1} shouldNegate={shouldNegate} datasetName={r1DatasetName} />
         <Button ref={buttonARef} style={{ marginLeft: '-30px' }} onClick={() => handleClick(1)}>A</Button>
       </Stack>
       <Stack style={{ alignItems: 'center' }}>
-        <HeatmapPlots key={key + 1} onClick={() => handleClick(2)} r={r2} shouldNegate={shouldNegate} />
+        <HeatmapPlots key={key + 1} onClick={() => handleClick(2)} r={r2} shouldNegate={shouldNegate} datasetName={r2DatasetName} />
         <Button ref={buttonBRef} style={{ marginLeft: '-30px' }} onClick={() => handleClick(2)}>B</Button>
       </Stack>
     </Group>
   ) : (
     <Group style={{ gap: '100px' }}>
       <Stack style={{ alignItems: 'center' }}>
-        <HeatmapPlots key={key} onClick={() => handleClick(2)} r={r2} shouldNegate={shouldNegate} />
+        <HeatmapPlots key={key} onClick={() => handleClick(2)} r={r2} shouldNegate={shouldNegate} datasetName={r2DatasetName} />
         <Button ref={buttonARef} style={{ marginLeft: '-30px' }} onClick={() => handleClick(2)}>A</Button>
       </Stack>
       <Stack style={{ alignItems: 'center' }}>
-        <HeatmapPlots key={key + 1} onClick={() => handleClick(1)} r={r1} shouldNegate={shouldNegate} />
+        <HeatmapPlots key={key + 1} onClick={() => handleClick(1)} r={r1} shouldNegate={shouldNegate} datasetName={r1DatasetName} />
         <Button ref={buttonBRef} style={{ marginLeft: '-30px' }} onClick={() => handleClick(1)}>B</Button>
       </Stack>
     </Group>
