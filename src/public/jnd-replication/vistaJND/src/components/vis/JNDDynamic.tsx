@@ -10,7 +10,7 @@ export default function func({
   let { r1, r2, above } = customParameters;
   const { name } = customParameters;
   const shouldNegate = customParameters.shouldNegate || false;
-  let higherFirst = seedrandom(Date.now().toString())() > 0.5;
+  let r1Left = seedrandom(Date.now().toString())() > 0.5;
   const roundToTwo = (num: number) => parseFloat((Math.round(num * 100) / 100).toString());
 
   let counter = 0;
@@ -66,19 +66,19 @@ export default function func({
   let lastAnswerDirection = '';
   if (lastRealAnswer) {
     if (lastRealTrialParams && lastRealTrialParams.above) { /// above is true (r2 > r1) and answer is correct (r2)
-      lastAnswerDirection = lastRealTrialParams && lastRealTrialParams.higherFirst ? 'right' : 'left'; // higher first means r1 is on the left
+      lastAnswerDirection = lastRealTrialParams && lastRealTrialParams.r1Left ? 'right' : 'left'; // higher first means r1 is on the left
     } else { /// above is false (r1 > r2) and answer is correct (r1)
-      lastAnswerDirection = lastRealTrialParams && lastRealTrialParams.higherFirst ? 'left' : 'right';
+      lastAnswerDirection = lastRealTrialParams && lastRealTrialParams.r1Left ? 'left' : 'right';
     }
   } else if (lastRealTrialParams && lastRealTrialParams.above) { // answer incorrect(r1) and above is true (r2 > r1), correct answer r2
-    lastAnswerDirection = lastRealTrialParams && lastRealTrialParams.higherFirst ? 'left' : 'right';
+    lastAnswerDirection = lastRealTrialParams && lastRealTrialParams.r1Left ? 'left' : 'right';
   } else { // answer incorrect(r2) and above is false (r1 > r2), correct r1
-    lastAnswerDirection = lastRealTrialParams && lastRealTrialParams.higherFirst ? 'right' : 'left';
+    lastAnswerDirection = lastRealTrialParams && lastRealTrialParams.r1Left ? 'right' : 'left';
   }
 
   if (counter > 0 && counter % 10 === 9 && counter < 50) { /// Attention check block
     isAttentionCheck = true;
-    higherFirst = true;
+    r1Left = true;
     if (lastAnswerDirection === 'left') {
       r1 = 0.01;
       r2 = 1.0;
@@ -164,7 +164,7 @@ export default function func({
   return {
     component: 'trial',
     parameters: {
-      r1, r2, above, counter, shouldNegate, higherFirst, isAttentionCheck,
+      r1, r2, above, counter, shouldNegate, r1Left, isAttentionCheck,
     },
     correctAnswer: [{ id: 'scatterSelections', answer: true }],
   };
