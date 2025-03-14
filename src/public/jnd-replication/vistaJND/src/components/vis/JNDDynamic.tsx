@@ -6,9 +6,9 @@ import { JumpFunctionParameters, JumpFunctionReturnVal, StoredAnswer } from '../
 
 export default function func({
   answers, customParameters,
-}: JumpFunctionParameters<{r1: number, r2: number, above: boolean, counter: number, name: string, shouldNegate?: boolean}>): JumpFunctionReturnVal {
+}: JumpFunctionParameters<{r1: number, r2: number, above: boolean, counter: number, name: string, shouldNegate?: boolean, condition: string}>): JumpFunctionReturnVal {
   let { r1, r2, above } = customParameters;
-  const { name } = customParameters;
+  const { name, condition } = customParameters;
   const shouldNegate = customParameters.shouldNegate || false;
   let r1Left = seedrandom(Date.now().toString())() > 0.5;
   const roundToTwo = (num: number) => parseFloat((Math.round(num * 100) / 100).toString());
@@ -164,7 +164,7 @@ export default function func({
   return {
     component: 'trial',
     parameters: {
-      r1, r2, above, counter, shouldNegate, r1Left, isAttentionCheck,
+      r1, r2, above, counter, shouldNegate, r1Left, isAttentionCheck, condition,
     },
     correctAnswer: [{ id: 'scatterSelections', answer: true }],
   };
