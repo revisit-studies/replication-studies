@@ -161,10 +161,22 @@ export default function func({
 
   counter += 1;
 
+  /// dataset name setting
+  let r1DatasetName = '';
+  let r2DatasetName = '';
+  if (isAttentionCheck != null && !isAttentionCheck) {
+    const randomIndex = Math.floor(Math.random() * 5) + 1;
+    r1DatasetName = condition === 'hexbin' ? `dataset_${r1}_size_1000_${randomIndex}.csv` : `dataset_${r1}_size_100_${randomIndex}.csv`;
+    r2DatasetName = condition === 'hexbin' ? `dataset_${r2}_size_1000.csv` : `dataset_${r2}_size_100.csv`;
+  } else {
+    r1DatasetName = condition === 'hexbin' ? `dataset_${r1}_size_1000.csv` : `dataset_${r1}_size_100.csv`;
+    r2DatasetName = condition === 'hexbin' ? `dataset_${r2}_size_1000.csv` : `dataset_${r2}_size_100.csv`;
+  }
+
   return {
     component: 'trial',
     parameters: {
-      r1, r2, above, counter, shouldNegate, r1Left, isAttentionCheck, condition, correlationDirection,
+      r1, r2, above, counter, shouldNegate, r1Left, isAttentionCheck, condition, correlationDirection, r1DatasetName, r2DatasetName,
     },
     correctAnswer: [{ id: 'scatterSelections', answer: true }],
   };
