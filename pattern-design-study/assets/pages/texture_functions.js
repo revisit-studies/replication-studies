@@ -3720,14 +3720,14 @@ function geo_setInitialParameters(chartName){
     if(localStorage.getItem(chartName + "_selectedCat") == null){
         geo_selectCat(0)
         parameters["selectedCat"] = 0
-        addParametersToList(chartName, parameters)
     }else{
         geo_selectCat(Number(localStorage.getItem(chartName + "_selectedCat")))
         parameters["selectedCat"] = Number(localStorage.getItem(chartName + "_selectedCat"))
-        addParametersToList(chartName, parameters)
+        
     }
 
     getSameCheckboxesStatus(chartName)
+    addParametersToList(chartName, parameters)
     revisitPostParameters(chartName, parameters, mytrrack, action)
     
 }
