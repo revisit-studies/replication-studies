@@ -26,9 +26,9 @@ import { useNextStep } from '../../../../../../store/hooks/useNextStep';
  * @returns 2 scatter plots during the experiment or a message of completion
  * of the trial
  */
-export default function JND({ setAnswer, parameters } : StimulusParams<{r1: number, r2:number, above: boolean, counter: number, shouldNegate: boolean, r1Left: boolean, r1DatasetName: string, r2DatasetName: string}>) {
+export default function JND({ setAnswer, parameters } : StimulusParams<{r1: number, r2:number, above: boolean, counter: number, shouldNegate: boolean, r1Left: boolean, r1DatasetName: string, r2DatasetName: string, correlationDirection: string}>) {
   const {
-    r1, r2, shouldNegate, r1Left, above, r1DatasetName, r2DatasetName,
+    r1, r2, shouldNegate, r1Left, above, r1DatasetName, r2DatasetName, correlationDirection,
   } = parameters;
   const { goToNextStep } = useNextStep();
 
@@ -50,7 +50,10 @@ export default function JND({ setAnswer, parameters } : StimulusParams<{r1: numb
         textAlign: 'center', paddingBottom: '0px', fontSize: '18px', fontWeight: 'bold',
       }}
       >
-        Please select the visualization that appears to have a larger correlation. (This may be difficult, but try your best!)
+        Please select the visualization that appears to have a larger
+        {correlationDirection === 'negative' && ' negative'}
+        {' '}
+        correlation. (This may be difficult, but try your best!)
       </Text>
       <Text style={{
         textAlign: 'center', paddingBottom: '24px', fontSize: '18px', fontWeight: 'bold',
