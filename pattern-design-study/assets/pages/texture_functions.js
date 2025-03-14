@@ -4063,6 +4063,7 @@ function geo_selectDefaultTexture(){
     for(let i = 0; i < fruits.length; i++){
         geo_getParameters(i)
         geo_setCatPattern(i)
+        revisitPostParameters(chartName, parameters, mytrrack, action)
     }
     controlOutline.value = parameters['outline']
     if(controlHalo){
@@ -4070,7 +4071,7 @@ function geo_selectDefaultTexture(){
     }
 
     addParametersToList(chartName, parameters)
-    revisitPostParameters(chartName, parameters, mytrrack, action)
+    
     // parametersList.push(cloneParameters(parameters))
     // localStorage.setItem(chartName+'parametersList', JSON.stringify(parametersList))
 }
