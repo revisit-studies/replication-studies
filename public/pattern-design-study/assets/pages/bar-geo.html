@@ -54,42 +54,31 @@
     window.mytrrack = trrack;
     window.mytrrack_actions = trrack_actions;
     window.action = trrack_actions;
+
+    window.barGeoReplayIndex = 0
+    
     Revisit.onProvenanceReceive((state) => {
         // console.log('provenance', state)
+
             parameters = state['bargeo']
             console.log("parameters", parameters)
 
-            let selectedCat = parameters['selectedCat']
-
-            if(chartName.endsWith('Geo')){
-                    console.log('geo redraw')
-                    //draw textures for category i
-                    geo_getParameters(selectedCat)
-                    geo_setCatPattern(selectedCat)
+            if(barGeoReplayIndex == 0){
+                for(let i = 0; i < 7; i++){
+                    geo_getParameters(i)
+                    geo_setCatPattern(i)
+                    barGeoReplayIndex = 1
                 }
-            if(chartName.endsWith('Icon')){
-                console.log('icon redraw')
-                //draw textures for category i
-                icon_getParameters(selectedCat)
-                icon_setCatPattern(selectedCat, patternSize)
             }
 
-            //we redraw the textures of all categories, based on the new parameters
-            // for(let i = 0; i < fruits.length; i++){
-            //     //since geometric texture and iconic texture have different parameters set, here we need to distinguish them
-            //     if(chartName.endsWith('Geo')){
-            //         console.log('geo redraw')
-            //         //draw textures for category i
-            //         geo_getParameters(i)
-            //         geo_setCatPattern(i)
-            //     }
-            //     if(chartName.endsWith('Icon')){
-            //         console.log('icon redraw')
-            //         //draw textures for category i
-            //         icon_getParameters(i)
-            //         icon_setCatPattern(i, patternSize)
-            //     }
-            // }
+
+            //we redraw the textures  based on the new parameters
+            let selectedCat = parameters['selectedCat']
+            geo_getParameters(selectedCat)
+            geo_setCatPattern(selectedCat)
+
+
+    
 
             let controlOutline = document.getElementById('controlOutline')
             controlOutline.value = parameters['outline']
