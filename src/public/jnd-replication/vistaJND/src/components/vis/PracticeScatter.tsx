@@ -8,10 +8,10 @@ import { StimulusParams } from '../../../../../../store/types';
 
 export default function PracticeScatter({
   setAnswer, parameters,
-}: StimulusParams<{ r1: number; r2: number, taskid: string, shouldNegate: boolean }>) {
+}: StimulusParams<{ r1: number; r2: number, taskid: string, shouldNegate: boolean, correlationDirection: string }>) {
   const [result, setResult] = useState<string | null>(null);
   const {
-    r1, r2, taskid, shouldNegate,
+    r1, r2, taskid, shouldNegate, correlationDirection,
   } = parameters;
   const r1DatasetName = `dataset_${r1}_size_100.csv`;
   const r2DatasetName = `dataset_${r2}_size_100.csv`;
@@ -37,7 +37,10 @@ export default function PracticeScatter({
         textAlign: 'center', paddingBottom: '0px', fontSize: '18px', fontWeight: 'bold',
       }}
       >
-        Please select the visualization that appears to have a larger correlation. (This may be difficult, but try your best!)
+        Please select the visualization that appears to have a larger
+        {correlationDirection === 'negative' && ' negative'}
+        {' '}
+        correlation. (This may be difficult, but try your best!)
       </Text>
       <Text style={{
         textAlign: 'center', paddingBottom: '24px', fontSize: '18px', fontWeight: 'bold',
