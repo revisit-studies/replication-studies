@@ -114,12 +114,12 @@
         if(tutorialReplayIndex == 0){
             for(let i = 0; i < 7; i++){
                 if(chartName.endsWith('Geo')){
-                    geo_getParameters(selectedCat)
-                    geo_setCatPattern(selectedCat)
+                    geo_getParameters(i)
+                    geo_setCatPattern(i)
                 }
                 if(chartName.endsWith('Icon')){
-                    icon_getParameters(selectedCat)
-                    icon_setCatPattern(selectedCat, patternSize)
+                    icon_getParameters(i)
+                    icon_setCatPattern(i, patternSize)
             }
             }
 
