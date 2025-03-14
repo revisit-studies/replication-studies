@@ -374,11 +374,11 @@
                 "condition": "scatter",
                 "correlationDirection": "negative"
               }
-            }
+            },
+            "break"
             ],
           "order": "fixed"
-          },
-          "break"
+          }
         ]
       },
       "survey",
