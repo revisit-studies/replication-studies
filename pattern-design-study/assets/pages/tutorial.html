@@ -84,6 +84,8 @@
     window.mytrrack = trrack;
     window.mytrrack_actions = trrack_actions;
     window.action = trrack_actions;
+
+    window.tutorialReplayIndex = 0
     Revisit.onProvenanceReceive((state) => {
 
         if(window.condition_chart == 0 && window.condition_texture == 0){
@@ -106,6 +108,25 @@
         }else{
             console.log('cannot find the parameters based on condition_chart and condition_texture');
         }
+
+
+
+        if(tutorialReplayIndex == 0){
+            for(let i = 0; i < 7; i++){
+                if(chartName.endsWith('Geo')){
+                    geo_getParameters(selectedCat)
+                    geo_setCatPattern(selectedCat)
+                }
+                if(chartName.endsWith('Icon')){
+                    icon_getParameters(selectedCat)
+                    icon_setCatPattern(selectedCat, patternSize)
+            }
+            }
+
+            tutorialReplayIndex = 1
+        }
+
+
         let selectedCat = parameters['selectedCat']
 
         if(chartName.endsWith('Geo')){

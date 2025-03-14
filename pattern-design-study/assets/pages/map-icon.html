@@ -52,24 +52,24 @@
     window.mytrrack = trrack;
     window.mytrrack_actions = trrack_actions;
     window.action = trrack_actions;
+
+    window.mapIconReplayIndex = 0
     Revisit.onProvenanceReceive((state) => {
         // console.log('provenance', state)
             parameters = state['mapicon']
 
-            let selectedCat = parameters['selectedCat']
-
-            if(chartName.endsWith('Geo')){
-                    console.log('geo redraw')
-                    //draw textures for category i
-                    geo_getParameters(selectedCat)
-                    geo_setCatPattern(selectedCat)
+            if(mapIconReplayIndex == 0){
+                for(let i = 0; i < 7; i++){
+                    icon_getParameters(selectedCat)
+                    icon_setCatPattern(selectedCat, patternSize)
+                    mapIconReplayIndex = 1
                 }
-            if(chartName.endsWith('Icon')){
-                console.log('icon redraw')
-                //draw textures for category i
-                icon_getParameters(selectedCat)
-                icon_setCatPattern(selectedCat, patternSize)
             }
+
+
+            let selectedCat = parameters['selectedCat']
+            icon_getParameters(selectedCat)
+            icon_setCatPattern(selectedCat, patternSize)
 
             let controlOutline = document.getElementById('controlOutline')
             controlOutline.value = parameters['outline']
