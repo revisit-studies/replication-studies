@@ -87,6 +87,8 @@
 
     window.tutorialReplayIndex = 0
     Revisit.onProvenanceReceive((state) => {
+        console.log('tutorial provenance')
+        console.log(state)
 
         if(window.condition_chart == 0 && window.condition_texture == 0){
             parameters = state['bargeo']

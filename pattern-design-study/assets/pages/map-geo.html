@@ -56,6 +56,7 @@
 
     window.mapGeoReplayIndex = 0
     Revisit.onProvenanceReceive((state) => {
+
         // console.log('provenance', state)
             parameters = state['mapgeo']
 
@@ -234,7 +235,7 @@ let mydata = getDatasetForMap()
 drawGeoMapWithTexture(mydata, mapWidth, mapHeight, 'chart')
 drawGeoLegend(fruits)
 
-// setSelectCat(chartName, fruits.length)
+// setSelectCat(chartName)
 
 //switch texture by drag and drop
 // geo_switchTextures(chartName)

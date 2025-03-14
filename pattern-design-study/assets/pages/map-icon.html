@@ -57,6 +57,8 @@
     Revisit.onProvenanceReceive((state) => {
         // console.log('provenance', state)
             parameters = state['mapicon']
+            console.log('map icon parameters')
+            console.log(parameters)
 
             if(mapIconReplayIndex == 0){
                 for(let i = 0; i < 7; i++){
@@ -194,6 +196,7 @@ var iconBackground = []
 let mydata = getDatasetForMap()
 
 drawIconMapWithTexture(mydata, mapWidth, mapHeight, 'chart')
+// setSelectCat(chartName)
 //Initialize
 // icon_setInitialParameters(chartName)
     })
