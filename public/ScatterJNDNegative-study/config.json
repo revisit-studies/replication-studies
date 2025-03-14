@@ -45,7 +45,13 @@
         "required": true,
         "type": "reactive",
         "location": "aboveStimulus"
-      }]
+      }],
+      "correctAnswer": [
+        {
+          "id": "practiceResponse",
+          "answer": "true"
+        }
+      ]
   }
   },
   "components": {
