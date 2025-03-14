@@ -58,7 +58,7 @@ export default function HexbinPlots({
     if (data.length === 0) return;
 
     const margin = {
-      left: 40, top: 20, right: 20, bottom: 40,
+      left: 20, top: 20, right: 20, bottom: 40,
     };
 
     const innerHeight = height - margin.bottom;
