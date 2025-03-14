@@ -64,8 +64,8 @@ export default function HexbinPlots({
     const innerHeight = height - margin.bottom;
     const innerWidth = width - margin.left - margin.right;
 
-    const xScale = scaleLinear().domain([0, 1]).range([0, innerWidth]);
-    const yScale = scaleLinear().domain([0, 1]).range([innerHeight, 0]);
+    const xScale = scaleLinear().domain([-0.05, 1.05]).range([0, innerWidth]);
+    const yScale = scaleLinear().domain([-0.05, 1.05]).range([innerHeight, 0]);
 
     const hexbinGenerator = hexbin()
       .x((d: [number, number]) => xScale(d[0]))
@@ -101,13 +101,13 @@ export default function HexbinPlots({
     const yAxis = d3.axisLeft(yScale).tickFormat(() => '').tickSize(0);
 
     chartGroup.append('g')
-      .attr('transform', `translate(-10, ${innerHeight + 5})`)
+      .attr('transform', `translate(-0, ${innerHeight + 5})`)
       .call(xAxis)
       .selectAll('line, text')
       .remove();
 
     chartGroup.append('g')
-      .attr('transform', 'translate(-10, 5)')
+      .attr('transform', 'translate(0, 5)')
       .call(yAxis)
       .selectAll('line, text')
       .remove();
