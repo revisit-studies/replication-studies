@@ -275,7 +275,8 @@
                 "r2": 0.1,
                 "above": false,
                 "name": "below3",
-                "condition": "heatmap"
+                "condition": "heatmap",
+                "correlationDirection": "positive"
               }
             },
             "break"
@@ -292,7 +293,8 @@
                 "r2": 0.5,
                 "above": true,
                 "name": "above3",
-                "condition": "heatmap"
+                "condition": "heatmap",
+                "correlationDirection": "positive"
               }
             },
             "break"
@@ -309,7 +311,8 @@
                 "r2": 0.5,
                 "above": false,
                 "name": "below6",
-                "condition": "heatmap"
+                "condition": "heatmap",
+                "correlationDirection": "positive"
               }
             },
             "break"
@@ -326,7 +329,8 @@
                 "r2": 0.7,
                 "above": true,
                 "name": "above6",
-                "condition": "heatmap"
+                "condition": "heatmap",
+                "correlationDirection": "positive"
               }
             },
             "break"
@@ -343,7 +347,8 @@
                 "r2": 0.8,
                 "above": false,
                 "name": "below9",
-                "condition": "heatmap"
+                "condition": "heatmap",
+                "correlationDirection": "positive"
               }
             },
             "break"
@@ -360,7 +365,8 @@
                 "r2": 0.99,
                 "above": true,
                 "name": "above9",
-                "condition": "heatmap"
+                "condition": "heatmap",
+                "correlationDirection": "positive"
               }
             },
             "break"
