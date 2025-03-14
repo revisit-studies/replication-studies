@@ -16,7 +16,7 @@
     "autoDownloadStudy": false,
     "sidebar": false,
     "urlParticipantIdParam": "PROLIFIC_PID",
-    "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [yourProlificLink](yourProlificLink)",
+    "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [https://app.prolific.com/submissions/complete?cc=C1E35XG4](https://app.prolific.com/submissions/complete?cc=C1E35XG4)",
     "nextOnEnter": true,
     "participantNameField": "introduction.prolificId"
   },
@@ -26,7 +26,7 @@
       "path": "jnd-replication/vistaJND/src/components/vis/JNDParallelRevised.tsx",
       "nextButtonLocation": "sidebar",
       "response": [{ 
-        "id": "scatterSelections",
+        "id": "participantSelections",
         "prompt": "",
         "required": true,
         "location": "aboveStimulus",
@@ -45,7 +45,13 @@
         "required": true,
         "type": "reactive",
         "location": "aboveStimulus"
-      }]
+      }],
+      "correctAnswer": [
+        {
+          "id": "practiceResponse",
+          "answer": "true"
+        }
+      ]
     }
   },
   "components": {
