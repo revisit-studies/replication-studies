@@ -276,7 +276,8 @@
                 "above": false,
                 "name": "below3",
                 "shouldNegate": true,
-                "condition": "pcp"
+                "condition": "pcp",
+                "correlationDirection": "negative"
               }
             },
             "break"
@@ -294,7 +295,8 @@
                 "above": true,
                 "name": "above3",
                 "shouldNegate": true,
-                "condition": "pcp"
+                "condition": "pcp",
+                "correlationDirection": "negative"
               }
             },
             "break"
@@ -312,7 +314,8 @@
                 "above": false,
                 "name": "below6",
                 "shouldNegate": true,
-                "condition": "pcp"
+                "condition": "pcp",
+                "correlationDirection": "negative"
               }
             },
             "break"
@@ -330,7 +333,8 @@
                 "above": true,
                 "name": "above6",
                 "shouldNegate": true,
-                "condition": "pcp"
+                "condition": "pcp",
+                "correlationDirection": "negative"
               }
             },
             "break"
@@ -348,7 +352,8 @@
                 "above": false,
                 "name": "below9",
                 "shouldNegate": true,
-                "condition": "pcp"
+                "condition": "pcp",
+                "correlationDirection": "negative"
               }
             },
             "break"
@@ -366,7 +371,8 @@
                 "above": true,
                 "name": "above9",
                 "shouldNegate": true,
-                "condition": "pcp"
+                "condition": "pcp",
+                "correlationDirection": "negative"
               }
             },
             "break"
