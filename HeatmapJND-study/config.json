@@ -274,7 +274,9 @@
                 "r1": 0.3,
                 "r2": 0.1,
                 "above": false,
-                "name": "below3"
+                "name": "below3",
+                "condition": "heatmap",
+                "correlationDirection": "positive"
               }
             },
             "break"
@@ -290,7 +292,9 @@
                 "r1": 0.3,
                 "r2": 0.5,
                 "above": true,
-                "name": "above3"
+                "name": "above3",
+                "condition": "heatmap",
+                "correlationDirection": "positive"
               }
             },
             "break"
@@ -306,7 +310,9 @@
                 "r1": 0.6,
                 "r2": 0.5,
                 "above": false,
-                "name": "below6"
+                "name": "below6",
+                "condition": "heatmap",
+                "correlationDirection": "positive"
               }
             },
             "break"
@@ -322,7 +328,9 @@
                 "r1": 0.6,
                 "r2": 0.7,
                 "above": true,
-                "name": "above6"
+                "name": "above6",
+                "condition": "heatmap",
+                "correlationDirection": "positive"
               }
             },
             "break"
@@ -338,7 +346,9 @@
                 "r1": 0.9,
                 "r2": 0.8,
                 "above": false,
-                "name": "below9"
+                "name": "below9",
+                "condition": "heatmap",
+                "correlationDirection": "positive"
               }
             },
             "break"
@@ -354,7 +364,9 @@
                 "r1": 0.9,
                 "r2": 0.99,
                 "above": true,
-                "name": "above9"
+                "name": "above9",
+                "condition": "heatmap",
+                "correlationDirection": "positive"
               }
             },
             "break"
