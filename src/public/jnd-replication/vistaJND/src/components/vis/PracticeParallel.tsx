@@ -13,6 +13,8 @@ export default function PracticeHeatmap({
   const {
     r1, r2, taskid, shouldNegate,
   } = parameters;
+  const r1DatasetName = `dataset_${r1}_size_100.csv`;
+  const r2DatasetName = `dataset_${r2}_size_100.csv`;
 
   const onClick = useCallback(
     (n: number) => {
@@ -50,6 +52,8 @@ export default function PracticeHeatmap({
           r2={parameters.r2}
           shouldReRender={false}
           shouldNegate={shouldNegate}
+          r1DatasetName={r1DatasetName}
+          r2DatasetName={r2DatasetName}
         />
       </Center>
       {result && (
