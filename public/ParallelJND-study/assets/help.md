@@ -14,4 +14,4 @@ As an example of a negative correlation, imagine the cost of eggs, and the numbe
 
 As an example of negative correlation, imagine measuring the amount of time watching TV in hours, and physical fitness scores. As the amount of time watching TV increases, physical fitness scores tend to decrease.
 
-![10 Parallel Coordinate Correlation examples ranging from 0.1 to 1.0](./assets/ParallelCoordinates.png)
+![10 Parallel Coordinate Correlation examples ranging from 0.1 to 1.0](./assets/ParallelCoodinateCorrelations.png)
