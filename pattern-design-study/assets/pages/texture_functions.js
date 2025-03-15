@@ -2771,6 +2771,7 @@ function geo_selectCat(i){
                 patternType[i] = j
                 geo_setCatPattern(i)
             }
+            revisitPostParameters(chartName, parameters, mytrrack, action)
         }
     }
 
@@ -3810,6 +3811,7 @@ function geo_getParameters(i){
     controlLineY.value = parameters["linePattern"+i+"Y"]
     controlLineRotate.value = parameters["linePattern"+i+"Rotate"]
     lineBackground[i] = parameters["linePattern"+i+"Background"]
+    controlLineBackgroundRadios[lineBackground[i]].checked = true
 
     //dot
     controlDotRotate.value = parameters["dotPattern"+i+"Rotate"]
@@ -3831,7 +3833,8 @@ function geo_getParameters(i){
     dotPrimitive[i] = parameters["dotPattern"+i+"Primitive"]
     controlDotPrimitiveStrokeWidth.max = parameters["dotPattern"+i+"PrimitiveStrokeWidthMax"]
     controlDotPrimitiveStrokeWidth.value = parameters["dotPattern"+i+"PrimitiveStrokeWidth"]
-
+    controlDotBackgroundRadios[dotBackground[i]].checked = true
+    controlDotPrimitiveRadios[dotPrimitive[i]].checked = true
     //grid
     controlGridDensity.value = parameters["gridPattern"+i+"Density"]
     controlGridStrokeWidth.max = parameters["gridPattern"+i+"StrokeWidthMax"]
@@ -4073,17 +4076,24 @@ function geo_selectDefaultTexture(){
         controlHalo.value = parameters['halo']
     }
 
-    let qwew = [2,4]
 
-    for(let i of qwew){
-        parameters["selectedCat"] = i
-        // Clone parameters before sending to ensure correct selectedCat value
-        // revisitPostParameters(chartName, parameters, mytrrack, action)
-        // console.log('parameters', parameters)
-        const paramsClone = cloneParameters(parameters)
-        revisitPostParameters(chartName, paramsClone, mytrrack, action)
-        console.log('geo_selectDefaultTexture parameters', paramsClone)
-    }
+    const paramsClone = cloneParameters(parameters)
+    revisitPostParameters(chartName, paramsClone, mytrrack, action)
+    console.log('geo_selectDefaultTexture parameters', paramsClone)
+
+    // async function processCategories(parameters, chartName, mytrrack, action) {
+    //     for(let i = 0; i < fruits.length; i++){
+    //         parameters["selectedCat"] = i
+    //         // Clone parameters before sending to ensure correct selectedCat value
+
+            
+    //         // Add 100ms delay between iterations
+    //         await new Promise(resolve => setTimeout(resolve, 100))
+    //     }
+    // }
+
+    // // Call the async function
+    // processCategories(parameters, chartName, mytrrack, action)
 }
 
 /** iconic texture editing functions */
