@@ -58,9 +58,19 @@
         // console.log('provenance', state)
             parameters = state['pieicon']
 
+            if(pieIconReplayIndex == 0){
+                for(let i = 0; i < 7; i++){
+                    icon_getParameters(i)
+                    icon_setCatPattern(i, patternSize)
+                    pieIconReplayIndex = 1
+                }
+            }
+
+
             let selectedCat = parameters['selectedCat']
-            icon_getParameters(i)
-            icon_setCatPattern(i, patternSize)
+            icon_selectCat(selectedCat)
+            icon_getParameters(selectedCat)
+            icon_setCatPattern(selectedCat, patternSize)
 
 
             //we redraw the textures of all categories, based on the new parameters

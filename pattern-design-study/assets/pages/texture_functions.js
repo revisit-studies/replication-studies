@@ -1,5 +1,6 @@
 
 
+
 /**
  *
  * draw UI elements of tools on the interface
@@ -4058,23 +4059,31 @@ function geo_switchTextures(chartName){
 }
 
 function geo_selectDefaultTexture(){
+    console.log('selectDefaultTexture')
     parameters = {...parameters, ...bertinTextures[selectDefaultTexture.selectedIndex]} //partly update the parameters object
 
     for(let i = 0; i < fruits.length; i++){
         geo_getParameters(i)
         geo_setCatPattern(i)
-        parameters["selectedCat"] = i
-        revisitPostParameters(chartName, parameters, mytrrack, action)
+        // addParametersToList(chartName, parameters)
     }
+    
     controlOutline.value = parameters['outline']
     if(controlHalo){
         controlHalo.value = parameters['halo']
     }
 
-    addParametersToList(chartName, parameters)
-    
-    // parametersList.push(cloneParameters(parameters))
-    // localStorage.setItem(chartName+'parametersList', JSON.stringify(parametersList))
+    let qwew = [2,4]
+
+    for(let i of qwew){
+        parameters["selectedCat"] = i
+        // Clone parameters before sending to ensure correct selectedCat value
+        // revisitPostParameters(chartName, parameters, mytrrack, action)
+        // console.log('parameters', parameters)
+        const paramsClone = cloneParameters(parameters)
+        revisitPostParameters(chartName, paramsClone, mytrrack, action)
+        console.log('geo_selectDefaultTexture parameters', paramsClone)
+    }
 }
 
 /** iconic texture editing functions */
@@ -5124,7 +5133,7 @@ function saveParameters(chartName){
  * @param chartName
  */
 function setSelectCat(chartName){
-    console.log('setSelectCat'+i)
+    // console.log('setSelectCat'+i)
     //select a category
     for(let i=0; i < fruits.length;i++){
         d3.selectAll('.category'+i)
