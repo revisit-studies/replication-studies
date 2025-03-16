@@ -3801,6 +3801,8 @@ function geo_getParameters(i){
     patternType[i] = parameters["patternType"+i]
     patternTypeRadios[patternType[i]].checked = true
 
+    selectDefaultTexture.selectedIndex = parameters["defaultBertinTexturesIndex"]
+
     //line
     controlLineDensity.value = parameters["linePattern"+i+"Density"]
     // console.log("aaaaadocument.getElementById('controlLineDensity').value", document.getElementById("controlLineDensity").value)
@@ -3906,6 +3908,8 @@ function geo_defaultParameters(){
 
     let defaultBertinTexturesIndex = Math.floor(Math.random() * bertinTextures.length)
     parameters = {...parameters, ...bertinTextures[defaultBertinTexturesIndex]} //partly update the parameters object, randomly import a texture set from bertinTextures list
+
+    parameters["defaultBertinTexturesIndex"] = defaultBertinTexturesIndex
 
     for(let i = 0; i < fruits.length; i++){
         geo_getParameters(i)
@@ -4065,6 +4069,7 @@ function geo_selectDefaultTexture(){
     console.log('selectDefaultTexture')
     parameters = {...parameters, ...bertinTextures[selectDefaultTexture.selectedIndex]} //partly update the parameters object
 
+    parameters["defaultBertinTexturesIndex"] = selectDefaultTexture.selectedIndex
     for(let i = 0; i < fruits.length; i++){
         geo_getParameters(i)
         geo_setCatPattern(i)
