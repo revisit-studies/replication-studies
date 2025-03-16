@@ -6203,7 +6203,192 @@ function generateRandomMapDataset(){
 
 
 
+/**
+     * Updates the geometric pattern visualization for a single category based on the provided parameters
+     * @param {number} i - The category index (0-6) to update
+     * @param {Object} parameters - Object containing all pattern settings including:
+     *   - patternType[i]: The type of geometric pattern (0=line, 1=dot, 2=grid)
+     *   - linePattern[i]*, dotPattern[i]*, gridPattern[i]*: Various pattern-specific parameters
+     *     like density, rotation, stroke width, background color, etc.
+     * This function handles updating a single category's geometric pattern by:
+     *   - Applying the pattern fill to all elements of the category
+     *   - Updating pattern attributes (size, rotation, position)
+     *   - Setting colors and styles based on background settings
+     */
+function updateGeoPatternForCategory(i, parameters) {
+    switch(parameters["patternType"+i]){ 
+        case 0: //pattern type: line texture
+            console.log("category"+i+"pattern type: line")
 
+            d3.selectAll(".category"+i+":not(text)") // select by class
+                .attr("fill", "url(#linePattern" + i + ")")
+
+            let linePattern = document.getElementById("linePattern"+i);
+            let linePatternLine = document.getElementById("linePattern"+i+"Line0")
+            let linePatternBackground = document.getElementById("linePattern" + i +"Background")
+
+            //set the parameters of the line texture according to controllers' values
+            linePattern.setAttribute("patternTransform", "translate(" + parameters["linePattern"+i+"X"]+","+parameters["linePattern"+i+"Y"]+") rotate("+parameters["linePattern"+i+"Rotate"]+")")
+            linePattern.setAttribute("width", parameters["linePattern"+i+"Density"])
+            linePattern.setAttribute("height", parameters["linePattern"+i+"Density"])
+            linePatternLine.setAttribute("stroke-width", parameters["linePattern"+i+"StrokeWidth"])
+            linePatternLine.setAttribute("transform", "translate(0," + parameters["linePattern"+i+"Density"]/2+")")
+            
+            if(parameters["linePattern"+i+"Background"] == 1){
+                linePatternBackground.setAttribute("fill", "black")
+                linePatternLine.setAttribute("stroke", "white")
+            }else if(parameters["linePattern"+i+"Background"] == 0){
+                linePatternBackground.setAttribute("fill", "white")
+                linePatternLine.setAttribute("stroke", "black")
+            }
+            break
+
+        case 1: //pattern type: dot texture
+            console.log("category"+i+"pattern type: dot")
+
+            //set the fill of i-th category elements to dot textures
+            d3.selectAll(".category"+i+":not(text)") //we add ":not(text)" to avoid fill texture to the legend labels
+                .attr("fill", "url(#dotPattern" + i + ")")
+
+            let dotPattern = document.getElementById("dotPattern"+i)
+            let dotPatternCircle = document.getElementById("dotPattern"+i+"Circle0")
+            let dotPatternBackground = document.getElementById("dotPattern" + i +"Background")
+
+            //set the parameters of the dot texture according to controllers' values
+            dotPattern.setAttribute("patternTransform", "translate(" + parameters["dotPattern"+i+"X"]+","+parameters["dotPattern"+i+"Y"]+") rotate("+parameters["dotPattern"+i+"Rotate"]+")")
+            dotPattern.setAttribute("width", parameters["dotPattern"+i+"Density"])
+            dotPattern.setAttribute("height", parameters["dotPattern"+i+"Density"])
+            dotPatternCircle.setAttribute("r", parameters["dotPattern"+i+"Size"])
+            dotPatternCircle.setAttribute("cx", parameters["dotPattern"+i+"Density"]/2)
+            dotPatternCircle.setAttribute("cy", parameters["dotPattern"+i+"Density"]/2)
+            dotPatternCircle.setAttribute("stroke-width", parameters["dotPattern"+i+"StrokeWidth"])
+           
+
+            if(parameters["dotPattern"+i+"Background"] == 1){
+                dotPatternBackground.setAttribute("fill", "black")
+                dotPatternCircle.setAttribute("fill", "white")
+                dotPatternCircle.setAttribute("stroke", "white")
+            }else if(parameters["dotPattern"+i+"Background"] == 0){
+                dotPatternBackground.setAttribute("fill", "white")
+                dotPatternCircle.setAttribute("fill", "black")
+                dotPatternCircle.setAttribute("stroke", "black")
+            }
+
+
+            if(parameters["dotPattern"+i+"Primitive"] == 0){
+                dotPatternCircle.setAttribute("fill-opacity", 1)
+                dotPatternCircle.setAttribute("stroke-opacity", 0)
+                document.getElementById("controlDotPrimitiveStrokeWidthDiv").style.display = "none"
+            }
+
+            if(parameters["dotPattern"+i+"Primitive"] == 1){
+                dotPatternCircle.setAttribute("fill-opacity", 0)
+                dotPatternCircle.setAttribute("stroke-opacity", 1)
+                document.getElementById("controlDotPrimitiveStrokeWidthDiv").style.display = "block"
+            }
+
+            break
+
+        case 2:
+            console.log("category"+i+"pattern type: grid")
+
+            //set the fill of i-th category elements to dot textures
+            d3.selectAll(".category"+i+":not(text)")
+                .attr("fill", "url(#gridPattern" + i + ")")
+
+
+            let gridPattern = document.getElementById("gridPattern"+ i)
+            let gridPatternLine= document.getElementById("gridPattern"+i+"Line0")
+
+            let gridPatternA = document.getElementById("gridPatternA"+ i)
+            let gridPatternALine= document.getElementById("gridPatternA"+i+"Line0")
+
+            let gridPatternBackground = document.getElementById("gridPattern" + i +"Background")
+
+            //set the parameters of the grid texture according to controllers' values
+            gridPattern.setAttribute("width", parameters["gridPattern"+i+"Density"])
+            gridPattern.setAttribute("height", parameters["gridPattern"+i+"Density"])
+
+            gridPatternLine.setAttribute("stroke-width", parameters["gridPattern"+i+"StrokeWidth"])
+
+            gridPatternLine.setAttribute("transform", "translate(0," + parameters["gridPattern"+i+"Density"]/2+")")
+
+            gridPattern.setAttribute("patternTransform", "translate(" + parameters["gridPattern"+i+"X"]+","+parameters["gridPattern"+i+"Y"]+") rotate("+(parseFloat(parameters["gridPattern"+i+"Angle"]) + parseFloat(parameters["gridPattern"+i+"Rotate"]))+")")
+
+            //set the parameters of the grid texture according to controllers' values
+            gridPatternA.setAttribute("width", parameters["gridPattern"+i+"Density"])
+            gridPatternA.setAttribute("height", parameters["gridPattern"+i+"Density"])
+
+            gridPatternALine.setAttribute("stroke-width", parameters["gridPattern"+i+"StrokeWidth"])
+            gridPatternALine.setAttribute("transform", "translate(0," + parameters["gridPattern"+i+"Density"]/2+")")
+
+            gridPatternA.setAttribute("patternTransform", "translate(" + parameters["gridPattern"+i+"X"]+","+parameters["gridPattern"+i+"Y"]+") rotate("+(180 - parseFloat(parameters["gridPattern"+i+"Angle"]) + parseFloat(parameters["gridPattern"+i+"Rotate"]))+")")
+
+
+            // controlGridStrokeWidth.max = controlGridDensity.value
+
+            // controlGridBackgroundRadios[gridBackground[i]].checked = true
+
+            if(parameters["gridPattern"+i+"Background"] == 1){
+                gridPatternBackground.setAttribute("fill", "black")
+                gridPatternLine.setAttribute("stroke", "white")
+                gridPatternALine.setAttribute("stroke", "white")
+            }else if(parameters["gridPattern"+i+"Background"] == 0){
+                gridPatternBackground.setAttribute("fill", "white")
+                gridPatternLine.setAttribute("stroke", "black")
+                gridPatternALine.setAttribute("stroke", "black")
+            }
+
+            break
+    }
+}
+
+
+/**
+     * Updates the visual indicators showing which category is currently selected
+     * @param {number} selectedCat - Index of the selected category (0-6)
+     */
+function updateSelectionIndicators(selectedCat) {
+    for(let j = 0; j < 7; j++){
+        const isSelected = j == selectedCat;
+        // Use blue (#1E90FF) for selected items, transparent for unselected
+        const fillColor = isSelected ? "#1E90FF" : "none";
+        // Use blue for selected text, black for unselected
+        const labelColor = isSelected ? "#1E90FF" : "#000000";
+        
+        // Update the bar indicators (except for map charts)
+        if(!chartName.startsWith("map")){
+            indicators[j].setAttribute("fill", fillColor);
+        }
+        // Update the legend indicators and labels
+        legendIndicators[j].setAttribute("fill", fillColor);
+        legendLabels[j].setAttribute("fill", labelColor);
+    }
+}
+
+/**
+ * Shows/hides the appropriate pattern controllers based on the selected pattern type
+ * @param {number} selectedCat - Index of the selected category (0-6)
+ * @param {Object} parameters - Object containing pattern parameters
+ * 
+ * Pattern types:
+ * 0 = line pattern
+ * 1 = dot pattern
+ * 2 = grid pattern
+ */
+function updateGeoPatternControllers(selectedCat, parameters) {
+    const lineControllersDiv = document.getElementById("lineControllersDiv");
+    const dotControllersDiv = document.getElementById("dotControllersDiv");
+    const gridControllersDiv = document.getElementById("gridControllersDiv");
+    
+    // Get the pattern type for the selected category
+    const patternType = parameters["patternType" + selectedCat];
+    
+    // Show only the controllers for the selected pattern type
+    lineControllersDiv.style.display = patternType == 0 ? "block" : "none";
+    dotControllersDiv.style.display = patternType == 1 ? "block" : "none";
+    gridControllersDiv.style.display = patternType == 2 ? "block" : "none";
+}
 
 
 
