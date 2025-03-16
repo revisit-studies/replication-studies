@@ -71,29 +71,53 @@
                 }
             }
 
-
             //we redraw the textures  based on the new parameters
             let selectedCat = parameters['selectedCat']
-            geo_selectCat(selectedCat)
+            // geo_selectCat(selectedCat)
+            for(let j = 0; j < fruits.length; j++){
+                if(j == selectedCat){
+                    if(!chartName.startsWith("map")){
+                        indicators[j].setAttribute("fill", "#1E90FF") // show indicator for the selected bar
+                    }
+
+                    legendIndicators[j].setAttribute("fill", "#1E90FF")
+                    legendLabels[j].setAttribute("fill", "#1E90FF")
+                }
+                else{
+                    if(!chartName.startsWith("map")){
+                        indicators[j].setAttribute("fill", "none") // show indicator for the selected bar
+                    }
+                    legendIndicators[j].setAttribute("fill", "none")
+                    legendLabels[j].setAttribute("fill", "#000000")
+                }
+            }
+            
+            let lineControllersDiv = document.getElementById("lineControllersDiv")
+            let dotControllersDiv = document.getElementById("dotControllersDiv")
+            let gridControllersDiv = document.getElementById("gridControllersDiv")
+
+            if(parameters["patternType"+selectedCat] == 0){
+                lineControllersDiv.style.display = "block"
+                dotControllersDiv.style.display = "none"
+                gridControllersDiv.style.display = "none"
+            }else if(parameters["patternType"+selectedCat] == 1){
+                lineControllersDiv.style.display = "none"
+                dotControllersDiv.style.display = "block"
+                gridControllersDiv.style.display = "none"
+            }else if(parameters["patternType"+selectedCat] == 2){
+                lineControllersDiv.style.display = "none"
+                dotControllersDiv.style.display = "none"
+                gridControllersDiv.style.display = "block"
+            }
+
             geo_getParameters(selectedCat)
 
             for(let i = 0; i < 7; i++){
         
-                let lineControllersDiv = document.getElementById("lineControllersDiv")
-                let dotControllersDiv = document.getElementById("dotControllersDiv")
-                let gridControllersDiv = document.getElementById("gridControllersDiv")
-
                 switch(parameters["patternType"+i]){ 
                     case 0: //pattern type: line texture
                     console.log("category"+i+"pattern type: line")
 
-                        //get elements of i-th line pattern
-                        // getLinePattern(i)
-                        // lineControllersDiv.style.display = "block"
-                        // dotControllersDiv.style.display = "none"
-                        // gridControllersDiv.style.display = "none"
-
-                        //set the fill of i-th category elements to line textures
                         d3.selectAll(".category"+i+":not(text)") // select by class
                             .attr("fill", "url(#linePattern" + i + ")")
 
@@ -109,29 +133,18 @@
 
                         linePatternLine.setAttribute("stroke-width", parameters["linePattern"+i+"StrokeWidth"])
                         linePatternLine.setAttribute("transform", "translate(0," + parameters["linePattern"+i+"Density"]/2+")")
-
-                        // controlLineStrokeWidth.max = parameters["linePattern"+i+"Density"] * overlap_ratio
                         
                         if(parameters["linePattern"+i+"Background"] == 1){
                             linePatternBackground.setAttribute("fill", "black")
                             linePatternLine.setAttribute("stroke", "white")
-                            // lineBackground[i] = 1
                         }else if(parameters["linePattern"+i+"Background"] == 0){
                             linePatternBackground.setAttribute("fill", "white")
                             linePatternLine.setAttribute("stroke", "black")
-                            // lineBackground[i] = 0
                         }
-                        // geo_setParameters(i)
                         break
 
                     case 1: //pattern type: dot texture
                     console.log("category"+i+"pattern type: dot")
-
-                        //get elements of i-th line pattern
-                        // getDotPattern(i)
-                        // lineControllersDiv.style.display = "none"
-                        // dotControllersDiv.style.display = "block"
-                        // gridControllersDiv.style.display = "none"
 
                         //set the fill of i-th category elements to dot textures
                         d3.selectAll(".category"+i+":not(text)") //we add ":not(text)" to avoid fill texture to the legend labels
@@ -149,22 +162,16 @@
                         dotPatternCircle.setAttribute("cx", parameters["dotPattern"+i+"Density"]/2)
                         dotPatternCircle.setAttribute("cy", parameters["dotPattern"+i+"Density"]/2)
                         dotPatternCircle.setAttribute("stroke-width", parameters["dotPattern"+i+"StrokeWidth"])
-
-                        //update the Size Controller value and write them into localStorage
-                        // controlDotSize.max = parameters["dotPattern"+i+"Density"]/2 * overlap_ratio
-
-                        
+                       
 
                         if(parameters["dotPattern"+i+"Background"] == 1){
                             dotPatternBackground.setAttribute("fill", "black")
                             dotPatternCircle.setAttribute("fill", "white")
                             dotPatternCircle.setAttribute("stroke", "white")
-                            // dotBackground[i] = 1
                         }else if(parameters["dotPattern"+i+"Background"] == 0){
                             dotPatternBackground.setAttribute("fill", "white")
                             dotPatternCircle.setAttribute("fill", "black")
                             dotPatternCircle.setAttribute("stroke", "black")
-                            // dotBackground[i] = 0
                         }
 
 
@@ -180,16 +187,9 @@
                             document.getElementById("controlDotPrimitiveStrokeWidthDiv").style.display = "block"
                         }
 
-                        // controlDotPrimitiveStrokeWidth.max = parameters["dotPattern"+i+"Size"] * 2 * overlap_ratio
-
-                        // geo_setParameters(i)
                         break
 
                     case 2:
-                        // getGridPattern(i)
-                        // lineControllersDiv.style.display = "none"
-                        // dotControllersDiv.style.display = "none"
-                        // gridControllersDiv.style.display = "block"
                         console.log("category"+i+"pattern type: grid")
 
                         //set the fill of i-th category elements to dot textures
@@ -233,21 +233,15 @@
                             gridPatternBackground.setAttribute("fill", "black")
                             gridPatternLine.setAttribute("stroke", "white")
                             gridPatternALine.setAttribute("stroke", "white")
-                            // gridBackground[i] = 1
                         }else if(parameters["gridPattern"+i+"Background"] == 0){
                             gridPatternBackground.setAttribute("fill", "white")
                             gridPatternLine.setAttribute("stroke", "black")
                             gridPatternALine.setAttribute("stroke", "black")
-                            // gridBackground[i] = 0
                         }
 
-                        // geo_setParameters(i)
                         break
                 }
             }
-
-
-    
 
             let controlOutline = document.getElementById('controlOutline')
             controlOutline.value = parameters['outline']
@@ -257,7 +251,6 @@
                 controlHalo.value = parameters['halo']
             }
             drawOutline('chart_outline', parameters['outline'], 'chart_halo', parameters['halo'])
-            console.log("controlLineDensity", controlLineDensity.value)
         }
     )
 </script>
