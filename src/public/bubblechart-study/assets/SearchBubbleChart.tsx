@@ -8,7 +8,7 @@ import {
 } from 'react';
 import * as d3 from 'd3';
 import {
-  Button, ComboboxItem, Group, OptionsFilter, Select,
+  Autocomplete, Button, ComboboxItem, Group, OptionsFilter,
 } from '@mantine/core';
 import { Registry, initializeTrrack } from '@trrack/core';
 import cx from 'clsx';
@@ -73,7 +73,7 @@ function containsCaseInsensitive(mainString:string, searchString:string) {
   return mainString.toLowerCase().includes(searchString.toLowerCase());
 }
 
-const MemoizedSelect = memo(Select);
+const MemoizedSelect = memo(Autocomplete);
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function SearchBubbleChart({ parameters, setAnswer, provenanceState }: StimulusParams<any, {all: {hoveredItem: DataModel, searchValue: string}}>) {
@@ -85,7 +85,6 @@ function SearchBubbleChart({ parameters, setAnswer, provenanceState }: StimulusP
 
   const [hoveredItem, setHoveredItem] = useState<DataModel | null>(null);
   const [searchValue, setSearchValue] = useState('');
-  const [selectedValue, setSelectedValue] = useState<string | null>('');
   const [highlightedItems, setHighlightedItems] = useState<DataModel[]>([]);
 
   const hoveredNode = useMemo(() => {
@@ -280,12 +279,8 @@ function SearchBubbleChart({ parameters, setAnswer, provenanceState }: StimulusP
 
   useEffect(() => {
     const x = searchList.filter((a) => containsCaseInsensitive(a, searchValue));
-    if (selectedValue && searchValue === '') {
-      setHighlightedItems([dataByKey[selectedValue]]);
-    } else {
-      setHighlightedItems(x.map((a) => dataByKey[a]));
-    }
-  }, [searchValue, dataByKey, selectedValue, searchList]);
+    setHighlightedItems(x.map((a) => dataByKey[a]));
+  }, [searchValue, dataByKey, searchList]);
 
   const handleSearchValueChange = useCallback((v: string) => {
     setSearchValue(v || '');
@@ -303,11 +298,9 @@ function SearchBubbleChart({ parameters, setAnswer, provenanceState }: StimulusP
       {searchEnabled && (
       <Group display="flex" align="flex-end">
         <MemoizedSelect
-          searchable
-          searchValue={searchValue}
-          onSearchChange={handleSearchValueChange}
+          value={searchValue}
+          onChange={handleSearchValueChange}
           filter={optionsFilter}
-          onChange={setSelectedValue}
           label="Search"
           placeholder="Search for college..."
           data={searchList}
