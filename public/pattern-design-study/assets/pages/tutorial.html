@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../lib/bootstrap-tour-standalone.min.css">
     <link rel="stylesheet" type="text/css" href="./texture_style.css">
 
-    <script src="../tools/loading.js"></script>
+    <!-- <script src="../tools/loading.js"></script> -->
 
     <style>
         .btn-outline-secondary{
@@ -84,7 +84,11 @@
     window.mytrrack = trrack;
     window.mytrrack_actions = trrack_actions;
     window.action = trrack_actions;
+
+    window.tutorialReplayIndex = 0
     Revisit.onProvenanceReceive((state) => {
+        console.log('tutorial provenance')
+        console.log(state)
 
         if(window.condition_chart == 0 && window.condition_texture == 0){
             parameters = state['bargeo']
@@ -106,6 +110,25 @@
         }else{
             console.log('cannot find the parameters based on condition_chart and condition_texture');
         }
+
+
+
+        if(tutorialReplayIndex == 0){
+            for(let i = 0; i < 7; i++){
+                if(chartName.endsWith('Geo')){
+                    geo_getParameters(i)
+                    geo_setCatPattern(i)
+                }
+                if(chartName.endsWith('Icon')){
+                    icon_getParameters(i)
+                    icon_setCatPattern(i, patternSize)
+            }
+            }
+
+            tutorialReplayIndex = 1
+        }
+
+
         let selectedCat = parameters['selectedCat']
 
         if(chartName.endsWith('Geo')){

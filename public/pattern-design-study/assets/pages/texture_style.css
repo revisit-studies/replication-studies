@@ -68,6 +68,9 @@ form{
     transform: rotateY(180deg);
 }
 
+#controlDensity{
+    transform: rotateY(180deg);
+}
 /* tick marks for the Desity Controller slider bar */
 .sliderticks {
     display: flex;

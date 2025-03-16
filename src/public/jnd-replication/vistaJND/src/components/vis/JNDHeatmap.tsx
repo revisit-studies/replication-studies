@@ -26,9 +26,9 @@ import { useNextStep } from '../../../../../../store/hooks/useNextStep';
  * @returns 2 heatmap plots during the experiment or a message of completion
  * of the trial
  */
-export default function JND({ setAnswer, parameters } : StimulusParams<{r1: number, r2:number, above: boolean, counter: number, shouldNegate: boolean, higherFirst: boolean}>) {
+export default function JND({ setAnswer, parameters } : StimulusParams<{r1: number, r2:number, above: boolean, counter: number, shouldNegate: boolean, r1Left: boolean, r1DatasetName: string, r2DatasetName: string, correlationDirection: string}>) {
   const {
-    r1, r2, shouldNegate, higherFirst, above,
+    r1, r2, shouldNegate, r1Left, above, r1DatasetName, r2DatasetName, correlationDirection,
   } = parameters;
   const { goToNextStep } = useNextStep();
 
@@ -36,7 +36,7 @@ export default function JND({ setAnswer, parameters } : StimulusParams<{r1: numb
     // setCounter(counter + 1);
     setAnswer({
       status: true,
-      answers: { scatterSelections: above ? n === 2 : n === 1 },
+      answers: { participantSelections: above ? n === 2 : n === 1 },
     });
 
     setTimeout(() => {
@@ -50,7 +50,10 @@ export default function JND({ setAnswer, parameters } : StimulusParams<{r1: numb
         textAlign: 'center', paddingBottom: '24px', fontSize: '18px', fontWeight: 'bold',
       }}
       >
-        Please select the visualization that appears to have a larger correlation. (This may be difficult, but try your best!)
+        Please select the visualization that appears to have a larger
+        {correlationDirection === 'negative' && ' negative'}
+        {' '}
+        correlation. (This may be difficult, but try your best!)
       </Text>
       <Text style={{
         textAlign: 'center', paddingBottom: '24px', fontSize: '18px', fontWeight: 'bold',
@@ -59,7 +62,7 @@ export default function JND({ setAnswer, parameters } : StimulusParams<{r1: numb
         You can either click the buttons (A or B) or use the‚ left and right keys.
       </Text>
       <Center>
-        <HeatmapWrapper onClick={onClick} r1={r1} r2={r2} shouldNegate={shouldNegate} higherFirst={higherFirst} />
+        <HeatmapWrapper onClick={onClick} r1={r1} r2={r2} shouldNegate={shouldNegate} r1Left={r1Left} r1DatasetName={r1DatasetName} r2DatasetName={r2DatasetName} />
       </Center>
     </Stack>
   );

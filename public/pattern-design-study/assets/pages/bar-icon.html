@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Iconic Texture Bar Chart</title>
+    <title>Iconic Patterns on Bar Chart</title>
     <script src="../../../revisitUtilities/revisit-communicate.js"></script>
     <script type="text/javascript" src="../lib/jquery.min.js"></script>
     <script type="text/javascript" src="../lib/d3.v7.min.js"></script>
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../lib/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="./texture_style.css">
 
-    <script src="../tools/loading.js"></script>
+    <!-- <script src="../tools/loading.js"></script> -->
 
 
 </head>
@@ -53,27 +53,28 @@
     window.mytrrack = trrack;
     window.mytrrack_actions = trrack_actions;
     window.action = trrack_actions;
+
+    window.barIconReplayIndex = 0
     Revisit.onProvenanceReceive((state) => {
         // console.log('provenance', state)
             parameters = state['baricon']
 
             console.log("parameters", parameters)
 
+            if(barIconReplayIndex == 0){
+                for(let i = 0; i < 7; i++){
+                    icon_getParameters(i)
+                    icon_setCatPattern(i, patternSize)
+                    barIconReplayIndex = 1
+                }
+            }
+
+
             
             let selectedCat = parameters['selectedCat']
-
-            if(chartName.endsWith('Geo')){
-                    console.log('geo redraw')
-                    //draw textures for category i
-                    geo_getParameters(selectedCat)
-                    geo_setCatPattern(selectedCat)
-                }
-            if(chartName.endsWith('Icon')){
-                console.log('icon redraw')
-                //draw textures for category i
-                icon_getParameters(selectedCat)
-                icon_setCatPattern(selectedCat, patternSize)
-            }
+            icon_selectCat(selectedCat)
+            icon_getParameters(selectedCat)
+            icon_setCatPattern(selectedCat, patternSize)
 
 
             //we redraw the textures of all categories, based on the new parameters

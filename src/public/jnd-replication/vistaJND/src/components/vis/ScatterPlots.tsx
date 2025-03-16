@@ -13,16 +13,18 @@ import {
 import { select } from 'd3-selection';
 import { PREFIX } from '../../../../../../utils/Prefix';
 
-const width = 320;
+const width = 300;
 const height = 300;
 
-export default function ScatterPlots({ r, onClick, shouldNegate = false } : { r: number, onClick: () => void, shouldNegate?: boolean }) {
+export default function ScatterPlots({
+  r, onClick, shouldNegate = false, datasetName,
+} : { r: number, onClick: () => void, shouldNegate?: boolean, datasetName: string }) {
   const d3Container = useRef(null);
   const [data, setData] = useState<[number, number][]>([]);
   const [isHover, setIsHover] = useState<boolean>(false);
 
   const margin = {
-    left: 20, top: 20, right: 20, bottom: 20,
+    left: 0, top: 20, right: 20, bottom: 20,
   };
   const innerHeight = height - margin.bottom;
   const innerWidth = width - margin.left - margin.right;
@@ -30,13 +32,7 @@ export default function ScatterPlots({ r, onClick, shouldNegate = false } : { r:
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const baseCorrelations = [0.3, 0.6, 0.9];
-        const shouldScramble = baseCorrelations.includes(r);
-        const randomIndex = shouldScramble ? Math.floor(Math.random() * 5) + 1 : 1;
-
-        const filePath = shouldScramble
-          ? `${PREFIX}jnd-data/datasets/size_100/dataset_${r}_size_100_${randomIndex}.csv`
-          : `${PREFIX}jnd-data/datasets/size_100/dataset_${r}_size_100.csv`;
+        const filePath = `${PREFIX}jnd-data/datasets/size_100/${datasetName}`;
 
         const response = await fetch(filePath);
 
@@ -71,17 +67,18 @@ export default function ScatterPlots({ r, onClick, shouldNegate = false } : { r:
     const yScale = scaleLinear().domain([0, 1]).range([innerHeight, 0]);
 
     const xAxis = axisBottom(xScale).tickSize(0).tickFormat(() => '');
-    const yAxis = axisLeft(yScale).tickSize(0);
+    const yAxis = axisLeft(yScale).tickSize(0).tickFormat(() => '');
 
     const svg = select(d3Container.current).attr('width', width).attr('height', height);
     svg.selectAll('*').remove();
 
     svg.append('g')
-      .attr('transform', `translate(0, ${height - margin.bottom})`)
-      .attr('class', 'main axis date').call(xAxis);
+      .attr('transform', `translate(${margin.left}, ${height})`)
+      .call(xAxis);
 
     svg.append('g')
-      .attr('class', 'main axis date').call(yAxis);
+      .attr('transform', `translate(${margin.left}, ${margin.top})`)
+      .call(yAxis);
 
     svg.selectAll('.dot')
       .data(data)
@@ -89,10 +86,10 @@ export default function ScatterPlots({ r, onClick, shouldNegate = false } : { r:
       .append('circle')
       .attr('class', 'dot')
       .attr('r', 2)
-      .attr('cx', (d) => xScale(d[0]))
-      .attr('cy', (d) => yScale(d[1]))
+      .attr('cx', (d) => xScale(d[0]) + margin.left)
+      .attr('cy', (d) => yScale(d[1]) + margin.top)
       .style('fill', 'black');
-  }, [data, innerWidth, innerHeight, margin.bottom]);
+  }, [data, innerWidth, innerHeight, margin.left, margin.top]);
 
   useEffect(() => {
     createChart();
@@ -110,7 +107,7 @@ export default function ScatterPlots({ r, onClick, shouldNegate = false } : { r:
       <rect
         onClick={onClick}
         x={0}
-        y={0}
+        y={20}
         width={innerWidth}
         height={innerHeight}
         cursor="pointer"

@@ -6,11 +6,11 @@ import { JumpFunctionParameters, JumpFunctionReturnVal, StoredAnswer } from '../
 
 export default function func({
   answers, customParameters,
-}: JumpFunctionParameters<{r1: number, r2: number, above: boolean, counter: number, name: string, shouldNegate?: boolean}>): JumpFunctionReturnVal {
+}: JumpFunctionParameters<{r1: number, r2: number, above: boolean, counter: number, name: string, shouldNegate?: boolean, condition: string, correlationDirection: string}>): JumpFunctionReturnVal {
   let { r1, r2, above } = customParameters;
-  const { name } = customParameters;
+  const { name, condition, correlationDirection } = customParameters;
   const shouldNegate = customParameters.shouldNegate || false;
-  let higherFirst = seedrandom(Date.now().toString())() > 0.5;
+  let r1Left = seedrandom(Date.now().toString())() > 0.5;
   const roundToTwo = (num: number) => parseFloat((Math.round(num * 100) / 100).toString());
 
   let counter = 0;
@@ -60,27 +60,25 @@ export default function func({
   }
 
   if (latestRealTrialKey && answers[latestRealTrialKey]?.answer) {
-    lastRealAnswer = answers[latestRealTrialKey].answer.scatterSelections;
+    lastRealAnswer = answers[latestRealTrialKey].answer.participantSelections;
   }
-  const lastAnswerName = findLatestRealTrial(answers, 1);
-  const lastAnswer = lastAnswerName && answers[lastAnswerName].answer.scatterSelections;
 
   let lastAnswerDirection = '';
   if (lastRealAnswer) {
     if (lastRealTrialParams && lastRealTrialParams.above) { /// above is true (r2 > r1) and answer is correct (r2)
-      lastAnswerDirection = lastRealTrialParams && lastRealTrialParams.higherFirst ? 'right' : 'left'; // higher first means r1 is on the left
+      lastAnswerDirection = lastRealTrialParams && lastRealTrialParams.r1Left ? 'right' : 'left'; // higher first means r1 is on the left
     } else { /// above is false (r1 > r2) and answer is correct (r1)
-      lastAnswerDirection = lastRealTrialParams && lastRealTrialParams.higherFirst ? 'left' : 'right';
+      lastAnswerDirection = lastRealTrialParams && lastRealTrialParams.r1Left ? 'left' : 'right';
     }
   } else if (lastRealTrialParams && lastRealTrialParams.above) { // answer incorrect(r1) and above is true (r2 > r1), correct answer r2
-    lastAnswerDirection = lastRealTrialParams && lastRealTrialParams.higherFirst ? 'left' : 'right';
+    lastAnswerDirection = lastRealTrialParams && lastRealTrialParams.r1Left ? 'left' : 'right';
   } else { // answer incorrect(r2) and above is false (r1 > r2), correct r1
-    lastAnswerDirection = lastRealTrialParams && lastRealTrialParams.higherFirst ? 'right' : 'left';
+    lastAnswerDirection = lastRealTrialParams && lastRealTrialParams.r1Left ? 'right' : 'left';
   }
 
   if (counter > 0 && counter % 10 === 9 && counter < 50) { /// Attention check block
     isAttentionCheck = true;
-    higherFirst = true;
+    r1Left = true;
     if (lastAnswerDirection === 'left') {
       r1 = 0.01;
       r2 = 1.0;
@@ -97,10 +95,12 @@ export default function func({
       ({ r1, r2, above } = lastRealTrialParams);
     }
 
-    if (lastAnswer) { // Correct answer
-      r2 = roundToTwo(above ? Math.max(r2 - 0.01, 0.01) : Math.max(r2 + 0.01, 0.01));
-    } else { // Incorrect answer
-      r2 = roundToTwo(above ? Math.min(r2 + 0.03, 1) : Math.max(r2 - 0.03, 0.01));
+    if (lastRealAnswer !== null) {
+      if (lastRealAnswer) { // Correct answer
+        r2 = roundToTwo(above ? Math.max(r2 - 0.01, 0.01) : Math.max(r2 + 0.01, 0.01));
+      } else { // Incorrect answer
+        r2 = roundToTwo(above ? Math.min(r2 + 0.03, 1) : Math.max(r2 - 0.03, 0.01));
+      }
     }
   }
 
@@ -161,11 +161,23 @@ export default function func({
 
   counter += 1;
 
+  /// dataset name setting
+  let r1DatasetName = '';
+  let r2DatasetName = '';
+  if (isAttentionCheck != null && !isAttentionCheck) {
+    const randomIndex = Math.floor(Math.random() * 5) + 1;
+    r1DatasetName = condition === 'hexbin' ? `dataset_${r1}_size_1000_${randomIndex}.csv` : `dataset_${r1}_size_100_${randomIndex}.csv`;
+    r2DatasetName = condition === 'hexbin' ? `dataset_${r2}_size_1000.csv` : `dataset_${r2}_size_100.csv`;
+  } else {
+    r1DatasetName = condition === 'hexbin' ? `dataset_${r1}_size_1000.csv` : `dataset_${r1}_size_100.csv`;
+    r2DatasetName = condition === 'hexbin' ? `dataset_${r2}_size_1000.csv` : `dataset_${r2}_size_100.csv`;
+  }
+
   return {
     component: 'trial',
     parameters: {
-      r1, r2, above, counter, shouldNegate, higherFirst, isAttentionCheck,
+      r1, r2, above, counter, shouldNegate, r1Left, isAttentionCheck, condition, correlationDirection, r1DatasetName, r2DatasetName,
     },
-    correctAnswer: [{ id: 'scatterSelections', answer: true }],
+    correctAnswer: [{ id: 'participantSelections', answer: true }],
   };
 }

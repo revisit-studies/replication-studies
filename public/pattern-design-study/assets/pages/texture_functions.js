@@ -1,5 +1,6 @@
 
 
+
 /**
  *
  * draw UI elements of tools on the interface
@@ -1770,8 +1771,15 @@ function drawGeoMapWithTexture(data, width, height, chart){
             d3.selectAll(".category"+i)
                 .on("click", function(event, d){// let controllers control the selected bar
                     console.log("selected pattern"+i)
+                    
                     geo_selectCat(i)
                     localStorage.setItem(chartName + "_selectedCat", i)
+
+                    parameters["chartName"] = chartName
+                    parameters["selectedCat"] = i
+                    console.log("parameters", parameters)
+                    addParametersToList(chartName, parameters)
+                    revisitPostParameters(chartName, parameters, mytrrack, action)
 
                     //add color indicator on the outline of the selected regions.
                     d3.selectAll('.blackStroke')
@@ -1789,7 +1797,7 @@ function drawGeoMapWithTexture(data, width, height, chart){
                 })
         }
 
-        geo_switchTextures(chartName)
+        // geo_switchTextures(chartName)
 
     });
 }
@@ -1965,6 +1973,14 @@ function drawIconMapWithTexture(data, width, height, chart){
                     icon_selectCat(i, departementIndex)
                     localStorage.setItem(chartName + "_selectedCat", i)
 
+                    localStorage.setItem(chartName + '_selectedCat', i)
+
+                    parameters["chartName"] = chartName
+                    parameters["selectedCat"] = i
+                    console.log("parameters", parameters)
+                    addParametersToList(chartName, parameters)
+                    revisitPostParameters(chartName, parameters, mytrrack, action)
+
                     d3.selectAll('.blackStroke')
                         .attr('stroke', 'black')
 
@@ -1983,7 +1999,7 @@ function drawIconMapWithTexture(data, width, height, chart){
                 })
         }
 
-        icon_switchTextures(chartName)
+        // icon_switchTextures(chartName)
 
     })
 }
@@ -2755,6 +2771,7 @@ function geo_selectCat(i){
                 patternType[i] = j
                 geo_setCatPattern(i)
             }
+            revisitPostParameters(chartName, parameters, mytrrack, action)
         }
     }
 
@@ -3720,14 +3737,14 @@ function geo_setInitialParameters(chartName){
     if(localStorage.getItem(chartName + "_selectedCat") == null){
         geo_selectCat(0)
         parameters["selectedCat"] = 0
-        addParametersToList(chartName, parameters)
     }else{
         geo_selectCat(Number(localStorage.getItem(chartName + "_selectedCat")))
         parameters["selectedCat"] = Number(localStorage.getItem(chartName + "_selectedCat"))
-        addParametersToList(chartName, parameters)
+        
     }
 
     getSameCheckboxesStatus(chartName)
+    addParametersToList(chartName, parameters)
     revisitPostParameters(chartName, parameters, mytrrack, action)
     
 }
@@ -3794,6 +3811,7 @@ function geo_getParameters(i){
     controlLineY.value = parameters["linePattern"+i+"Y"]
     controlLineRotate.value = parameters["linePattern"+i+"Rotate"]
     lineBackground[i] = parameters["linePattern"+i+"Background"]
+    controlLineBackgroundRadios[lineBackground[i]].checked = true
 
     //dot
     controlDotRotate.value = parameters["dotPattern"+i+"Rotate"]
@@ -3815,7 +3833,8 @@ function geo_getParameters(i){
     dotPrimitive[i] = parameters["dotPattern"+i+"Primitive"]
     controlDotPrimitiveStrokeWidth.max = parameters["dotPattern"+i+"PrimitiveStrokeWidthMax"]
     controlDotPrimitiveStrokeWidth.value = parameters["dotPattern"+i+"PrimitiveStrokeWidth"]
-
+    controlDotBackgroundRadios[dotBackground[i]].checked = true
+    controlDotPrimitiveRadios[dotPrimitive[i]].checked = true
     //grid
     controlGridDensity.value = parameters["gridPattern"+i+"Density"]
     controlGridStrokeWidth.max = parameters["gridPattern"+i+"StrokeWidthMax"]
@@ -4043,21 +4062,38 @@ function geo_switchTextures(chartName){
 }
 
 function geo_selectDefaultTexture(){
+    console.log('selectDefaultTexture')
     parameters = {...parameters, ...bertinTextures[selectDefaultTexture.selectedIndex]} //partly update the parameters object
 
     for(let i = 0; i < fruits.length; i++){
         geo_getParameters(i)
         geo_setCatPattern(i)
+        // addParametersToList(chartName, parameters)
     }
+    
     controlOutline.value = parameters['outline']
     if(controlHalo){
         controlHalo.value = parameters['halo']
     }
 
-    addParametersToList(chartName, parameters)
-    revisitPostParameters(chartName, parameters, mytrrack, action)
-    // parametersList.push(cloneParameters(parameters))
-    // localStorage.setItem(chartName+'parametersList', JSON.stringify(parametersList))
+
+    const paramsClone = cloneParameters(parameters)
+    revisitPostParameters(chartName, paramsClone, mytrrack, action)
+    console.log('geo_selectDefaultTexture parameters', paramsClone)
+
+    // async function processCategories(parameters, chartName, mytrrack, action) {
+    //     for(let i = 0; i < fruits.length; i++){
+    //         parameters["selectedCat"] = i
+    //         // Clone parameters before sending to ensure correct selectedCat value
+
+            
+    //         // Add 100ms delay between iterations
+    //         await new Promise(resolve => setTimeout(resolve, 100))
+    //     }
+    // }
+
+    // // Call the async function
+    // processCategories(parameters, chartName, mytrrack, action)
 }
 
 /** iconic texture editing functions */
@@ -5060,7 +5096,7 @@ function revisitPostParameters(chartName, parameters, trrack, action){
         }
     )
     console.log("postAnswers")
-    // console.log(parameters)
+    console.log(parameters)
         
 }
 
@@ -5107,6 +5143,7 @@ function saveParameters(chartName){
  * @param chartName
  */
 function setSelectCat(chartName){
+    // console.log('setSelectCat'+i)
     //select a category
     for(let i=0; i < fruits.length;i++){
         d3.selectAll('.category'+i)
@@ -5125,6 +5162,7 @@ function setSelectCat(chartName){
                 parameters["selectedCat"] = i
                 console.log("parameters", parameters)
                 addParametersToList(chartName, parameters)
+                revisitPostParameters(chartName, parameters, mytrrack, action)
             })
     }
 }
