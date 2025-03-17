@@ -6349,6 +6349,13 @@ function updateGeoPatternForCategory(i, parameters) {
      * @param {number} selectedCat - Index of the selected category (0-6)
      */
 function updateSelectionIndicators(selectedCat) {
+    if(chartName.endsWith("icon")){
+        //set legend image as the icon of the selected fruit
+        detailImg.setAttribute("href", "#" + "detail_"+ fruits[selectedCat] +"_fix")
+        strokeImg.setAttribute("href", "#" + "stroke_"+ fruits[selectedCat] +"_fix")
+        simpleStrokeImg.setAttribute("href", "#" + "simple_stroke_"+ fruits[selectedCat] +"_fix")
+        simpleFillImg.setAttribute("href", "#" + "simple_fill_"+ fruits[selectedCat] +"_fix")
+    }
     for(let j = 0; j < 7; j++){
         const isSelected = j == selectedCat;
         // Use blue (#1E90FF) for selected items, transparent for unselected
@@ -6394,3 +6401,94 @@ function updateGeoPatternControllers(selectedCat, parameters) {
 
 
 
+ /**
+     * Updates the icon pattern styling for a specific category in the bar chart
+     * @param {number} i - The category index (0-6)
+     * @param {Object} parameters - Object containing all pattern parameters
+     * 
+     * This function handles:
+     * - Pattern dimensions and positioning
+     * - Icon size and placement within the pattern
+     * - Background colors
+     * - Icon style and rotation
+     * - Legend image updates
+     */
+ function updateIconPatternForCategory(i, parameters) {
+   // console.log('origin: iconStyle'+i+'='+ iconStyle[i])
+    //get elements of i-th category
+    let iconPatterns = document.getElementsByClassName("iconPatternCat"+i); // <pattern> for i-th iconPattern
+
+    //set attributes of <pattern>
+    for(let k = 0; k<iconPatterns.length;k++){
+        iconPatterns[k].setAttribute("width", parameters["iconPattern"+i+"Density"])
+        iconPatterns[k].setAttribute("height", parameters["iconPattern"+i+"Density"])
+
+        //position of <pattern> - X, Y, Rotation of texture
+        iconPatterns[k].setAttribute("patternTransform", "translate(" + parameters["iconPattern"+i+"X"]+","+parameters["iconPattern"+i+"Y"]+") rotate("+(360-parameters["iconPattern"+i+"RotateIcon"])+")")
+
+
+        //<use> elements within <pattern>
+        let iconPatternImgs = iconPatterns[k].getElementsByClassName("iconPattern"+i+"Img")
+
+        //<rect> element for background color within <pattern>
+        let iconPatternBackgrounds = document.getElementsByClassName("iconPattern" + i +"Background")
+
+        //width and height of <use> - Icon Size of texture
+        for(let j=0;j<iconPatternImgs.length;j++){
+            iconPatternImgs[j].setAttribute('height', parameters["iconPattern"+i+"Size"])
+            iconPatternImgs[j].setAttribute('width', parameters["iconPattern"+i+"Size"])
+        }
+
+        iconPatternImgs[1].setAttribute("x", -1 * parameters["iconPattern"+i+"Density"])
+        iconPatternImgs[2].setAttribute("x", parameters["iconPattern"+i+"Density"])
+        iconPatternImgs[3].setAttribute("y", -1 * parameters["iconPattern"+i+"Density"])
+        iconPatternImgs[4].setAttribute("y", parameters["iconPattern"+i+"Density"])
+        iconPatternImgs[5].setAttribute("x", -1 * parameters["iconPattern"+i+"Density"])
+        iconPatternImgs[5].setAttribute("y", -1 * parameters["iconPattern"+i+"Density"])
+        iconPatternImgs[6].setAttribute("x", parameters["iconPattern"+i+"Density"])
+        iconPatternImgs[6].setAttribute("y", -1 * parameters["iconPattern"+i+"Density"])
+        iconPatternImgs[7].setAttribute("x", -1 * parameters["iconPattern"+i+"Density"])
+        iconPatternImgs[7].setAttribute("y", parameters["iconPattern"+i+"Density"])
+        iconPatternImgs[8].setAttribute("x", parameters["iconPattern"+i+"Density"])
+        iconPatternImgs[8].setAttribute("y", parameters["iconPattern"+i+"Density"])
+
+        
+
+        //set background
+        if(parameters["iconPattern"+i+"Background"] == 1){
+            // iconPatternBackground.setAttribute("fill", "black")
+            for(let j = 0; j < iconPatternBackgrounds.length; j++){ //class: both Background of legend and chart
+                iconPatternBackgrounds[j].setAttribute("fill", "black")
+            }
+
+        }else if(parameters["iconPattern"+i+"Background"] == 0){
+            // iconPatternBackground.setAttribute("fill", "white")
+            for(let j = 0; j < iconPatternBackgrounds.length; j++){
+                iconPatternBackgrounds[j].setAttribute("fill", "white")
+            }
+        }
+
+        for(let j=0; j<iconPatternImgs.length; j++){
+            // iconPatternImgs[j].setAttribute("href", "../img/fruit/" + iconBackground[i]+ "-"+iconStyleList[iconStyle[i]] + "-"+ fruits[i]+".svg")
+            iconPatternImgs[j].setAttribute("href", "#" + iconStyleList[parameters["iconPattern"+i+"IconStyle"]] + "_"+ fruits[i])
+            iconPatternImgs[j].setAttribute("xlink:href", "#" + iconStyleList[parameters["iconPattern"+i+"IconStyle"]] + "_"+ fruits[i])
+            if(parameters["iconPattern"+i+"Background"]==0){
+                iconPatternImgs[j].setAttribute('fill', '#000000')
+            }
+            if(parameters["iconPattern"+i+"Background"]==1) {
+                iconPatternImgs[j].setAttribute('fill', '#ffffff')
+            }
+        }
+        let fruitIcon = document.getElementById(fruits[i]+'Icon'+parameters["iconPattern"+i+"IconStyle"])
+        // fruitIcon.setAttribute('transform', 'rotate('+controlRotateIcon.value+' '+controlSize.value/2 + ' '+ controlSize.value/2 +') translate(0 0)')
+        fruitIcon.setAttribute('transform', 'rotate('+parameters["iconPattern"+i+"RotateIcon"]+' 25 25) translate(0 0)')
+
+        legendImgs[i].setAttribute("href", "#" + iconStyleList[parameters["iconPattern"+i+"IconStyle"]] + "_"+ fruits[i] +"_fix")
+        if(parameters["iconPattern"+i+"Background"]==0){
+            legendImgs[i].setAttribute('fill', '#000000')
+        }
+        if(parameters["iconPattern"+i+"Background"]==1) {
+            legendImgs[i].setAttribute('fill', '#ffffff')
+        }
+    }
+}
