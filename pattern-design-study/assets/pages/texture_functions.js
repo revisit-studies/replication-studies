@@ -1657,6 +1657,7 @@ function drawGeoBarWithTexture(data, width, height, chart){
 
     //set Outline controller
     controlOutline.oninput = function(){
+        parameters["outline"] = controlOutline.value
         drawOutline('chart_outline', controlOutline.value)
         revisitPostParameters(chartName, parameters, mytrrack, action)
     }
@@ -1825,6 +1826,7 @@ function drawGeoPieWithTexture(data, radius, chart){
 
     //change outline based on the value of outline controller
     controlOutline.oninput = function(){
+        parameters["outline"] = controlOutline.value
         drawOutline('chart_outline', controlOutline.value, 'chart_halo', controlHalo.value)
         // arcBlackStroke.style('stroke-width', controlOutline.value)
         // arcWhiteStroke.style('stroke-width', parseFloat(controlHalo.value) + parseFloat(controlOutline.value))
@@ -1832,6 +1834,7 @@ function drawGeoPieWithTexture(data, radius, chart){
     }
 
     controlHalo.oninput = function(){
+        parameters["halo"] = controlHalo.value
         drawOutline('chart_outline', controlOutline.value, 'chart_halo', controlHalo.value)
         // arcBlackStroke.style('stroke-width', controlOutline.value)
         // arcWhiteStroke.style('stroke-width', parseFloat(controlHalo.value) + parseFloat(controlOutline.value))
@@ -1917,12 +1920,14 @@ function drawGeoMapWithTexture(data, width, height, chart){
 
         // change Map's outline based on the value of outline controller
         controlOutline.oninput = function(){
+            parameters["outline"] = controlOutline.value
             drawOutline('chart_outline', controlOutline.value, 'chart_halo', controlHalo.value)
             // drawMapOutline(data, controlOutline.value, controlHalo.value)
             revisitPostParameters(chartName, parameters, mytrrack, action)
         }
 
         controlHalo.oninput = function(){
+            parameters["halo"] = controlHalo.value
             drawOutline('chart_outline', controlOutline.value, 'chart_halo', controlHalo.value)
             // drawMapHalo(data, controlOutline.value, controlHalo.value)
             revisitPostParameters(chartName, parameters, mytrrack, action)
@@ -2006,6 +2011,7 @@ function drawIconBarWithTexture(data, width, height, chart){
 
     //change outline based on the value of outline controller
     controlOutline.oninput = function(){
+        parameters["outline"] = controlOutline.value
         drawOutline('chart_outline', controlOutline.value)
         // bars.style('stroke-width', controlOutline.value)
         revisitPostParameters(chartName, parameters, mytrrack, action)
@@ -2102,6 +2108,7 @@ function drawIconMapWithTexture(data, width, height, chart){
 
         // change Map's outline based on the value of outline controller
         controlOutline.oninput = function(){
+            parameters["outline"] = controlOutline.value
             drawOutline('chart_outline', controlOutline.value, 'chart_halo', controlHalo.value)
             // data.forEach(function(e,i) {
             //     d3.select("#dWhiteStroke" + e.CODE_DEPT)
@@ -2114,6 +2121,7 @@ function drawIconMapWithTexture(data, width, height, chart){
         }
 
         controlHalo.oninput = function(){
+            parameters["halo"] = controlHalo.value
             drawOutline('chart_outline', controlOutline.value, 'chart_halo', controlHalo.value)
             // data.forEach(function(e,i) {
             //     d3.select("#dWhiteStroke" + e.CODE_DEPT)
@@ -2214,6 +2222,7 @@ function drawIconPieWithTexture(data, radius, chart){
 
     //change outline based on the value of outline controller
     controlOutline.oninput = function(){
+        parameters["outline"] = controlOutline.value
         drawOutline('chart_outline', controlOutline.value, 'chart_halo', controlHalo.value)
         // arcBlackStroke.style('stroke-width', controlOutline.value)
         // arcWhiteStroke.style('stroke-width', parseFloat(controlHalo.value)+ parseFloat(controlOutline.value)+ parseFloat(controlOutline.value))
