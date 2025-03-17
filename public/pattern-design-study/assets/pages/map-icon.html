@@ -57,22 +57,27 @@
     Revisit.onProvenanceReceive((state) => {
         // console.log('provenance', state)
             parameters = state['mapicon']
-            console.log('map icon parameters')
-            console.log(parameters)
+
+            console.log("parameters", parameters)
 
             if(mapIconReplayIndex == 0){
                 for(let i = 0; i < 7; i++){
                     icon_getParameters(i)
-                    icon_setCatPattern(i, patternSize)
+                    updateIconPatternForCategory(i, parameters);
                     mapIconReplayIndex = 1
                 }
             }
 
-
+            
             let selectedCat = parameters['selectedCat']
-            icon_selectCat(selectedCat)
+            updateSelectionIndicators(selectedCat)
             icon_getParameters(selectedCat)
-            icon_setCatPattern(selectedCat, patternSize)
+            // icon_setCatPattern(selectedCat, patternSize)
+
+
+            for(let i = 0; i < 7; i++) {
+                updateIconPatternForCategory(i, parameters);
+            }
 
             let controlOutline = document.getElementById('controlOutline')
             controlOutline.value = parameters['outline']
