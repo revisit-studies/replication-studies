@@ -112,7 +112,7 @@ function drawToolbar(toolbarID){
             drawPieIndicators(mydata, pieRadius, 'chart', 30)
 
             //initialize
-            icon_setInitialParameters(chartName)
+            icon_setInitialParameters(chartName, mydata)
 
             setSelectCat(chartName)
         }
@@ -192,7 +192,7 @@ function drawToolbar(toolbarID){
                 drawPieIndicators(mydata, pieRadius, 'chart', 30)
     
                 //initialize
-                icon_setInitialParameters(chartName)
+                icon_setInitialParameters(chartName, mydata)
     
                 setSelectCat(chartName)
             }
