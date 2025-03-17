@@ -57,22 +57,13 @@
 
     window.barGeoReplayIndex = 0
 
-
+    window.barGeoData = {}
     
     Revisit.onProvenanceReceive((state) => {
         // console.log('provenance', state)
 
             parameters = state['bargeo']
             console.log("replay parameters", parameters)
-
-            document.getElementById('chartDiv').innerHTML = ''
-            drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
-            geoTextures(d3.select('#chartA'),fruits)
-            let mydata = parameters['data']
-            drawGeoBarWithTexture(mydata, barWidth, barHeight, 'chart')
-            drawBarIndicators(mydata, barWidth, barHeight, 'chart', 30)
-            // geo_setInitialParameters(chartName, mydata)
-            setSelectCat(chartName)
 
             if(barGeoReplayIndex == 0){
                 for(let i = 0; i < 7; i++){
@@ -81,7 +72,36 @@
                     
                 }
                 barGeoReplayIndex = 1
+                barGeoData = parameters["data"]
             }
+
+            // Compare if current dataset values match parameters["data"] values
+            let dataMatches = true;
+            for (let i = 0; i < 7; i++) {
+                if (barGeoData[i].value !== parameters["data"][i].value) {
+                    dataMatches = false;
+                    break;
+                }
+            }
+            if (dataMatches) {
+                console.log("current dataset values match parameters data values exactly");
+            } else {
+                console.log("current dataset values differ from parameters data values");
+                document.getElementById('chartDiv').innerHTML = ''
+                drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+                geoTextures(d3.select('#chartA'),fruits)
+                let mydata = parameters['data']
+                drawGeoBarWithTexture(mydata, barWidth, barHeight, 'chart')
+                drawBarIndicators(mydata, barWidth, barHeight, 'chart', 30)
+                // geo_setInitialParameters(chartName, mydata)
+                setSelectCat(chartName)
+            }
+
+
+
+
+
+
 
             //we redraw the textures  based on the new parameters
             let selectedCat = parameters['selectedCat']
