@@ -30,11 +30,11 @@
     <div class="col-auto legend_drag_div">
         <div id = "legend">
         </div>
-        <div id="dragdrop" class="bg-light">
-        </div>
+        <!-- <div id="dragdrop" class="bg-light"> -->
+        <!-- </div> -->
     </div>
     <div class="col-auto">
-        <div id="chartDiv" style = "width: 600px;height: 600px;"></div>
+        <div id="chartDiv" class="chartDiv"></div>
         <div id = "outlineDiv" style="padding-left: 200px;margin-top:-50px;"></div>
     </div>
     <div class="col-auto">
@@ -55,91 +55,110 @@
     window.action = trrack_actions;
 
     window.mapGeoReplayIndex = 0
+
+    window.mapdata = {}
     Revisit.onProvenanceReceive((state) => {
         // console.log('provenance', state)
 
             parameters = state['mapgeo']
             console.log("parameters", parameters)
 
-            document.getElementById('chartDiv').innerHTML = ''
-            drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
-            geoTextures(d3.select('#chartA'),fruits)
-
-            let mydata = parameters['data']
-
-            let width = 600, height = 600
-
-            let chart = 'chart'
-            let d = 'd'
-
-            let path = d3.geoPath()
-
-            let projection = d3.geoConicConformal() // Lambert-93
-                .center([2.454071, 46.279229]) // Center on France
-                .scale(2600)
-                .translate([width / 2 - 50, height / 2])
-
-            path.projection(projection)
-
-            let promises = [];
-            promises.push(d3.json(filePath+'data/departments.json'))
-            // promises.push(d3.csv("population.csv"));
-            // for(let i = 0; i < totalCsvFile; i++){
-            //     promises.push(d3.csv(filePath+'data/'+ csvName + getCsvIndex(chartName) +".csv"));
-            // }
-            Promise.all(promises).then(function(values) {
-                let geojson = values[0] // Recovery of the first promise: the content of the JSON file
-                // let csv = values[getCsvIndex(chartName)+1] // Recovery of the second promise: the content of the csv file
-
-                let csv = mydata
-
-                drawMap('#'+chart+'A', geojson, path, d+'A', width, height)
-                drawMap('#'+chart,geojson,  path, d, width, height)
-                drawMap('#'+chart+'WhiteStroke', geojson, path, d+'WhiteStroke', width, height)
-                drawMap('#'+chart+'BlackStroke', geojson, path, d+'BlackStroke', width, height)
-
-                let quantile = d3.scaleQuantile()
-                    .domain([0, d3.max(csv, e => +e.POP)])
-                    .range(d3.range(fruits.length));
-
-                csv.forEach(function(e,i) {
-                    d3.select('#'+d+'A' + e.CODE_DEPT)
-                        .attr("fill", function(d){return  'url(#gridPatternA' + quantile(+e.POP) + ')' })
-
-                    d3.select('#'+d + e.CODE_DEPT)
-                        .attr('stroke', 'none')
-                        .attr("fill", function() {
-                            if(parameters['patternType'+quantile(+e.POP)] == 0){
-
-                                return  'url(#linePattern' + quantile(+e.POP) +')'
-                            }
-                            if(parameters['patternType'+quantile(+e.POP)] == 1){
-                                return  'url(#dotPattern' + quantile(+e.POP) +')'
-                            }
-                            if(parameters['patternType'+quantile(+e.POP)] == 2){
-                                return  'url(#gridPattern' + quantile(+e.POP) +')'
-                            }})
-
-                    d3.select('#'+d+'WhiteStroke' + e.CODE_DEPT)
-                        .attr('fill','none')
-                        .attr('stroke', 'white')
-                        .attr('stroke-width', parseFloat(parameters['halo']) + parseFloat(parameters['outline']))
-
-                    d3.select('#'+d+'BlackStroke' + e.CODE_DEPT)
-                        .attr('fill','none')
-                        .attr('stroke', 'black')
-                        .attr('stroke-width', parameters['outline'])
-                })
-
-            })
-
             if(mapGeoReplayIndex == 0){
                 for(let i = 0; i < 7; i++){
                     geo_getParameters(i)
                     updateGeoPatternForCategory(i, parameters);
-                    mapGeoReplayIndex = 1
+                    
                 }
+                mapGeoReplayIndex = 1
+                window.mapdata = parameters['data']
             }
+            // Compare if mapdata matches parameters['data']
+            let dataMatches = window.mapdata.length === parameters['data'].length && 
+                window.mapdata.every((item, index) => {
+                    return item.CODE_DEPT === parameters['data'][index].CODE_DEPT && 
+                           item.POP === parameters['data'][index].POP;
+                });
+            console.log("Do the datasets match?", dataMatches);
+            if (!dataMatches) {
+                document.getElementById('chartDiv').innerHTML = ''
+                drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+                geoTextures(d3.select('#chartA'),fruits)
+
+                window.mapdata = parameters['data']
+                let mydata = parameters['data']
+
+
+
+                let width = 600, height = 600
+
+                let chart = 'chart'
+                let d = 'd'
+
+                let path = d3.geoPath()
+
+                let projection = d3.geoConicConformal() // Lambert-93
+                    .center([2.454071, 46.279229]) // Center on France
+                    .scale(2600)
+                    .translate([width / 2 - 50, height / 2])
+
+                path.projection(projection)
+
+                let promises = [];
+                promises.push(d3.json(filePath+'data/departments.json'))
+                // promises.push(d3.csv("population.csv"));
+                // for(let i = 0; i < totalCsvFile; i++){
+                //     promises.push(d3.csv(filePath+'data/'+ csvName + getCsvIndex(chartName) +".csv"));
+                // }
+                Promise.all(promises).then(function(values) {
+                    let geojson = values[0] // Recovery of the first promise: the content of the JSON file
+                    // let csv = values[getCsvIndex(chartName)+1] // Recovery of the second promise: the content of the csv file
+
+                    let csv = mydata
+
+                    drawMap('#'+chart+'A', geojson, path, d+'A', width, height)
+                    drawMap('#'+chart,geojson,  path, d, width, height)
+                    drawMap('#'+chart+'WhiteStroke', geojson, path, d+'WhiteStroke', width, height)
+                    drawMap('#'+chart+'BlackStroke', geojson, path, d+'BlackStroke', width, height)
+
+                    let quantile = d3.scaleQuantile()
+                        .domain([0, d3.max(csv, e => +e.POP)])
+                        .range(d3.range(fruits.length));
+
+                    csv.forEach(function(e,i) {
+                        d3.select('#'+d+'A' + e.CODE_DEPT)
+                            .attr("fill", function(d){return  'url(#gridPatternA' + quantile(+e.POP) + ')' })
+
+                        d3.select('#'+d + e.CODE_DEPT)
+                            .attr('stroke', 'none')
+                            .attr("fill", function() {
+                                if(parameters['patternType'+quantile(+e.POP)] == 0){
+
+                                    return  'url(#linePattern' + quantile(+e.POP) +')'
+                                }
+                                if(parameters['patternType'+quantile(+e.POP)] == 1){
+                                    return  'url(#dotPattern' + quantile(+e.POP) +')'
+                                }
+                                if(parameters['patternType'+quantile(+e.POP)] == 2){
+                                    return  'url(#gridPattern' + quantile(+e.POP) +')'
+                                }})
+
+                        d3.select('#'+d+'WhiteStroke' + e.CODE_DEPT)
+                            .attr('fill','none')
+                            .attr('stroke', 'white')
+                            .attr('stroke-width', parseFloat(parameters['halo']) + parseFloat(parameters['outline']))
+
+                        d3.select('#'+d+'BlackStroke' + e.CODE_DEPT)
+                            .attr('fill','none')
+                            .attr('stroke', 'black')
+                            .attr('stroke-width', parameters['outline'])
+                    })
+
+                })
+
+            }
+
+            
+            
 
             //we redraw the textures  based on the new parameters
             let selectedCat = parameters['selectedCat']

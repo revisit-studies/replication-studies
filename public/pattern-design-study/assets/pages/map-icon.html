@@ -29,8 +29,8 @@
     <div class="row gx-3">
         <div class="col-auto legend_drag_div">
             <div id="legend"></div>
-            <div id="dragdrop" class="bg-light">
-            </div>
+            <!-- <div id="dragdrop" class="bg-light">
+            </div> -->
         </div>
         <div class="col-auto">
             <div id="chartDiv" class="chartDiv"></div>
@@ -54,16 +54,36 @@
     window.action = trrack_actions;
 
     window.mapIconReplayIndex = 0
+
+    window.mapdata = {}
     Revisit.onProvenanceReceive((state) => {
         // console.log('provenance', state)
             parameters = state['mapicon']
 
             console.log("parameters", parameters)
 
+            if(mapIconReplayIndex == 0){
+                for(let i = 0; i < 7; i++){
+                    icon_getParameters(i)
+                    updateIconPatternForCategory(i, parameters);
+                    
+                }
+                mapIconReplayIndex = 1
+                window.mapdata = parameters['data']
+            }
+            // Compare if mapdata matches parameters['data']
+            let dataMatches = window.mapdata.length === parameters['data'].length && 
+                            window.mapdata.every((item, index) => {
+                                return item.CODE_DEPT === parameters['data'][index].CODE_DEPT && 
+                                    item.POP === parameters['data'][index].POP;
+                            });
+            console.log("Do the datasets match?", dataMatches);
+            if (!dataMatches) {
+
             document.getElementById('chartDiv').innerHTML = ''
             drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
             iconTextures(d3.select('#chartA'),fruits)
-
+            window.mapdata = parameters['data']
             let mydata = parameters['data']
 
             let width = 600, height = 600;
@@ -123,14 +143,10 @@
                 })
 
             })
-
-            if(mapIconReplayIndex == 0){
-                for(let i = 0; i < 7; i++){
-                    icon_getParameters(i)
-                    updateIconPatternForCategory(i, parameters);
-                    mapIconReplayIndex = 1
-                }
             }
+
+
+
 
             
             let selectedCat = parameters['selectedCat']
