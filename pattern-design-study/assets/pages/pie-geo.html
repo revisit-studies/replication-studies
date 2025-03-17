@@ -57,38 +57,29 @@
     window.pieGeoReplayIndex = 0
     Revisit.onProvenanceReceive((state) => {
         // console.log('provenance', state)
-            parameters = state['piegeo']
 
+            parameters = state['piegeo']
+            console.log("parameters", parameters)
 
             if(pieGeoReplayIndex == 0){
                 for(let i = 0; i < 7; i++){
                     geo_getParameters(i)
-                    geo_setCatPattern(i)
+                    updateGeoPatternForCategory(i, parameters);
                     pieGeoReplayIndex = 1
                 }
             }
 
+            //we redraw the textures  based on the new parameters
             let selectedCat = parameters['selectedCat']
-            geo_selectCat(selectedCat)
+            // geo_selectCat(selectedCat)
+            updateSelectionIndicators(selectedCat);
+            updateGeoPatternControllers(selectedCat, parameters);
+
             geo_getParameters(selectedCat)
-            geo_setCatPattern(selectedCat)
 
-            // for(let i = 0; i < fruits.length; i++){
-            //     //since geometric texture and iconic texture have different parameters set, here we need to distinguish them
-            //     if(chartName.endsWith('Geo')){
-            //         console.log('geo redraw')
-            //         //draw textures for category i
-            //         geo_getParameters(i)
-            //         geo_setCatPattern(i)
-            //     }
-            //     if(chartName.endsWith('Icon')){
-            //         console.log('icon redraw')
-            //         //draw textures for category i
-            //         icon_getParameters(i)
-            //         icon_setCatPattern(i, patternSize)
-            //     }
-            // }
-
+            for(let i = 0; i < 7; i++){
+                updateGeoPatternForCategory(i, parameters);
+            }
 
             let controlOutline = document.getElementById('controlOutline')
             controlOutline.value = parameters['outline']
