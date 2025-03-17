@@ -56,25 +56,12 @@
     window.action = trrack_actions;
 
     window.pieIconReplayIndex = 0
+    window.pieIconData = {}
     Revisit.onProvenanceReceive((state) => {
         // console.log('provenance', state)
             parameters = state['pieicon']
 
             console.log("parameters", parameters)
-
-            document.getElementById('chartDiv').innerHTML = ''
-            drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
-            iconTextures(d3.select('#chartA'),fruits)
-
-            let mydata = parameters['data']
-
-            drawIconPieWithTexture(mydata, pieRadius, 'chart')
-            drawPieIndicators(mydata, pieRadius, 'chart', 30)
-
-            //initialize
-            // icon_setInitialParameters(chartName)
-
-            setSelectCat(chartName)
 
             if(pieIconReplayIndex == 0){
                 for(let i = 0; i < 7; i++){
@@ -83,7 +70,38 @@
                     
                 }
                 pieIconReplayIndex = 1
+                pieIconData = parameters["data"]
             }
+
+
+
+            // Compare if current dataset values match parameters["data"] values
+            let dataMatches = true;
+            for (let i = 0; i < 7; i++) {
+                if (pieIconData[i].value !== parameters["data"][i].value) {
+                    dataMatches = false;
+                    break;
+                }
+            }
+            if (dataMatches) {
+                console.log("current dataset values match parameters data values exactly");
+            } else {
+                console.log("current dataset values differ from parameters data values");
+                document.getElementById('chartDiv').innerHTML = ''
+                drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+                iconTextures(d3.select('#chartA'),fruits)
+
+                let mydata = parameters['data']
+
+                drawIconPieWithTexture(mydata, pieRadius, 'chart')
+                drawPieIndicators(mydata, pieRadius, 'chart', 30)
+                setSelectCat(chartName)
+
+            }
+
+
+            
+
 
             
             let selectedCat = parameters['selectedCat']

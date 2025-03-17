@@ -56,7 +56,7 @@
 
     window.mapGeoReplayIndex = 0
 
-    window.mapdata = {}
+    window.mapGeoData = {}
     Revisit.onProvenanceReceive((state) => {
         // console.log('provenance', state)
 
@@ -70,11 +70,11 @@
                     
                 }
                 mapGeoReplayIndex = 1
-                window.mapdata = parameters['data']
+                window.mapGeoData = parameters['data']
             }
             // Compare if mapdata matches parameters['data']
-            let dataMatches = window.mapdata.length === parameters['data'].length && 
-                window.mapdata.every((item, index) => {
+            let dataMatches = window.mapGeoData.length === parameters['data'].length && 
+                window.mapGeoData.every((item, index) => {
                     return item.CODE_DEPT === parameters['data'][index].CODE_DEPT && 
                            item.POP === parameters['data'][index].POP;
                 });
@@ -84,7 +84,7 @@
                 drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
                 geoTextures(d3.select('#chartA'),fruits)
 
-                window.mapdata = parameters['data']
+                window.mapGeoData = parameters['data']
                 let mydata = parameters['data']
 
 
