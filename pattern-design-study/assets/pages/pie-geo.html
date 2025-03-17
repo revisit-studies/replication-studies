@@ -61,6 +61,22 @@
             parameters = state['piegeo']
             console.log("parameters", parameters)
 
+
+            document.getElementById('chartDiv').innerHTML = ''
+            drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+            geoTextures(d3.select('#chartA'),fruits)
+            //data
+            let mydata = parameters['data']
+
+            drawGeoPieWithTexture(mydata, pieRadius, 'chart')
+            drawPieIndicators(mydata, pieRadius, 'chart', 30)
+
+            //initialize
+            // geo_setInitialParameters(chartName, mydata)
+
+            setSelectCat(chartName)
+
+
             if(pieGeoReplayIndex == 0){
                 for(let i = 0; i < 7; i++){
                     geo_getParameters(i)
@@ -246,7 +262,7 @@ window.gridBackground = []
     drawPieIndicators(mydata, pieRadius, 'chart', 30)
     drawGeoLegend(fruits)
     //initialize
-    geo_setInitialParameters(chartName)
+    geo_setInitialParameters(chartName, mydata)
 
     setSelectCat(chartName)
     //switch texture by drag and drop

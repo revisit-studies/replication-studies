@@ -56,12 +56,23 @@
     window.action = trrack_actions;
 
     window.barGeoReplayIndex = 0
+
+
     
     Revisit.onProvenanceReceive((state) => {
         // console.log('provenance', state)
 
             parameters = state['bargeo']
-            console.log("parameters", parameters)
+            console.log("replay parameters", parameters)
+
+            document.getElementById('chartDiv').innerHTML = ''
+            drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+            geoTextures(d3.select('#chartA'),fruits)
+            let mydata = parameters['data']
+            drawGeoBarWithTexture(mydata, barWidth, barHeight, 'chart')
+            drawBarIndicators(mydata, barWidth, barHeight, 'chart', 30)
+            // geo_setInitialParameters(chartName, mydata)
+            setSelectCat(chartName)
 
             if(barGeoReplayIndex == 0){
                 for(let i = 0; i < 7; i++){
@@ -120,7 +131,7 @@
     const defaultDataBtn = document.getElementById('defaultDataBtn')
 
     var parametersList
-    var parameters
+    var parameters = {}
 
 
     const undoBtn = document.getElementById("undoBtn")
@@ -305,7 +316,7 @@ const selectDefaultTexture = document.getElementById("selectDefaultTexture")
 //end of UI elements
 
 //data
-let mydata = getDatasetForChart()
+    let mydata = getDatasetForChart()
     
     drawGeoBarWithTexture(mydata, barWidth, barHeight, 'chart')
     drawBarIndicators(mydata, barWidth, barHeight, 'chart', 30)
@@ -313,9 +324,12 @@ let mydata = getDatasetForChart()
     drawGeoLegend(fruits)
 
     //initialize
-    geo_setInitialParameters(chartName)
+    geo_setInitialParameters(chartName, mydata)
 
     setSelectCat(chartName)
+
+
+
 
     })
 </script>

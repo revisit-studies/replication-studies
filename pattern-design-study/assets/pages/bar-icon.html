@@ -61,6 +61,21 @@
 
             console.log("parameters", parameters)
 
+            document.getElementById('chartDiv').innerHTML = ''
+            drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+            iconTextures(d3.select('#chartA'),fruits)
+            //data
+            let mydata = parameters['data']
+
+            drawIconBarWithTexture(mydata, barWidth,barHeight, 'chart')
+            drawBarIndicators(mydata, barWidth, barHeight, 'chart', 30)
+
+            //initialize
+            // icon_setInitialParameters(chartName, mydata)
+
+            setSelectCat(chartName)
+
+
             if(barIconReplayIndex == 0){
                 for(let i = 0; i < 7; i++){
                     icon_getParameters(i)
@@ -295,11 +310,11 @@ drawIconBarWithTexture(mydata, barWidth,barHeight, 'chart')
 drawBarIndicators(mydata, barWidth, barHeight, 'chart', 30)
 
 //initialize
-icon_setInitialParameters(chartName)
+icon_setInitialParameters(chartName, mydata)
 
 setSelectCat(chartName)
 
-icon_switchTextures(chartName)
+// icon_switchTextures(chartName)
 
 
 
