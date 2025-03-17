@@ -89,6 +89,7 @@
                 iconTextures(d3.select('#chartA'),fruits)
                 //data
                 let mydata = parameters['data']
+                window.barIconData = mydata
 
                 drawIconBarWithTexture(mydata, barWidth,barHeight, 'chart')
                 drawBarIndicators(mydata, barWidth, barHeight, 'chart', 30)

@@ -90,7 +90,7 @@
                 geoTextures(d3.select('#chartA'),fruits)
                 //data
                 let mydata = parameters['data']
-
+                window.pieGeoData = mydata
                 drawGeoPieWithTexture(mydata, pieRadius, 'chart')
                 drawPieIndicators(mydata, pieRadius, 'chart', 30)
 

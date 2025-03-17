@@ -105,13 +105,9 @@
 
                 let promises = [];
                 promises.push(d3.json(filePath+'data/departments.json'))
-                // promises.push(d3.csv("population.csv"));
-                // for(let i = 0; i < totalCsvFile; i++){
-                //     promises.push(d3.csv(filePath+'data/'+ csvName + getCsvIndex(chartName) +".csv"));
-                // }
+
                 Promise.all(promises).then(function(values) {
                     let geojson = values[0] // Recovery of the first promise: the content of the JSON file
-                    // let csv = values[getCsvIndex(chartName)+1] // Recovery of the second promise: the content of the csv file
 
                     let csv = mydata
 
