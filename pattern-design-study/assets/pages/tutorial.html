@@ -144,8 +144,8 @@
             }
         }
         else if(window.condition_chart == 2){
-            dataMatches = window.mapGeoData.length === parameters['data'].length && 
-                window.mapGeoData.every((item, index) => {
+            dataMatches = window.tutorialData.length === parameters['data'].length && 
+                window.tutorialData.every((item, index) => {
                     return item.CODE_DEPT === parameters['data'][index].CODE_DEPT && 
                            item.POP === parameters['data'][index].POP;
                 });
