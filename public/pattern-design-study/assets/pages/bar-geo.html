@@ -91,6 +91,7 @@
                 drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
                 geoTextures(d3.select('#chartA'),fruits)
                 let mydata = parameters['data']
+                window.barGeoData = mydata
                 drawGeoBarWithTexture(mydata, barWidth, barHeight, 'chart')
                 drawBarIndicators(mydata, barWidth, barHeight, 'chart', 30)
                 // geo_setInitialParameters(chartName, mydata)
