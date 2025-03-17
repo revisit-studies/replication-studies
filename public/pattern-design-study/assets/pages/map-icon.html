@@ -128,14 +128,21 @@
 
                         d3.select('#'+d + e.CODE_DEPT)
                             .attr('stroke', 'none')
+                            .attr("class", function(d, i) {
+                                return "departement category" + quantile(+e.POP) //this class is used for setting pattern
+                            })
                             .attr("fill", function(d, i){return  'url(#iconPattern' + quantile(+e.POP) + ')' })
 
                         d3.select('#'+d+'WhiteStroke' + e.CODE_DEPT)
                             .attr('fill','none')
                             .attr('stroke', 'white')
                             .attr('stroke-width', parseFloat(parameters['halo']) + parseFloat(parameters['outline']))
+                            .attr('class','chart_halo')
 
                         d3.select('#'+d+'BlackStroke' + e.CODE_DEPT)
+                            .attr("class", function(d, index) {
+                                return "chart_outline blackStroke strokeCategory" + quantile(+e.POP) //this class is used for setting pattern
+                            })
                             .attr('fill','none')
                             .attr('stroke', 'black')
                             .attr('stroke-width', parameters['outline'])
