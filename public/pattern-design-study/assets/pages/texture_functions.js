@@ -6371,6 +6371,15 @@ function updateSelectionIndicators(selectedCat) {
         legendIndicators[j].setAttribute("fill", fillColor);
         legendLabels[j].setAttribute("fill", labelColor);
     }
+
+    if(chartName.startsWith("map")){
+        d3.selectAll('.blackStroke')
+        .attr('stroke', 'black')
+
+        d3.selectAll(".strokeCategory"+selectedCat)
+            .attr('filter', function(){this.parentNode.appendChild(this)}) //move the selected paths to the front of other paths
+            .attr('stroke', '#1E90FF')
+    }
 }
 
 /**
