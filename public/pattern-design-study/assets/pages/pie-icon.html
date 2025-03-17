@@ -62,6 +62,20 @@
 
             console.log("parameters", parameters)
 
+            document.getElementById('chartDiv').innerHTML = ''
+            drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+            iconTextures(d3.select('#chartA'),fruits)
+
+            let mydata = parameters['data']
+
+            drawIconPieWithTexture(mydata, pieRadius, 'chart')
+            drawPieIndicators(mydata, pieRadius, 'chart', 30)
+
+            //initialize
+            // icon_setInitialParameters(chartName)
+
+            setSelectCat(chartName)
+
             if(pieIconReplayIndex == 0){
                 for(let i = 0; i < 7; i++){
                     icon_getParameters(i)
@@ -208,7 +222,7 @@ drawIconPieWithTexture(mydata, pieRadius, 'chart')
 drawPieIndicators(mydata, pieRadius, 'chart', 30)
 
 //initialize
-icon_setInitialParameters(chartName)
+icon_setInitialParameters(chartName, mydata)
 
 setSelectCat(chartName)
 //switch texture by drag and drop

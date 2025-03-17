@@ -57,15 +57,167 @@ function drawToolbar(toolbarID){
     dataBtn.onclick = function(){
         localStorage.setItem('defaultData', 0) //0: random data, 1: default data
 
-        //Everytime we reload the window we will reset dataset
-        window.location.reload()
+        if (chartName === "barGeo") {
+            document.getElementById('chartDiv').innerHTML = ''
+            drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+            geoTextures(d3.select('#chartA'),fruits)
+            let mydata = getDatasetForChart()
+            drawGeoBarWithTexture(mydata, barWidth, barHeight, 'chart')
+            drawBarIndicators(mydata, barWidth, barHeight, 'chart', 30)
+            geo_setInitialParameters(chartName, mydata)
+            setSelectCat(chartName)
+        }
+
+        if (chartName === "barIcon"){
+            document.getElementById('chartDiv').innerHTML = ''
+            drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+            iconTextures(d3.select('#chartA'),fruits)
+            //data
+            let mydata = getDatasetForChart()
+
+            drawIconBarWithTexture(mydata, barWidth,barHeight, 'chart')
+            drawBarIndicators(mydata, barWidth, barHeight, 'chart', 30)
+
+            //initialize
+            icon_setInitialParameters(chartName, mydata)
+
+            setSelectCat(chartName)
+
+        }
+
+        if(chartName === "pieGeo"){
+            document.getElementById('chartDiv').innerHTML = ''
+            drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+            geoTextures(d3.select('#chartA'),fruits)
+            //data
+            let mydata = getDatasetForChart()
+
+            drawGeoPieWithTexture(mydata, pieRadius, 'chart')
+            drawPieIndicators(mydata, pieRadius, 'chart', 30)
+
+            //initialize
+            geo_setInitialParameters(chartName, mydata)
+
+            setSelectCat(chartName)
+        }
+
+        if(chartName === "pieIcon"){
+            document.getElementById('chartDiv').innerHTML = ''
+            drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+            iconTextures(d3.select('#chartA'),fruits)
+
+            let mydata = getDatasetForChart()
+
+            drawIconPieWithTexture(mydata, pieRadius, 'chart')
+            drawPieIndicators(mydata, pieRadius, 'chart', 30)
+
+            //initialize
+            icon_setInitialParameters(chartName)
+
+            setSelectCat(chartName)
+        }
+        
+        if(chartName === "mapGeo"){
+            document.getElementById('chartDiv').innerHTML = ''
+            drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+            geoTextures(d3.select('#chartA'),fruits)
+            let mydata = getDatasetForMap()
+            drawGeoMapWithTexture(mydata, mapWidth, mapHeight, 'chart')
+        }
+
+        if(chartName === "mapIcon"){
+            document.getElementById('chartDiv').innerHTML = ''
+            drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+            iconTextures(d3.select('#chartA'),fruits)
+            let mydata = getDatasetForMap()
+            drawIconMapWithTexture(mydata, mapWidth, mapHeight, 'chart')
+        }
     }
 
     defaultDataBtn.onclick = function(){
         localStorage.setItem('defaultData', 1)//0: random data, 1: default data
+        dataBtn.onclick = function(){
+            localStorage.setItem('defaultData', 0) //0: random data, 1: default data
+    
+            if (chartName === "barGeo") {
+                document.getElementById('chartDiv').innerHTML = ''
+                drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+                geoTextures(d3.select('#chartA'),fruits)
+                let mydata = defaultDataset
+                drawGeoBarWithTexture(mydata, barWidth, barHeight, 'chart')
+                drawBarIndicators(mydata, barWidth, barHeight, 'chart', 30)
+                geo_setInitialParameters(chartName, mydata)
+                setSelectCat(chartName)
+            }
+    
+            if (chartName === "barIcon"){
+                document.getElementById('chartDiv').innerHTML = ''
+                drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+                iconTextures(d3.select('#chartA'),fruits)
+                //data
+                let mydata = defaultDataset
+    
+                drawIconBarWithTexture(mydata, barWidth,barHeight, 'chart')
+                drawBarIndicators(mydata, barWidth, barHeight, 'chart', 30)
+    
+                //initialize
+                icon_setInitialParameters(chartName, mydata)
+    
+                setSelectCat(chartName)
+    
+            }
+    
+            if(chartName === "pieGeo"){
+                document.getElementById('chartDiv').innerHTML = ''
+                drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+                geoTextures(d3.select('#chartA'),fruits)
+                //data
+                let mydata = defaultDataset
+    
+                drawGeoPieWithTexture(mydata, pieRadius, 'chart')
+                drawPieIndicators(mydata, pieRadius, 'chart', 30)
+    
+                //initialize
+                geo_setInitialParameters(chartName, mydata)
+    
+                setSelectCat(chartName)
+            }
+    
+            if(chartName === "pieIcon"){
+                document.getElementById('chartDiv').innerHTML = ''
+                drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+                iconTextures(d3.select('#chartA'),fruits)
+    
+                let mydata = defaultDataset
+    
+                drawIconPieWithTexture(mydata, pieRadius, 'chart')
+                drawPieIndicators(mydata, pieRadius, 'chart', 30)
+    
+                //initialize
+                icon_setInitialParameters(chartName)
+    
+                setSelectCat(chartName)
+            }
+            
+            if(chartName === "mapGeo"){
+                document.getElementById('chartDiv').innerHTML = ''
+                drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+                geoTextures(d3.select('#chartA'),fruits)
+                let mydata = defaultMapDataset
+                drawGeoMapWithTexture(mydata, mapWidth, mapHeight, 'chart')
+            }
+    
+            if(chartName === "mapIcon"){
+                document.getElementById('chartDiv').innerHTML = ''
+                drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+                iconTextures(d3.select('#chartA'),fruits)
+                let mydata = defaultMapDataset
+                drawIconMapWithTexture(mydata, mapWidth, mapHeight, 'chart')
+            }
+        }
 
         //Everytime we reload the window we will reset dataset
-        window.location.reload()
+        // window.location.reload()
     }
 
     resetBtn.onclick = function(){
@@ -332,7 +484,7 @@ function drawCheckbox(checkboxID, checkboxClass, labelText){
  */
 function drawChartDiv(chartDivID, width, height, chart){
     //create div structure
-    let chartContainerDiv = document. createElement('div')
+    let chartContainerDiv = document.createElement('div')
     $('#'+chartDivID).append(chartContainerDiv)
     chartContainerDiv.style.position = 'relative'
 
@@ -1735,7 +1887,7 @@ function drawGeoMapWithTexture(data, width, height, chart){
         })
 
         //initialize: for map, we have to put this initialize function here in the Promise.
-        geo_setInitialParameters(chartName)
+        geo_setInitialParameters(chartName, data)
 
         // change Map's outline based on the value of outline controller
         controlOutline.oninput = function(){
@@ -1897,7 +2049,7 @@ function drawIconMapWithTexture(data, width, height, chart){
         })
 
         //Initialize
-        icon_setInitialParameters(chartName)
+        icon_setInitialParameters(chartName, data)
 
         //Initialize outline stroke width
         // csv.forEach(function(e,i) {
@@ -3700,14 +3852,12 @@ function geo_selectCat(i){
 
 
 //set initial parameters when the window loads
-function geo_setInitialParameters(chartName){
+function geo_setInitialParameters(chartName, mydata){
     console.log("geo_setInitialParameters", chartName)
 
     
     // parameters["chartName"] = chartName
     
-
-
     //if we did not save parameters in the local storage
     if(localStorage.getItem(chartName+"parametersList") == null || JSON.parse(localStorage.getItem(chartName+"parametersList")).length === 0){
         //get the index of Bertin textures when first loading this page, and save it to local storage, for reset button
@@ -3732,6 +3882,8 @@ function geo_setInitialParameters(chartName){
         }
         drawOutline('chart_outline', parameters['outline'], 'chart_halo', parameters['halo'])
     }
+
+    parameters['data'] = mydata
 
     //set selectedCat
     if(localStorage.getItem(chartName + "_selectedCat") == null){
@@ -3856,7 +4008,7 @@ function geo_defaultParameters(){
     parameters = {}
     parameters["chartName"] = chartName
     parameters["selectedCat"] = 0
-
+    
     for(let i = 0; i < fruits.length; i++){
         patternType[i] = 0
 
@@ -4496,7 +4648,7 @@ function icon_selectCat(i){ //i: i-th Cat
     }
 }
 
-function icon_setInitialParameters(chartName){
+function icon_setInitialParameters(chartName, mydata){
 
     if(localStorage.getItem(chartName+"parametersList") == null || JSON.parse(localStorage.getItem(chartName+"parametersList")).length === 0){
         icon_defaultParameters(chartName)
@@ -4514,6 +4666,8 @@ function icon_setInitialParameters(chartName){
         }
         drawOutline('chart_outline', parameters["outline"], 'chart_halo', parameters["halo"])
     }
+
+    parameters['data'] = mydata
 
     //set selectedCat
     if(localStorage.getItem(chartName + "_selectedCat") == null){
