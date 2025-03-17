@@ -136,9 +136,7 @@ function drawToolbar(toolbarID){
 
     defaultDataBtn.onclick = function(){
         localStorage.setItem('defaultData', 1)//0: random data, 1: default data
-        dataBtn.onclick = function(){
-            localStorage.setItem('defaultData', 0) //0: random data, 1: default data
-    
+
             if (chartName === "barGeo") {
                 document.getElementById('chartDiv').innerHTML = ''
                 drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
@@ -214,9 +212,7 @@ function drawToolbar(toolbarID){
                 let mydata = defaultMapDataset
                 drawIconMapWithTexture(mydata, mapWidth, mapHeight, 'chart')
             }
-        }
-
-        //Everytime we reload the window we will reset dataset
+     //Everytime we reload the window we will reset dataset
         // window.location.reload()
     }
 

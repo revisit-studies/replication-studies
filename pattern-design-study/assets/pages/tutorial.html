@@ -366,8 +366,6 @@
 
     window.chartName = '';
 
-    // Initialize the page
-    let mydata;
 
     // document.addEventListener('DOMContentLoaded', () => {
     // Then initialize based on conditions
@@ -657,9 +655,9 @@ const selectDefaultTexture = document.getElementById("selectDefaultTexture")
     window.controlHalo = document.getElementById("controlHalo")
 //end of UI elements
 
-
+    let mydata;
     switch (condition_chart) {
-        case 0:
+        case 0: //bar chart
             switch (condition_texture){
                 case 0:
                     mydata = getDatasetForChart()
@@ -670,7 +668,7 @@ const selectDefaultTexture = document.getElementById("selectDefaultTexture")
                     drawGeoLegend(fruits)
 
                     //initialize
-                    geo_setInitialParameters(chartName)
+                    geo_setInitialParameters(chartName, mydata)
 
                     setSelectCat(chartName)
                     //switch texture by drag and drop
@@ -685,7 +683,7 @@ const selectDefaultTexture = document.getElementById("selectDefaultTexture")
                     drawBarIndicators(mydata, barWidth, barHeight, 'chart', 30)
 
                     //initialize
-                    icon_setInitialParameters(chartName)
+                    icon_setInitialParameters(chartName, mydata)
 
                     setSelectCat(chartName)
 
@@ -702,11 +700,11 @@ const selectDefaultTexture = document.getElementById("selectDefaultTexture")
                     drawPieIndicators(mydata, pieRadius, 'chart', 30)
                     drawGeoLegend(fruits)
                     //initialize
-                    geo_setInitialParameters(chartName)
+                    geo_setInitialParameters(chartName, mydata)
 
                     setSelectCat(chartName)
                     //switch texture by drag and drop
-                    geo_switchTextures(chartName)
+                    // geo_switchTextures(chartName)
                     break;
                 case 1:
                     mydata = getDatasetForChart()
@@ -715,7 +713,7 @@ const selectDefaultTexture = document.getElementById("selectDefaultTexture")
                     drawPieIndicators(mydata, pieRadius, 'chart', 30)
 
                     //initialize
-                    icon_setInitialParameters(chartName)
+                    icon_setInitialParameters(chartName, mydata)
 
                     setSelectCat(chartName)
                     //switch texture by drag and drop
