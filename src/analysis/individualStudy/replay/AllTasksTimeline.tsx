@@ -43,6 +43,7 @@ export function AllTasksTimeline({
   }, [maxLength, participantData.answers, width]);
 
   // Creating labels for the tasks
+  // @ts-ignore
   const [numComponentsAnsweredCorrectly, numComponentsWithCorrectAnswer, tasks] : [number, number, {line: JSX.Element, label: JSX.Element}[]] = useMemo(() => {
     let currentHeight = 0;
 
@@ -93,7 +94,7 @@ export function AllTasksTimeline({
       }
 
       return {
-        line: <SingleTaskLabelLines key={name} labelHeight={currentHeight * LABEL_GAP} answer={answer} height={height} xScale={xScale} />,
+        line: sortedEntries.length < 50 ? <SingleTaskLabelLines key={name} labelHeight={currentHeight * LABEL_GAP} answer={answer} height={height} xScale={xScale} /> : null,
         label: (
           <Tooltip
             key={`${name}-tooltip`}
@@ -104,6 +105,7 @@ export function AllTasksTimeline({
             withArrow
             label={(
               <Stack gap={0}>
+                <Text size="sm" style={{ fontWeight: 'bold' }}>{name}</Text>
                 {Object.entries(answer.answer).map((a) => {
                   const [id, componentAnswer] = a;
                   const correctAnswer = component?.correctAnswer?.find((c) => c.id === id)?.answer;
@@ -114,7 +116,7 @@ export function AllTasksTimeline({
             )}
           >
             <g>
-              <SingleTask isCorrect={isCorrect} hasCorrect={hasCorrect} key={name} labelHeight={currentHeight * LABEL_GAP} isSelected={selectedTask === name} setSelectedTask={clickTask} answer={answer} height={height} name={name} xScale={xScale} />
+              <SingleTask showLabel={sortedEntries.length < 50} isCorrect={isCorrect} hasCorrect={hasCorrect} key={name} labelHeight={currentHeight * LABEL_GAP} isSelected={selectedTask === name} setSelectedTask={clickTask} answer={answer} height={height} name={name} xScale={xScale} />
             </g>
           </Tooltip>),
       };
@@ -245,7 +247,7 @@ export function AllTasksTimeline({
         </Group>
 
         { participantData.completed ? (
-          <svg style={{ width, height, overflow: 'visible' }}>
+          <svg style={{ width, height, overflow: 'hidden' }}>
             {tasks.map((t) => t.line)}
             {tasks.map((t) => t.label)}
             {browsedAway}
