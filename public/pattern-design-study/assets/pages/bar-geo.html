@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Geometric Texture Bar Chart</title>
+    <title>Geometric Patterns on Bar Chart</title>
     <script src="../../../revisitUtilities/revisit-communicate.js"></script>
 
 
@@ -15,14 +15,9 @@
     <link rel="stylesheet" href="../lib/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="./texture_style.css">
 
-    <script src="../tools/loading.js"></script>
+    <!-- <script src="../tools/loading.js"></script> -->
 
-    <script type = "text/javascript" >
-        //when you click the back button of the browser, this script prevent you from going bac
-        function preventBack(){window.history.forward();}
-        setTimeout("preventBack()", 0);
-        window.onunload=function(){null};
-    </script>
+
 </head>
 <body>
 <div class="container">
@@ -36,7 +31,7 @@
     <div class="row gx-3">
         <div class="col-auto legend_drag_div">
             <div id = "legend"></div>
-            <div id="dragdrop" class="bg-light"></div>
+            <!-- <div id="dragdrop" class="bg-light"></div> -->
         </div>
         <div class="col-auto">
             <div id="chartDiv" class="chartDiv"></div>
@@ -59,42 +54,67 @@
     window.mytrrack = trrack;
     window.mytrrack_actions = trrack_actions;
     window.action = trrack_actions;
+
+    window.barGeoReplayIndex = 0
+
+    window.barGeoData = {}
+    
     Revisit.onProvenanceReceive((state) => {
         // console.log('provenance', state)
+
             parameters = state['bargeo']
-            console.log("parameters", parameters)
+            console.log("replay parameters", parameters)
 
-            let selectedCat = parameters['selectedCat']
-
-            if(chartName.endsWith('Geo')){
-                    console.log('geo redraw')
-                    //draw textures for category i
-                    geo_getParameters(selectedCat)
-                    geo_setCatPattern(selectedCat)
+            if(barGeoReplayIndex == 0){
+                for(let i = 0; i < 7; i++){
+                    geo_getParameters(i)
+                    updateGeoPatternForCategory(i, parameters);
+                    
                 }
-            if(chartName.endsWith('Icon')){
-                console.log('icon redraw')
-                //draw textures for category i
-                icon_getParameters(selectedCat)
-                icon_setCatPattern(selectedCat, patternSize)
+                barGeoReplayIndex = 1
+                barGeoData = parameters["data"]
             }
 
-            //we redraw the textures of all categories, based on the new parameters
-            // for(let i = 0; i < fruits.length; i++){
-            //     //since geometric texture and iconic texture have different parameters set, here we need to distinguish them
-            //     if(chartName.endsWith('Geo')){
-            //         console.log('geo redraw')
-            //         //draw textures for category i
-            //         geo_getParameters(i)
-            //         geo_setCatPattern(i)
-            //     }
-            //     if(chartName.endsWith('Icon')){
-            //         console.log('icon redraw')
-            //         //draw textures for category i
-            //         icon_getParameters(i)
-            //         icon_setCatPattern(i, patternSize)
-            //     }
-            // }
+            // Compare if current dataset values match parameters["data"] values
+            let dataMatches = true;
+            for (let i = 0; i < 7; i++) {
+                if (barGeoData[i].value !== parameters["data"][i].value) {
+                    dataMatches = false;
+                    break;
+                }
+            }
+            if (dataMatches) {
+                console.log("current dataset values match parameters data values exactly");
+            } else {
+                console.log("current dataset values differ from parameters data values");
+                document.getElementById('chartDiv').innerHTML = ''
+                drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+                geoTextures(d3.select('#chartA'),fruits)
+                let mydata = parameters['data']
+                window.barGeoData = mydata
+                drawGeoBarWithTexture(mydata, barWidth, barHeight, 'chart')
+                drawBarIndicators(mydata, barWidth, barHeight, 'chart', 30)
+                // geo_setInitialParameters(chartName, mydata)
+                setSelectCat(chartName)
+            }
+
+
+
+
+
+
+
+            //we redraw the textures  based on the new parameters
+            let selectedCat = parameters['selectedCat']
+            // geo_selectCat(selectedCat)
+            updateSelectionIndicators(selectedCat);
+            updateGeoPatternControllers(selectedCat, parameters);
+
+            geo_getParameters(selectedCat)
+
+            for(let i = 0; i < 7; i++){
+                updateGeoPatternForCategory(i, parameters);
+            }
 
             let controlOutline = document.getElementById('controlOutline')
             controlOutline.value = parameters['outline']
@@ -104,9 +124,10 @@
                 controlHalo.value = parameters['halo']
             }
             drawOutline('chart_outline', parameters['outline'], 'chart_halo', parameters['halo'])
-            console.log("controlLineDensity", controlLineDensity.value)
         }
     )
+
+    
 </script>
 <script>
     Revisit.onDataReceive((data) => {
@@ -132,7 +153,7 @@
     const defaultDataBtn = document.getElementById('defaultDataBtn')
 
     var parametersList
-    var parameters
+    var parameters = {}
 
 
     const undoBtn = document.getElementById("undoBtn")
@@ -317,7 +338,7 @@ const selectDefaultTexture = document.getElementById("selectDefaultTexture")
 //end of UI elements
 
 //data
-let mydata = getDatasetForChart()
+    let mydata = getDatasetForChart()
     
     drawGeoBarWithTexture(mydata, barWidth, barHeight, 'chart')
     drawBarIndicators(mydata, barWidth, barHeight, 'chart', 30)
@@ -325,9 +346,12 @@ let mydata = getDatasetForChart()
     drawGeoLegend(fruits)
 
     //initialize
-    geo_setInitialParameters(chartName)
+    geo_setInitialParameters(chartName, mydata)
 
     setSelectCat(chartName)
+
+
+
 
     })
 </script>

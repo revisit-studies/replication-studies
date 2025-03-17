@@ -1,5 +1,6 @@
 
 
+
 /**
  *
  * draw UI elements of tools on the interface
@@ -56,15 +57,163 @@ function drawToolbar(toolbarID){
     dataBtn.onclick = function(){
         localStorage.setItem('defaultData', 0) //0: random data, 1: default data
 
-        //Everytime we reload the window we will reset dataset
-        window.location.reload()
+        if (chartName === "barGeo") {
+            document.getElementById('chartDiv').innerHTML = ''
+            drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+            geoTextures(d3.select('#chartA'),fruits)
+            let mydata = getDatasetForChart()
+            drawGeoBarWithTexture(mydata, barWidth, barHeight, 'chart')
+            drawBarIndicators(mydata, barWidth, barHeight, 'chart', 30)
+            geo_setInitialParameters(chartName, mydata)
+            setSelectCat(chartName)
+        }
+
+        if (chartName === "barIcon"){
+            document.getElementById('chartDiv').innerHTML = ''
+            drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+            iconTextures(d3.select('#chartA'),fruits)
+            //data
+            let mydata = getDatasetForChart()
+
+            drawIconBarWithTexture(mydata, barWidth,barHeight, 'chart')
+            drawBarIndicators(mydata, barWidth, barHeight, 'chart', 30)
+
+            //initialize
+            icon_setInitialParameters(chartName, mydata)
+
+            setSelectCat(chartName)
+
+        }
+
+        if(chartName === "pieGeo"){
+            document.getElementById('chartDiv').innerHTML = ''
+            drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+            geoTextures(d3.select('#chartA'),fruits)
+            //data
+            let mydata = getDatasetForChart()
+
+            drawGeoPieWithTexture(mydata, pieRadius, 'chart')
+            drawPieIndicators(mydata, pieRadius, 'chart', 30)
+
+            //initialize
+            geo_setInitialParameters(chartName, mydata)
+
+            setSelectCat(chartName)
+        }
+
+        if(chartName === "pieIcon"){
+            document.getElementById('chartDiv').innerHTML = ''
+            drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+            iconTextures(d3.select('#chartA'),fruits)
+
+            let mydata = getDatasetForChart()
+
+            drawIconPieWithTexture(mydata, pieRadius, 'chart')
+            drawPieIndicators(mydata, pieRadius, 'chart', 30)
+
+            //initialize
+            icon_setInitialParameters(chartName, mydata)
+
+            setSelectCat(chartName)
+        }
+        
+        if(chartName === "mapGeo"){
+            document.getElementById('chartDiv').innerHTML = ''
+            drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+            geoTextures(d3.select('#chartA'),fruits)
+            let mydata = getDatasetForMap()
+            drawGeoMapWithTexture(mydata, mapWidth, mapHeight, 'chart')
+        }
+
+        if(chartName === "mapIcon"){
+            document.getElementById('chartDiv').innerHTML = ''
+            drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+            iconTextures(d3.select('#chartA'),fruits)
+            let mydata = getDatasetForMap()
+            drawIconMapWithTexture(mydata, mapWidth, mapHeight, 'chart')
+        }
     }
 
     defaultDataBtn.onclick = function(){
         localStorage.setItem('defaultData', 1)//0: random data, 1: default data
 
-        //Everytime we reload the window we will reset dataset
-        window.location.reload()
+            if (chartName === "barGeo") {
+                document.getElementById('chartDiv').innerHTML = ''
+                drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+                geoTextures(d3.select('#chartA'),fruits)
+                let mydata = defaultDataset
+                drawGeoBarWithTexture(mydata, barWidth, barHeight, 'chart')
+                drawBarIndicators(mydata, barWidth, barHeight, 'chart', 30)
+                geo_setInitialParameters(chartName, mydata)
+                setSelectCat(chartName)
+            }
+    
+            if (chartName === "barIcon"){
+                document.getElementById('chartDiv').innerHTML = ''
+                drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+                iconTextures(d3.select('#chartA'),fruits)
+                //data
+                let mydata = defaultDataset
+    
+                drawIconBarWithTexture(mydata, barWidth,barHeight, 'chart')
+                drawBarIndicators(mydata, barWidth, barHeight, 'chart', 30)
+    
+                //initialize
+                icon_setInitialParameters(chartName, mydata)
+    
+                setSelectCat(chartName)
+    
+            }
+    
+            if(chartName === "pieGeo"){
+                document.getElementById('chartDiv').innerHTML = ''
+                drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+                geoTextures(d3.select('#chartA'),fruits)
+                //data
+                let mydata = defaultDataset
+    
+                drawGeoPieWithTexture(mydata, pieRadius, 'chart')
+                drawPieIndicators(mydata, pieRadius, 'chart', 30)
+    
+                //initialize
+                geo_setInitialParameters(chartName, mydata)
+    
+                setSelectCat(chartName)
+            }
+    
+            if(chartName === "pieIcon"){
+                document.getElementById('chartDiv').innerHTML = ''
+                drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+                iconTextures(d3.select('#chartA'),fruits)
+    
+                let mydata = defaultDataset
+    
+                drawIconPieWithTexture(mydata, pieRadius, 'chart')
+                drawPieIndicators(mydata, pieRadius, 'chart', 30)
+    
+                //initialize
+                icon_setInitialParameters(chartName, mydata)
+    
+                setSelectCat(chartName)
+            }
+            
+            if(chartName === "mapGeo"){
+                document.getElementById('chartDiv').innerHTML = ''
+                drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+                geoTextures(d3.select('#chartA'),fruits)
+                let mydata = defaultMapDataset
+                drawGeoMapWithTexture(mydata, mapWidth, mapHeight, 'chart')
+            }
+    
+            if(chartName === "mapIcon"){
+                document.getElementById('chartDiv').innerHTML = ''
+                drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+                iconTextures(d3.select('#chartA'),fruits)
+                let mydata = defaultMapDataset
+                drawIconMapWithTexture(mydata, mapWidth, mapHeight, 'chart')
+            }
+     //Everytime we reload the window we will reset dataset
+        // window.location.reload()
     }
 
     resetBtn.onclick = function(){
@@ -73,23 +222,53 @@ function drawToolbar(toolbarID){
 
             parameters = {...parameters, ...bertinTextures[defaultBertinTexturesIndex]} //partly update the parameters object
 
+            parameters["defaultBertinTexturesIndex"] = defaultBertinTexturesIndex
+
             for(let i = 0; i < fruits.length; i++){
                 geo_getParameters(i)
                 geo_setCatPattern(i)
             }
 
-            controlOutline.value = parameters['outline']
-            if(controlHalo){
-                controlHalo.value = parameters['halo']
-            }
-
-            parametersList.push(cloneParameters(parameters))
-            localStorage.setItem(chartName+'parametersList', JSON.stringify(parametersList))
 
         }
         if(chartName.endsWith('Icon')){
-            icon_defaultParameters(chartName)
+            for(let i = 0; i < fruits.length; i++){
+                parameters["iconPattern"+i+"IconStyle"] = 0
+                parameters["iconPattern"+i+"Density"] = 45
+
+                //we do not need iconStyle[i] = 0, because in the function icon_setCatPattern, we will set iconStyle[i] based on iconStyleRadios
+                // iconStyleRadios[0].checked = true
+                // iconStyle[i] = 0
+        
+        
+                // controlSize.max = patternSize/controlDensity.value * overlap_ratio
+                // controlSize.value = patternSize/controlDensity.value
+                parameters["iconPattern"+i+"SizeMax"] = parameters["iconPattern"+i+"Density"] * overlap_ratio
+                parameters["iconPattern"+i+"Size"] = parameters["iconPattern"+i+"Density"]
+                parameters["iconPattern"+i+"X"] = 0
+                parameters["iconPattern"+i+"Y"] = 0
+                parameters["iconPattern"+i+"RotateIcon"] = 45
+                parameters["iconPattern"+i+"Rotate"] = 315
+        
+                parameters["iconPattern"+i+"Background"] = 0
+                // parameters["iconPattern"+i+"BackgroundWhite"] = true
+                // localStorage.setItem(chartName + "_iconPattern"+i+"Background", iconBackground[i])
+        
+                icon_getParameters(i)
+                icon_setCatPattern(i, patternSize)
+                // icon_setParameters(i)
+            }
         }
+
+        parameters['outline'] = 1
+        controlOutline.value = parameters['outline']
+        if(controlHalo){
+            parameters['halo'] = 1
+            controlHalo.value = parameters['halo']
+        }
+        addParametersToList(chartName, parameters)
+        revisitPostParameters(chartName, parameters, mytrrack, action)
+
 
     }
 
@@ -331,7 +510,7 @@ function drawCheckbox(checkboxID, checkboxClass, labelText){
  */
 function drawChartDiv(chartDivID, width, height, chart){
     //create div structure
-    let chartContainerDiv = document. createElement('div')
+    let chartContainerDiv = document.createElement('div')
     $('#'+chartDivID).append(chartContainerDiv)
     chartContainerDiv.style.position = 'relative'
 
@@ -1478,6 +1657,7 @@ function drawGeoBarWithTexture(data, width, height, chart){
 
     //set Outline controller
     controlOutline.oninput = function(){
+        parameters["outline"] = controlOutline.value
         drawOutline('chart_outline', controlOutline.value)
         revisitPostParameters(chartName, parameters, mytrrack, action)
     }
@@ -1646,6 +1826,7 @@ function drawGeoPieWithTexture(data, radius, chart){
 
     //change outline based on the value of outline controller
     controlOutline.oninput = function(){
+        parameters["outline"] = controlOutline.value
         drawOutline('chart_outline', controlOutline.value, 'chart_halo', controlHalo.value)
         // arcBlackStroke.style('stroke-width', controlOutline.value)
         // arcWhiteStroke.style('stroke-width', parseFloat(controlHalo.value) + parseFloat(controlOutline.value))
@@ -1653,6 +1834,7 @@ function drawGeoPieWithTexture(data, radius, chart){
     }
 
     controlHalo.oninput = function(){
+        parameters["halo"] = controlHalo.value
         drawOutline('chart_outline', controlOutline.value, 'chart_halo', controlHalo.value)
         // arcBlackStroke.style('stroke-width', controlOutline.value)
         // arcWhiteStroke.style('stroke-width', parseFloat(controlHalo.value) + parseFloat(controlOutline.value))
@@ -1734,16 +1916,18 @@ function drawGeoMapWithTexture(data, width, height, chart){
         })
 
         //initialize: for map, we have to put this initialize function here in the Promise.
-        geo_setInitialParameters(chartName)
+        geo_setInitialParameters(chartName, data)
 
         // change Map's outline based on the value of outline controller
         controlOutline.oninput = function(){
+            parameters["outline"] = controlOutline.value
             drawOutline('chart_outline', controlOutline.value, 'chart_halo', controlHalo.value)
             // drawMapOutline(data, controlOutline.value, controlHalo.value)
             revisitPostParameters(chartName, parameters, mytrrack, action)
         }
 
         controlHalo.oninput = function(){
+            parameters["halo"] = controlHalo.value
             drawOutline('chart_outline', controlOutline.value, 'chart_halo', controlHalo.value)
             // drawMapHalo(data, controlOutline.value, controlHalo.value)
             revisitPostParameters(chartName, parameters, mytrrack, action)
@@ -1770,8 +1954,15 @@ function drawGeoMapWithTexture(data, width, height, chart){
             d3.selectAll(".category"+i)
                 .on("click", function(event, d){// let controllers control the selected bar
                     console.log("selected pattern"+i)
+                    
                     geo_selectCat(i)
                     localStorage.setItem(chartName + "_selectedCat", i)
+
+                    parameters["chartName"] = chartName
+                    parameters["selectedCat"] = i
+                    console.log("parameters", parameters)
+                    addParametersToList(chartName, parameters)
+                    revisitPostParameters(chartName, parameters, mytrrack, action)
 
                     //add color indicator on the outline of the selected regions.
                     d3.selectAll('.blackStroke')
@@ -1789,7 +1980,7 @@ function drawGeoMapWithTexture(data, width, height, chart){
                 })
         }
 
-        geo_switchTextures(chartName)
+        // geo_switchTextures(chartName)
 
     });
 }
@@ -1820,6 +2011,7 @@ function drawIconBarWithTexture(data, width, height, chart){
 
     //change outline based on the value of outline controller
     controlOutline.oninput = function(){
+        parameters["outline"] = controlOutline.value
         drawOutline('chart_outline', controlOutline.value)
         // bars.style('stroke-width', controlOutline.value)
         revisitPostParameters(chartName, parameters, mytrrack, action)
@@ -1889,7 +2081,7 @@ function drawIconMapWithTexture(data, width, height, chart){
         })
 
         //Initialize
-        icon_setInitialParameters(chartName)
+        icon_setInitialParameters(chartName, data)
 
         //Initialize outline stroke width
         // csv.forEach(function(e,i) {
@@ -1916,6 +2108,7 @@ function drawIconMapWithTexture(data, width, height, chart){
 
         // change Map's outline based on the value of outline controller
         controlOutline.oninput = function(){
+            parameters["outline"] = controlOutline.value
             drawOutline('chart_outline', controlOutline.value, 'chart_halo', controlHalo.value)
             // data.forEach(function(e,i) {
             //     d3.select("#dWhiteStroke" + e.CODE_DEPT)
@@ -1928,6 +2121,7 @@ function drawIconMapWithTexture(data, width, height, chart){
         }
 
         controlHalo.oninput = function(){
+            parameters["halo"] = controlHalo.value
             drawOutline('chart_outline', controlOutline.value, 'chart_halo', controlHalo.value)
             // data.forEach(function(e,i) {
             //     d3.select("#dWhiteStroke" + e.CODE_DEPT)
@@ -1965,6 +2159,14 @@ function drawIconMapWithTexture(data, width, height, chart){
                     icon_selectCat(i, departementIndex)
                     localStorage.setItem(chartName + "_selectedCat", i)
 
+                    localStorage.setItem(chartName + '_selectedCat', i)
+
+                    parameters["chartName"] = chartName
+                    parameters["selectedCat"] = i
+                    console.log("parameters", parameters)
+                    addParametersToList(chartName, parameters)
+                    revisitPostParameters(chartName, parameters, mytrrack, action)
+
                     d3.selectAll('.blackStroke')
                         .attr('stroke', 'black')
 
@@ -1983,7 +2185,7 @@ function drawIconMapWithTexture(data, width, height, chart){
                 })
         }
 
-        icon_switchTextures(chartName)
+        // icon_switchTextures(chartName)
 
     })
 }
@@ -2020,6 +2222,7 @@ function drawIconPieWithTexture(data, radius, chart){
 
     //change outline based on the value of outline controller
     controlOutline.oninput = function(){
+        parameters["outline"] = controlOutline.value
         drawOutline('chart_outline', controlOutline.value, 'chart_halo', controlHalo.value)
         // arcBlackStroke.style('stroke-width', controlOutline.value)
         // arcWhiteStroke.style('stroke-width', parseFloat(controlHalo.value)+ parseFloat(controlOutline.value)+ parseFloat(controlOutline.value))
@@ -2380,23 +2583,6 @@ function undo(chartName){
             }
 
 
-            //we redraw the textures of all categories, based on the new parameters
-            // for(let i = 0; i < fruits.length; i++){
-            //     //since geometric texture and iconic texture have different parameters set, here we need to distinguish them
-            //     if(chartName.endsWith('Geo')){
-            //         console.log('geo redo')
-            //         //draw textures for category i
-            //         geo_getParameters(i)
-            //         geo_setCatPattern(i)
-            //     }
-            //     if(chartName.endsWith('Icon')){
-            //         console.log('icon redo')
-            //         //draw textures for category i
-            //         icon_getParameters(i)
-            //         icon_setCatPattern(i, patternSize)
-            //     }
-            // }
-
             let controlOutline = document.getElementById('controlOutline')
             controlOutline.value = parameters['outline']
 
@@ -2406,6 +2592,8 @@ function undo(chartName){
             }
             drawOutline('chart_outline', parameters['outline'], 'chart_halo', parameters['halo'])
         }
+
+        revisitPostParameters(chartName, parameters, mytrrack, action)
     }else{
         console.log('cannot undo, because the pointer is:'+pointer)
         alert('cannot undo')
@@ -2450,21 +2638,6 @@ function redo(chartName){
                     icon_setCatPattern(selectedCat, patternSize)
                     icon_selectCat(selectedCat)
                 }
-    
-                // //we redraw the textures of all categories, based on the new parameters
-                // for(let i = 0; i < fruits.length; i++){
-                //     //since geometric texture and iconic texture have different parameters set, here we need to distinguish them
-                //     if(chartName.endsWith('Geo')){
-                //         //draw textures for category i
-                //         geo_getParameters(i)
-                //         geo_setCatPattern(i)
-                //     }
-                //     if(chartName.endsWith('Icon')){
-                //         //draw textures for category i
-                //         icon_getParameters(i)
-                //         icon_setCatPattern(i, patternSize)
-                //     }
-                // }
                 let controlOutline = document.getElementById('controlOutline')
                 controlOutline.value = parameters['outline']
 
@@ -2474,6 +2647,7 @@ function redo(chartName){
                 }
                 drawOutline('chart_outline', parameters['outline'], 'chart_halo', parameters['halo'])
             }
+            revisitPostParameters(chartName, parameters, mytrrack, action)
         }else{
             alert('cannot redo')
         }
@@ -2755,6 +2929,7 @@ function geo_selectCat(i){
                 patternType[i] = j
                 geo_setCatPattern(i)
             }
+            revisitPostParameters(chartName, parameters, mytrrack, action)
         }
     }
 
@@ -3683,14 +3858,12 @@ function geo_selectCat(i){
 
 
 //set initial parameters when the window loads
-function geo_setInitialParameters(chartName){
+function geo_setInitialParameters(chartName, mydata){
     console.log("geo_setInitialParameters", chartName)
 
     
     // parameters["chartName"] = chartName
     
-
-
     //if we did not save parameters in the local storage
     if(localStorage.getItem(chartName+"parametersList") == null || JSON.parse(localStorage.getItem(chartName+"parametersList")).length === 0){
         //get the index of Bertin textures when first loading this page, and save it to local storage, for reset button
@@ -3698,6 +3871,8 @@ function geo_setInitialParameters(chartName){
         localStorage.setItem('defaultBertinTexturesIndex',defaultBertinTexturesIndex)
         document.getElementById("selectDefaultTexture").selectedIndex = defaultBertinTexturesIndex;
     }else{
+
+        
         //if there are paramters in the local storage, we retrieve the parametersList
         parametersList = JSON.parse(localStorage.getItem(chartName+"parametersList") || "[]")
 
@@ -3716,18 +3891,20 @@ function geo_setInitialParameters(chartName){
         drawOutline('chart_outline', parameters['outline'], 'chart_halo', parameters['halo'])
     }
 
+    parameters['data'] = mydata
+
     //set selectedCat
     if(localStorage.getItem(chartName + "_selectedCat") == null){
         geo_selectCat(0)
         parameters["selectedCat"] = 0
-        addParametersToList(chartName, parameters)
     }else{
         geo_selectCat(Number(localStorage.getItem(chartName + "_selectedCat")))
         parameters["selectedCat"] = Number(localStorage.getItem(chartName + "_selectedCat"))
-        addParametersToList(chartName, parameters)
+        
     }
 
     getSameCheckboxesStatus(chartName)
+    addParametersToList(chartName, parameters)
     revisitPostParameters(chartName, parameters, mytrrack, action)
     
 }
@@ -3784,6 +3961,8 @@ function geo_getParameters(i){
     patternType[i] = parameters["patternType"+i]
     patternTypeRadios[patternType[i]].checked = true
 
+    selectDefaultTexture.selectedIndex = parameters["defaultBertinTexturesIndex"]
+
     //line
     controlLineDensity.value = parameters["linePattern"+i+"Density"]
     // console.log("aaaaadocument.getElementById('controlLineDensity').value", document.getElementById("controlLineDensity").value)
@@ -3794,6 +3973,7 @@ function geo_getParameters(i){
     controlLineY.value = parameters["linePattern"+i+"Y"]
     controlLineRotate.value = parameters["linePattern"+i+"Rotate"]
     lineBackground[i] = parameters["linePattern"+i+"Background"]
+    controlLineBackgroundRadios[lineBackground[i]].checked = true
 
     //dot
     controlDotRotate.value = parameters["dotPattern"+i+"Rotate"]
@@ -3815,7 +3995,8 @@ function geo_getParameters(i){
     dotPrimitive[i] = parameters["dotPattern"+i+"Primitive"]
     controlDotPrimitiveStrokeWidth.max = parameters["dotPattern"+i+"PrimitiveStrokeWidthMax"]
     controlDotPrimitiveStrokeWidth.value = parameters["dotPattern"+i+"PrimitiveStrokeWidth"]
-
+    controlDotBackgroundRadios[dotBackground[i]].checked = true
+    controlDotPrimitiveRadios[dotPrimitive[i]].checked = true
     //grid
     controlGridDensity.value = parameters["gridPattern"+i+"Density"]
     controlGridStrokeWidth.max = parameters["gridPattern"+i+"StrokeWidthMax"]
@@ -3835,7 +4016,7 @@ function geo_defaultParameters(){
     parameters = {}
     parameters["chartName"] = chartName
     parameters["selectedCat"] = 0
-
+    
     for(let i = 0; i < fruits.length; i++){
         patternType[i] = 0
 
@@ -3887,6 +4068,8 @@ function geo_defaultParameters(){
 
     let defaultBertinTexturesIndex = Math.floor(Math.random() * bertinTextures.length)
     parameters = {...parameters, ...bertinTextures[defaultBertinTexturesIndex]} //partly update the parameters object, randomly import a texture set from bertinTextures list
+
+    parameters["defaultBertinTexturesIndex"] = defaultBertinTexturesIndex
 
     for(let i = 0; i < fruits.length; i++){
         geo_getParameters(i)
@@ -4043,21 +4226,40 @@ function geo_switchTextures(chartName){
 }
 
 function geo_selectDefaultTexture(){
+    console.log('selectDefaultTexture')
     parameters = {...parameters, ...bertinTextures[selectDefaultTexture.selectedIndex]} //partly update the parameters object
 
+    parameters["defaultBertinTexturesIndex"] = selectDefaultTexture.selectedIndex
     for(let i = 0; i < fruits.length; i++){
         geo_getParameters(i)
         geo_setCatPattern(i)
+        // addParametersToList(chartName, parameters)
     }
+    
     controlOutline.value = parameters['outline']
     if(controlHalo){
         controlHalo.value = parameters['halo']
     }
 
-    addParametersToList(chartName, parameters)
-    revisitPostParameters(chartName, parameters, mytrrack, action)
-    // parametersList.push(cloneParameters(parameters))
-    // localStorage.setItem(chartName+'parametersList', JSON.stringify(parametersList))
+
+    const paramsClone = cloneParameters(parameters)
+    addParametersToList(chartName, paramsClone)
+    revisitPostParameters(chartName, paramsClone, mytrrack, action)
+    console.log('geo_selectDefaultTexture parameters', paramsClone)
+
+    // async function processCategories(parameters, chartName, mytrrack, action) {
+    //     for(let i = 0; i < fruits.length; i++){
+    //         parameters["selectedCat"] = i
+    //         // Clone parameters before sending to ensure correct selectedCat value
+
+            
+    //         // Add 100ms delay between iterations
+    //         await new Promise(resolve => setTimeout(resolve, 100))
+    //     }
+    // }
+
+    // // Call the async function
+    // processCategories(parameters, chartName, mytrrack, action)
 }
 
 /** iconic texture editing functions */
@@ -4455,7 +4657,7 @@ function icon_selectCat(i){ //i: i-th Cat
     }
 }
 
-function icon_setInitialParameters(chartName){
+function icon_setInitialParameters(chartName, mydata){
 
     if(localStorage.getItem(chartName+"parametersList") == null || JSON.parse(localStorage.getItem(chartName+"parametersList")).length === 0){
         icon_defaultParameters(chartName)
@@ -4473,6 +4675,8 @@ function icon_setInitialParameters(chartName){
         }
         drawOutline('chart_outline', parameters["outline"], 'chart_halo', parameters["halo"])
     }
+
+    parameters['data'] = mydata
 
     //set selectedCat
     if(localStorage.getItem(chartName + "_selectedCat") == null){
@@ -4523,7 +4727,6 @@ function icon_defaultParameters(chartName){
     parameters = {}
     parameters["chartName"] = chartName
     parameters["selectedCat"] = 0
-
     for(let i = 0; i < fruits.length; i++){
 
         //we do not need iconStyle[i] = 0, because in the function icon_setCatPattern, we will set iconStyle[i] based on iconStyleRadios
@@ -5060,7 +5263,7 @@ function revisitPostParameters(chartName, parameters, trrack, action){
         }
     )
     console.log("postAnswers")
-    // console.log(parameters)
+    console.log(parameters)
         
 }
 
@@ -5107,6 +5310,7 @@ function saveParameters(chartName){
  * @param chartName
  */
 function setSelectCat(chartName){
+    // console.log('setSelectCat'+i)
     //select a category
     for(let i=0; i < fruits.length;i++){
         d3.selectAll('.category'+i)
@@ -5125,6 +5329,7 @@ function setSelectCat(chartName){
                 parameters["selectedCat"] = i
                 console.log("parameters", parameters)
                 addParametersToList(chartName, parameters)
+                revisitPostParameters(chartName, parameters, mytrrack, action)
             })
     }
 }
@@ -6160,9 +6365,301 @@ function generateRandomMapDataset(){
 
 
 
+/**
+     * Updates the geometric pattern visualization for a single category based on the provided parameters
+     * @param {number} i - The category index (0-6) to update
+     * @param {Object} parameters - Object containing all pattern settings including:
+     *   - patternType[i]: The type of geometric pattern (0=line, 1=dot, 2=grid)
+     *   - linePattern[i]*, dotPattern[i]*, gridPattern[i]*: Various pattern-specific parameters
+     *     like density, rotation, stroke width, background color, etc.
+     * This function handles updating a single category's geometric pattern by:
+     *   - Applying the pattern fill to all elements of the category
+     *   - Updating pattern attributes (size, rotation, position)
+     *   - Setting colors and styles based on background settings
+     */
+function updateGeoPatternForCategory(i, parameters) {
+    switch(parameters["patternType"+i]){ 
+        case 0: //pattern type: line texture
+            console.log("category"+i+"pattern type: line")
+
+            d3.selectAll(".category"+i+":not(text)") // select by class
+                .attr("fill", "url(#linePattern" + i + ")")
+
+            let linePattern = document.getElementById("linePattern"+i);
+            let linePatternLine = document.getElementById("linePattern"+i+"Line0")
+            let linePatternBackground = document.getElementById("linePattern" + i +"Background")
+
+            //set the parameters of the line texture according to controllers' values
+            linePattern.setAttribute("patternTransform", "translate(" + parameters["linePattern"+i+"X"]+","+parameters["linePattern"+i+"Y"]+") rotate("+parameters["linePattern"+i+"Rotate"]+")")
+            linePattern.setAttribute("width", parameters["linePattern"+i+"Density"])
+            linePattern.setAttribute("height", parameters["linePattern"+i+"Density"])
+            linePatternLine.setAttribute("stroke-width", parameters["linePattern"+i+"StrokeWidth"])
+            linePatternLine.setAttribute("transform", "translate(0," + parameters["linePattern"+i+"Density"]/2+")")
+            
+            if(parameters["linePattern"+i+"Background"] == 1){
+                linePatternBackground.setAttribute("fill", "black")
+                linePatternLine.setAttribute("stroke", "white")
+            }else if(parameters["linePattern"+i+"Background"] == 0){
+                linePatternBackground.setAttribute("fill", "white")
+                linePatternLine.setAttribute("stroke", "black")
+            }
+            break
+
+        case 1: //pattern type: dot texture
+            console.log("category"+i+"pattern type: dot")
+
+            //set the fill of i-th category elements to dot textures
+            d3.selectAll(".category"+i+":not(text)") //we add ":not(text)" to avoid fill texture to the legend labels
+                .attr("fill", "url(#dotPattern" + i + ")")
+
+            let dotPattern = document.getElementById("dotPattern"+i)
+            let dotPatternCircle = document.getElementById("dotPattern"+i+"Circle0")
+            let dotPatternBackground = document.getElementById("dotPattern" + i +"Background")
+
+            //set the parameters of the dot texture according to controllers' values
+            dotPattern.setAttribute("patternTransform", "translate(" + parameters["dotPattern"+i+"X"]+","+parameters["dotPattern"+i+"Y"]+") rotate("+parameters["dotPattern"+i+"Rotate"]+")")
+            dotPattern.setAttribute("width", parameters["dotPattern"+i+"Density"])
+            dotPattern.setAttribute("height", parameters["dotPattern"+i+"Density"])
+            dotPatternCircle.setAttribute("r", parameters["dotPattern"+i+"Size"])
+            dotPatternCircle.setAttribute("cx", parameters["dotPattern"+i+"Density"]/2)
+            dotPatternCircle.setAttribute("cy", parameters["dotPattern"+i+"Density"]/2)
+            dotPatternCircle.setAttribute("stroke-width", parameters["dotPattern"+i+"StrokeWidth"])
+           
+
+            if(parameters["dotPattern"+i+"Background"] == 1){
+                dotPatternBackground.setAttribute("fill", "black")
+                dotPatternCircle.setAttribute("fill", "white")
+                dotPatternCircle.setAttribute("stroke", "white")
+            }else if(parameters["dotPattern"+i+"Background"] == 0){
+                dotPatternBackground.setAttribute("fill", "white")
+                dotPatternCircle.setAttribute("fill", "black")
+                dotPatternCircle.setAttribute("stroke", "black")
+            }
+
+
+            if(parameters["dotPattern"+i+"Primitive"] == 0){
+                dotPatternCircle.setAttribute("fill-opacity", 1)
+                dotPatternCircle.setAttribute("stroke-opacity", 0)
+                document.getElementById("controlDotPrimitiveStrokeWidthDiv").style.display = "none"
+            }
+
+            if(parameters["dotPattern"+i+"Primitive"] == 1){
+                dotPatternCircle.setAttribute("fill-opacity", 0)
+                dotPatternCircle.setAttribute("stroke-opacity", 1)
+                document.getElementById("controlDotPrimitiveStrokeWidthDiv").style.display = "block"
+            }
+
+            break
+
+        case 2:
+            console.log("category"+i+"pattern type: grid")
+
+            //set the fill of i-th category elements to dot textures
+            d3.selectAll(".category"+i+":not(text)")
+                .attr("fill", "url(#gridPattern" + i + ")")
+
+
+            let gridPattern = document.getElementById("gridPattern"+ i)
+            let gridPatternLine= document.getElementById("gridPattern"+i+"Line0")
+
+            let gridPatternA = document.getElementById("gridPatternA"+ i)
+            let gridPatternALine= document.getElementById("gridPatternA"+i+"Line0")
+
+            let gridPatternBackground = document.getElementById("gridPattern" + i +"Background")
+
+            //set the parameters of the grid texture according to controllers' values
+            gridPattern.setAttribute("width", parameters["gridPattern"+i+"Density"])
+            gridPattern.setAttribute("height", parameters["gridPattern"+i+"Density"])
+
+            gridPatternLine.setAttribute("stroke-width", parameters["gridPattern"+i+"StrokeWidth"])
+
+            gridPatternLine.setAttribute("transform", "translate(0," + parameters["gridPattern"+i+"Density"]/2+")")
+
+            gridPattern.setAttribute("patternTransform", "translate(" + parameters["gridPattern"+i+"X"]+","+parameters["gridPattern"+i+"Y"]+") rotate("+(parseFloat(parameters["gridPattern"+i+"Angle"]) + parseFloat(parameters["gridPattern"+i+"Rotate"]))+")")
+
+            //set the parameters of the grid texture according to controllers' values
+            gridPatternA.setAttribute("width", parameters["gridPattern"+i+"Density"])
+            gridPatternA.setAttribute("height", parameters["gridPattern"+i+"Density"])
+
+            gridPatternALine.setAttribute("stroke-width", parameters["gridPattern"+i+"StrokeWidth"])
+            gridPatternALine.setAttribute("transform", "translate(0," + parameters["gridPattern"+i+"Density"]/2+")")
+
+            gridPatternA.setAttribute("patternTransform", "translate(" + parameters["gridPattern"+i+"X"]+","+parameters["gridPattern"+i+"Y"]+") rotate("+(180 - parseFloat(parameters["gridPattern"+i+"Angle"]) + parseFloat(parameters["gridPattern"+i+"Rotate"]))+")")
+
+
+            // controlGridStrokeWidth.max = controlGridDensity.value
+
+            // controlGridBackgroundRadios[gridBackground[i]].checked = true
+
+            if(parameters["gridPattern"+i+"Background"] == 1){
+                gridPatternBackground.setAttribute("fill", "black")
+                gridPatternLine.setAttribute("stroke", "white")
+                gridPatternALine.setAttribute("stroke", "white")
+            }else if(parameters["gridPattern"+i+"Background"] == 0){
+                gridPatternBackground.setAttribute("fill", "white")
+                gridPatternLine.setAttribute("stroke", "black")
+                gridPatternALine.setAttribute("stroke", "black")
+            }
+
+            break
+    }
+}
+
+
+/**
+     * Updates the visual indicators showing which category is currently selected
+     * @param {number} selectedCat - Index of the selected category (0-6)
+     */
+function updateSelectionIndicators(selectedCat) {
+    if(chartName.endsWith("icon")){
+        //set legend image as the icon of the selected fruit
+        detailImg.setAttribute("href", "#" + "detail_"+ fruits[selectedCat] +"_fix")
+        strokeImg.setAttribute("href", "#" + "stroke_"+ fruits[selectedCat] +"_fix")
+        simpleStrokeImg.setAttribute("href", "#" + "simple_stroke_"+ fruits[selectedCat] +"_fix")
+        simpleFillImg.setAttribute("href", "#" + "simple_fill_"+ fruits[selectedCat] +"_fix")
+    }
+    for(let j = 0; j < 7; j++){
+        const isSelected = j == selectedCat;
+        // Use blue (#1E90FF) for selected items, transparent for unselected
+        const fillColor = isSelected ? "#1E90FF" : "none";
+        // Use blue for selected text, black for unselected
+        const labelColor = isSelected ? "#1E90FF" : "#000000";
+        
+        // Update the bar indicators (except for map charts)
+        if(!chartName.startsWith("map")){
+            indicators[j].setAttribute("fill", fillColor);
+        }
+        // Update the legend indicators and labels
+        legendIndicators[j].setAttribute("fill", fillColor);
+        legendLabels[j].setAttribute("fill", labelColor);
+    }
+
+    if(chartName.startsWith("map")){
+        d3.selectAll('.blackStroke')
+        .attr('stroke', 'black')
+
+        d3.selectAll(".strokeCategory"+selectedCat)
+            .attr('filter', function(){this.parentNode.appendChild(this)}) //move the selected paths to the front of other paths
+            .attr('stroke', '#1E90FF')
+    }
+}
+
+/**
+ * Shows/hides the appropriate pattern controllers based on the selected pattern type
+ * @param {number} selectedCat - Index of the selected category (0-6)
+ * @param {Object} parameters - Object containing pattern parameters
+ * 
+ * Pattern types:
+ * 0 = line pattern
+ * 1 = dot pattern
+ * 2 = grid pattern
+ */
+function updateGeoPatternControllers(selectedCat, parameters) {
+    const lineControllersDiv = document.getElementById("lineControllersDiv");
+    const dotControllersDiv = document.getElementById("dotControllersDiv");
+    const gridControllersDiv = document.getElementById("gridControllersDiv");
+    
+    // Get the pattern type for the selected category
+    const patternType = parameters["patternType" + selectedCat];
+    
+    // Show only the controllers for the selected pattern type
+    lineControllersDiv.style.display = patternType == 0 ? "block" : "none";
+    dotControllersDiv.style.display = patternType == 1 ? "block" : "none";
+    gridControllersDiv.style.display = patternType == 2 ? "block" : "none";
+}
 
 
 
 
 
+ /**
+     * Updates the icon pattern styling for a specific category in the bar chart
+     * @param {number} i - The category index (0-6)
+     * @param {Object} parameters - Object containing all pattern parameters
+     * 
+     * This function handles:
+     * - Pattern dimensions and positioning
+     * - Icon size and placement within the pattern
+     * - Background colors
+     * - Icon style and rotation
+     * - Legend image updates
+     */
+ function updateIconPatternForCategory(i, parameters) {
+   // console.log('origin: iconStyle'+i+'='+ iconStyle[i])
+    //get elements of i-th category
+    let iconPatterns = document.getElementsByClassName("iconPatternCat"+i); // <pattern> for i-th iconPattern
 
+    //set attributes of <pattern>
+    for(let k = 0; k<iconPatterns.length;k++){
+        iconPatterns[k].setAttribute("width", parameters["iconPattern"+i+"Density"])
+        iconPatterns[k].setAttribute("height", parameters["iconPattern"+i+"Density"])
+
+        //position of <pattern> - X, Y, Rotation of texture
+        iconPatterns[k].setAttribute("patternTransform", "translate(" + parameters["iconPattern"+i+"X"]+","+parameters["iconPattern"+i+"Y"]+") rotate("+(360-parameters["iconPattern"+i+"RotateIcon"])+")")
+
+
+        //<use> elements within <pattern>
+        let iconPatternImgs = iconPatterns[k].getElementsByClassName("iconPattern"+i+"Img")
+
+        //<rect> element for background color within <pattern>
+        let iconPatternBackgrounds = document.getElementsByClassName("iconPattern" + i +"Background")
+
+        //width and height of <use> - Icon Size of texture
+        for(let j=0;j<iconPatternImgs.length;j++){
+            iconPatternImgs[j].setAttribute('height', parameters["iconPattern"+i+"Size"])
+            iconPatternImgs[j].setAttribute('width', parameters["iconPattern"+i+"Size"])
+        }
+
+        iconPatternImgs[1].setAttribute("x", -1 * parameters["iconPattern"+i+"Density"])
+        iconPatternImgs[2].setAttribute("x", parameters["iconPattern"+i+"Density"])
+        iconPatternImgs[3].setAttribute("y", -1 * parameters["iconPattern"+i+"Density"])
+        iconPatternImgs[4].setAttribute("y", parameters["iconPattern"+i+"Density"])
+        iconPatternImgs[5].setAttribute("x", -1 * parameters["iconPattern"+i+"Density"])
+        iconPatternImgs[5].setAttribute("y", -1 * parameters["iconPattern"+i+"Density"])
+        iconPatternImgs[6].setAttribute("x", parameters["iconPattern"+i+"Density"])
+        iconPatternImgs[6].setAttribute("y", -1 * parameters["iconPattern"+i+"Density"])
+        iconPatternImgs[7].setAttribute("x", -1 * parameters["iconPattern"+i+"Density"])
+        iconPatternImgs[7].setAttribute("y", parameters["iconPattern"+i+"Density"])
+        iconPatternImgs[8].setAttribute("x", parameters["iconPattern"+i+"Density"])
+        iconPatternImgs[8].setAttribute("y", parameters["iconPattern"+i+"Density"])
+
+        
+
+        //set background
+        if(parameters["iconPattern"+i+"Background"] == 1){
+            // iconPatternBackground.setAttribute("fill", "black")
+            for(let j = 0; j < iconPatternBackgrounds.length; j++){ //class: both Background of legend and chart
+                iconPatternBackgrounds[j].setAttribute("fill", "black")
+            }
+
+        }else if(parameters["iconPattern"+i+"Background"] == 0){
+            // iconPatternBackground.setAttribute("fill", "white")
+            for(let j = 0; j < iconPatternBackgrounds.length; j++){
+                iconPatternBackgrounds[j].setAttribute("fill", "white")
+            }
+        }
+
+        for(let j=0; j<iconPatternImgs.length; j++){
+            // iconPatternImgs[j].setAttribute("href", "../img/fruit/" + iconBackground[i]+ "-"+iconStyleList[iconStyle[i]] + "-"+ fruits[i]+".svg")
+            iconPatternImgs[j].setAttribute("href", "#" + iconStyleList[parameters["iconPattern"+i+"IconStyle"]] + "_"+ fruits[i])
+            iconPatternImgs[j].setAttribute("xlink:href", "#" + iconStyleList[parameters["iconPattern"+i+"IconStyle"]] + "_"+ fruits[i])
+            if(parameters["iconPattern"+i+"Background"]==0){
+                iconPatternImgs[j].setAttribute('fill', '#000000')
+            }
+            if(parameters["iconPattern"+i+"Background"]==1) {
+                iconPatternImgs[j].setAttribute('fill', '#ffffff')
+            }
+        }
+        let fruitIcon = document.getElementById(fruits[i]+'Icon'+parameters["iconPattern"+i+"IconStyle"])
+        // fruitIcon.setAttribute('transform', 'rotate('+controlRotateIcon.value+' '+controlSize.value/2 + ' '+ controlSize.value/2 +') translate(0 0)')
+        fruitIcon.setAttribute('transform', 'rotate('+parameters["iconPattern"+i+"RotateIcon"]+' 25 25) translate(0 0)')
+
+        legendImgs[i].setAttribute("href", "#" + iconStyleList[parameters["iconPattern"+i+"IconStyle"]] + "_"+ fruits[i] +"_fix")
+        if(parameters["iconPattern"+i+"Background"]==0){
+            legendImgs[i].setAttribute('fill', '#000000')
+        }
+        if(parameters["iconPattern"+i+"Background"]==1) {
+            legendImgs[i].setAttribute('fill', '#ffffff')
+        }
+    }
+}

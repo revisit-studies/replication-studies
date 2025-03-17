@@ -17,8 +17,8 @@ import ParallelCoordinates from './ParallelCoordinates';
  * @returns 2 Parallel Coordinate Plots
  */
 export default function ParallelCoordinatesWrapper({
-  r1, r2, shouldReRender = true, onClick, shouldNegate = false, higherFirst = true,
-}: {r1: number; r2: number, shouldReRender?: boolean, onClick: (n: number) => void, shouldNegate?: boolean, higherFirst?: boolean}) {
+  r1, r2, shouldReRender = true, onClick, shouldNegate = false, r1Left = true, r1DatasetName, r2DatasetName,
+}: {r1: number; r2: number, shouldReRender?: boolean, onClick: (n: number) => void, shouldNegate?: boolean, r1Left?: boolean, r1DatasetName: string, r2DatasetName: string}) {
   const [key, setKey] = useState<number>(0);
   const buttonARef = useRef<HTMLButtonElement | null>(null);
   const buttonBRef = useRef<HTMLButtonElement | null>(null);
@@ -51,25 +51,25 @@ export default function ParallelCoordinatesWrapper({
     };
   }, []);
 
-  return higherFirst ? (
+  return r1Left ? (
     <Group style={{ gap: '40px' }}>
       <Stack style={{ alignItems: 'center' }}>
-        <ParallelCoordinates key={key} onClick={() => handleClick(1)} v={r1} shouldNegate={shouldNegate} />
+        <ParallelCoordinates key={key} onClick={() => handleClick(1)} v={r1} shouldNegate={shouldNegate} datasetName={r1DatasetName} />
         <Button ref={buttonARef} style={{ marginLeft: '-30px' }} onClick={() => handleClick(1)}>A</Button>
       </Stack>
       <Stack style={{ alignItems: 'center' }}>
-        <ParallelCoordinates key={key + 1} onClick={() => handleClick(2)} v={r2} shouldNegate={shouldNegate} />
+        <ParallelCoordinates key={key + 1} onClick={() => handleClick(2)} v={r2} shouldNegate={shouldNegate} datasetName={r2DatasetName} />
         <Button ref={buttonBRef} style={{ marginLeft: '-30px' }} onClick={() => handleClick(2)}>B</Button>
       </Stack>
     </Group>
   ) : (
     <Group style={{ gap: '40px' }}>
       <Stack style={{ alignItems: 'center' }}>
-        <ParallelCoordinates key={key} onClick={() => handleClick(2)} v={r2} shouldNegate={shouldNegate} />
+        <ParallelCoordinates key={key} onClick={() => handleClick(2)} v={r2} shouldNegate={shouldNegate} datasetName={r2DatasetName} />
         <Button ref={buttonARef} style={{ marginLeft: '-30px' }} onClick={() => handleClick(2)}>A</Button>
       </Stack>
       <Stack style={{ alignItems: 'center' }}>
-        <ParallelCoordinates key={key + 1} onClick={() => handleClick(1)} v={r1} shouldNegate={shouldNegate} />
+        <ParallelCoordinates key={key + 1} onClick={() => handleClick(1)} v={r1} shouldNegate={shouldNegate} datasetName={r1DatasetName} />
         <Button ref={buttonBRef} style={{ marginLeft: '-30px' }} onClick={() => handleClick(1)}>B</Button>
       </Stack>
     </Group>

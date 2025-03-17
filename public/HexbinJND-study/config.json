@@ -12,11 +12,11 @@
     "contactEmail": "contact@revisit.dev",
     "helpTextPath": "HexbinJND-study/assets/help.md",
     "logoPath": "revisitAssets/revisitLogoSquare.svg",
-    "withProgressBar": false,
+    "withProgressBar": true,
     "autoDownloadStudy": false,
     "sidebar": false,
     "urlParticipantIdParam": "PROLIFIC_PID",
-    "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [yourProlificLink](yourProlificLink)",
+    "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [https://app.prolific.com/submissions/complete?cc=C1E35XG4](https://app.prolific.com/submissions/complete?cc=C1E35XG4)",
     "nextOnEnter": true,
     "participantNameField": "introduction.prolificId"
   },
@@ -26,7 +26,7 @@
       "path": "jnd-replication/vistaJND/src/components/vis/JNDHexbin.tsx",
       "nextButtonLocation": "sidebar",
       "response": [{ 
-        "id": "scatterSelections",
+        "id": "participantSelections",
         "prompt": "",
         "required": true,
         "location": "aboveStimulus",
@@ -45,7 +45,13 @@
         "required": true,
         "type": "reactive",
         "location": "aboveStimulus"
-      }]
+      }],
+      "correctAnswer": [
+        {
+          "id": "practiceResponse",
+          "answer": "true"
+        }
+      ]
     }
   },
   "components": {
@@ -89,39 +95,39 @@
     },
     "Hexbin plot T1 A:0.3 B:0.7": {
       "baseComponent": "practiceBase",
-      "parameters": { "r1": 0.3, "r2": 0.7, "taskid": "practiceResponse" }
+      "parameters": { "r1": 0.3, "r2": 0.7, "taskid": "practiceResponse", "correlationDirection": "positive" }
     },
     "Hexbin plot T2 A:0.9 B:0.6": {
       "baseComponent": "practiceBase",
-      "parameters": { "r1": 0.9, "r2": 0.6, "taskid": "practiceResponse" }
+      "parameters": { "r1": 0.9, "r2": 0.6, "taskid": "practiceResponse", "correlationDirection": "positive" }
     },
     "Hexbin plot T3 A:0.6 B:0.3": {
       "baseComponent": "practiceBase",
-      "parameters": { "r1": 0.6, "r2": 0.3, "taskid": "practiceResponse" }
+      "parameters": { "r1": 0.6, "r2": 0.3, "taskid": "practiceResponse", "correlationDirection": "positive" }
     },
     "Hexbin plot T4 A:0.6 B:0.9": {
       "baseComponent": "practiceBase",
-      "parameters": { "r1": 0.6, "r2": 0.9, "taskid": "practiceResponse" }
+      "parameters": { "r1": 0.6, "r2": 0.9, "taskid": "practiceResponse", "correlationDirection": "positive" }
     },
     "Hexbin plot T5 A:0.3 B:0.1": {
       "baseComponent": "practiceBase",
-      "parameters": { "r1": 0.3, "r2": 0.1, "taskid": "practiceResponse" }
+      "parameters": { "r1": 0.3, "r2": 0.1, "taskid": "practiceResponse", "correlationDirection": "positive" }
     },
     "Hexbin plot T6 A:0.5 B:0.3": {
       "baseComponent": "practiceBase",
-      "parameters": { "r1": 0.5, "r2": 0.3, "taskid": "practiceResponse" }
+      "parameters": { "r1": 0.5, "r2": 0.3, "taskid": "practiceResponse", "correlationDirection": "positive" }
     },
     "Hexbin plot T7 A:0.9 B:0.8": {
       "baseComponent": "practiceBase",
-      "parameters": { "r1": 0.9, "r2": 0.8, "taskid": "practiceResponse" }
+      "parameters": { "r1": 0.9, "r2": 0.8, "taskid": "practiceResponse", "correlationDirection": "positive" }
     },
     "Hexbin plot T8 A:0.6 B:0.7": {
       "baseComponent": "practiceBase",
-      "parameters": { "r1": 0.6, "r2": 0.7, "taskid": "practiceResponse" }
+      "parameters": { "r1": 0.6, "r2": 0.7, "taskid": "practiceResponse", "correlationDirection": "positive" }
     },
     "Hexbin plot T9 A:0.99 B:0.9": {
       "baseComponent": "practiceBase",
-      "parameters": { "r1": 0.99, "r2": 0.9, "taskid": "practiceResponse" }
+      "parameters": { "r1": 0.99, "r2": 0.9, "taskid": "practiceResponse", "correlationDirection": "positive" }
     },
     "begin": {
       "type": "markdown",
@@ -274,7 +280,9 @@
                 "r1": 0.3,
                 "r2": 0.1,
                 "above": false,
-                "name": "below3"
+                "name": "below3",
+                "condition": "hexbin",
+                "correlationDirection": "positive"
               }
             },
             "break"
@@ -290,7 +298,9 @@
                 "r1": 0.3,
                 "r2": 0.5,
                 "above": true,
-                "name": "above3"
+                "name": "above3",
+                "condition": "hexbin",
+                "correlationDirection": "positive"
               }
             },
             "break"
@@ -306,7 +316,9 @@
                 "r1": 0.6,
                 "r2": 0.5,
                 "above": false,
-                "name": "below6"
+                "name": "below6",
+                "condition": "hexbin",
+                "correlationDirection": "positive"
               }
             },
             "break"
@@ -322,7 +334,9 @@
                 "r1": 0.6,
                 "r2": 0.7,
                 "above": true,
-                "name": "above6"
+                "name": "above6",
+                "condition": "hexbin",
+                "correlationDirection": "positive"
               }
             },
             "break"
@@ -338,7 +352,9 @@
                 "r1": 0.9,
                 "r2": 0.8,
                 "above": false,
-                "name": "below9"
+                "name": "below9",
+                "condition": "hexbin",
+                "correlationDirection": "positive"
               }
             },
             "break"
@@ -354,7 +370,9 @@
                 "r1": 0.9,
                 "r2": 0.99,
                 "above": true,
-                "name": "above9"
+                "name": "above9",
+                "condition": "hexbin",
+                "correlationDirection": "positive"
               }
             },
             "break"

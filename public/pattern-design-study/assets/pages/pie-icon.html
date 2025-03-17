@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Iconic Texture Pie Chart</title>
+    <title>Iconic Patterns on Pie Chart</title>
 
     <script src="../../../revisitUtilities/revisit-communicate.js"></script>
     <script type="text/javascript" src="../lib/jquery.min.js"></script>
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../lib/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="./texture_style.css">
 
-    <script src="../tools/loading.js"></script>
+    <!-- <script src="../tools/loading.js"></script> -->
 
 
 </head>
@@ -54,43 +54,65 @@
     window.mytrrack = trrack;
     window.mytrrack_actions = trrack_actions;
     window.action = trrack_actions;
+
+    window.pieIconReplayIndex = 0
+    window.pieIconData = {}
     Revisit.onProvenanceReceive((state) => {
         // console.log('provenance', state)
             parameters = state['pieicon']
 
-            let selectedCat = parameters['selectedCat']
+            console.log("parameters", parameters)
 
-            if(chartName.endsWith('Geo')){
-                    console.log('geo redraw')
-                    //draw textures for category i
-                    geo_getParameters(selectedCat)
-                    geo_setCatPattern(selectedCat)
+            if(pieIconReplayIndex == 0){
+                for(let i = 0; i < 7; i++){
+                    icon_getParameters(i)
+                    updateIconPatternForCategory(i, parameters);
+                    
                 }
-            if(chartName.endsWith('Icon')){
-                console.log('icon redraw')
-                //draw textures for category i
-                icon_getParameters(selectedCat)
-                icon_setCatPattern(selectedCat, patternSize)
+                pieIconReplayIndex = 1
+                pieIconData = parameters["data"]
             }
 
 
-            //we redraw the textures of all categories, based on the new parameters
+
+            // Compare if current dataset values match parameters["data"] values
+            let dataMatches = true;
+            for (let i = 0; i < 7; i++) {
+                if (pieIconData[i].value !== parameters["data"][i].value) {
+                    dataMatches = false;
+                    break;
+                }
+            }
+            if (dataMatches) {
+                console.log("current dataset values match parameters data values exactly");
+            } else {
+                console.log("current dataset values differ from parameters data values");
+                document.getElementById('chartDiv').innerHTML = ''
+                drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+                iconTextures(d3.select('#chartA'),fruits)
+
+                let mydata = parameters['data']
+
+                drawIconPieWithTexture(mydata, pieRadius, 'chart')
+                drawPieIndicators(mydata, pieRadius, 'chart', 30)
+                setSelectCat(chartName)
+
+            }
+
+
             
-            // for(let i = 0; i < fruits.length; i++){
-            //     //since geometric texture and iconic texture have different parameters set, here we need to distinguish them
-            //     if(chartName.endsWith('Geo')){
-            //         console.log('geo redraw')
-            //         //draw textures for category i
-            //         geo_getParameters(i)
-            //         geo_setCatPattern(i)
-            //     }
-            //     if(chartName.endsWith('Icon')){
-            //         console.log('icon redraw')
-            //         //draw textures for category i
-            //         icon_getParameters(i)
-            //         icon_setCatPattern(i, patternSize)
-            //     }
-            // }
+
+
+            
+            let selectedCat = parameters['selectedCat']
+            updateSelectionIndicators(selectedCat)
+            icon_getParameters(selectedCat)
+            // icon_setCatPattern(selectedCat, patternSize)
+
+
+            for(let i = 0; i < 7; i++) {
+                updateIconPatternForCategory(i, parameters);
+            }
 
             let controlOutline = document.getElementById('controlOutline')
             controlOutline.value = parameters['outline']
@@ -219,7 +241,7 @@ drawIconPieWithTexture(mydata, pieRadius, 'chart')
 drawPieIndicators(mydata, pieRadius, 'chart', 30)
 
 //initialize
-icon_setInitialParameters(chartName)
+icon_setInitialParameters(chartName, mydata)
 
 setSelectCat(chartName)
 //switch texture by drag and drop

@@ -5,7 +5,7 @@
  *    This file contains the functionality to create a Hexbin Plot using a pre-existing dataset.
  */
 
-import { scaleLinear } from 'd3-scale';
+import { scaleLinear, scaleSequential } from 'd3-scale';
 import * as d3 from 'd3';
 import { hexbin } from 'd3-hexbin';
 import {
@@ -17,7 +17,9 @@ import { PREFIX } from '../../../../../../utils/Prefix';
 const width = 300;
 const height = 300;
 
-export default function HexbinPlots({ r, onClick, shouldNegate = false } : { r: number, onClick: () => void, shouldNegate?: boolean }) {
+export default function HexbinPlots({
+  r, onClick, shouldNegate = false, datasetName,
+}: { r: number, onClick: () => void, shouldNegate?: boolean, datasetName: string }) {
   const d3Container = useRef(null);
   const [data, setData] = useState<[number, number][]>([]);
   const [isHover, setIsHover] = useState<boolean>(false);
@@ -25,13 +27,7 @@ export default function HexbinPlots({ r, onClick, shouldNegate = false } : { r: 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const baseCorrelations = [0.3, 0.6, 0.9];
-        const shouldScramble = baseCorrelations.includes(r);
-        const randomIndex = shouldScramble ? Math.floor(Math.random() * 5) + 1 : 1;
-
-        const filePath = shouldScramble
-          ? `${PREFIX}jnd-data/datasets/size_1000/dataset_${r}_size_1000_${randomIndex}.csv`
-          : `${PREFIX}jnd-data/datasets/size_1000/dataset_${r}_size_1000.csv`;
+        const filePath = `${PREFIX}jnd-data/datasets/size_1000/${datasetName}`;
 
         const response = await fetch(filePath);
         if (!response.ok) {
@@ -62,19 +58,14 @@ export default function HexbinPlots({ r, onClick, shouldNegate = false } : { r: 
     if (data.length === 0) return;
 
     const margin = {
-      left: 40, top: 20, right: 20, bottom: 40,
+      left: 20, top: 20, right: 20, bottom: 40,
     };
 
     const innerHeight = height - margin.bottom;
     const innerWidth = width - margin.left - margin.right;
 
-    const xScale = scaleLinear()
-      .domain([d3.min(data, (d) => d[0])!, d3.max(data, (d) => d[0])!])
-      .range([0, innerWidth]);
-
-    const yScale = scaleLinear()
-      .domain([d3.min(data, (d) => d[1])!, d3.max(data, (d) => d[1])!])
-      .range([innerHeight, 0]);
+    const xScale = scaleLinear().domain([-0.05, 1.05]).range([0, innerWidth]);
+    const yScale = scaleLinear().domain([-0.05, 1.05]).range([innerHeight, 0]);
 
     const hexbinGenerator = hexbin()
       .x((d: [number, number]) => xScale(d[0]))
@@ -83,11 +74,12 @@ export default function HexbinPlots({ r, onClick, shouldNegate = false } : { r: 
       .extent([[0, 0], [innerWidth, innerHeight]]);
 
     const hexbinData = hexbinGenerator(data);
+    const maxDensity = d3.max(hexbinData, (hd) => hd.length) || 1;
+    const colorScale = scaleSequential(d3.interpolateBlues).domain([0, maxDensity]);
 
     const svg = select(d3Container.current)
       .attr('width', width)
       .attr('height', height);
-
     svg.selectAll('*').remove();
 
     const chartGroup = svg.append('g')
@@ -101,7 +93,7 @@ export default function HexbinPlots({ r, onClick, shouldNegate = false } : { r: 
       .attr('class', 'hexagon')
       .attr('d', hexbinGenerator.hexagon())
       .attr('transform', (d) => `translate(${d.x}, ${d.y})`)
-      .style('fill', (d) => d3.interpolateBlues(d.length / d3.max(hexbinData, (hd) => hd.length)!))
+      .style('fill', (d) => colorScale(d.length))
       .style('stroke', 'white')
       .style('stroke-width', '0.5px');
 
@@ -109,13 +101,13 @@ export default function HexbinPlots({ r, onClick, shouldNegate = false } : { r: 
     const yAxis = d3.axisLeft(yScale).tickFormat(() => '').tickSize(0);
 
     chartGroup.append('g')
-      .attr('transform', `translate(-10, ${innerHeight + 5})`)
+      .attr('transform', `translate(-0, ${innerHeight + 5})`)
       .call(xAxis)
       .selectAll('line, text')
       .remove();
 
     chartGroup.append('g')
-      .attr('transform', 'translate(-10, 5)')
+      .attr('transform', 'translate(0, 5)')
       .call(yAxis)
       .selectAll('line, text')
       .remove();
