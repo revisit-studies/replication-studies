@@ -31,7 +31,7 @@
     <div class="row gx-3">
         <div class="col-auto legend_drag_div">
             <div id = "legend"></div>
-            <div id="dragdrop" class="bg-light"></div>
+            <!-- <div id="dragdrop" class="bg-light"></div> -->
         </div>
         <div class="col-auto">
             <div id="chartDiv" class="chartDiv"></div>
@@ -78,8 +78,9 @@
                 for(let i = 0; i < 7; i++){
                     geo_getParameters(i)
                     updateGeoPatternForCategory(i, parameters);
-                    barGeoReplayIndex = 1
+                    
                 }
+                barGeoReplayIndex = 1
             }
 
             //we redraw the textures  based on the new parameters

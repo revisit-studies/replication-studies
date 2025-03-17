@@ -19,7 +19,7 @@ const barWidth = 400
 const barHeight = 300
 const pieRadius = 200
 const mapWidth = 600
-const mapHeight = 500
+const mapHeight = 600
 
 const defaultDataset = [
     {fruit: 'carrot', value: 22},
