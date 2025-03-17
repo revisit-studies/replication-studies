@@ -2230,6 +2230,7 @@ function drawIconPieWithTexture(data, radius, chart){
     }
 
     controlHalo.oninput = function(){
+        parameters["halo"] = controlHalo.value
         drawOutline('chart_outline', controlOutline.value, 'chart_halo', controlHalo.value)
         // arcBlackStroke.style('stroke-width', controlOutline.value)
         // arcWhiteStroke.style('stroke-width', parseFloat(controlHalo.value) + parseFloat(controlOutline.value))
