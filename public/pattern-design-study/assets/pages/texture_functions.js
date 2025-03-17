@@ -2574,23 +2574,6 @@ function undo(chartName){
             }
 
 
-            //we redraw the textures of all categories, based on the new parameters
-            // for(let i = 0; i < fruits.length; i++){
-            //     //since geometric texture and iconic texture have different parameters set, here we need to distinguish them
-            //     if(chartName.endsWith('Geo')){
-            //         console.log('geo redo')
-            //         //draw textures for category i
-            //         geo_getParameters(i)
-            //         geo_setCatPattern(i)
-            //     }
-            //     if(chartName.endsWith('Icon')){
-            //         console.log('icon redo')
-            //         //draw textures for category i
-            //         icon_getParameters(i)
-            //         icon_setCatPattern(i, patternSize)
-            //     }
-            // }
-
             let controlOutline = document.getElementById('controlOutline')
             controlOutline.value = parameters['outline']
 
@@ -2600,6 +2583,8 @@ function undo(chartName){
             }
             drawOutline('chart_outline', parameters['outline'], 'chart_halo', parameters['halo'])
         }
+
+        revisitPostParameters(chartName, parameters, mytrrack, action)
     }else{
         console.log('cannot undo, because the pointer is:'+pointer)
         alert('cannot undo')
@@ -2644,21 +2629,6 @@ function redo(chartName){
                     icon_setCatPattern(selectedCat, patternSize)
                     icon_selectCat(selectedCat)
                 }
-    
-                // //we redraw the textures of all categories, based on the new parameters
-                // for(let i = 0; i < fruits.length; i++){
-                //     //since geometric texture and iconic texture have different parameters set, here we need to distinguish them
-                //     if(chartName.endsWith('Geo')){
-                //         //draw textures for category i
-                //         geo_getParameters(i)
-                //         geo_setCatPattern(i)
-                //     }
-                //     if(chartName.endsWith('Icon')){
-                //         //draw textures for category i
-                //         icon_getParameters(i)
-                //         icon_setCatPattern(i, patternSize)
-                //     }
-                // }
                 let controlOutline = document.getElementById('controlOutline')
                 controlOutline.value = parameters['outline']
 
@@ -2668,6 +2638,7 @@ function redo(chartName){
                 }
                 drawOutline('chart_outline', parameters['outline'], 'chart_halo', parameters['halo'])
             }
+            revisitPostParameters(chartName, parameters, mytrrack, action)
         }else{
             alert('cannot redo')
         }
