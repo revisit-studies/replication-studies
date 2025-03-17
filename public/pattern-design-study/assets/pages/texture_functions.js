@@ -222,23 +222,53 @@ function drawToolbar(toolbarID){
 
             parameters = {...parameters, ...bertinTextures[defaultBertinTexturesIndex]} //partly update the parameters object
 
+            parameters["defaultBertinTexturesIndex"] = defaultBertinTexturesIndex
+
             for(let i = 0; i < fruits.length; i++){
                 geo_getParameters(i)
                 geo_setCatPattern(i)
             }
 
-            controlOutline.value = parameters['outline']
-            if(controlHalo){
-                controlHalo.value = parameters['halo']
-            }
-
-            parametersList.push(cloneParameters(parameters))
-            localStorage.setItem(chartName+'parametersList', JSON.stringify(parametersList))
 
         }
         if(chartName.endsWith('Icon')){
-            icon_defaultParameters(chartName)
+            for(let i = 0; i < fruits.length; i++){
+                parameters["iconPattern"+i+"IconStyle"] = 0
+                parameters["iconPattern"+i+"Density"] = 45
+
+                //we do not need iconStyle[i] = 0, because in the function icon_setCatPattern, we will set iconStyle[i] based on iconStyleRadios
+                // iconStyleRadios[0].checked = true
+                // iconStyle[i] = 0
+        
+        
+                // controlSize.max = patternSize/controlDensity.value * overlap_ratio
+                // controlSize.value = patternSize/controlDensity.value
+                parameters["iconPattern"+i+"SizeMax"] = parameters["iconPattern"+i+"Density"] * overlap_ratio
+                parameters["iconPattern"+i+"Size"] = parameters["iconPattern"+i+"Density"]
+                parameters["iconPattern"+i+"X"] = 0
+                parameters["iconPattern"+i+"Y"] = 0
+                parameters["iconPattern"+i+"RotateIcon"] = 45
+                parameters["iconPattern"+i+"Rotate"] = 315
+        
+                parameters["iconPattern"+i+"Background"] = 0
+                // parameters["iconPattern"+i+"BackgroundWhite"] = true
+                // localStorage.setItem(chartName + "_iconPattern"+i+"Background", iconBackground[i])
+        
+                icon_getParameters(i)
+                icon_setCatPattern(i, patternSize)
+                // icon_setParameters(i)
+            }
         }
+
+        parameters['outline'] = 1
+        controlOutline.value = parameters['outline']
+        if(controlHalo){
+            parameters['halo'] = 1
+            controlHalo.value = parameters['halo']
+        }
+        addParametersToList(chartName, parameters)
+        revisitPostParameters(chartName, parameters, mytrrack, action)
+
 
     }
 
@@ -3861,6 +3891,8 @@ function geo_setInitialParameters(chartName, mydata){
         localStorage.setItem('defaultBertinTexturesIndex',defaultBertinTexturesIndex)
         document.getElementById("selectDefaultTexture").selectedIndex = defaultBertinTexturesIndex;
     }else{
+
+        
         //if there are paramters in the local storage, we retrieve the parametersList
         parametersList = JSON.parse(localStorage.getItem(chartName+"parametersList") || "[]")
 
@@ -4231,6 +4263,7 @@ function geo_selectDefaultTexture(){
 
 
     const paramsClone = cloneParameters(parameters)
+    addParametersToList(chartName, paramsClone)
     revisitPostParameters(chartName, paramsClone, mytrrack, action)
     console.log('geo_selectDefaultTexture parameters', paramsClone)
 
@@ -4714,7 +4747,6 @@ function icon_defaultParameters(chartName){
     parameters = {}
     parameters["chartName"] = chartName
     parameters["selectedCat"] = 0
-
     for(let i = 0; i < fruits.length; i++){
 
         //we do not need iconStyle[i] = 0, because in the function icon_setCatPattern, we will set iconStyle[i] based on iconStyleRadios
