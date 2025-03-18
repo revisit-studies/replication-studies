@@ -77,7 +77,7 @@
       "type": "website",
       "nextButtonLocation": "sidebar",
       "path": "255chart-study/assets/255charts/index.html",
-      "instruction": "<p>In 2013, five years after the end of the Great Recession in 2008, the economy has finally regained the nine million jobs it lost. Each line below shows how the number of jobs has changed for a particular industry over the past 10 years. </p> \n <b>Your task</b> is to analyze this dataset on economy from a popular news website. <br></br> <p><b>How to interact: </b></p><p> - Mouseover an individual line to bring up a more detailed chart.</p>",
+      "instruction": "<p>In 2013, five years after the end of the Great Recession in 2008, the economy had finally regained the nine million jobs it lost. Each line below shows how the number of jobs has changed for a particular industry over the past 10 years. </p> \n <b>Your task</b> is to analyze this dataset on economy from a popular news website. <br></br> <p><b>How to interact: </b></p><p> - Mouseover an individual line to bring up a more detailed chart.</p>",
       "description": "Desc",
       "response": [
         {
@@ -93,7 +93,7 @@
       "type": "website",
       "nextButtonLocation": "sidebar",
       "path": "255chart-study/assets/255charts-search/index.html",
-      "instruction": "<p>In 2013, five years after the end of the Great Recession in 2008, the economy has finally regained the nine million jobs it lost. Each line below shows how the number of jobs has changed for a particular industry over the past 10 years. </p> \n <b>Your task</b> is to analyze this dataset on economy from a popular news website. <br></br> <p><b>How to interact: </b></p><p> - Mouseover an individual line to bring up a more detailed chart.</p>",
+      "instruction": "<p>In 2013, five years after the end of the Great Recession in 2008, the economy had finally regained the nine million jobs it lost. Each line below shows how the number of jobs has changed for a particular industry over the past 10 years. </p> \n <b>Your task</b> is to analyze this dataset on economy from a popular news website. <br></br> <p><b>How to interact: </b></p><p> - Mouseover an individual line to bring up a more detailed chart.</p>",
       "description": "Desc",
       "response": [
         {
