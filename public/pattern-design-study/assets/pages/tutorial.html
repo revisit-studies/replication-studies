@@ -86,17 +86,21 @@
     window.action = trrack_actions;
 
     window.tutorialReplayIndex = 0
+    window.tutorialData = {}
+    
     Revisit.onProvenanceReceive((state) => {
         console.log('tutorial provenance')
         console.log(state)
 
+        let parameters;
+        // Get parameters based on conditions
         if(window.condition_chart == 0 && window.condition_texture == 0){
             parameters = state['bargeo']
         }
         else if(window.condition_chart == 0 && window.condition_texture == 1){
             parameters = state['baricon']
         }
-        else    if(window.condition_chart == 1 && window.condition_texture == 0){
+        else if(window.condition_chart == 1 && window.condition_texture == 0){
             parameters = state['piegeo']
         }
         else if(window.condition_chart == 1 && window.condition_texture == 1){
@@ -109,51 +113,244 @@
             parameters = state['mapicon']
         }else{
             console.log('cannot find the parameters based on condition_chart and condition_texture');
+            return;
         }
 
+        console.log("parameters", parameters)
 
-
+        // Initialize patterns on first replay
         if(tutorialReplayIndex == 0){
             for(let i = 0; i < 7; i++){
-                if(chartName.endsWith('Geo')){
+                if(window.condition_texture == 0){
                     geo_getParameters(i)
-                    geo_setCatPattern(i)
-                }
-                if(chartName.endsWith('Icon')){
+                    updateGeoPatternForCategory(i, parameters);
+                } else {
                     icon_getParameters(i)
-                    icon_setCatPattern(i, patternSize)
+                    updateIconPatternForCategory(i, parameters);
+                }
             }
-            }
-
             tutorialReplayIndex = 1
+            window.tutorialData = parameters["data"]
         }
 
+        // Check if data has changed
+        let dataMatches = true;
+        if(window.condition_chart == 0 || window.condition_chart == 1){
+            for (let i = 0; i < 7; i++) {
+                if (tutorialData[i].value !== parameters["data"][i].value) {
+                    dataMatches = false;
+                    break;
+                }
+            }
+        }
+        else if(window.condition_chart == 2){
+            dataMatches = window.tutorialData.length === parameters['data'].length && 
+                window.tutorialData.every((item, index) => {
+                    return item.CODE_DEPT === parameters['data'][index].CODE_DEPT && 
+                           item.POP === parameters['data'][index].POP;
+                });
+        }
 
+        // If data changed, redraw chart
+        if (!dataMatches) {
+            document.getElementById('chartDiv').innerHTML = ''
+            drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+            
+            if(window.condition_texture == 0){
+                geoTextures(d3.select('#chartA'),fruits)
+            } else {
+                iconTextures(d3.select('#chartA'),fruits)
+            }
+
+            let mydata = parameters['data']
+            window.tutorialData = mydata
+
+            // Draw appropriate chart based on conditions
+            if(window.condition_chart == 0){ // Bar chart
+                if(window.condition_texture == 0){ // Bar geo
+                    drawGeoBarWithTexture(mydata, barWidth, barHeight, 'chart')
+                    drawBarIndicators(mydata, barWidth, barHeight, 'chart', 30)
+                } else { // Bar icon
+                    drawIconBarWithTexture(mydata, barWidth, barHeight, 'chart')
+                    drawBarIndicators(mydata, barWidth, barHeight, 'chart', 30)
+                }
+                setSelectCat(chartName)
+            } else if(window.condition_chart == 1){ // Pie chart
+                if(window.condition_texture == 0){
+                    drawGeoPieWithTexture(mydata, pieRadius, 'chart')
+                    drawPieIndicators(mydata, pieRadius, 'chart', 30)
+                } else {
+                    drawIconPieWithTexture(mydata, pieRadius, 'chart')
+                    drawPieIndicators(mydata, pieRadius, 'chart', 30)
+                }
+                setSelectCat(chartName)
+            } else { // Map
+                if(window.condition_texture == 0){
+                    let width = 600, height = 600
+
+                    let chart = 'chart'
+                    let d = 'd'
+
+                    let path = d3.geoPath()
+
+                    let projection = d3.geoConicConformal() // Lambert-93
+                        .center([2.454071, 46.279229]) // Center on France
+                        .scale(2600)
+                        .translate([width / 2 - 50, height / 2])
+
+                    path.projection(projection)
+
+                    let promises = [];
+                    promises.push(d3.json(filePath+'data/departments.json'))
+
+                    Promise.all(promises).then(function(values) {
+                        let geojson = values[0] // Recovery of the first promise: the content of the JSON file
+
+                        let csv = mydata
+
+                        drawMap('#'+chart+'A', geojson, path, d+'A', width, height)
+                        drawMap('#'+chart,geojson,  path, d, width, height)
+                        drawMap('#'+chart+'WhiteStroke', geojson, path, d+'WhiteStroke', width, height)
+                        drawMap('#'+chart+'BlackStroke', geojson, path, d+'BlackStroke', width, height)
+
+                        let quantile = d3.scaleQuantile()
+                            .domain([0, d3.max(csv, e => +e.POP)])
+                            .range(d3.range(fruits.length));
+
+                        csv.forEach(function(e,i) {
+                            d3.select('#'+d+'A' + e.CODE_DEPT)
+                                .attr("fill", function(d){return  'url(#gridPatternA' + quantile(+e.POP) + ')' })
+
+                            d3.select('#'+d + e.CODE_DEPT)
+                                .attr('stroke', 'none')
+                                .attr("class", function(d, index) {
+                                    return "category" + quantile(+e.POP) //this class is used for setting pattern
+                                })
+                                .attr("fill", function() {
+                                    if(parameters['patternType'+quantile(+e.POP)] == 0){
+
+                                        return  'url(#linePattern' + quantile(+e.POP) +')'
+                                    }
+                                    if(parameters['patternType'+quantile(+e.POP)] == 1){
+                                        return  'url(#dotPattern' + quantile(+e.POP) +')'
+                                    }
+                                    if(parameters['patternType'+quantile(+e.POP)] == 2){
+                                        return  'url(#gridPattern' + quantile(+e.POP) +')'
+                                    }})
+
+                            d3.select('#'+d+'WhiteStroke' + e.CODE_DEPT)
+                                .attr('fill','none')
+                                .attr('stroke', 'white')
+                                .attr('stroke-width', parseFloat(parameters['halo']) + parseFloat(parameters['outline']))
+                                .attr('class','chart_halo')
+
+                            d3.select('#'+d+'BlackStroke' + e.CODE_DEPT)
+                                .attr("class", function(d, index) {
+                                        return "chart_outline blackStroke strokeCategory" + quantile(+e.POP) //this class is used for setting pattern
+                                    })
+                                .attr('fill','none')
+                                .attr('stroke', 'black')
+                                .attr('stroke-width', parameters['outline'])
+                        })
+
+                    })
+                } else {
+                    let width = 600, height = 600;
+                    let chart = 'chart'
+                    let d = 'd'
+
+                    let path = d3.geoPath()
+
+                    let projection = d3.geoConicConformal() // Lambert-93
+                        .center([2.454071, 46.279229]) // Center on France
+                        .scale(2600)
+                        .translate([width / 2 - 50, height / 2])
+
+                    path.projection(projection);
+
+                    let promises = []
+                    promises.push(d3.json(filePath+'data/departments.json'))
+                    // promises.push(d3.csv("population.csv"))
+                    // for(i = 0;i<totalCsvFile;i++){
+                    //     promises.push(d3.csv(filePath+'data/'+csvName + getCsvIndex(chartName) +".csv"))
+                    // }
+
+
+                    Promise.all(promises).then(function(values) {
+                        let geojson = values[0]; // Recovery of the first promise: the content of the JSON file
+                        // let csv = values[getCsvIndex(chartName)+1]; // Recovery of the second promise: the content of the csv file
+
+                        let csv = mydata
+
+                        let deps = drawMap('#'+chart,geojson,  path, d, width,height)
+                        drawMap('#'+chart+'WhiteStroke', geojson, path, d+'WhiteStroke', width,height)
+                        drawMap('#'+chart+'BlackStroke', geojson, path, d+'BlackStroke', width,height)
+
+                        let quantile = d3.scaleQuantile()
+                            .domain([0, d3.max(csv, e => +e.POP)])
+                            .range(d3.range(fruits.length)); // number of categories
+
+                        let defs = iconTextures(deps, fruits)
+
+
+                        csv.forEach(function(e,i) {
+
+                            d3.select('#'+d + e.CODE_DEPT)
+                                .attr('stroke', 'none')
+                                .attr("class", function(d, i) {
+                                    return "departement category" + quantile(+e.POP) //this class is used for setting pattern
+                                })
+                                .attr("fill", function(d, i){return  'url(#iconPattern' + quantile(+e.POP) + ')' })
+
+                            d3.select('#'+d+'WhiteStroke' + e.CODE_DEPT)
+                                .attr('fill','none')
+                                .attr('stroke', 'white')
+                                .attr('stroke-width', parseFloat(parameters['halo']) + parseFloat(parameters['outline']))
+                                .attr('class','chart_halo')
+
+                            d3.select('#'+d+'BlackStroke' + e.CODE_DEPT)
+                                .attr("class", function(d, index) {
+                                        return "chart_outline blackStroke strokeCategory" + quantile(+e.POP) //this class is used for setting pattern
+                                    })
+                                .attr('fill','none')
+                                .attr('stroke', 'black')
+                                .attr('stroke-width', parameters['outline'])
+
+                        })
+
+                    })
+                }
+            }
+
+        }
+
+        // Update patterns and controllers
         let selectedCat = parameters['selectedCat']
+        updateSelectionIndicators(selectedCat)
 
-        if(chartName.endsWith('Geo')){
-                console.log('geo redraw')
-                //draw textures for category i
-                geo_getParameters(selectedCat)
-                geo_setCatPattern(selectedCat)
+        if(window.condition_texture == 0){
+            updateGeoPatternControllers(selectedCat, parameters)
+            geo_getParameters(selectedCat)
+            for(let i = 0; i < 7; i++){
+                updateGeoPatternForCategory(i, parameters)
             }
-        if(chartName.endsWith('Icon')){
-            console.log('icon redraw')
-            //draw textures for category i
+        } else {
             icon_getParameters(selectedCat)
-            icon_setCatPattern(selectedCat, patternSize)
-        }
-
-            let controlOutline = document.getElementById('controlOutline')
-            controlOutline.value = parameters['outline']
-
-            if(document.getElementById('halo')){
-                let controlHalo = document.getElementById('controlHalo')
-                controlHalo.value = parameters['halo']
+            for(let i = 0; i < 7; i++){
+                updateIconPatternForCategory(i, parameters)
             }
-            drawOutline('chart_outline', parameters['outline'], 'chart_halo', parameters['halo'])
         }
-    )
+
+        // Update outline and halo
+        let controlOutline = document.getElementById('controlOutline')
+        controlOutline.value = parameters['outline']
+
+        if(document.getElementById('halo')){
+            let controlHalo = document.getElementById('controlHalo')
+            controlHalo.value = parameters['halo']
+        }
+        drawOutline('chart_outline', parameters['outline'], 'chart_halo', parameters['halo'])
+    })
 </script>
 <script>
     // Add this before tour initialization
@@ -183,8 +380,6 @@
 
     window.chartName = '';
 
-    // Initialize the page
-    let mydata;
 
     // document.addEventListener('DOMContentLoaded', () => {
     // Then initialize based on conditions
@@ -474,9 +669,9 @@ const selectDefaultTexture = document.getElementById("selectDefaultTexture")
     window.controlHalo = document.getElementById("controlHalo")
 //end of UI elements
 
-
+    let mydata;
     switch (condition_chart) {
-        case 0:
+        case 0: //bar chart
             switch (condition_texture){
                 case 0:
                     mydata = getDatasetForChart()
@@ -487,7 +682,7 @@ const selectDefaultTexture = document.getElementById("selectDefaultTexture")
                     drawGeoLegend(fruits)
 
                     //initialize
-                    geo_setInitialParameters(chartName)
+                    geo_setInitialParameters(chartName, mydata)
 
                     setSelectCat(chartName)
                     //switch texture by drag and drop
@@ -502,7 +697,7 @@ const selectDefaultTexture = document.getElementById("selectDefaultTexture")
                     drawBarIndicators(mydata, barWidth, barHeight, 'chart', 30)
 
                     //initialize
-                    icon_setInitialParameters(chartName)
+                    icon_setInitialParameters(chartName, mydata)
 
                     setSelectCat(chartName)
 
@@ -519,11 +714,11 @@ const selectDefaultTexture = document.getElementById("selectDefaultTexture")
                     drawPieIndicators(mydata, pieRadius, 'chart', 30)
                     drawGeoLegend(fruits)
                     //initialize
-                    geo_setInitialParameters(chartName)
+                    geo_setInitialParameters(chartName, mydata)
 
                     setSelectCat(chartName)
                     //switch texture by drag and drop
-                    geo_switchTextures(chartName)
+                    // geo_switchTextures(chartName)
                     break;
                 case 1:
                     mydata = getDatasetForChart()
@@ -532,7 +727,7 @@ const selectDefaultTexture = document.getElementById("selectDefaultTexture")
                     drawPieIndicators(mydata, pieRadius, 'chart', 30)
 
                     //initialize
-                    icon_setInitialParameters(chartName)
+                    icon_setInitialParameters(chartName, mydata)
 
                     setSelectCat(chartName)
                     //switch texture by drag and drop

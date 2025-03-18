@@ -55,40 +55,68 @@
     window.action = trrack_actions;
 
     window.pieGeoReplayIndex = 0
+
+    window.pieGeoData = {}
     Revisit.onProvenanceReceive((state) => {
         // console.log('provenance', state)
-            parameters = state['piegeo']
 
+            parameters = state['piegeo']
+            console.log("parameters", parameters)
 
             if(pieGeoReplayIndex == 0){
                 for(let i = 0; i < 7; i++){
                     geo_getParameters(i)
-                    geo_setCatPattern(i)
-                    pieGeoReplayIndex = 1
+                    updateGeoPatternForCategory(i, parameters);
+                    
                 }
+                pieGeoReplayIndex = 1
+                pieGeoData = parameters["data"]
             }
 
+            // Compare if current dataset values match parameters["data"] values
+            let dataMatches = true;
+            for (let i = 0; i < 7; i++) {
+                if (pieGeoData[i].value !== parameters["data"][i].value) {
+                    dataMatches = false;
+                    break;
+                }
+            }
+            if (dataMatches) {
+                console.log("current dataset values match parameters data values exactly");
+            } else {
+                console.log("current dataset values differ from parameters data values");
+                document.getElementById('chartDiv').innerHTML = ''
+                drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
+                geoTextures(d3.select('#chartA'),fruits)
+                //data
+                let mydata = parameters['data']
+                window.pieGeoData = mydata
+                drawGeoPieWithTexture(mydata, pieRadius, 'chart')
+                drawPieIndicators(mydata, pieRadius, 'chart', 30)
+
+                //initialize
+                // geo_setInitialParameters(chartName, mydata)
+
+                setSelectCat(chartName)
+            }
+
+
+            
+
+
+
+
+            //we redraw the textures  based on the new parameters
             let selectedCat = parameters['selectedCat']
-            geo_selectCat(selectedCat)
+            // geo_selectCat(selectedCat)
+            updateSelectionIndicators(selectedCat);
+            updateGeoPatternControllers(selectedCat, parameters);
+
             geo_getParameters(selectedCat)
-            geo_setCatPattern(selectedCat)
 
-            // for(let i = 0; i < fruits.length; i++){
-            //     //since geometric texture and iconic texture have different parameters set, here we need to distinguish them
-            //     if(chartName.endsWith('Geo')){
-            //         console.log('geo redraw')
-            //         //draw textures for category i
-            //         geo_getParameters(i)
-            //         geo_setCatPattern(i)
-            //     }
-            //     if(chartName.endsWith('Icon')){
-            //         console.log('icon redraw')
-            //         //draw textures for category i
-            //         icon_getParameters(i)
-            //         icon_setCatPattern(i, patternSize)
-            //     }
-            // }
-
+            for(let i = 0; i < 7; i++){
+                updateGeoPatternForCategory(i, parameters);
+            }
 
             let controlOutline = document.getElementById('controlOutline')
             controlOutline.value = parameters['outline']
@@ -113,7 +141,7 @@
         window.chartName = "pieGeo"
 
         drawToolbar('toolbar')
-        drawDragDropInfo('dragdrop')
+        // drawDragDropInfo('dragdrop')
         document.getElementById('toolbar').appendChild(drawSelectDefaultGeoTexture())
         drawChartDiv('chartDiv', svgWidth, svgHeight, 'chart')
         geoTextures(d3.select('#chart'),fruits)
@@ -255,7 +283,7 @@ window.gridBackground = []
     drawPieIndicators(mydata, pieRadius, 'chart', 30)
     drawGeoLegend(fruits)
     //initialize
-    geo_setInitialParameters(chartName)
+    geo_setInitialParameters(chartName, mydata)
 
     setSelectCat(chartName)
     //switch texture by drag and drop
