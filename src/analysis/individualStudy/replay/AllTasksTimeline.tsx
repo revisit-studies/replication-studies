@@ -4,7 +4,7 @@ import {
   Center, Group, Stack, Tooltip, Text, Divider, Button, Badge,
 } from '@mantine/core';
 import {
-  IconCheck, IconExternalLink, IconHourglassEmpty, IconX,
+  IconCheck, IconCheckupList, IconExternalLink, IconHourglassEmpty, IconX,
 } from '@tabler/icons-react';
 import { ParticipantData } from '../../../storage/types';
 import { SingleTaskLabelLines } from './SingleTaskLabelLines';
@@ -43,14 +43,15 @@ export function AllTasksTimeline({
   }, [maxLength, participantData.answers, width]);
 
   // Creating labels for the tasks
-  // @ts-ignore
-  const [numComponentsAnsweredCorrectly, numComponentsWithCorrectAnswer, tasks] : [number, number, {line: JSX.Element, label: JSX.Element}[]] = useMemo(() => {
+  const [numComponentsAnsweredCorrectly, numComponentsWithCorrectAnswer, numComponentsAttentionCheck, numComponentsAttentionCheckCorrect, tasks] : [number, number, number, number, {line: JSX.Element | null, label: JSX.Element}[]] = useMemo(() => {
     let currentHeight = 0;
 
     const sortedEntries = Object.entries(participantData.answers || {}).filter((answer) => !!(answer[1].startTime)).sort((a, b) => a[1].startTime - b[1].startTime);
 
     let _numComponentsAnsweredCorrectly = 0;
     let _numComponentsWithCorrectAnswer = 0;
+    let _numComponentsAttentionCheck = 0;
+    let _numComponentsAttentionCheckCorrect = 0;
 
     const allElements = sortedEntries.map((entry, i) => {
       const [name, answer] = entry;
@@ -63,23 +64,17 @@ export function AllTasksTimeline({
         currentHeight = 0;
       }
 
-      const split = name.split('_');
-      const joinExceptLast = split.slice(0, split.length - 1).join('_');
-
-      const component = studyConfig?.components[joinExceptLast];
-
       let isCorrect = true;
       let hasCorrect = false;
 
-      if (component && component.correctAnswer) {
-        component.correctAnswer.forEach((a) => {
+      if (answer && answer.correctAnswer) {
+        answer.correctAnswer.forEach((a) => {
           const { id, answer: componentCorrectAnswer } = a;
 
-          if (!component || !component.correctAnswer || answer.answer[id] !== componentCorrectAnswer) {
+          if (!answer || !answer.correctAnswer || answer.answer[id] !== componentCorrectAnswer) {
             isCorrect = false;
           }
         });
-
         hasCorrect = true;
       } else {
         hasCorrect = false;
@@ -87,9 +82,15 @@ export function AllTasksTimeline({
 
       if (hasCorrect) {
         _numComponentsWithCorrectAnswer += 1;
+        if (answer.parameters.isAttentionCheck) {
+          _numComponentsAttentionCheck += 1;
+        }
 
         if (isCorrect) {
           _numComponentsAnsweredCorrectly += 1;
+          if (answer.parameters.isAttentionCheck) {
+            _numComponentsAttentionCheckCorrect += 1;
+          }
         }
       }
 
@@ -108,7 +109,7 @@ export function AllTasksTimeline({
                 <Text size="sm" style={{ fontWeight: 'bold' }}>{name}</Text>
                 {Object.entries(answer.answer).map((a) => {
                   const [id, componentAnswer] = a;
-                  const correctAnswer = component?.correctAnswer?.find((c) => c.id === id)?.answer;
+                  const correctAnswer = answer?.correctAnswer?.find((c) => c.id === id)?.answer;
 
                   return <Text key={id}>{`${id}: ${componentAnswer} ${correctAnswer ? `[${correctAnswer}]` : ''}`}</Text>;
                 })}
@@ -122,8 +123,8 @@ export function AllTasksTimeline({
       };
     });
 
-    return [_numComponentsAnsweredCorrectly, _numComponentsWithCorrectAnswer, allElements];
-  }, [participantData.answers, xScale, studyConfig?.components, height, selectedTask, clickTask]);
+    return [_numComponentsAnsweredCorrectly, _numComponentsWithCorrectAnswer, _numComponentsAttentionCheck, _numComponentsAttentionCheckCorrect, allElements];
+  }, [participantData.answers, xScale, height, selectedTask, clickTask]);
 
   const duration = useMemo(() => {
     if (!participantData.answers || Object.entries(participantData.answers).length === 0) {
@@ -224,6 +225,18 @@ export function AllTasksTimeline({
               >
                 {numComponentsWithCorrectAnswer - numComponentsAnsweredCorrectly}
               </Badge>
+              {numComponentsAttentionCheck > 0
+                ? (
+                  <Badge
+                    variant="light"
+                    size="lg"
+                    color="gray"
+                    leftSection={<IconCheckupList width={18} height={18} style={{ paddingTop: 1 }} />}
+                    pb={1}
+                  >
+                    {`${numComponentsAttentionCheckCorrect}/${numComponentsAttentionCheck}`}
+                  </Badge>
+                ) : null}
               <Badge
                 variant="light"
                 size="lg"
