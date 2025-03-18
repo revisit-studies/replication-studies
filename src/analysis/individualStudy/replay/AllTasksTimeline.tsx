@@ -4,7 +4,8 @@ import {
   Center, Group, Stack, Tooltip, Text, Divider, Button, Badge,
 } from '@mantine/core';
 import {
-  IconCheck, IconCheckupList, IconExternalLink, IconHourglassEmpty, IconX,
+  IconBrain,
+  IconCheck, IconExternalLink, IconHourglassEmpty, IconX,
 } from '@tabler/icons-react';
 import { ParticipantData } from '../../../storage/types';
 import { SingleTaskLabelLines } from './SingleTaskLabelLines';
@@ -227,15 +228,17 @@ export function AllTasksTimeline({
               </Badge>
               {numComponentsAttentionCheck > 0
                 ? (
-                  <Badge
-                    variant="light"
-                    size="lg"
-                    color="gray"
-                    leftSection={<IconCheckupList width={18} height={18} style={{ paddingTop: 1 }} />}
-                    pb={1}
-                  >
-                    {`${numComponentsAttentionCheckCorrect}/${numComponentsAttentionCheck}`}
-                  </Badge>
+                  <Tooltip label="Attention Checks">
+                    <Badge
+                      variant="light"
+                      size="lg"
+                      color="orange"
+                      leftSection={<IconBrain width={18} height={18} style={{ paddingTop: 1 }} />}
+                      pb={1}
+                    >
+                      {`${numComponentsAttentionCheckCorrect}/${numComponentsAttentionCheck}`}
+                    </Badge>
+                  </Tooltip>
                 ) : null}
               <Badge
                 variant="light"
