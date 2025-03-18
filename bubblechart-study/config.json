@@ -14,7 +14,7 @@
     "logoPath": "revisitAssets/revisitLogoSquare.svg",
     "withProgressBar": true,
     "autoDownloadStudy": false,
-    "recordStudyAudio": true,
+    "recordStudyAudio": false,
     "sidebar": true
   },
   "importedLibraries": ["demographics", "mic-check"],
@@ -35,7 +35,8 @@
             "Accept"
           ]
         }
-      ]
+      ],
+      "recordAudio": false
     },
     "introduction": {
       "type": "markdown",
@@ -77,7 +78,8 @@
       },
       "response": [
       ],
-      "nextButtonText": "I'm finished"
+      "nextButtonText": "I'm finished",
+      "recordAudio": true
     },
     "bubbleChartWithoutSearch": {
       "description": "Desc",
