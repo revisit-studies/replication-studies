@@ -117,7 +117,7 @@ export function StepRenderer() {
         footer={{ height: (isAnalysis ? 75 : 0) + (analysisHasAudio ? 50 : 0) }}
       >
         <AppNavBar />
-        <AppAside />
+        {asideOpen ? <AppAside /> : null }
         <AppHeader studyNavigatorEnabled={studyNavigatorEnabled} dataCollectionEnabled={dataCollectionEnabled} />
         <HelpModal />
         <AlertModal />
