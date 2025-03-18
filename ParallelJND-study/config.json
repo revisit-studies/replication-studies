@@ -95,31 +95,38 @@
     },
     "Parallel Coordinates T1 A:0.3 B:0.7": {
       "baseComponent": "practiceBase",
-      "parameters": { "r1": 0.3, "r2": 0.7, "taskid": "practiceResponse", "correlationDirection": "positive" }
+      "parameters": { "r1": 0.3, "r2": 0.7, "taskid": "practiceResponse", "correlationDirection": "positive",
+                "version": "pilot3" }
     },
     "Parallel Coordinates T2 A:0.9 B:0.6": {
       "baseComponent": "practiceBase",
-      "parameters": { "r1": 0.9, "r2": 0.6, "taskid": "practiceResponse", "correlationDirection": "positive" }
+      "parameters": { "r1": 0.9, "r2": 0.6, "taskid": "practiceResponse", "correlationDirection": "positive",
+                "version": "pilot3" }
     },
     "Parallel Coordinates T3 A:0.6 B:0.3": {
       "baseComponent": "practiceBase",
-      "parameters": { "r1": 0.6, "r2": 0.3, "taskid": "practiceResponse", "correlationDirection": "positive" }
+      "parameters": { "r1": 0.6, "r2": 0.3, "taskid": "practiceResponse", "correlationDirection": "positive",
+                "version": "pilot3" }
     },
     "Parallel Coordinates T4 A:0.6 B:0.9": {
       "baseComponent": "practiceBase",
-      "parameters": { "r1": 0.6, "r2": 0.9, "taskid": "practiceResponse", "correlationDirection": "positive" }
+      "parameters": { "r1": 0.6, "r2": 0.9, "taskid": "practiceResponse", "correlationDirection": "positive",
+                "version": "pilot3" }
     },
     "Parallel Coordinates T5 A:0.3 B:0.1": {
       "baseComponent": "practiceBase",
-      "parameters": { "r1": 0.3, "r2": 0.1, "taskid": "practiceResponse", "correlationDirection": "positive" }
+      "parameters": { "r1": 0.3, "r2": 0.1, "taskid": "practiceResponse", "correlationDirection": "positive",
+                "version": "pilot3" }
     },
     "Parallel Coordinates T6 A:0.5 B:0.3": {
       "baseComponent": "practiceBase",
-      "parameters": { "r1": 0.5, "r2": 0.3, "taskid": "practiceResponse", "correlationDirection": "positive" }
+      "parameters": { "r1": 0.5, "r2": 0.3, "taskid": "practiceResponse", "correlationDirection": "positive",
+                "version": "pilot3" }
     },
     "Parallel Coordinates T7 A:0.9 B:0.8": {
       "baseComponent": "practiceBase",
-      "parameters": { "r1": 0.9, "r2": 0.8, "taskid": "practiceResponse", "correlationDirection": "positive" }
+      "parameters": { "r1": 0.9, "r2": 0.8, "taskid": "practiceResponse", "correlationDirection": "positive",
+                "version": "pilot3" }
     },
     "Parallel Coordinates T8 A:0.6 B:0.7": {
       "baseComponent": "practiceBase",
@@ -282,7 +289,8 @@
                 "above": false,
                 "name": "below3",
                 "condition": "pcp",
-                "correlationDirection": "positive"
+                "correlationDirection": "positive",
+                "version": "pilot3"
               }
             },
             "break"
@@ -300,7 +308,8 @@
                 "above": true,
                 "name": "above3",
                 "condition": "pcp",
-                "correlationDirection": "positive"
+                "correlationDirection": "positive",
+                "version": "pilot3"
               }
             },
             "break"
@@ -318,7 +327,8 @@
                 "above": false,
                 "name": "below6",
                 "condition": "pcp",
-                "correlationDirection": "positive"
+                "correlationDirection": "positive",
+                "version": "pilot3"
               }
             },
             "break"
@@ -336,7 +346,8 @@
                 "above": true,
                 "name": "above6",
                 "condition": "pcp",
-                "correlationDirection": "positive"
+                "correlationDirection": "positive",
+                "version": "pilot3"
               }
             },
             "break"
@@ -354,7 +365,8 @@
                 "above": false,
                 "name": "below9",
                 "condition": "pcp",
-                "correlationDirection": "positive"
+                "correlationDirection": "positive",
+                "version": "pilot3"
               }
             },
             "break"
@@ -372,7 +384,8 @@
                 "above": true,
                 "name": "above9",
                 "condition": "pcp",
-                "correlationDirection": "positive"
+                "correlationDirection": "positive",
+                "version": "pilot3"
               }
             },
             "break"
