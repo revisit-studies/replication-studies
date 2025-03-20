@@ -625,34 +625,6 @@
           {
             "order": "fixed",
             "components": [
-              "description_bar",
-              "tutorial_bar_geo-icon",
-              "bar-geo_geo-icon",
-              "between-two-design",
-              "bar-icon_geo-icon",
-              "question-design-strategies_bar_geo-icon",
-              "question-compare-texture_bar_geo-icon",
-              "question-different-chart-geo_bar",
-              "question-different-chart-icon_bar"
-            ]
-          },
-          {
-            "order": "fixed",
-            "components": [
-              "description_bar",
-              "tutorial_bar_icon-geo",
-              "bar-icon_icon-geo",
-              "between-two-design",
-              "bar-geo_icon-geo",
-              "question-design-strategies_bar_icon-geo",
-              "question-compare-texture_bar_icon-geo",
-              "question-different-chart-geo_bar",
-              "question-different-chart-icon_bar"
-            ]
-          },
-          {
-            "order": "fixed",
-            "components": [
               "description_pie",
               "tutorial_pie_geo-icon",
               "pie-geo_geo-icon",
