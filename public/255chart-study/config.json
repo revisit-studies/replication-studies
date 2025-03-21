@@ -22,7 +22,8 @@
     "autoDownloadStudy": false,
     "sidebar": true,
     "windowEventDebounceTime": 200,
-    "recordStudyAudio": true
+    "recordStudyAudio": true,
+    "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [https://app.prolific.com/submissions/complete?cc=C1DXYOZS](https://app.prolific.com/submissions/complete?cc=C1DXYOZS)"
   },
   "importedLibraries": ["demographics", "mic-check"],
   "components": {
@@ -42,7 +43,9 @@
             "Accept"
           ]
         }
-      ]
+      ],
+      "recordAudio": false
+
     },
     "introduction": {
       "type": "markdown",
