@@ -14,4 +14,4 @@ and answer several questions on the understanding of the visualization.
 - Mouseover any of the circles to obtain a detailed view.
 
 
-<video src="./assets/no-search.mkv" style="max-width:800px" controls loop autoplay muted />
+<video src="./assets/no-search.mp4" style="max-width:800px" controls loop autoplay muted />

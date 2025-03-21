@@ -73,7 +73,7 @@ export default function ScatterPlots({
     svg.selectAll('*').remove();
 
     svg.append('g')
-      .attr('transform', `translate(${margin.left}, ${height})`)
+      .attr('transform', `translate(${margin.left}, ${height - margin.bottom + 19})`)
       .call(xAxis);
 
     svg.append('g')
