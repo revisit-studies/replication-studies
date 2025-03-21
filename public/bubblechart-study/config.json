@@ -14,7 +14,8 @@
     "logoPath": "revisitAssets/revisitLogoSquare.svg",
     "withProgressBar": true,
     "autoDownloadStudy": false,
-    "recordStudyAudio": false,
+    "recordStudyAudio": true,
+    "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [https://app.prolific.com/submissions/complete?cc=C1DXYOZS](https://app.prolific.com/submissions/complete?cc=C1DXYOZS)",
     "sidebar": true
   },
   "importedLibraries": ["demographics", "mic-check"],
