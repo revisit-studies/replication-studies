@@ -19,7 +19,7 @@ var recordActivity = registry.register(
 var recordSearchActivity = registry.register(
     "record-search",
     (state, task) => {
-        console.log(task,'task')
+        // console.log(task,'task')
         state.search = task;
     }
 );
@@ -43,7 +43,6 @@ else closeTile();
 
 
 trrack.currentChange(() => {
-    console.log(userData)
     Revisit.postAnswers({
         ["visit"]: [...userData.visitLog],
         ["search"]: [...userData.searchLog]
