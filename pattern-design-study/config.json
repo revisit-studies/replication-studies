@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/revisit-studies/study/255charts/src/parser/StudyConfigSchema.json",
   "studyMetadata": {
-    "title": "Recreate Pattern Design Study",
+    "title": "Pattern Design Study",
     "version": "pilot",
     "authors": [
       "Tingying He"
@@ -608,8 +608,7 @@
       "baseComponent": "question-different-chart-icon",
       "parameters": {
         "condition_chart": 2
-      },
-      "instruction": "### Iconic Pattern on Different Charts \n\n We applied the iconic pattern you designed to a bar chart and a pie chart."
+      }
     }
   },
   "sequence": {
@@ -622,6 +621,34 @@
         "order": "latinSquare",
         "numSamples": 1,
         "components": [
+          {
+            "order": "fixed",
+            "components": [
+              "description_bar",
+              "tutorial_bar_geo-icon",
+              "bar-geo_geo-icon",
+              "between-two-design",
+              "bar-icon_geo-icon",
+              "question-design-strategies_bar_geo-icon",
+              "question-compare-texture_bar_geo-icon",
+              "question-different-chart-geo_bar",
+              "question-different-chart-icon_bar"
+            ]
+          },
+          {
+            "order": "fixed",
+            "components": [
+              "description_bar",
+              "tutorial_bar_icon-geo",
+              "bar-icon_icon-geo",
+              "between-two-design",
+              "bar-geo_icon-geo",
+              "question-design-strategies_bar_icon-geo",
+              "question-compare-texture_bar_icon-geo",
+              "question-different-chart-geo_bar",
+              "question-different-chart-icon_bar"
+            ]
+          },
           {
             "order": "fixed",
             "components": [
