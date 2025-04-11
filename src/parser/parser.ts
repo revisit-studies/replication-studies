@@ -4,7 +4,7 @@ import globalSchema from './GlobalConfigSchema.json';
 import {
   GlobalConfig, LibraryConfig, ParsedConfig, StudyConfig,
 } from './types';
-import { getSequenceFlatMapWithInterruptions } from '../utils/getSequenceFlatMap';
+import { findAllFuncBlocks, getSequenceFlatMapWithInterruptions } from '../utils/getSequenceFlatMap';
 import { expandLibrarySequences, loadLibrariesParseNamespace, verifyLibraryUsage } from './libraryParser';
 import { isDynamicBlock, isInheritedComponent } from './utils';
 
@@ -136,6 +136,7 @@ function verifyStudyConfig(studyConfig: StudyConfig, importedLibrariesData: Reco
     });
 
   const usedComponents = getSequenceFlatMapWithInterruptions(studyConfig.sequence);
+  const dynamicBlocks = findAllFuncBlocks(studyConfig.sequence);
 
   // Verify sequence is well defined
   usedComponents.forEach((component) => {
@@ -154,7 +155,8 @@ function verifyStudyConfig(studyConfig: StudyConfig, importedLibrariesData: Reco
   // Warnings for components that are defined but not used in the sequence
   Object.keys(studyConfig.components)
     .filter((componentName) => (
-      !usedComponents.includes(componentName)
+      dynamicBlocks.length === 0
+      && !usedComponents.includes(componentName)
       && !componentName.includes('.se.')
       && !componentName.includes('.sequences.')
       && !componentName.includes('.co.')

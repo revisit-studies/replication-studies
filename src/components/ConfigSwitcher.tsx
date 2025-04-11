@@ -200,12 +200,12 @@ export function ConfigSwitcher({
   const { storageEngine } = useStorageEngine();
   const { configsList } = globalConfig;
 
-  const demos = configsList.filter((configName) => configName.startsWith('demo-'));
+  const demos = configsList.filter((configName) => configName.startsWith('bubble') || configName.startsWith('255'));
   const tutorials = configsList.filter((configName) => configName.startsWith('tutorial'));
   const examples = configsList.filter((configName) => configName.startsWith('example-'));
-  const tests = configsList.filter((configName) => configName.startsWith('test-'));
+  const tests = configsList.filter((configName) => configName.startsWith('pattern'));
   const libraries = configsList.filter((configName) => configName.startsWith('library-'));
-  const others = useMemo(() => configsList.filter((configName) => !configName.startsWith('demo-') && !configName.startsWith('tutorial') && !configName.startsWith('example-') && !configName.startsWith('test-') && !configName.startsWith('library-')), [configsList]);
+  const others = useMemo(() => configsList.filter((configName) => !configName.startsWith('bubble') && !configName.startsWith('255') && !configName.startsWith('example-') && !configName.startsWith('pattern') && !configName.startsWith('library-')), [configsList]);
 
   const [otherStudyVisibility, setOtherStudyVisibility] = useState<Record<string, boolean>>({});
   useEffect(() => {
@@ -245,13 +245,10 @@ export function ConfigSwitcher({
         <Tabs variant="outline" defaultValue={others.length > 0 ? 'Others' : 'Demos'} value={tab} onChange={(value) => navigate(`/?tab=${value}`)}>
           <Tabs.List>
             {othersFiltered.length > 0 && (
-              <Tabs.Tab value="Others">Your Studies</Tabs.Tab>
+              <Tabs.Tab value="Others">JND Replications</Tabs.Tab>
             )}
-            <Tabs.Tab value="Demos">Demo Studies</Tabs.Tab>
-            <Tabs.Tab value="Examples">Example Studies</Tabs.Tab>
-            <Tabs.Tab value="Tutorials">Tutorials</Tabs.Tab>
-            <Tabs.Tab value="Tests">Tests</Tabs.Tab>
-            <Tabs.Tab value="Libraries">Libraries</Tabs.Tab>
+            <Tabs.Tab value="Demos">Search Replications</Tabs.Tab>
+            <Tabs.Tab value="Tests">Pattern Replication</Tabs.Tab>
           </Tabs.List>
 
           {othersFiltered.length > 0 && (
