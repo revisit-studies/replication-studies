@@ -26,11 +26,12 @@ const margin = {
 export function AllTasksTimeline({
   participantData, width, height, selectedTask, studyId, studyConfig, maxLength,
 } : {participantData: ParticipantData, width: number, studyId: string, height: number, selectedTask?: string | null, studyConfig: StudyConfig | undefined, maxLength: number | undefined}) {
-  const clickTask = useCallback((task: string) => {
-    const split = task.split('_');
-    const index = +split[split.length - 1];
+  const clickTask = useCallback((task: string, trialOrder: string) => {
+    const split = trialOrder.split('_');
+    const index = +split[0];
+    const funcIndex = split.length > 1 ? +split[1] : undefined;
 
-    window.open(`${PREFIX}${studyId}/${encryptIndex(index)}?participantId=${participantData.participantId}`, '_blank');
+    window.open(`${PREFIX}${studyId}/${encryptIndex(index)}${funcIndex ? `/${encryptIndex(funcIndex)}` : ''}?participantId=${participantData.participantId}`, '_blank');
   }, [participantData.participantId, studyId]);
 
   const xScale = useMemo(() => {
@@ -118,7 +119,7 @@ export function AllTasksTimeline({
             )}
           >
             <g>
-              <SingleTask showLabel={sortedEntries.length < 50} isCorrect={isCorrect} hasCorrect={hasCorrect} key={name} labelHeight={currentHeight * LABEL_GAP} isSelected={selectedTask === name} setSelectedTask={clickTask} answer={answer} height={height} name={name} xScale={xScale} />
+              <SingleTask showLabel={sortedEntries.length < 50} isCorrect={isCorrect} hasCorrect={hasCorrect} key={name} labelHeight={currentHeight * LABEL_GAP} isSelected={selectedTask === name} setSelectedTask={(_name: string) => clickTask(_name, answer.trialOrder)} answer={answer} height={height} name={name} xScale={xScale} />
             </g>
           </Tooltip>),
       };

@@ -14,6 +14,7 @@ import { StorageEngine } from '../../storage/engines/StorageEngine';
 import { useCurrentComponent, useCurrentStep } from '../../routes/utils';
 import { encryptIndex } from '../../utils/encryptDecryptIndex';
 import {
+  useFlatSequence,
   useStoreActions, useStoreDispatch, useStoreSelector,
 } from '../../store/store';
 import { AudioProvenanceVis } from '../audioAnalysis/AudioProvenanceVis';
@@ -33,6 +34,8 @@ export function AnalysisFooter() {
   const currentComponent = useCurrentComponent();
   const currentStep = useCurrentStep();
   const { funcIndex } = useParams();
+  const flatSequence = useFlatSequence();
+
   const navigate = useNavigate();
 
   const { setAnalysisIsPlaying } = useStoreActions();
@@ -84,10 +87,10 @@ export function AnalysisFooter() {
               }}
               data={allParticipants || []}
             />
-            <Button onClick={() => navigate(`../${funcIndex ? '..' : ''}${encryptIndex(+currentStep - 1)}?participantId=${participantId}`, { relative: 'path' })}>
+            <Button disabled={currentStep === 0} onClick={() => navigate(`../${funcIndex ? '..' : ''}${encryptIndex(+currentStep - 1)}?participantId=${participantId}`, { relative: 'path' })}>
               <IconArrowLeft />
             </Button>
-            <Button onClick={() => navigate(`../${funcIndex ? '..' : ''}${encryptIndex(+currentStep + 1)}?participantId=${participantId}`, { relative: 'path' })}>
+            <Button disabled={currentStep === flatSequence.length - 2} onClick={() => navigate(`../${funcIndex ? '..' : ''}${encryptIndex(+currentStep + 1)}?participantId=${participantId}`, { relative: 'path' })}>
               <IconArrowRight />
             </Button>
             <Button px="xs" disabled={prevParticipantNameAndIndex[0] === participantId} onClick={() => navigate(`./../${funcIndex ? '..' : ''}${encryptIndex(prevParticipantNameAndIndex[1])}?participantId=${prevParticipantNameAndIndex[0]}`)}>
