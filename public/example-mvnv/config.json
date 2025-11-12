@@ -1,18 +1,12 @@
 {
-  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/255charts/src/parser/StudyConfigSchema.json",
+  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.3.2/src/parser/StudyConfigSchema.json",
   "studyMetadata": {
     "title": "MVNV Study Replication",
     "version": "pilot",
-    "authors": [
-      "The reVISit Team"
-    ],
+    "authors": ["The reVISit Team"],
     "date": "2023-04-26",
     "description": "A replication of adjacency matrix tasks in a multi-variate network visualization (MVNV) study by Nobre et al., CHI 2020 (doi:10.1145/3313831.3376381). This is meant to demonstrate complex studies, but is not necessarily suitable as a `learn-by` example.",
-    "organizations": [
-      "University of Utah",
-      "WPI",
-      "University of Toronto"
-    ]
+    "organizations": ["University of Utah", "WPI", "University of Toronto"]
   },
   "uiConfig": {
     "contactEmail": "contact@revisit.dev",
@@ -20,7 +14,7 @@
     "logoPath": "revisitAssets/revisitLogoSquare.svg",
     "withProgressBar": true,
     "autoDownloadStudy": false,
-    "sidebar": true
+    "withSidebar": true
   },
   "components": {
     "introduction": {
@@ -45,10 +39,7 @@
           "prompt": "Do you consent to the study and wish to continue?",
           "location": "belowStimulus",
           "type": "radio",
-          "options": [
-            "Decline",
-            "Accept"
-          ]
+          "options": ["Decline", "Accept"]
         }
       ]
     },
@@ -193,10 +184,7 @@
           "id": "task6",
           "type": "radio",
           "prompt": "Select Answer Below",
-          "options": [
-            "European",
-            "North American"
-          ],
+          "options": ["European", "North American"],
           "location": "sidebar"
         },
         {
@@ -244,10 +232,7 @@
           "prompt": "Select Answer Below",
           "location": "sidebar",
           "type": "radio",
-          "options": [
-            "Mentions",
-            "Retweets"
-          ]
+          "options": ["Mentions", "Retweets"]
         },
         {
           "id": "task8-2",
@@ -348,12 +333,7 @@
           "prompt": "Select Answer Below",
           "location": "sidebar",
           "type": "radio",
-          "options": [
-            "NA",
-            "SA",
-            "EU",
-            "AS"
-          ]
+          "options": ["NA", "SA", "EU", "AS"]
         }
       ]
     },
@@ -380,12 +360,7 @@
           "prompt": "Select Answer Below",
           "location": "sidebar",
           "type": "radio",
-          "options": [
-            "NA",
-            "SA",
-            "EU",
-            "AS"
-          ]
+          "options": ["NA", "SA", "EU", "AS"]
         }
       ]
     },
@@ -441,24 +416,15 @@
         "components": [
           {
             "order": "latinSquare",
-            "components": [
-              "task0",
-              "task1"
-            ]
+            "components": ["task0", "task1"]
           },
           {
             "order": "latinSquare",
-            "components": [
-              "task2",
-              "task3"
-            ]
+            "components": ["task2", "task3"]
           },
           {
             "order": "latinSquare",
-            "components": [
-              "task4",
-              "task5"
-            ]
+            "components": ["task4", "task5"]
           }
         ]
       },
@@ -468,10 +434,7 @@
           "task6",
           {
             "order": "latinSquare",
-            "components": [
-              "task7",
-              "task8"
-            ]
+            "components": ["task7", "task8"]
           },
           "task9",
           "task10"
@@ -479,13 +442,7 @@
       },
       {
         "order": "latinSquare",
-        "components": [
-          "task11",
-          "task12",
-          "task13",
-          "task14",
-          "task15"
-        ]
+        "components": ["task11", "task12", "task13", "task14", "task15"]
       }
     ]
   }

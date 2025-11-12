@@ -1,18 +1,12 @@
 {
-  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/255charts/src/parser/StudyConfigSchema.json",
+  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.3.2/src/parser/StudyConfigSchema.json",
   "studyMetadata": {
     "title": "Vega Stimuli Demo",
     "version": "pilot",
-    "authors": [
-      "The reVISit Team"
-    ],
+    "authors": ["The reVISit Team"],
     "date": "2025-01-19",
     "description": "A demo of vega stimuli",
-    "organizations": [
-      "University of Utah",
-      "WPI",
-      "University of Toronto"
-    ]
+    "organizations": ["University of Utah", "WPI", "University of Toronto"]
   },
   "uiConfig": {
     "contactEmail": "contact@revisit.dev",
@@ -20,7 +14,7 @@
     "logoPath": "revisitAssets/revisitLogoSquare.svg",
     "withProgressBar": true,
     "autoDownloadStudy": false,
-    "sidebar": true
+    "withSidebar": true
   },
   "components": {
     "introduction": {
@@ -35,6 +29,7 @@
       "description": "A demonstration of including a Vega visualization in the config.",
       "instruction": "Click on the bar with the highest value.",
       "type": "vega",
+      "withActions": false,
       "config": {
         "$schema": "https://vega.github.io/schema/vega/v5.json",
         "width": 400,
@@ -287,10 +282,6 @@
   },
   "sequence": {
     "order": "fixed",
-    "components": [
-      "introduction",
-      "vegademo1",
-      "vegademo2"
-    ]
+    "components": ["introduction", "vegademo1", "vegademo2"]
   }
 }
