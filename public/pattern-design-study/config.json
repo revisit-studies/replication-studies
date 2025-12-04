@@ -3,15 +3,10 @@
   "studyMetadata": {
     "title": "Pattern Design Study",
     "version": "pilot",
-    "authors": [
-      "Tingying He"
-    ],
+    "authors": ["Tingying He"],
     "date": "2025-01-20",
     "description": "Recreate the pattern design study",
-    "organizations": [
-      "University of Utah",
-      "INRIA"
-    ]
+    "organizations": ["University of Utah", "INRIA"]
   },
   "uiConfig": {
     "contactEmail": "contact@revisit.dev",
@@ -19,11 +14,9 @@
     "logoPath": "revisitAssets/revisitLogoSquare.svg",
     "withProgressBar": true,
     "autoDownloadStudy": false,
-    "sidebar": true
+    "withSidebar": true
   },
-  "importedLibraries": [
-    "demographics"
-  ],
+  "importedLibraries": ["demographics"],
   "baseComponents": {
     "description": {
       "type": "website",

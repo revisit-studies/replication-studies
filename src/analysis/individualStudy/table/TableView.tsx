@@ -158,7 +158,7 @@ export function TableView({
       header: 'Start Time',
     },
     {
-      accessorFn: (row: ParticipantData) => Object.values(row.answers).filter((answer) => answer.correctAnswer.length > 0 && answer.endTime > 0).map((answer) => componentAnswersAreCorrect(answer.answer, answer.correctAnswer)),
+      accessorFn: (row: ParticipantData) => Object.values(row.answers).filter((answer) => answer.correctAnswer?.length > 0 && answer.endTime > 0).map((answer) => componentAnswersAreCorrect(answer.answer, answer.correctAnswer)),
       header: 'Correct Answers',
       Cell: ({ cell }: {cell: MrtCell<ParticipantData, boolean[]>}) => (
         <>

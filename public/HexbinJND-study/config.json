@@ -14,7 +14,7 @@
     "logoPath": "revisitAssets/revisitLogoSquare.svg",
     "withProgressBar": true,
     "autoDownloadStudy": false,
-    "sidebar": false,
+    "withSidebar": false,
     "urlParticipantIdParam": "PROLIFIC_PID",
     "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [https://app.prolific.com/submissions/complete?cc=C1E35XG4](https://app.prolific.com/submissions/complete?cc=C1E35XG4)",
     "nextOnEnter": true,
@@ -25,27 +25,30 @@
       "type": "react-component",
       "path": "jnd-replication/vistaJND/src/components/vis/JNDHexbin.tsx",
       "nextButtonLocation": "sidebar",
-      "response": [{ 
-        "id": "participantSelections",
-        "prompt": "",
-        "required": true,
-        "location": "aboveStimulus",
-        "type": "numerical",
-        "hidden": true
-      }
+      "response": [
+        {
+          "id": "participantSelections",
+          "prompt": "",
+          "required": true,
+          "location": "aboveStimulus",
+          "type": "numerical",
+          "hidden": true
+        }
       ]
     },
     "practiceBase": {
       "type": "react-component",
       "path": "jnd-replication/vistaJND/src/components/vis/PracticeHexbin.tsx",
-      "response": [{
-        "id": "practiceResponse",
-        "prompt": "Complete the practice",
-        "hidden": true,
-        "required": true,
-        "type": "reactive",
-        "location": "aboveStimulus"
-      }],
+      "response": [
+        {
+          "id": "practiceResponse",
+          "prompt": "Complete the practice",
+          "hidden": true,
+          "required": true,
+          "type": "reactive",
+          "location": "aboveStimulus"
+        }
+      ],
       "correctAnswer": [
         {
           "id": "practiceResponse",
@@ -81,10 +84,7 @@
           "requiredValue": "Accept",
           "location": "belowStimulus",
           "type": "radio",
-          "options": [
-            "Decline",
-            "Accept"
-          ]
+          "options": ["Decline", "Accept"]
         }
       ]
     },
@@ -95,48 +95,93 @@
     },
     "Hexbin plot T1 A:0.3 B:0.7": {
       "baseComponent": "practiceBase",
-      "parameters": { "r1": 0.3, "r2": 0.7, "taskid": "practiceResponse", "correlationDirection": "positive",
-                "version": "pilot3" }
+      "parameters": {
+        "r1": 0.3,
+        "r2": 0.7,
+        "taskid": "practiceResponse",
+        "correlationDirection": "positive",
+        "version": "pilot3"
+      }
     },
     "Hexbin plot T2 A:0.9 B:0.6": {
       "baseComponent": "practiceBase",
-      "parameters": { "r1": 0.9, "r2": 0.6, "taskid": "practiceResponse", "correlationDirection": "positive",
-                "version": "pilot3" }
+      "parameters": {
+        "r1": 0.9,
+        "r2": 0.6,
+        "taskid": "practiceResponse",
+        "correlationDirection": "positive",
+        "version": "pilot3"
+      }
     },
     "Hexbin plot T3 A:0.6 B:0.3": {
       "baseComponent": "practiceBase",
-      "parameters": { "r1": 0.6, "r2": 0.3, "taskid": "practiceResponse", "correlationDirection": "positive",
-                "version": "pilot3" }
+      "parameters": {
+        "r1": 0.6,
+        "r2": 0.3,
+        "taskid": "practiceResponse",
+        "correlationDirection": "positive",
+        "version": "pilot3"
+      }
     },
     "Hexbin plot T4 A:0.6 B:0.9": {
       "baseComponent": "practiceBase",
-      "parameters": { "r1": 0.6, "r2": 0.9, "taskid": "practiceResponse", "correlationDirection": "positive",
-                "version": "pilot3" }
+      "parameters": {
+        "r1": 0.6,
+        "r2": 0.9,
+        "taskid": "practiceResponse",
+        "correlationDirection": "positive",
+        "version": "pilot3"
+      }
     },
     "Hexbin plot T5 A:0.3 B:0.1": {
       "baseComponent": "practiceBase",
-      "parameters": { "r1": 0.3, "r2": 0.1, "taskid": "practiceResponse", "correlationDirection": "positive",
-                "version": "pilot3" }
+      "parameters": {
+        "r1": 0.3,
+        "r2": 0.1,
+        "taskid": "practiceResponse",
+        "correlationDirection": "positive",
+        "version": "pilot3"
+      }
     },
     "Hexbin plot T6 A:0.5 B:0.3": {
       "baseComponent": "practiceBase",
-      "parameters": { "r1": 0.5, "r2": 0.3, "taskid": "practiceResponse", "correlationDirection": "positive",
-                "version": "pilot3" }
+      "parameters": {
+        "r1": 0.5,
+        "r2": 0.3,
+        "taskid": "practiceResponse",
+        "correlationDirection": "positive",
+        "version": "pilot3"
+      }
     },
     "Hexbin plot T7 A:0.9 B:0.8": {
       "baseComponent": "practiceBase",
-      "parameters": { "r1": 0.9, "r2": 0.8, "taskid": "practiceResponse", "correlationDirection": "positive",
-                "version": "pilot3" }
+      "parameters": {
+        "r1": 0.9,
+        "r2": 0.8,
+        "taskid": "practiceResponse",
+        "correlationDirection": "positive",
+        "version": "pilot3"
+      }
     },
     "Hexbin plot T8 A:0.6 B:0.7": {
       "baseComponent": "practiceBase",
-      "parameters": { "r1": 0.6, "r2": 0.7, "taskid": "practiceResponse", "correlationDirection": "positive",
-                "version": "pilot3" }
+      "parameters": {
+        "r1": 0.6,
+        "r2": 0.7,
+        "taskid": "practiceResponse",
+        "correlationDirection": "positive",
+        "version": "pilot3"
+      }
     },
     "Hexbin plot T9 A:0.99 B:0.9": {
       "baseComponent": "practiceBase",
-      "parameters": { "r1": 0.99, "r2": 0.9, "taskid": "practiceResponse", "correlationDirection": "positive",
-                "version": "pilot3" }
+      "parameters": {
+        "r1": 0.99,
+        "r2": 0.9,
+        "taskid": "practiceResponse",
+        "correlationDirection": "positive",
+        "version": "pilot3"
+      }
     },
     "begin": {
       "type": "markdown",
@@ -159,49 +204,28 @@
           "prompt": "Your age:",
           "location": "aboveStimulus",
           "type": "radio",
-          "options": [
-            "18-25",
-            "25-39",
-            "40-49",
-            "50-59",
-            "60+",
-            "Unspecified"
-          ]
+          "options": ["18-25", "25-39", "40-49", "50-59", "60+", "Unspecified"]
         },
         {
           "id": "q-gender",
           "prompt": "Your gender:",
           "location": "aboveStimulus",
           "type": "radio",
-          "options": [
-            "Male",
-            "Female",
-            "Unspecified"
-          ]
+          "options": ["Male", "Female", "Unspecified"]
         },
         {
           "id": "q-handedness",
           "prompt": "Are you left or right handed?",
           "location": "aboveStimulus",
           "type": "radio",
-          "options": [
-            "Right",
-            "Left",
-            "Unspecified"
-          ]
+          "options": ["Right", "Left", "Unspecified"]
         },
         {
           "id": "q-degree",
           "prompt": "Highest degree obtained:",
           "location": "aboveStimulus",
           "type": "radio",
-          "options": [
-            "High School",
-            "Bachelors",
-            "Masters",
-            "PhD",
-            "Other"
-          ]
+          "options": ["High School", "Bachelors", "Masters", "PhD", "Other"]
         },
         {
           "id": "q-monitor",
@@ -271,9 +295,15 @@
       {
         "order": "fixed",
         "components": [
-          "Hexbin plot T1 A:0.3 B:0.7", "Hexbin plot T2 A:0.9 B:0.6", "Hexbin plot T3 A:0.6 B:0.3",
-          "Hexbin plot T4 A:0.6 B:0.9", "Hexbin plot T5 A:0.3 B:0.1", "Hexbin plot T6 A:0.5 B:0.3",
-          "Hexbin plot T7 A:0.9 B:0.8", "Hexbin plot T8 A:0.6 B:0.7", "Hexbin plot T9 A:0.99 B:0.9"
+          "Hexbin plot T1 A:0.3 B:0.7",
+          "Hexbin plot T2 A:0.9 B:0.6",
+          "Hexbin plot T3 A:0.6 B:0.3",
+          "Hexbin plot T4 A:0.6 B:0.9",
+          "Hexbin plot T5 A:0.3 B:0.1",
+          "Hexbin plot T6 A:0.5 B:0.3",
+          "Hexbin plot T7 A:0.9 B:0.8",
+          "Hexbin plot T8 A:0.6 B:0.7",
+          "Hexbin plot T9 A:0.99 B:0.9"
         ]
       },
       "begin",
@@ -281,118 +311,124 @@
         "order": "latinSquare",
         "components": [
           {
-            "components":[{
-              "order": "dynamic",
-              "id": "below3",
-              "functionPath": "jnd-replication/vistaJND/src/components/vis/JNDDynamic.tsx",
-              "parameters": {
-                "r1": 0.3,
-                "r2": 0.1,
-                "above": false,
-                "name": "below3",
-                "condition": "hexbin",
-                "correlationDirection": "positive",
-                "version": "pilot3"
-              }
-            },
-            "break"
+            "components": [
+              {
+                "order": "dynamic",
+                "id": "below3",
+                "functionPath": "jnd-replication/vistaJND/src/components/vis/JNDDynamic.tsx",
+                "parameters": {
+                  "r1": 0.3,
+                  "r2": 0.1,
+                  "above": false,
+                  "name": "below3",
+                  "condition": "hexbin",
+                  "correlationDirection": "positive",
+                  "version": "pilot3"
+                }
+              },
+              "break"
             ],
-          "order": "fixed"
+            "order": "fixed"
           },
           {
-            "components":[{
-              "order": "dynamic",
-              "id": "above3",
-              "functionPath": "jnd-replication/vistaJND/src/components/vis/JNDDynamic.tsx",
-              "parameters": {
-                "r1": 0.3,
-                "r2": 0.5,
-                "above": true,
-                "name": "above3",
-                "condition": "hexbin",
-                "correlationDirection": "positive",
-                "version": "pilot3"
-              }
-            },
-            "break"
+            "components": [
+              {
+                "order": "dynamic",
+                "id": "above3",
+                "functionPath": "jnd-replication/vistaJND/src/components/vis/JNDDynamic.tsx",
+                "parameters": {
+                  "r1": 0.3,
+                  "r2": 0.5,
+                  "above": true,
+                  "name": "above3",
+                  "condition": "hexbin",
+                  "correlationDirection": "positive",
+                  "version": "pilot3"
+                }
+              },
+              "break"
             ],
-          "order": "fixed"
+            "order": "fixed"
           },
           {
-            "components":[{
-              "order": "dynamic",
-              "id": "below6",
-              "functionPath": "jnd-replication/vistaJND/src/components/vis/JNDDynamic.tsx",
-              "parameters": {
-                "r1": 0.6,
-                "r2": 0.5,
-                "above": false,
-                "name": "below6",
-                "condition": "hexbin",
-                "correlationDirection": "positive",
-                "version": "pilot3"
-              }
-            },
-            "break"
+            "components": [
+              {
+                "order": "dynamic",
+                "id": "below6",
+                "functionPath": "jnd-replication/vistaJND/src/components/vis/JNDDynamic.tsx",
+                "parameters": {
+                  "r1": 0.6,
+                  "r2": 0.5,
+                  "above": false,
+                  "name": "below6",
+                  "condition": "hexbin",
+                  "correlationDirection": "positive",
+                  "version": "pilot3"
+                }
+              },
+              "break"
             ],
-          "order": "fixed"
+            "order": "fixed"
           },
           {
-            "components":[{
-              "order": "dynamic",
-              "id": "above6",
-              "functionPath": "jnd-replication/vistaJND/src/components/vis/JNDDynamic.tsx",
-              "parameters": {
-                "r1": 0.6,
-                "r2": 0.7,
-                "above": true,
-                "name": "above6",
-                "condition": "hexbin",
-                "correlationDirection": "positive",
-                "version": "pilot3"
-              }
-            },
-            "break"
+            "components": [
+              {
+                "order": "dynamic",
+                "id": "above6",
+                "functionPath": "jnd-replication/vistaJND/src/components/vis/JNDDynamic.tsx",
+                "parameters": {
+                  "r1": 0.6,
+                  "r2": 0.7,
+                  "above": true,
+                  "name": "above6",
+                  "condition": "hexbin",
+                  "correlationDirection": "positive",
+                  "version": "pilot3"
+                }
+              },
+              "break"
             ],
-          "order": "fixed"
+            "order": "fixed"
           },
           {
-            "components":[{
-              "order": "dynamic",
-              "id": "below9",
-              "functionPath": "jnd-replication/vistaJND/src/components/vis/JNDDynamic.tsx",
-              "parameters": {
-                "r1": 0.9,
-                "r2": 0.8,
-                "above": false,
-                "name": "below9",
-                "condition": "hexbin",
-                "correlationDirection": "positive",
-                "version": "pilot3"
-              }
-            },
-            "break"
+            "components": [
+              {
+                "order": "dynamic",
+                "id": "below9",
+                "functionPath": "jnd-replication/vistaJND/src/components/vis/JNDDynamic.tsx",
+                "parameters": {
+                  "r1": 0.9,
+                  "r2": 0.8,
+                  "above": false,
+                  "name": "below9",
+                  "condition": "hexbin",
+                  "correlationDirection": "positive",
+                  "version": "pilot3"
+                }
+              },
+              "break"
             ],
-          "order": "fixed"
+            "order": "fixed"
           },
           {
-            "components":[{
-              "order": "dynamic",
-              "id": "above9",
-              "functionPath": "jnd-replication/vistaJND/src/components/vis/JNDDynamic.tsx",
-              "parameters": {
-                "r1": 0.9,
-                "r2": 0.99,
-                "above": true,
-                "name": "above9",
-                "condition": "hexbin",
-                "correlationDirection": "positive",
-                "version": "pilot3"
-              }
-            },
-            "break"
+            "components": [
+              {
+                "order": "dynamic",
+                "id": "above9",
+                "functionPath": "jnd-replication/vistaJND/src/components/vis/JNDDynamic.tsx",
+                "parameters": {
+                  "r1": 0.9,
+                  "r2": 0.99,
+                  "above": true,
+                  "name": "above9",
+                  "condition": "hexbin",
+                  "correlationDirection": "positive",
+                  "version": "pilot3"
+                }
+              },
+              "break"
             ],
-          "order": "fixed"
+            "order": "fixed"
           }
         ]
       },

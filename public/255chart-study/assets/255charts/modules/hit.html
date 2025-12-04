@@ -3,7 +3,7 @@
   </div>
 
   <script type="module">
-    import {load255Chart,searchData,userData} from './js/main.js';
+    import {load255Chart,searchData as _searchData,userData} from './js/main.js';
     ( function() {
     var data  = {};
 
@@ -39,7 +39,7 @@
       var searchArray = userData.searchLog.map(function(d){
         return d['content'].toLowerCase()
       })
-      searchData = searchData.map(function(d){return d[NAME_ATTR].toLowerCase()})
+      searchData = _searchData.map(function(d){return d[NAME_ATTR].toLowerCase()})
       searchArray = _.unique(searchArray)
       //console.log(searchArray)
       searchArray = searchData.filter(function(option){

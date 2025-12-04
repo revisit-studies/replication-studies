@@ -106,7 +106,7 @@ export function AllTasksTimeline({
       const component = studyConfig?.components[joinExceptLast];
 
       const isCorrect = componentAnswersAreCorrect(answer.answer, answer.correctAnswer);
-      const hasCorrect = !!((component && component.correctAnswer) || answer.correctAnswer.length > 0);
+      const hasCorrect = !!((component && component.correctAnswer) || answer.correctAnswer?.length > 0);
 
       return {
         line: <SingleTaskLabelLines key={name} labelHeight={currentHeight * LABEL_GAP} height={maxHeight} xScale={scale} scaleStart={scaleStart} />,
@@ -136,6 +136,7 @@ export function AllTasksTimeline({
             )}
           >
             <g>
+              <Text>{JSON.stringify(answer)}</Text>
               <SingleTask incomplete={answer.startTime === 0} isCorrect={isCorrect} hasCorrect={hasCorrect} key={name} labelHeight={currentHeight * LABEL_GAP} height={maxHeight} name={name} xScale={scale} scaleStart={scaleStart} scaleEnd={scaleEnd} trialOrder={answer.trialOrder} participantId={participantData.participantId} studyId={studyId} />
             </g>
           </Tooltip>),
