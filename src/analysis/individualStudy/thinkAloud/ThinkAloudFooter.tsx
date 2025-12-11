@@ -162,6 +162,9 @@ export function ThinkAloudFooter({
 
   const currentTrialClean = useMemo(() => {
     // if we find ourselves with a wrong current trial, erase it
+    if (currentTrial.includes('__dynamicLoading')) {
+      return '';
+    }
     if (participant && !participant.answers[currentTrial]) {
       setSearchParams({ participantId, currentTrial: Object.entries(participant.answers).find(([_, ans]) => +ans.trialOrder.split('_')[0] === 0)?.[0] || '' });
     }
@@ -413,7 +416,7 @@ export function ThinkAloudFooter({
                   setSearchParams({ participantId, currentTrial: trial });
                 }
               }}
-              data={participant ? getSequenceFlatMap(participant?.sequence) : []}
+              data={participant ? Array.from(new Set(getSequenceFlatMap(participant?.sequence))) : []}
               searchable
             />
             <Stack gap="4">

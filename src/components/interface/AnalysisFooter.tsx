@@ -10,9 +10,9 @@ import { useCurrentIdentifier } from '../../routes/utils';
 import { useStoreActions, useStoreDispatch } from '../../store/store';
 import { useRecordingConfig } from '../../store/hooks/useRecordingConfig';
 
-function getAllParticipantsNames(storageEngine: StorageEngine | undefined) {
+async function getAllParticipantsNames(storageEngine: StorageEngine | undefined) {
   if (storageEngine) {
-    return storageEngine.getAllParticipantIds();
+    return (await storageEngine.getAllParticipantIds()).filter((p) => p !== undefined);
   }
   return null;
 }

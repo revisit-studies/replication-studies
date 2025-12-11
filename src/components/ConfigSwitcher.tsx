@@ -249,12 +249,12 @@ export function ConfigSwitcher({
   const { user } = useAuth();
   const configsFiltered = useMemo(() => configsList.filter((configName) => studyVisibility[configName] || user.isAdmin), [configsList, studyVisibility, user]);
 
-  const demos = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('demo-')), [configsFiltered]);
-  const tutorials = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('tutorial')), [configsFiltered]);
+  const demos = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('pattern-')), [configsFiltered]);
+  const tutorials = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('bubblechart') || configName.startsWith('255chart')), [configsFiltered]);
   const examples = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('example-')), [configsFiltered]);
   const tests = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('test-')), [configsFiltered]);
   const libraries = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('library-')), [configsFiltered]);
-  const others = useMemo(() => configsFiltered.filter((configName) => !configName.startsWith('demo-') && !configName.startsWith('tutorial') && !configName.startsWith('example-') && !configName.startsWith('test-') && !configName.startsWith('library-')), [configsFiltered]);
+  const others = useMemo(() => configsFiltered.filter((configName) => !configName.startsWith('pattern-') && !configName.startsWith('bubblechart') && !configName.startsWith('255chart-') && !configName.startsWith('test-') && !configName.startsWith('library-')), [configsFiltered]);
 
   const [searchParams] = useSearchParams();
   const tab = useMemo(() => searchParams.get('tab') || (others.length > 0 ? 'Others' : 'Demos'), [others.length, searchParams]);
@@ -274,10 +274,10 @@ export function ConfigSwitcher({
         <Tabs variant="outline" defaultValue={others.length > 0 ? 'Others' : 'Demos'} value={tab} onChange={(value) => navigate(`/?tab=${value}`)}>
           <Tabs.List>
             {others.length > 0 && (
-              <Tabs.Tab value="Others">Your Studies</Tabs.Tab>
+              <Tabs.Tab value="Others">JND Replications</Tabs.Tab>
             )}
-            <Tabs.Tab value="Demos">Search Replications</Tabs.Tab>
-            <Tabs.Tab value="Tests">Pattern Replication</Tabs.Tab>
+            <Tabs.Tab value="Demos">Pattern Replication</Tabs.Tab>
+            <Tabs.Tab value="Tutorials">Search Replications</Tabs.Tab>
           </Tabs.List>
 
           {others.length > 0 && (
