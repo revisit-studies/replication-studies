@@ -14,9 +14,9 @@
     "logoPath": "revisitAssets/revisitLogoSquare.svg",
     "withProgressBar": true,
     "autoDownloadStudy": false,
-    "recordStudyAudio": true,
+    "recordAudio": true,
     "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [https://app.prolific.com/submissions/complete?cc=C1DXYOZS](https://app.prolific.com/submissions/complete?cc=C1DXYOZS)",
-    "sidebar": true
+    "withSidebar": true
   },
   "importedLibraries": ["demographics", "mic-check"],
   "components": {
@@ -31,10 +31,7 @@
           "requiredValue": "Accept",
           "location": "belowStimulus",
           "type": "radio",
-          "options": [
-            "Decline",
-            "Accept"
-          ]
+          "options": ["Decline", "Accept"]
         }
       ],
       "recordAudio": false
@@ -77,8 +74,7 @@
         "data": "assets/data/college.csv",
         "search": true
       },
-      "response": [
-      ],
+      "response": [],
       "nextButtonText": "I'm finished",
       "recordAudio": true
     },
@@ -91,8 +87,7 @@
         "data": "assets/data/college.csv",
         "search": false
       },
-      "response": [
-      ],
+      "response": [],
       "nextButtonText": "I'm finished",
       "recordAudio": true
     },

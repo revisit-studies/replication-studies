@@ -1,18 +1,12 @@
 {
-  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/255charts/src/parser/StudyConfigSchema.json",
+  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.3.2/src/parser/StudyConfigSchema.json",
   "studyMetadata": {
     "title": "Dynamic React Stimuli and Provenance Tracking",
     "version": "pilot",
-    "authors": [
-      "The reVISit Team"
-    ],
+    "authors": ["The reVISit Team"],
     "date": "2023-06-15",
     "description": "A demo of using dynamic React stimuli and using provenance tracking with the trrack library for data collection.",
-    "organizations": [
-      "University of Utah",
-      "WPI",
-      "University of Toronto"
-    ]
+    "organizations": ["University of Utah", "WPI", "University of Toronto"]
   },
   "uiConfig": {
     "contactEmail": "contact@revisit.dev",
@@ -20,7 +14,7 @@
     "logoPath": "revisitAssets/revisitLogoSquare.svg",
     "withProgressBar": true,
     "autoDownloadStudy": false,
-    "sidebar": true
+    "withSidebar": true
   },
   "baseComponents": {
     "trial": {
@@ -68,10 +62,6 @@
   },
   "sequence": {
     "order": "fixed",
-    "components": [
-      "introduction",
-      "trial1",
-      "trial2"
-    ]
+    "components": ["introduction", "trial1", "trial2"]
   }
 }

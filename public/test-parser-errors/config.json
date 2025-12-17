@@ -1,18 +1,12 @@
 {
-  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/255charts/src/parser/StudyConfigSchema.json",
+  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.3.2/src/parser/StudyConfigSchema.json",
   "studyMetadata": {
     "title": "Test for parser errors",
     "version": "pilot",
-    "authors": [
-      "The reVISit Team"
-    ],
+    "authors": ["The reVISit Team"],
     "date": "2023-04-14",
     "description": "This is a test for parser errors.",
-    "organizations": [
-      "University of Utah",
-      "WPI",
-      "University of Toronto"
-    ]
+    "organizations": ["University of Utah", "WPI", "University of Toronto"]
   },
   "uiConfig": {
     "contactEmail": "contact@revisit.dev",
@@ -20,7 +14,7 @@
     "logoPath": "revisitAssets/revisitLogoSquare.svg",
     "withProgressBar": true,
     "autoDownloadStudy": false,
-    "sidebar": true,
+    "withSidebar": true,
     "windowEventDebounceTime": 200
   },
   "importedLibraries": ["test", "test-missing"],
@@ -65,9 +59,7 @@
       "testBaseComponent",
       {
         "order": "fixed",
-        "components": [
-          "nestedMissingComponent"
-        ],
+        "components": ["nestedMissingComponent"],
         "skip": [
           {
             "check": "block",
@@ -79,9 +71,7 @@
       },
       {
         "order": "fixed",
-        "components": [
-          "md2"
-        ],
+        "components": ["md2"],
         "skip": [
           {
             "check": "block",
