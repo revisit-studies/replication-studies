@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/255charts/src/parser/LibraryConfigSchema.json",
+  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.3.2/src/parser/LibraryConfigSchema.json",
   "description": "Mini-VLAT is a short and effective measure of visualization literacy. Mini-VLAT has 12 questions and participants should answer each question within 25 seconds. This library contains 12 components. Each component contains one question of the Mini-VLAT. This library also contains a sequence of all 12 components (the full Mini-VLAT).",
   "reference": "S. Pandey and A. Ottley, “Mini‐VLAT: A Short and Effective Measure of Visualization Literacy,” Computer Graphics Forum, vol. 42, no. 3, pp. 1–11, Jun. 2023",
   "doi": "10.1111/cgf.14809",
@@ -25,11 +25,7 @@
           "required": true,
           "location": "sidebar",
           "type": "radio",
-          "options": [
-            "True",
-            "False",
-            "Skip"
-          ]
+          "options": ["True", "False", "Skip"]
         }
       ],
       "correctAnswer": [
@@ -60,13 +56,7 @@
           "required": true,
           "location": "sidebar",
           "type": "radio",
-          "options": [
-            "Great Britain",
-            "USA",
-            "Japan",
-            "Australia",
-            "Skip"
-          ]
+          "options": ["Great Britain", "USA", "Japan", "Australia", "Skip"]
         }
       ],
       "correctAnswer": [
@@ -97,13 +87,7 @@
           "required": true,
           "location": "sidebar",
           "type": "radio",
-          "options": [
-            "50-70km",
-            "30-40km",
-            "20-30km",
-            "50-60km",
-            "Skip"
-          ]
+          "options": ["50-70km", "30-40km", "20-30km", "50-60km", "Skip"]
         }
       ],
       "correctAnswer": [
@@ -134,11 +118,7 @@
           "required": true,
           "location": "sidebar",
           "type": "radio",
-          "options": [
-            "True",
-            "False",
-            "Skip"
-          ]
+          "options": ["True", "False", "Skip"]
         }
       ],
       "correctAnswer": [
@@ -169,13 +149,7 @@
           "required": true,
           "location": "sidebar",
           "type": "radio",
-          "options": [
-            "17.6%",
-            "25.3%",
-            "10.9%",
-            "35.2%",
-            "Skip"
-          ]
+          "options": ["17.6%", "25.3%", "10.9%", "35.2%", "Skip"]
         }
       ],
       "correctAnswer": [
@@ -206,13 +180,7 @@
           "required": true,
           "location": "sidebar",
           "type": "radio",
-          "options": [
-            "Beijing",
-            "Shanghai",
-            "London",
-            "Seoul",
-            "Skip"
-          ]
+          "options": ["Beijing", "Shanghai", "London", "Seoul", "Skip"]
         }
       ],
       "correctAnswer": [
@@ -243,13 +211,7 @@
           "required": true,
           "location": "sidebar",
           "type": "radio",
-          "options": [
-            "$5.2",
-            "$6.1",
-            "$7.5",
-            "$4.5",
-            "Skip"
-          ]
+          "options": ["$5.2", "$6.1", "$7.5", "$4.5", "Skip"]
         }
       ],
       "correctAnswer": [
@@ -280,13 +242,7 @@
           "required": true,
           "location": "sidebar",
           "type": "radio",
-          "options": [
-            "$50.54",
-            "$47.02",
-            "$42.34",
-            "$43.48",
-            "Skip"
-          ]
+          "options": ["$50.54", "$47.02", "$42.34", "$43.48", "Skip"]
         }
       ],
       "correctAnswer": [
@@ -354,13 +310,7 @@
           "required": true,
           "location": "sidebar",
           "type": "radio",
-          "options": [
-            "0.71",
-            "0.90",
-            "0.80",
-            "0.63",
-            "Skip"
-          ]
+          "options": ["0.71", "0.90", "0.80", "0.63", "Skip"]
         }
       ],
       "correctAnswer": [
@@ -391,13 +341,7 @@
           "required": true,
           "location": "sidebar",
           "type": "radio",
-          "options": [
-            "1 to 1",
-            "1 to 2",
-            "1 to 3",
-            "1 to 4",
-            "Skip"
-          ]
+          "options": ["1 to 1", "1 to 2", "1 to 3", "1 to 4", "Skip"]
         }
       ],
       "correctAnswer": [
@@ -428,11 +372,7 @@
           "required": true,
           "location": "sidebar",
           "type": "radio",
-          "options": [
-            "True",
-            "False",
-            "Skip"
-          ]
+          "options": ["True", "False", "Skip"]
         }
       ],
       "correctAnswer": [

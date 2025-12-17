@@ -1,18 +1,12 @@
 {
-  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/255charts/src/parser/StudyConfigSchema.json",
+  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.3.2/src/parser/StudyConfigSchema.json",
   "studyMetadata": {
     "title": "HTML with Trrack library",
     "version": "pilot",
-    "authors": [
-      "The reVISit Team"
-    ],
+    "authors": ["The reVISit Team"],
     "date": "2023-04-14",
     "description": "An example study that implements Trrack library for provenance tracking in HTML stimuli.",
-    "organizations": [
-      "University of Utah",
-      "WPI",
-      "University of Toronto"
-    ]
+    "organizations": ["University of Utah", "WPI", "University of Toronto"]
   },
   "uiConfig": {
     "contactEmail": "contact@revisit.dev",
@@ -20,7 +14,7 @@
     "logoPath": "revisitAssets/revisitLogoSquare.svg",
     "withProgressBar": true,
     "autoDownloadStudy": false,
-    "sidebar": true,
+    "withSidebar": true,
     "windowEventDebounceTime": 200
   },
   "components": {
@@ -70,10 +64,6 @@
   },
   "sequence": {
     "order": "fixed",
-    "components": [
-      "introduction",
-      "countDots1",
-      "countDots2"
-    ]
+    "components": ["introduction", "countDots1", "countDots2"]
   }
 }

@@ -1,18 +1,12 @@
 {
-  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/255charts/src/parser/StudyConfigSchema.json",
+  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.3.2/src/parser/StudyConfigSchema.json",
   "studyMetadata": {
     "title": "Randomized Full VLAT (Visualization Literacy Assessment Test)",
     "version": "pilot",
-    "authors": [
-      "The reVISit Team"
-    ],
+    "authors": ["The reVISit Team"],
     "date": "2023-06-14",
     "description": "A replication of the VLAT questionnaire by Lee et al., TVCG 2016 (doi:10.1109/TVCG.2016.2598920) randomized between visualizations, using image stimuli.",
-    "organizations": [
-      "University of Utah",
-      "WPI",
-      "University of Toronto"
-    ]
+    "organizations": ["University of Utah", "WPI", "University of Toronto"]
   },
   "uiConfig": {
     "contactEmail": "contact@revisit.dev",
@@ -20,8 +14,8 @@
     "logoPath": "revisitAssets/revisitLogoSquare.svg",
     "withProgressBar": true,
     "autoDownloadStudy": false,
-    "sidebar": true,
-    "studyEndMsg": "Thank you for completing the study. You may click this link and return to Prolific: https://app.prolific.com/submissions/complete?cc=CE96X7ST",
+    "withSidebar": true,
+    "studyEndMsg": "Thank you for completing the study. You may click this link and return to Prolific: [https://app.prolific.com/submissions/complete?cc=CE96X7ST&PROLIFIC_ID={PARTICIPANT_ID}](https://app.prolific.com/submissions/complete?cc=CE96X7ST&PROLIFIC_ID={PARTICIPANT_ID})",
     "urlParticipantIdParam": "PROLIFIC_ID"
   },
   "importedLibraries": ["vlat"],
@@ -83,11 +77,6 @@
   },
   "sequence": {
     "order": "fixed",
-    "components": [
-      "introduction",
-      "consent",
-      "$vlat.se.full",
-      "survey"
-    ]
+    "components": ["introduction", "consent", "$vlat.se.full", "survey"]
   }
 }
