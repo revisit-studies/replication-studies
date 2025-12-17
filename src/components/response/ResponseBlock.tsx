@@ -58,15 +58,16 @@ export function ResponseBlock({
 
   const currentStep = useCurrentStep();
   const currentProvenance = useStoreSelector((state) => state.analysisProvState[location]) as FormElementProvenance | undefined;
+  const studyConfig = useStudyConfig();
 
   const storedAnswer = useMemo(() => currentProvenance?.form || status?.answer, [currentProvenance, status]);
   const storedAnswerData = useStoredAnswer();
-  const formOrders: Record<string, string[]> = useMemo(() => storedAnswerData?.formOrder || {}, [storedAnswerData]);
+  const formOrders: string[] = useMemo(() => (storedAnswerData?.formOrder?.response || config ? config.response.map((r) => r.id) : []), [config, storedAnswerData?.formOrder?.response]);
 
   const navigate = useNavigate();
 
-  const allResponses = useMemo(() => (formOrders?.response
-    ? formOrders.response
+  const allResponses = useMemo(() => (formOrders
+    ? formOrders
       .map((id) => config?.response?.find((r) => r.id === id))
       .filter((r): r is Response => r !== undefined)
     : []
@@ -124,8 +125,6 @@ export function ResponseBlock({
   const rankingAnswers = useStoreSelector((state) => state.rankingAnswers);
 
   const trialValidation = useStoreSelector((state) => state.trialValidation);
-
-  const studyConfig = useStudyConfig();
 
   const provideFeedback = useMemo(() => config?.provideFeedback ?? studyConfig.uiConfig.provideFeedback, [config, studyConfig]);
   const hasCorrectAnswerFeedback = provideFeedback && ((config?.correctAnswer?.length || 0) > 0);
