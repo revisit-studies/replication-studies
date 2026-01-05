@@ -1,0 +1,183 @@
+{
+  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/255charts/src/parser/StudyConfigSchema.json",
+  "studyMetadata": {
+    "title": "Bubble Chart Study",
+    "version": "pilot",
+    "authors": ["The reVISit Team"],
+    "date": "2023-04-28",
+    "description": "Bubblechart search replication",
+    "organizations": ["University of Utah", "WPI", "University of Toronto"]
+  },
+  "uiConfig": {
+    "contactEmail": "contact@revisit.dev",
+    "helpTextPath": "bubblechart-study/assets/help.md",
+    "logoPath": "revisitAssets/revisitLogoSquare.svg",
+    "withProgressBar": true,
+    "autoDownloadStudy": false,
+    "recordAudio": true,
+    "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [https://app.prolific.com/submissions/complete?cc=C1DXYOZS](https://app.prolific.com/submissions/complete?cc=C1DXYOZS)",
+    "withSidebar": true
+  },
+  "importedLibraries": ["demographics", "mic-check"],
+  "components": {
+    "consent": {
+      "type": "markdown",
+      "path": "bubblechart-study/assets/consent.md",
+      "nextButtonText": "Agree",
+      "response": [
+        {
+          "id": "accept",
+          "prompt": "Do you consent to the study and wish to continue?",
+          "requiredValue": "Accept",
+          "location": "belowStimulus",
+          "type": "radio",
+          "options": ["Decline", "Accept"]
+        }
+      ],
+      "recordAudio": false
+    },
+    "introduction": {
+      "type": "markdown",
+      "path": "bubblechart-study/assets/introduction.md",
+      "response": [
+        {
+          "id": "prolificId",
+          "prompt": "Please enter your prolific ID",
+          "location": "belowStimulus",
+          "type": "shortText",
+          "placeholder": "Prolific Id",
+          "paramCapture": "PROLIFIC_ID"
+        }
+      ],
+      "recordAudio": false
+    },
+    "instructionsWithSearch": {
+      "type": "markdown",
+      "path": "bubblechart-study/assets/instructions-foresight.md",
+      "response": [],
+      "nextButtonText": "Start Exploring",
+      "recordAudio": false
+    },
+    "instructionsWithoutSearch": {
+      "type": "markdown",
+      "path": "bubblechart-study/assets/instructions-control.md",
+      "response": [],
+      "nextButtonText": "Start Exploring",
+      "recordAudio": false
+    },
+    "bubbleChartWithSearch": {
+      "description": "Desc",
+      "instruction": "Your task is to analyze this dataset of college information and describe the findings you identified in the next page. \n\n **How to Interact**: \n- Mouseover any of the circles to obtain a detailed view.\n- Use the text box at the top to search for specific college.\n\n**Note**: Your audio is be recorded in this page. Please verbalize your thought process as you go analyze the dataset.",
+      "type": "react-component",
+      "path": "bubblechart-study/assets/SearchBubbleChart.tsx",
+      "parameters": {
+        "data": "assets/data/college.csv",
+        "search": true
+      },
+      "response": [],
+      "nextButtonText": "I'm finished",
+      "recordAudio": true
+    },
+    "bubbleChartWithoutSearch": {
+      "description": "Desc",
+      "instruction": "Your task is to analyze this dataset of college information and describe the findings you identified in the next page. \n\n **How to Interact**: \n- Mouseover any of the circles to obtain a detailed view.",
+      "type": "react-component",
+      "path": "bubblechart-study/assets/SearchBubbleChart.tsx",
+      "parameters": {
+        "data": "assets/data/college.csv",
+        "search": false
+      },
+      "response": [],
+      "nextButtonText": "I'm finished",
+      "recordAudio": true
+    },
+    "explorationStrategy": {
+      "description": "Exploration Strategy",
+      "instruction": "**Your Exploration Strategy** \n\n In this section, please tell us about the strategies you applied during exploration by answering the following questions.",
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "findings",
+          "prompt": "1. Your Findings",
+          "location": "belowStimulus",
+          "type": "longText",
+          "placeholder": "Write your findings here",
+          "secondaryText": "Use the textbox below list as many unique findings as you can."
+        },
+        {
+          "id": "searched",
+          "prompt": "2. During exploration, did you actively search for items that you thought might be in the visualization?",
+          "location": "belowStimulus",
+          "type": "radio",
+          "options": ["Yes", "No", "I'm not sure"],
+          "secondaryText": "If you answer yes, please provide more details in the questions 2-4."
+        },
+        {
+          "id": "searchedItems",
+          "prompt": "3. If you answered yes, which items did you actively search for?",
+          "location": "belowStimulus",
+          "type": "longText",
+          "required": false
+        },
+        {
+          "id": "relatedToYou",
+          "prompt": "4. How are the ones you actively searched for related to you?",
+          "location": "belowStimulus",
+          "type": "longText",
+          "required": false
+        },
+        {
+          "id": "difficulty",
+          "prompt": "5. How difficult was it to find them?",
+          "location": "belowStimulus",
+          "type": "radio",
+          "options": [
+            "I was not able to find them",
+            "It was very difficult to find them",
+            "It took me some time and effort to find them",
+            "It was very easy to find them"
+          ],
+          "required": false
+        },
+        {
+          "id": "strategy",
+          "prompt": "6. Did you apply any particular strategy during exploration? What was your strategy?",
+          "location": "belowStimulus",
+          "type": "longText"
+        }
+      ],
+      "recordAudio": false
+    }
+  },
+  "sequence": {
+    "order": "fixed",
+    "components": [
+      "consent",
+      "introduction",
+      "$mic-check.co.audioTest",
+      {
+        "order": "latinSquare",
+        "numSamples": 1,
+        "components": [
+          {
+            "order": "fixed",
+            "components": ["instructionsWithSearch", "bubbleChartWithSearch"]
+          },
+          {
+            "order": "fixed",
+            "components": ["instructionsWithSearch", "bubbleChartWithSearch"]
+          },
+          {
+            "order": "fixed",
+            "components": [
+              "instructionsWithoutSearch",
+              "bubbleChartWithoutSearch"
+            ]
+          }
+        ]
+      },
+      "explorationStrategy",
+      "$demographics.co.demographics"
+    ]
+  }
+}
