@@ -1,1 +1,0 @@
-# Vis Search Replication study
