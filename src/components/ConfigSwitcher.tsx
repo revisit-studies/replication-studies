@@ -249,10 +249,9 @@ export function ConfigSwitcher({
   const { user } = useAuth();
   const configsFiltered = useMemo(() => configsList.filter((configName) => studyVisibility[configName] || user.isAdmin), [configsList, studyVisibility, user]);
 
-  const demos = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('pattern-')), [configsFiltered]);
-  const tutorials = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('bubblechart') || configName.startsWith('255chart')), [configsFiltered]);
+  const pattern = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('pattern-')), [configsFiltered]);
+  const search = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('bubblechart') || configName.startsWith('255chart')), [configsFiltered]);
   const examples = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('example-')), [configsFiltered]);
-  const tests = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('test-')), [configsFiltered]);
   const libraries = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('library-')), [configsFiltered]);
   const othersFiltered = useMemo(() => configsFiltered.filter((configName) => !configName.startsWith('pattern-') && !configName.startsWith('bubblechart') && !configName.startsWith('255chart-') && !configName.startsWith('test-') && !configName.startsWith('library-')), [configsFiltered]);
 
@@ -289,7 +288,7 @@ export function ConfigSwitcher({
 
           <Tabs.Panel value="Search">
             <Text c="dimmed" mt="sm">These studies show off individual features of the reVISit platform.</Text>
-            <StudyCards configNames={demos} studyConfigs={studyConfigs} modesByConfig={modesByConfig} />
+            <StudyCards configNames={search} studyConfigs={studyConfigs} modesByConfig={modesByConfig} />
           </Tabs.Panel>
 
           <Tabs.Panel value="Examples">
@@ -297,14 +296,9 @@ export function ConfigSwitcher({
             <StudyCards configNames={examples} studyConfigs={studyConfigs} modesByConfig={modesByConfig} />
           </Tabs.Panel>
 
-          <Tabs.Panel value="Search">
-            <Text c="dimmed" mt="sm">These studies are designed to help you learn how to use the reVISit platform.</Text>
-            <StudyCards configNames={tutorials} studyConfigs={studyConfigs} modesByConfig={modesByConfig} />
-          </Tabs.Panel>
-
           <Tabs.Panel value="Pattern">
             <Text c="dimmed" mt="sm">These studies exist for testing purposes.</Text>
-            <StudyCards configNames={tests} studyConfigs={studyConfigs} modesByConfig={modesByConfig} />
+            <StudyCards configNames={pattern} studyConfigs={studyConfigs} modesByConfig={modesByConfig} />
           </Tabs.Panel>
 
           <Tabs.Panel value="Libraries">
