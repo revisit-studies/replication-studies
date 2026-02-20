@@ -1,23 +1,17 @@
 {
-  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/255charts/src/parser/StudyConfigSchema.json",
+  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.3.2/src/parser/StudyConfigSchema.json",
   "studyMetadata": {
     "title": "Using Randomization",
     "description": "This is a test study to check the functionality of the reVISit sequence generator. This study is not meant to be used for any real data collection.",
     "version": "1.0.0",
-    "authors": [
-      "The reVISit Team"
-    ],
+    "authors": ["The reVISit Team"],
     "date": "2024-02-23",
-    "organizations": [
-      "University of Utah",
-      "WPI",
-      "University of Toronto"
-    ]
+    "organizations": ["University of Utah", "WPI", "University of Toronto"]
   },
   "uiConfig": {
     "contactEmail": "jwilburn@sci.utah.edu",
     "logoPath": "revisitAssets/revisitLogoSquare.svg",
-    "sidebar": true,
+    "withSidebar": true,
     "withProgressBar": true
   },
   "baseComponents": {
@@ -146,16 +140,12 @@
           {
             "spacing": 2,
             "firstLocation": 0,
-            "components": [
-              "break1"
-            ]
+            "components": ["break1"]
           },
           {
             "spacing": "random",
             "numInterruptions": 2,
-            "components": [
-              "break2"
-            ]
+            "components": ["break2"]
           }
         ]
       },
@@ -186,16 +176,12 @@
                   {
                     "spacing": 2,
                     "firstLocation": 0,
-                    "components": [
-                      "break1"
-                    ]
+                    "components": ["break1"]
                   },
                   {
                     "spacing": "random",
                     "numInterruptions": 2,
-                    "components": [
-                      "break2"
-                    ]
+                    "components": ["break2"]
                   }
                 ]
               },
@@ -218,16 +204,12 @@
                   {
                     "spacing": 2,
                     "firstLocation": 0,
-                    "components": [
-                      "break1"
-                    ]
+                    "components": ["break1"]
                   },
                   {
                     "spacing": "random",
                     "numInterruptions": 2,
-                    "components": [
-                      "break2"
-                    ]
+                    "components": ["break2"]
                   }
                 ]
               }
@@ -254,10 +236,7 @@
                   {
                     "order": "latinSquare",
                     "numSamples": 1,
-                    "components": [
-                      "trial21",
-                      "trial22"
-                    ]
+                    "components": ["trial21", "trial22"]
                   }
                 ]
               }
@@ -278,10 +257,7 @@
                   {
                     "order": "latinSquare",
                     "numSamples": 1,
-                    "components": [
-                      "trial21",
-                      "trial22"
-                    ]
+                    "components": ["trial21", "trial22"]
                   }
                 ]
               }

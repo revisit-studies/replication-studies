@@ -3,16 +3,10 @@
   "studyMetadata": {
     "title": "255 Charts",
     "version": "pilot",
-    "authors": [
-      "The reVISit Team"
-    ],
+    "authors": ["The reVISit Team"],
     "date": "2025-02-1",
     "description": "255 Chart from the Hindsight study",
-    "organizations": [
-      "University of Utah",
-      "WPI",
-      "University of Toronto"
-    ]
+    "organizations": ["University of Utah", "WPI", "University of Toronto"]
   },
   "uiConfig": {
     "contactEmail": "contact@revisit.dev",
@@ -20,9 +14,9 @@
     "logoPath": "revisitAssets/revisitLogoSquare.svg",
     "withProgressBar": true,
     "autoDownloadStudy": false,
-    "sidebar": true,
+    "withSidebar": true,
     "windowEventDebounceTime": 200,
-    "recordStudyAudio": true,
+    "recordAudio": true,
     "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [https://app.prolific.com/submissions/complete?cc=C1DXYOZS](https://app.prolific.com/submissions/complete?cc=C1DXYOZS)"
   },
   "importedLibraries": ["demographics", "mic-check"],
@@ -38,14 +32,10 @@
           "requiredValue": "Accept",
           "location": "belowStimulus",
           "type": "radio",
-          "options": [
-            "Decline",
-            "Accept"
-          ]
+          "options": ["Decline", "Accept"]
         }
       ],
       "recordAudio": false
-
     },
     "introduction": {
       "type": "markdown",
@@ -190,15 +180,11 @@
           },
           {
             "order": "fixed",
-            "components": [
-              "training-search", "255ChartSearch"
-            ]
+            "components": ["training-search", "255ChartSearch"]
           },
           {
             "order": "fixed",
-            "components": [
-              "training-search", "255ChartSearch"
-            ]
+            "components": ["training-search", "255ChartSearch"]
           }
         ]
       },
