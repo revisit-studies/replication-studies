@@ -228,7 +228,8 @@ export function ConfigSwitcher({
   const othersFiltered = useMemo(() => others.filter((configName) => otherStudyVisibility[configName] || user.isAdmin), [others, otherStudyVisibility, user]);
 
   const [searchParams] = useSearchParams();
-  const tab = useMemo(() => searchParams.get('tab') || (othersFiltered.length > 0 ? 'Others' : 'Demos'), [othersFiltered.length, searchParams]);
+  const tab = useMemo(() => searchParams.get('tab') || (othersFiltered.length > 0 ? 'JND' : 'Pattern'), [othersFiltered.length, searchParams]);
+
   const navigate = useNavigate();
 
   return (
@@ -242,22 +243,22 @@ export function ConfigSwitcher({
           src={`${PREFIX}revisitAssets/revisitLogoSquare.svg`}
           alt="reVISit"
         />
-        <Tabs variant="outline" defaultValue={others.length > 0 ? 'Others' : 'Demos'} value={tab} onChange={(value) => navigate(`/?tab=${value}`)}>
+        <Tabs variant="outline" defaultValue={others.length > 0 ? 'JND' : 'Pattern'} value={tab} onChange={(value) => navigate(`/?tab=${value}`)}>
           <Tabs.List>
             {othersFiltered.length > 0 && (
-              <Tabs.Tab value="Others">JND Replications</Tabs.Tab>
+              <Tabs.Tab value="JND">JND Replications</Tabs.Tab>
             )}
-            <Tabs.Tab value="Demos">Search Replications</Tabs.Tab>
-            <Tabs.Tab value="Tests">Pattern Replication</Tabs.Tab>
+            <Tabs.Tab value="Search">Search Replications</Tabs.Tab>
+            <Tabs.Tab value="Pattern">Pattern Replication</Tabs.Tab>
           </Tabs.List>
 
           {othersFiltered.length > 0 && (
-            <Tabs.Panel value="Others">
+            <Tabs.Panel value="JND">
               <StudyCards configNames={othersFiltered} studyConfigs={studyConfigs} />
             </Tabs.Panel>
           )}
 
-          <Tabs.Panel value="Demos">
+          <Tabs.Panel value="Search">
             <Text c="dimmed" mt="sm">These studies show off individual features of the reVISit platform.</Text>
             <StudyCards configNames={demos} studyConfigs={studyConfigs} />
           </Tabs.Panel>
@@ -267,12 +268,12 @@ export function ConfigSwitcher({
             <StudyCards configNames={examples} studyConfigs={studyConfigs} />
           </Tabs.Panel>
 
-          <Tabs.Panel value="Tutorials">
+          <Tabs.Panel value="Search">
             <Text c="dimmed" mt="sm">These studies are designed to help you learn how to use the reVISit platform.</Text>
             <StudyCards configNames={tutorials} studyConfigs={studyConfigs} />
           </Tabs.Panel>
 
-          <Tabs.Panel value="Tests">
+          <Tabs.Panel value="Pattern">
             <Text c="dimmed" mt="sm">These studies exist for testing purposes.</Text>
             <StudyCards configNames={tests} studyConfigs={studyConfigs} />
           </Tabs.Panel>
