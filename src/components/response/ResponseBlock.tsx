@@ -57,7 +57,6 @@ export function ResponseBlock({
 
   const currentStep = useCurrentStep();
   const currentProvenance = useStoreSelector((state) => state.analysisProvState[location]) as FormElementProvenance | undefined;
-  const studyConfig = useStudyConfig();
 
   const storedAnswer = useMemo(() => currentProvenance?.form || status?.answer, [currentProvenance, status]);
   const storedAnswerData = useStoredAnswer();

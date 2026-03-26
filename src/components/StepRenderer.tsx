@@ -57,13 +57,6 @@ export function StepRenderer() {
   const analysisHasScreenRecording = useStoreSelector((state) => state.analysisHasScreenRecording);
   const analysisCanPlayScreenRecording = useStoreSelector((state) => state.analysisCanPlayScreenRecording);
 
-  const screenRecording = useScreenRecording();
-
-  const { isRejected: isScreenRecordingUserRejected } = screenRecording;
-
-  const analysisHasScreenRecording = useStoreSelector((state) => state.analysisHasScreenRecording);
-  const analysisCanPlayScreenRecording = useStoreSelector((state) => state.analysisCanPlayScreenRecording);
-
   // Attach event listeners
   useEffect(() => {
     // Focus

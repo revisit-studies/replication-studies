@@ -347,13 +347,12 @@ export function ConfigSwitcher({
   const isLoadingStudies = isLoadingVisibility || isLoadingStudyConfigs;
   const configsFiltered = useMemo(() => configsList.filter((configName) => studyVisibility[configName] || user.isAdmin), [configsList, studyVisibility, user]);
 
-  const demos = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('demo-')), [configsFiltered]);
-  const tutorials = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('tutorial')), [configsFiltered]);
+  const demos = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('pattern-')), [configsFiltered]);
+  const tutorials = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('bubblechart') || configName.startsWith('255chart')), [configsFiltered]);
   const examples = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('example-')), [configsFiltered]);
   const tests = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('test-')), [configsFiltered]);
   const libraries = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('library-')), [configsFiltered]);
-  const others = useMemo(() => configsFiltered.filter((configName) => !configName.startsWith('demo-') && !configName.startsWith('tutorial') && !configName.startsWith('example-') && !configName.startsWith('test-') && !configName.startsWith('library-')), [configsFiltered]);
-
+  const others = useMemo(() => configsFiltered.filter((configName) => !configName.startsWith('pattern-') && !configName.startsWith('bubblechart') && !configName.startsWith('255chart-') && !configName.startsWith('test-') && !configName.startsWith('library-')), [configsFiltered]);
   const [searchParams] = useSearchParams();
   const firstTab = useMemo(() => {
     if (others.length > 0) return 'Others';
@@ -428,23 +427,10 @@ export function ConfigSwitcher({
             <Tabs variant="outline" defaultValue={firstTab} value={tab} onChange={(value) => navigate(`/?tab=${value}`)}>
               <Tabs.List>
                 {others.length > 0 && (
-                  <Tabs.Tab value="Others">Your Studies</Tabs.Tab>
+                  <Tabs.Tab value="Others">JND Replications</Tabs.Tab>
                 )}
-                {demos.length > 0 && (
-                  <Tabs.Tab value="Demos">Demo Studies</Tabs.Tab>
-                )}
-                {examples.length > 0 && (
-                  <Tabs.Tab value="Examples">Example Studies</Tabs.Tab>
-                )}
-                {tutorials.length > 0 && (
-                  <Tabs.Tab value="Tutorials">Tutorials</Tabs.Tab>
-                )}
-                {tests.length > 0 && (
-                  <Tabs.Tab value="Tests">Tests</Tabs.Tab>
-                )}
-                {libraries.length > 0 && (
-                  <Tabs.Tab value="Libraries">Libraries</Tabs.Tab>
-                )}
+                <Tabs.Tab value="Demos">Pattern Replication</Tabs.Tab>
+                <Tabs.Tab value="Tutorials">Search Replications</Tabs.Tab>
               </Tabs.List>
 
               {others.length > 0 && (

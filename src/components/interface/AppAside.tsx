@@ -74,54 +74,10 @@ export function AppAside() {
               Next Participant
             </Button>
           </Tooltip>
-          {isAnalysis ? (
-            <Tooltip
-              label="The study browser cannot be closed in replay mode"
-              withinPortal
-            >
-              <CloseButton
-                onClick={() => dispatch(toggleStudyBrowser())}
-                mt={1}
-                disabled={isAnalysis}
-              />
-            </Tooltip>
-          ) : (
-            <CloseButton
-              onClick={() => dispatch(toggleStudyBrowser())}
-              mt={1}
-              disabled={isAnalysis}
-            />
-          )}
-        </Flex>
-        <Flex direction="row" justify="space-between" align="center" mt="xs" opacity={0.7}>
-          <Text size="sm">
-            Study Status:
-            {' '}
-            {modes?.dataCollectionEnabled ? 'Collecting Data' : 'Data Collection Disabled'}
-          </Text>
-          <Flex gap="sm" align="center">
-            <Tooltip label="Edit Study Settings" withinPortal position="bottom">
-              <ActionIcon
-                variant="white"
-                aria-label="Edit Study Modes"
-                component="a"
-                href={useHref(`/analysis/stats/${studyId}/manage`)}
-                p={0}
-              >
-                <IconSettingsShare style={{ width: '70%', height: '70%' }} stroke={1.5} size={16} />
-              </ActionIcon>
-            </Tooltip>
-            {modes?.analyticsInterfacePubliclyAccessible
-              ? <Tooltip label="Analytics interface publicly accessible" multiline w={200} style={{ whiteSpace: 'normal' }} withinPortal position="bottom"><IconGraph size={16} color="green" /></Tooltip>
-              : <Tooltip label="Analytics interface not publicly accessible" multiline w={200} style={{ whiteSpace: 'normal' }} withinPortal position="bottom"><IconGraphOff size={16} color="red" /></Tooltip>}
-            {storageEngine?.getEngine() === 'localStorage'
-              ? <Tooltip label="Local storage enabled" withinPortal position="bottom"><IconDatabase size={16} color="green" /></Tooltip>
-              : storageEngine?.getEngine() === 'firebase'
-                ? <Tooltip label="Firebase enabled" withinPortal position="bottom"><IconBrandFirebase size={16} color="green" /></Tooltip>
-                : storageEngine?.getEngine() === 'supabase'
-                  ? <Tooltip label="Supabase enabled" withinPortal position="bottom"><IconBrandSupabase size={16} color="green" /></Tooltip>
-                  : <Tooltip label="Unknown storage engine enabled" withinPortal position="bottom"><IconDatabase size={16} color="red" /></Tooltip>}
-          </Flex>
+          <CloseButton
+            onClick={() => dispatch(toggleStudyBrowser())}
+            mt={1}
+          />
         </Flex>
         <Flex direction="row" justify="space-between" align="center" mt="xs" opacity={0.7}>
           <Text size="sm">
