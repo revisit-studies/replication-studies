@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import {
   useStoreSelector,
@@ -80,11 +80,10 @@ export function useNextStep() {
   const startTime = useMemo(() => Date.now(), [funcIndex, currentStep]);
 
   const windowEvents = useWindowEvents();
-  const goToNextStep = useEvent((collectData = true) => {
+  const goToNextStep = useCallback((collectData = true) => {
     if (typeof currentStep !== 'number') {
       return;
     }
-
     // Get answer from across the 3 response blocks and the provenance graph
     const trialValidationCopy = structuredClone(trialValidation[identifier]);
     const answer = trialValidationCopy ? Object.values(trialValidationCopy).reduce((acc, curr) => {
