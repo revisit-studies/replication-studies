@@ -48,7 +48,7 @@ export default function HeatmapPlots({
     };
 
     fetchData();
-  }, [r]);
+  }, [r, datasetName]);
 
   const createChart = useCallback(() => {
     if (data.length === 0) return;
@@ -88,7 +88,7 @@ export default function HeatmapPlots({
       .style('fill', (d) => d3.interpolateRdBu(d / 1))
       .style('cursor', 'pointer')
       .on('click', onClick);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, r]);
 
   useEffect(() => {

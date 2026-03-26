@@ -18,7 +18,7 @@ const height = 300;
 
 export default function ScatterPlots({
   r, onClick, shouldNegate = false, datasetName,
-} : { r: number, onClick: () => void, shouldNegate?: boolean, datasetName: string }) {
+}: { r: number, onClick: () => void, shouldNegate?: boolean, datasetName: string }) {
   const d3Container = useRef(null);
   const [data, setData] = useState<[number, number][]>([]);
   const [isHover, setIsHover] = useState<boolean>(false);
@@ -58,7 +58,7 @@ export default function ScatterPlots({
     };
 
     fetchData();
-  }, [r]);
+  }, [r, datasetName, shouldNegate]);
 
   const createChart = useCallback(() => {
     if (data.length === 0) return;
@@ -89,7 +89,7 @@ export default function ScatterPlots({
       .attr('cx', (d) => xScale(d[0]) + margin.left)
       .attr('cy', (d) => yScale(d[1]) + margin.top)
       .style('fill', 'black');
-  }, [data, innerWidth, innerHeight, margin.left, margin.top]);
+  }, [data, innerWidth, innerHeight, margin.left, margin.top, margin.bottom]);
 
   useEffect(() => {
     createChart();

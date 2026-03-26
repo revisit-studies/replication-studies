@@ -52,7 +52,7 @@ export default function HexbinPlots({
     };
 
     fetchData();
-  }, [r]);
+  }, [r, datasetName, shouldNegate]);
 
   const createChart = useCallback(() => {
     if (data.length === 0) return;

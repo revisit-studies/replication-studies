@@ -19,7 +19,7 @@ const height = 300;
 
 export default function ParallelCoordinates({
   v, onClick, shouldNegate = false, datasetName,
-} : { v: number, onClick: () => void, shouldNegate?: boolean, datasetName: string }) {
+}: { v: number, onClick: () => void, shouldNegate?: boolean, datasetName: string }) {
   const d3Container = useRef(null);
   const [data, setData] = useState<[number, number][]>([]);
   const [isHover, setIsHover] = useState<boolean>(false);
@@ -52,7 +52,7 @@ export default function ParallelCoordinates({
     };
 
     fetchData();
-  }, [v]);
+  }, [v, datasetName, shouldNegate]);
 
   const createChart = useCallback(() => {
     if (data.length === 0) return;
