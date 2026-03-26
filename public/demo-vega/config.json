@@ -1,16 +1,21 @@
 {
-  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.3.2/src/parser/StudyConfigSchema.json",
+  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.4.1/src/parser/StudyConfigSchema.json",
   "studyMetadata": {
     "title": "Vega Stimuli Demo",
     "version": "pilot",
-    "authors": ["The reVISit Team"],
-    "date": "2025-01-19",
+    "authors": [
+      "The reVISit Team"
+    ],
+    "date": "2026-02-23",
     "description": "A demo of vega stimuli",
-    "organizations": ["University of Utah", "WPI", "University of Toronto"]
+    "organizations": [
+      "University of Utah",
+      "WPI"
+    ]
   },
   "uiConfig": {
     "contactEmail": "contact@revisit.dev",
-    "helpTextPath": "demo-vega/assets/help.md",
+    "helpTextPath": "demo-vega/assets/introduction.md",
     "logoPath": "revisitAssets/revisitLogoSquare.svg",
     "withProgressBar": true,
     "autoDownloadStudy": false,
@@ -282,6 +287,10 @@
   },
   "sequence": {
     "order": "fixed",
-    "components": ["introduction", "vegademo1", "vegademo2"]
+    "components": [
+      "introduction",
+      "vegademo1",
+      "vegademo2"
+    ]
   }
 }

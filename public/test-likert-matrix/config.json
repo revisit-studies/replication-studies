@@ -1,12 +1,17 @@
 {
-  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.3.2/src/parser/StudyConfigSchema.json",
+  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.4.1/src/parser/StudyConfigSchema.json",
   "studyMetadata": {
     "title": "Test LIKERT",
     "version": "pilot",
-    "authors": ["The reVISit Team"],
-    "date": "2024-11-24",
+    "authors": [
+      "The reVISit Team"
+    ],
+    "date": "2026-02-23",
     "description": "Testing for likert",
-    "organizations": ["University of Utah", "WPI", "University of Toronto"]
+    "organizations": [
+      "University of Utah",
+      "WPI"
+    ]
   },
   "uiConfig": {
     "contactEmail": "contact@revisit.dev",
@@ -19,7 +24,9 @@
   },
   "sequence": {
     "order": "fixed",
-    "components": ["likert-component"]
+    "components": [
+      "likert-component"
+    ]
   },
   "components": {
     "likert-component": {
@@ -31,7 +38,13 @@
           "location": "aboveStimulus",
           "type": "matrix-radio",
           "answerOptions": "satisfaction5",
-          "questionOptions": ["Cat", "Dog", "Rat", "Horse", "Sentient Robot"]
+          "questionOptions": [
+            "Cat",
+            "Dog",
+            "Rat",
+            "Horse",
+            "Sentient Robot"
+          ]
         },
         {
           "id": "additional_likert",
@@ -46,7 +59,13 @@
             "I owned one when I was a child.",
             "I own one now"
           ],
-          "questionOptions": ["Cat", "Dog", "Rat", "Horse", "Sentient Robot"]
+          "questionOptions": [
+            "Cat",
+            "Dog",
+            "Rat",
+            "Horse",
+            "Sentient Robot"
+          ]
         },
         {
           "id": "q1",
