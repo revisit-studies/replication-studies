@@ -1,16 +1,21 @@
 {
-  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.3.2/src/parser/StudyConfigSchema.json",
+  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.4.1/src/parser/StudyConfigSchema.json",
   "studyMetadata": {
-    "title": "Simple Images as Stimuli: Decision-Making with Uncertainty Visualizations",
+    "title": "Images as Stimuli: Decision-Making with Uncertainty Visualizations",
     "version": "pilot",
-    "authors": ["The reVISit Team"],
-    "date": "2023-04-14",
+    "authors": [
+      "The reVISit Team"
+    ],
+    "date": "2026-02-23",
     "description": "A demo of image stimuli, based on the study design by Padilla et al., Frontiers in Psychology, 2021 (doi:10.3389/fpsyg.2020.579267). Data is collected via form fields.",
-    "organizations": ["University of Utah", "WPI", "University of Toronto"]
+    "organizations": [
+      "University of Utah",
+      "WPI"
+    ]
   },
   "uiConfig": {
     "contactEmail": "contact@revisit.dev",
-    "helpTextPath": "demo-image/assets/help.md",
+    "helpTextPath": "demo-image/assets/introduction.md",
     "logoPath": "revisitAssets/revisitLogoSquare.svg",
     "withProgressBar": true,
     "autoDownloadStudy": false,
@@ -43,7 +48,10 @@
           "prompt": "Answer:",
           "location": "sidebar",
           "type": "radio",
-          "options": ["Yes", "No"]
+          "options": [
+            "Yes",
+            "No"
+          ]
         }
       ],
       "nextButtonEnableTime": 3000,
@@ -69,7 +77,10 @@
           "prompt": "Answer:",
           "location": "sidebar",
           "type": "radio",
-          "options": ["Yes", "No"]
+          "options": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },
@@ -93,7 +104,10 @@
           "prompt": "Answer:",
           "location": "sidebar",
           "type": "radio",
-          "options": ["Yes", "No"]
+          "options": [
+            "Yes",
+            "No"
+          ]
         }
       ]
     },

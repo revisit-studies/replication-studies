@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import {
   useStoreSelector,
@@ -22,7 +22,6 @@ import {
 } from '../../parser/types';
 import { decryptIndex, encryptIndex } from '../../utils/encryptDecryptIndex';
 import { useIsAnalysis } from './useIsAnalysis';
-import { useEvent } from './useEvent';
 import { componentAnswersAreCorrect } from '../../utils/correctAnswer';
 
 function checkAllAnswersCorrect(answers: StoredAnswer['answer'], componentId: string, componentConfig: IndividualComponent | InheritedComponent, studyConfig: StudyConfig) {
@@ -81,11 +80,10 @@ export function useNextStep() {
   const startTime = useMemo(() => Date.now(), [funcIndex, currentStep]);
 
   const windowEvents = useWindowEvents();
-  const goToNextStep = useEvent((collectData = true) => {
+  const goToNextStep = useCallback((collectData = true) => {
     if (typeof currentStep !== 'number') {
       return;
     }
-
     // Get answer from across the 3 response blocks and the provenance graph
     const trialValidationCopy = structuredClone(trialValidation[identifier]);
     const answer = trialValidationCopy ? Object.values(trialValidationCopy).reduce((acc, curr) => {
@@ -134,7 +132,7 @@ export function useNextStep() {
     const blocksForStep = findBlockForStep(sequence, currentStep);
 
     // If the current component is in a block that has a skip block (or is nested in a block that has a skip block), we need to check if the skip block should be triggered
-    const hasSkipBlock = blocksForStep !== null && (blocksForStep.some((block) => Object.hasOwn(block.currentBlock, 'skip') && block.currentBlock.skip !== undefined));
+    const hasSkipBlock = blocksForStep !== null && (blocksForStep.some((block) => block.currentBlock.skip && block.currentBlock.skip.length > 0));
 
     // Get the answers with the new answer added, since above is dispatching and async, but we need it synchronously
     const answersWithNewAnswer = {
@@ -214,7 +212,7 @@ export function useNextStep() {
     } else {
       navigate(`/${studyId}/${encryptIndex(nextStep)}${window.location.search}`);
     }
-  });
+  }, [currentStep, trialValidation, identifier, storedAnswer, windowEvents, dataCollectionEnabled, clickedPrevious, sequence, answers, startTime, funcIndex, storeDispatch, saveTrialAnswer, storageEngine, setReactiveAnswers, setMatrixAnswersCheckbox, setMatrixAnswersRadio, setRankingAnswers, studyConfig, participantSequence, navigate, studyId]);
 
   return {
     isNextDisabled,

@@ -1,19 +1,24 @@
 {
-  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.3.2/src/parser/StudyConfigSchema.json",
+  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.4.1/src/parser/StudyConfigSchema.json",
   "studyMetadata": {
     "title": "A tutorial that you will build with us",
     "version": "development",
-    "authors": ["The reVISit Team", "The reVISit Community", "You :)"],
-    "date": "2025-02-05",
+    "authors": [
+      "The reVISit Team",
+      "The reVISit Community",
+      "You :)"
+    ],
+    "date": "2026-02-23",
     "description": "This tutorial will teach you how to create a reVISit study and use all of the features that reVISit has to offer.",
     "organizations": [
       "University of Utah",
       "WPI",
-      "University of Toronto",
       "You :)"
     ]
   },
-  "importedLibraries": ["mic-check"],
+  "importedLibraries": [
+    "mic-check"
+  ],
   "uiConfig": {
     "recordAudio": true,
     "contactEmail": "contact@revisit.dev",
@@ -63,7 +68,11 @@
           "id": "fruits",
           "type": "matrix-checkbox",
           "prompt": "Which of these fruits do you like at each time of day?",
-          "answerOptions": ["Breakfast", "Lunch", "Dinner"],
+          "answerOptions": [
+            "Breakfast",
+            "Lunch",
+            "Dinner"
+          ],
           "questionOptions": [
             "Banana",
             "Apple",
@@ -84,7 +93,11 @@
           "prompt": "Which of these operating systems do you use?",
           "minSelections": 1,
           "maxSelections": 2,
-          "options": ["Windows", "macOS", "Linux"],
+          "options": [
+            "Windows",
+            "macOS",
+            "Linux"
+          ],
           "withOther": true
         },
         {
@@ -117,7 +130,10 @@
           "id": "training",
           "type": "radio",
           "prompt": "Yes is the correct answer, click it",
-          "options": ["Yes", "No"]
+          "options": [
+            "Yes",
+            "No"
+          ]
         }
       ],
       "correctAnswer": [
@@ -141,14 +157,26 @@
           "type": "radio",
           "prompt": "Which coin is most effective to produce?",
           "location": "sidebar",
-          "options": ["Penny", "Nickel", "Dime", "Quarter", "Half Dollar"]
+          "options": [
+            "Penny",
+            "Nickel",
+            "Dime",
+            "Quarter",
+            "Half Dollar"
+          ]
         },
         {
           "id": "cost-ineffective",
           "type": "dropdown",
           "prompt": "Which coin is least cost effective to produce?",
           "location": "sidebar",
-          "options": ["Penny", "Nickel", "Dime", "Quarter", "Half Dollar"]
+          "options": [
+            "Penny",
+            "Nickel",
+            "Dime",
+            "Quarter",
+            "Half Dollar"
+          ]
         }
       ]
     },
@@ -160,7 +188,11 @@
           "id": "simple-vega",
           "type": "radio",
           "prompt": "What is the value of bar A?",
-          "options": ["10", "28", "50"]
+          "options": [
+            "10",
+            "28",
+            "50"
+          ]
         }
       ]
     },
@@ -205,7 +237,11 @@
           "id": "dynamic-vega",
           "type": "radio",
           "prompt": "What is the value of bar A?",
-          "options": ["10", "28", "50"]
+          "options": [
+            "10",
+            "28",
+            "50"
+          ]
         }
       ]
     },
@@ -240,7 +276,15 @@
         }
       ],
       "parameters": {
-        "barData": [0.32, 0.01, 1.2, 1.3, 0.82, 0.4, 0.3]
+        "barData": [
+          0.32,
+          0.01,
+          1.2,
+          1.3,
+          0.82,
+          0.4,
+          0.3
+        ]
       }
     },
     "reactExampleCars": {
@@ -318,7 +362,10 @@
           "id": "q-example-2",
           "type": "dropdown",
           "prompt": "Example question",
-          "options": ["Option 1", "Option 2"]
+          "options": [
+            "Option 1",
+            "Option 2"
+          ]
         }
       ]
     },
@@ -329,7 +376,10 @@
           "id": "q-example-2",
           "type": "dropdown",
           "prompt": "Attention check question",
-          "options": ["Option 1", "Option 2"]
+          "options": [
+            "Option 1",
+            "Option 2"
+          ]
         }
       ]
     },
@@ -349,7 +399,7 @@
     "components": [
       "welcome",
       "consent",
-      "$mic-check.co.audioTest",
+      "$mic-check.components.audioTest",
       "demographics",
       "trainingWithFeedback",
       "coinImage",
@@ -363,31 +413,48 @@
       {
         "id": "attentionDeterministic",
         "order": "fixed",
-        "components": ["example1", "example2", "example1", "example2"],
+        "components": [
+          "example1",
+          "example2",
+          "example1",
+          "example2"
+        ],
         "interruptions": [
           {
             "firstLocation": 0,
             "spacing": 2,
-            "components": ["attentionCheck"]
+            "components": [
+              "attentionCheck"
+            ]
           }
         ]
       },
       {
         "id": "attentionRandom",
         "order": "fixed",
-        "components": ["example1", "example2", "example1", "example2"],
+        "components": [
+          "example1",
+          "example2",
+          "example1",
+          "example2"
+        ],
         "interruptions": [
           {
             "spacing": "random",
             "numInterruptions": 3,
-            "components": ["attentionCheck"]
+            "components": [
+              "attentionCheck"
+            ]
           }
         ]
       },
       {
         "id": "skipResponse",
         "order": "fixed",
-        "components": ["exampleWithAnswer", "example1"],
+        "components": [
+          "exampleWithAnswer",
+          "example1"
+        ],
         "skip": [
           {
             "name": "exampleWithAnswer",

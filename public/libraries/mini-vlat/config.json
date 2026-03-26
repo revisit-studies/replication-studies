@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.3.2/src/parser/LibraryConfigSchema.json",
+  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.4.1/src/parser/LibraryConfigSchema.json",
   "description": "Mini-VLAT is a short and effective measure of visualization literacy. Mini-VLAT has 12 questions and participants should answer each question within 25 seconds. This library contains 12 components. Each component contains one question of the Mini-VLAT. This library also contains a sequence of all 12 components (the full Mini-VLAT).",
   "reference": "S. Pandey and A. Ottley, “Mini‐VLAT: A Short and Effective Measure of Visualization Literacy,” Computer Graphics Forum, vol. 42, no. 3, pp. 1–11, Jun. 2023",
   "doi": "10.1111/cgf.14809",
@@ -25,7 +25,11 @@
           "required": true,
           "location": "sidebar",
           "type": "radio",
-          "options": ["True", "False", "Skip"]
+          "options": [
+            "True",
+            "False",
+            "Skip"
+          ]
         }
       ],
       "correctAnswer": [
@@ -33,7 +37,8 @@
           "id": "res-treemap",
           "answer": "False"
         }
-      ]
+      ],
+      "withSidebar": true
     },
     "stackedBar100": {
       "meta": {
@@ -56,7 +61,13 @@
           "required": true,
           "location": "sidebar",
           "type": "radio",
-          "options": ["Great Britain", "USA", "Japan", "Australia", "Skip"]
+          "options": [
+            "Great Britain",
+            "USA",
+            "Japan",
+            "Australia",
+            "Skip"
+          ]
         }
       ],
       "correctAnswer": [
@@ -64,7 +75,8 @@
           "id": "res-stackedBar100",
           "answer": "Great Britain"
         }
-      ]
+      ],
+      "withSidebar": true
     },
     "histogram": {
       "meta": {
@@ -87,7 +99,13 @@
           "required": true,
           "location": "sidebar",
           "type": "radio",
-          "options": ["50-70km", "30-40km", "20-30km", "50-60km", "Skip"]
+          "options": [
+            "50-70km",
+            "30-40km",
+            "20-30km",
+            "50-60km",
+            "Skip"
+          ]
         }
       ],
       "correctAnswer": [
@@ -95,7 +113,8 @@
           "id": "res3",
           "answer": "30-40km"
         }
-      ]
+      ],
+      "withSidebar": true
     },
     "choropleth": {
       "meta": {
@@ -118,7 +137,11 @@
           "required": true,
           "location": "sidebar",
           "type": "radio",
-          "options": ["True", "False", "Skip"]
+          "options": [
+            "True",
+            "False",
+            "Skip"
+          ]
         }
       ],
       "correctAnswer": [
@@ -126,7 +149,8 @@
           "id": "res-choropleth",
           "answer": "True"
         }
-      ]
+      ],
+      "withSidebar": true
     },
     "piechart": {
       "meta": {
@@ -149,7 +173,13 @@
           "required": true,
           "location": "sidebar",
           "type": "radio",
-          "options": ["17.6%", "25.3%", "10.9%", "35.2%", "Skip"]
+          "options": [
+            "17.6%",
+            "25.3%",
+            "10.9%",
+            "35.2%",
+            "Skip"
+          ]
         }
       ],
       "correctAnswer": [
@@ -157,7 +187,8 @@
           "id": "res-piechart",
           "answer": "17.6%"
         }
-      ]
+      ],
+      "withSidebar": true
     },
     "bubblechart": {
       "meta": {
@@ -180,7 +211,13 @@
           "required": true,
           "location": "sidebar",
           "type": "radio",
-          "options": ["Beijing", "Shanghai", "London", "Seoul", "Skip"]
+          "options": [
+            "Beijing",
+            "Shanghai",
+            "London",
+            "Seoul",
+            "Skip"
+          ]
         }
       ],
       "correctAnswer": [
@@ -188,7 +225,8 @@
           "id": "res-bubblechart",
           "answer": "Shanghai"
         }
-      ]
+      ],
+      "withSidebar": true
     },
     "stackedbar": {
       "meta": {
@@ -211,7 +249,13 @@
           "required": true,
           "location": "sidebar",
           "type": "radio",
-          "options": ["$5.2", "$6.1", "$7.5", "$4.5", "Skip"]
+          "options": [
+            "$5.2",
+            "$6.1",
+            "$7.5",
+            "$4.5",
+            "Skip"
+          ]
         }
       ],
       "correctAnswer": [
@@ -219,7 +263,8 @@
           "id": "res-stackedbar",
           "answer": "$6.1"
         }
-      ]
+      ],
+      "withSidebar": true
     },
     "linechart": {
       "meta": {
@@ -242,7 +287,13 @@
           "required": true,
           "location": "sidebar",
           "type": "radio",
-          "options": ["$50.54", "$47.02", "$42.34", "$43.48", "Skip"]
+          "options": [
+            "$50.54",
+            "$47.02",
+            "$42.34",
+            "$43.48",
+            "Skip"
+          ]
         }
       ],
       "correctAnswer": [
@@ -250,7 +301,8 @@
           "id": "res-linechart",
           "answer": "$50.54"
         }
-      ]
+      ],
+      "withSidebar": true
     },
     "barchart": {
       "meta": {
@@ -287,7 +339,8 @@
           "id": "res-barchart",
           "answer": "40.51 Mbps"
         }
-      ]
+      ],
+      "withSidebar": true
     },
     "areachar": {
       "meta": {
@@ -310,7 +363,13 @@
           "required": true,
           "location": "sidebar",
           "type": "radio",
-          "options": ["0.71", "0.90", "0.80", "0.63", "Skip"]
+          "options": [
+            "0.71",
+            "0.90",
+            "0.80",
+            "0.63",
+            "Skip"
+          ]
         }
       ],
       "correctAnswer": [
@@ -318,7 +377,8 @@
           "id": "res-areachar",
           "answer": "0.71"
         }
-      ]
+      ],
+      "withSidebar": true
     },
     "stackedarea": {
       "meta": {
@@ -341,7 +401,13 @@
           "required": true,
           "location": "sidebar",
           "type": "radio",
-          "options": ["1 to 1", "1 to 2", "1 to 3", "1 to 4", "Skip"]
+          "options": [
+            "1 to 1",
+            "1 to 2",
+            "1 to 3",
+            "1 to 4",
+            "Skip"
+          ]
         }
       ],
       "correctAnswer": [
@@ -349,7 +415,8 @@
           "id": "res-stackedarea",
           "answer": "1 to 2"
         }
-      ]
+      ],
+      "withSidebar": true
     },
     "scatterplot": {
       "meta": {
@@ -372,7 +439,11 @@
           "required": true,
           "location": "sidebar",
           "type": "radio",
-          "options": ["True", "False", "Skip"]
+          "options": [
+            "True",
+            "False",
+            "Skip"
+          ]
         }
       ],
       "correctAnswer": [
@@ -380,7 +451,8 @@
           "id": "res-scatterplot",
           "answer": "False"
         }
-      ]
+      ],
+      "withSidebar": true
     }
   },
   "sequences": {

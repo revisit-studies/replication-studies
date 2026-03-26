@@ -35,7 +35,7 @@ ${libraryConfig.additionalDescription ? `## Additional Description\n\n${libraryC
 
 ${forDocs
     ? `<!-- Importing Links -->
-  import StructuredLinks from '@site/src/components/StructuredLinks/StructuredLinks.tsx';
+import StructuredLinks from '@site/src/components/StructuredLinks/StructuredLinks.tsx';
 
   <StructuredLinks
       demoLinks={[
@@ -44,13 +44,12 @@ ${forDocs
       codeLinks={[
         {name: "${library} Code", url: "https://github.com/revisit-studies/study/tree/main/public/library-${library}"}
       ]}
-      ${
-  (libraryConfig.doi || libraryConfig.externalLink)
-    ? `referenceLinks={[
+      ${(libraryConfig.doi || libraryConfig.externalLink)
+      ? `referenceLinks={[
         ${libraryConfig.doi ? `{name: "DOI", url: "https://dx.doi.org/${libraryConfig.doi}"}` : ''}${libraryConfig.doi && libraryConfig.externalLink ? ',' : ''}
         ${libraryConfig.externalLink ? `{name: "${library}", url: "${libraryConfig.externalLink}"}` : ''}
       ]}`
-    : ''}
+      : ''}
   />` : ''}
 `;
 

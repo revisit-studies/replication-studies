@@ -1,12 +1,17 @@
 {
-  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.3.2/src/parser/StudyConfigSchema.json",
+  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.4.1/src/parser/StudyConfigSchema.json",
   "studyMetadata": {
     "title": "Step logic test",
     "description": "This is a test of the step logic feature.",
     "version": "1.0.0",
-    "authors": ["The reVISit Team"],
-    "date": "2024-02-23",
-    "organizations": ["University of Utah", "WPI", "University of Toronto"]
+    "authors": [
+      "The reVISit Team"
+    ],
+    "date": "2026-02-23",
+    "organizations": [
+      "University of Utah",
+      "WPI"
+    ]
   },
   "uiConfig": {
     "contactEmail": "jwilburn@sci.utah.edu",
@@ -23,14 +28,24 @@
           "type": "radio",
           "prompt": "What is your favorite color?",
           "location": "belowStimulus",
-          "options": ["Blue", "Red", "Green", "Yellow"]
+          "options": [
+            "Blue",
+            "Red",
+            "Green",
+            "Yellow"
+          ]
         },
         {
           "id": "q2",
           "type": "radio",
           "prompt": "What is your favorite animal?",
           "location": "belowStimulus",
-          "options": ["Dog", "Cat", "Bird", "Fish"]
+          "options": [
+            "Dog",
+            "Cat",
+            "Bird",
+            "Fish"
+          ]
         }
       ],
       "nextButtonLocation": "belowStimulus",
@@ -61,7 +76,10 @@
           "type": "radio",
           "prompt": "Are you paying attention?",
           "location": "belowStimulus",
-          "options": ["Yes", "No"]
+          "options": [
+            "Yes",
+            "No"
+          ]
         }
       ],
       "correctAnswer": [

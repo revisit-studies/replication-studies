@@ -1,12 +1,17 @@
 {
-  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.3.2/src/parser/StudyConfigSchema.json",
+  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.4.1/src/parser/StudyConfigSchema.json",
   "studyMetadata": {
     "title": "Dynamic React.js Stimuli: A Graphical Perception Experiment",
     "version": "pilot",
-    "authors": ["The reVISit Team"],
-    "date": "2023-04-28",
+    "authors": [
+      "The reVISit Team"
+    ],
+    "date": "2026-02-23",
     "description": "A demo using dynamic React components as stimuli to replicate a Heer/Bostock perception study (doi:10.1145/1753326.1753357) that extends Cleveland & McGill graphical perception task (doi:10.1080/01621459.1984.10478080), with a consent form, brief training, a post study survey. Data is collected via form elements in validated fields.",
-    "organizations": ["University of Utah", "WPI", "University of Toronto"]
+    "organizations": [
+      "University of Utah",
+      "WPI"
+    ]
   },
   "uiConfig": {
     "contactEmail": "contact@revisit.dev",
@@ -45,7 +50,10 @@
             "value": "60"
           }
         ],
-        "selectedIndices": [1, 4]
+        "selectedIndices": [
+          1,
+          4
+        ]
       },
       "response": [
         {
@@ -93,7 +101,10 @@
             "value": "60"
           }
         ],
-        "selectedIndices": [1, 4]
+        "selectedIndices": [
+          1,
+          4
+        ]
       },
       "response": [
         {
@@ -141,7 +152,10 @@
             "value": "60"
           }
         ],
-        "selectedIndices": [1, 4]
+        "selectedIndices": [
+          1,
+          4
+        ]
       },
       "response": [
         {
@@ -189,7 +203,10 @@
             "value": "60"
           }
         ],
-        "selectedIndices": [1, 4]
+        "selectedIndices": [
+          1,
+          4
+        ]
       },
       "response": [
         {
@@ -230,7 +247,10 @@
           "requiredValue": "Accept",
           "location": "belowStimulus",
           "type": "radio",
-          "options": ["Decline", "Accept"]
+          "options": [
+            "Decline",
+            "Accept"
+          ]
         }
       ]
     },
@@ -243,7 +263,10 @@
       "baseComponent": "bubbleChart",
       "description": "A bubble chart with correct answer of 0.66",
       "parameters": {
-        "selectedIndices": [1, 4]
+        "selectedIndices": [
+          1,
+          4
+        ]
       },
       "provideFeedback": true,
       "allowFailedTraining": false,
@@ -257,7 +280,10 @@
     "trainingStackedBarChart1": {
       "baseComponent": "stackedBarChart",
       "parameters": {
-        "selectedIndices": [1, 4]
+        "selectedIndices": [
+          1,
+          4
+        ]
       },
       "provideFeedback": true,
       "correctAnswer": [
@@ -270,7 +296,10 @@
     "trainingBarChart1": {
       "baseComponent": "barChart",
       "parameters": {
-        "selectedIndices": [1, 4]
+        "selectedIndices": [
+          1,
+          4
+        ]
       },
       "provideFeedback": true,
       "correctAnswer": [
@@ -283,7 +312,10 @@
     "trainingPieChart1": {
       "baseComponent": "pieChart",
       "parameters": {
-        "selectedIndices": [1, 4]
+        "selectedIndices": [
+          1,
+          4
+        ]
       },
       "provideFeedback": true,
       "correctAnswer": [
@@ -296,13 +328,19 @@
     "bubbleChart1": {
       "baseComponent": "bubbleChart",
       "parameters": {
-        "selectedIndices": [1, 4]
+        "selectedIndices": [
+          1,
+          4
+        ]
       }
     },
     "stackedBarChart1": {
       "baseComponent": "stackedBarChart",
       "parameters": {
-        "selectedIndices": [1, 4]
+        "selectedIndices": [
+          1,
+          4
+        ]
       }
     },
     "stackedBarChart2": {
@@ -330,49 +368,73 @@
             "value": "100"
           }
         ],
-        "selectedIndices": [1, 4]
+        "selectedIndices": [
+          1,
+          4
+        ]
       }
     },
     "barChart1": {
       "baseComponent": "barChart",
       "parameters": {
-        "selectedIndices": [1, 4]
+        "selectedIndices": [
+          1,
+          4
+        ]
       }
     },
     "pieChart1": {
       "baseComponent": "pieChart",
       "parameters": {
-        "selectedIndices": [1, 4]
+        "selectedIndices": [
+          1,
+          4
+        ]
       }
     },
     "bubbleChart2": {
       "baseComponent": "bubbleChart",
       "parameters": {
-        "selectedIndices": [0, 3]
+        "selectedIndices": [
+          0,
+          3
+        ]
       }
     },
     "stackedBarChart3": {
       "baseComponent": "stackedBarChart",
       "parameters": {
-        "selectedIndices": [0, 3]
+        "selectedIndices": [
+          0,
+          3
+        ]
       }
     },
     "stackedBarChart4": {
       "baseComponent": "stackedBarChart",
       "parameters": {
-        "selectedIndices": [0, 3]
+        "selectedIndices": [
+          0,
+          3
+        ]
       }
     },
     "barChart2": {
       "baseComponent": "barChart",
       "parameters": {
-        "selectedIndices": [0, 3]
+        "selectedIndices": [
+          0,
+          3
+        ]
       }
     },
     "pieChart2": {
       "baseComponent": "pieChart",
       "parameters": {
-        "selectedIndices": [0, 3]
+        "selectedIndices": [
+          0,
+          3
+        ]
       }
     },
     "post-study-survey1": {
@@ -384,7 +446,12 @@
           "location": "aboveStimulus",
           "type": "dropdown",
           "placeholder": "Enter your preference",
-          "options": ["Bar", "Bubble", "Pie", "Stacked Bar"]
+          "options": [
+            "Bar",
+            "Bubble",
+            "Pie",
+            "Stacked Bar"
+          ]
         },
         {
           "id": "q2",
