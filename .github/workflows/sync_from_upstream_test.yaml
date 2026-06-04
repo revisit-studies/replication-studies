@@ -46,8 +46,9 @@ jobs:
           # so the branch exists for the subsequent force push.
           TARGET_BRANCH="${{ github.event.inputs.target_branch }}"
           TARGET_BRANCH="${TARGET_BRANCH:-sync-test}"
+          git check-ref-format --branch "$TARGET_BRANCH"
           echo "TARGET_BRANCH=$TARGET_BRANCH" >> "$GITHUB_ENV"
-          git checkout -B -- "$TARGET_BRANCH"
+          git checkout -B "$TARGET_BRANCH"
 
           # Reset the working tree to exactly match upstream. This handles
           # additions, modifications, and deletions in one step, and aligns
