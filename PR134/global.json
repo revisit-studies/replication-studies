@@ -1,0 +1,51 @@
+{
+  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/255charts/src/parser/GlobalConfigSchema.json",
+  "configsList": [
+    "pattern-design-study",
+    "bubblechart-study",
+    "255chart-study",
+    "ScatterJND-study",
+    "ParallelJND-study",
+    "HexbinJND-study",
+    "HeatmapJND-study",
+    "ScatterJNDNegative-study",
+    "ParallelJNDNegative-study",
+    "HexbinJNDNegative-study",
+    "HeatmapJNDNegative-study"
+  ],
+  "configs": {
+    "pattern-design-study": {
+      "path": "pattern-design-study/config.json"
+    },
+    "bubblechart-study": {
+      "path": "bubblechart-study/config.json"
+    },
+    "255chart-study": {
+      "path": "255chart-study/config.json"
+    },
+    "ScatterJND-study": {
+      "path": "ScatterJND-study/config.json"
+    },
+    "ParallelJND-study": {
+      "path": "ParallelJND-study/config.json"
+    },
+    "HexbinJND-study": {
+      "path": "HexbinJND-study/config.json"
+    },
+    "HeatmapJND-study": {
+      "path": "HeatmapJND-study/config.json"
+    },
+    "ScatterJNDNegative-study": {
+      "path": "ScatterJNDNegative-study/config.json"
+    },
+    "ParallelJNDNegative-study": {
+      "path": "ParallelJNDNegative-study/config.json"
+    },
+    "HexbinJNDNegative-study": {
+      "path": "HexbinJNDNegative-study/config.json"
+    },
+    "HeatmapJNDNegative-study": {
+      "path": "HeatmapJNDNegative-study/config.json"
+    }
+  }
+}
