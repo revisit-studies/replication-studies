@@ -37,7 +37,7 @@ jobs:
 
           git remote add upstream https://github.com/revisit-studies/study.git
           UPSTREAM_REF="${{ github.event.inputs.upstream_ref }}"
-          git fetch upstream "${UPSTREAM_REF:-main}"
+          git fetch upstream -- "${UPSTREAM_REF:-main}"
           UPSTREAM_SHA=$(git rev-parse FETCH_HEAD)
           echo "UPSTREAM_SHA=$UPSTREAM_SHA" >> "$GITHUB_ENV"
           echo "Syncing from upstream @ $UPSTREAM_SHA"
@@ -47,7 +47,7 @@ jobs:
           TARGET_BRANCH="${{ github.event.inputs.target_branch }}"
           TARGET_BRANCH="${TARGET_BRANCH:-sync-test}"
           echo "TARGET_BRANCH=$TARGET_BRANCH" >> "$GITHUB_ENV"
-          git checkout -B "$TARGET_BRANCH"
+          git checkout -B -- "$TARGET_BRANCH"
 
           # Reset the working tree to exactly match upstream. This handles
           # additions, modifications, and deletions in one step, and aligns
@@ -284,6 +284,9 @@ jobs:
             fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
           "
 
+      - name: Update yarn.lock after dependency cleanup
+        run: yarn install --ignore-scripts
+
       - name: Commit and force push to target branch
         run: |
           git config user.name "github-actions[bot]"
@@ -294,6 +297,6 @@ jobs:
           else
             SHORT_SHA="${UPSTREAM_SHA:0:7}"
             git commit -m "chore: sync from upstream revisit-studies/study@${SHORT_SHA}"
-            git push --force origin "$TARGET_BRANCH"
+            git push --force origin -- "$TARGET_BRANCH"
             echo "Force-pushed sync commit to $TARGET_BRANCH."
           fi
