@@ -139,6 +139,11 @@ jobs:
             }
           "
 
+      - name: Remove upstream demo tests not used by replication-studies
+        run: |
+          # Upstream e2e tests target demo/example studies removed from this repo.
+          rm -rf tests
+
       - name: Remove unused dependencies from package.json
         run: |
           node -e "
