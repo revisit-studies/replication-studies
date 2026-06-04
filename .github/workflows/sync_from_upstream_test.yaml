@@ -113,7 +113,7 @@ jobs:
             source = source.replace(pattern, replacement);
           }
 
-          // Keep upstream ConfigSwitcher changes, but restore replication-specific tab names from PR #133.
+          // Keep upstream ConfigSwitcher changes, but restore replication-specific tab names
           replaceOrFail(
             /  const demos = useMemo\(\(\) => configsFiltered\.filter\(\(configName\) => configName\.startsWith\('demo-'\)\), \[configsFiltered\]\);[\s\S]*?  const navigate = useNavigate\(\);/,
             [
