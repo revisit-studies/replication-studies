@@ -62,6 +62,7 @@ jobs:
           # version is always taken from upstream rather than frozen in REPLICATION_HEAD.
           git checkout "$REPLICATION_HEAD" -- \
             README.md \
+            .env \
             .github/workflows/sync_from_upstream.yaml \
             .github/workflows/sync_from_upstream_test.yaml \
             public/jnd-data \
@@ -96,6 +97,98 @@ jobs:
             previous['\$schema'] = upstream['\$schema'];
             fs.writeFileSync('public/global.json', JSON.stringify(previous, null, 2) + '\n');
           "
+
+      - name: Restore replication ConfigSwitcher tabs
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const file = 'src/components/ConfigSwitcher.tsx';
+          let source = fs.readFileSync(file, 'utf8');
+
+          function replaceOrFail(pattern, replacement, label) {
+            if (!pattern.test(source)) {
+              console.error(`Could not find upstream ConfigSwitcher ${label} block.`);
+              process.exit(1);
+            }
+            source = source.replace(pattern, replacement);
+          }
+
+          // Keep upstream ConfigSwitcher changes, but restore replication-specific tab names from PR #133.
+          replaceOrFail(
+            /  const demos = useMemo\(\(\) => configsFiltered\.filter\(\(configName\) => configName\.startsWith\('demo-'\)\), \[configsFiltered\]\);[\s\S]*?  const navigate = useNavigate\(\);/,
+            [
+              "  const jndReplications = useMemo(() => configsFiltered.filter((configName) => configName.includes('JND')), [configsFiltered]);",
+              "  const searchReplications = useMemo(",
+              "    () => configsFiltered.filter((configName) => configName === 'bubblechart-study' || configName === '255chart-study'),",
+              "    [configsFiltered],",
+              "  );",
+              "  const patternReplications = useMemo(() => configsFiltered.filter((configName) => configName === 'pattern-design-study'), [configsFiltered]);",
+              "",
+              "  const [searchParams] = useSearchParams();",
+              "  const firstTab = useMemo(() => {",
+              "    if (jndReplications.length > 0) return 'jnd';",
+              "    if (searchReplications.length > 0) return 'search';",
+              "    if (patternReplications.length > 0) return 'pattern';",
+              "    return 'jnd';",
+              "  }, [jndReplications, patternReplications, searchReplications]);",
+              "  const tab = useMemo(() => searchParams.get('tab') || firstTab, [firstTab, searchParams]);",
+              "  const navigate = useNavigate();",
+            ].join('\n'),
+            'tab grouping',
+          );
+
+          replaceOrFail(
+            /              <Tabs\.List>\n(?:                <Tabs\.Tab value=".*?" disabled>.*?<\/Tabs\.Tab>\n)+              <\/Tabs\.List>/,
+            [
+              "              <Tabs.List>",
+              "                <Tabs.Tab value=\"jnd\" disabled>JND replications</Tabs.Tab>",
+              "                <Tabs.Tab value=\"search\" disabled>search replications</Tabs.Tab>",
+              "                <Tabs.Tab value=\"pattern\" disabled>pattern replications</Tabs.Tab>",
+              "              </Tabs.List>",
+            ].join('\n'),
+            'loading tabs',
+          );
+
+          replaceOrFail(
+            /            <Tabs variant="outline" defaultValue=\{firstTab\} value=\{tab\} onChange=\{\(value\) => navigate\(`\/\?tab=\$\{value\}`\)\}>[\s\S]*?            <\/Tabs>/,
+            [
+              "            <Tabs variant=\"outline\" defaultValue={firstTab} value={tab} onChange={(value) => navigate(`/?tab=${value}`)}>",
+              "              <Tabs.List>",
+              "                {jndReplications.length > 0 && (",
+              "                  <Tabs.Tab value=\"jnd\">JND replications</Tabs.Tab>",
+              "                )}",
+              "                {searchReplications.length > 0 && (",
+              "                  <Tabs.Tab value=\"search\">search replications</Tabs.Tab>",
+              "                )}",
+              "                {patternReplications.length > 0 && (",
+              "                  <Tabs.Tab value=\"pattern\">pattern replications</Tabs.Tab>",
+              "                )}",
+              "              </Tabs.List>",
+              "",
+              "              {jndReplications.length > 0 && (",
+              "                <Tabs.Panel value=\"jnd\">",
+              "                  <StudyCards configNames={jndReplications} studyConfigs={studyConfigs} modesByConfig={modesByConfig} />",
+              "                </Tabs.Panel>",
+              "              )}",
+              "",
+              "              {searchReplications.length > 0 && (",
+              "                <Tabs.Panel value=\"search\">",
+              "                  <StudyCards configNames={searchReplications} studyConfigs={studyConfigs} modesByConfig={modesByConfig} />",
+              "                </Tabs.Panel>",
+              "              )}",
+              "",
+              "              {patternReplications.length > 0 && (",
+              "                <Tabs.Panel value=\"pattern\">",
+              "                  <StudyCards configNames={patternReplications} studyConfigs={studyConfigs} modesByConfig={modesByConfig} />",
+              "                </Tabs.Panel>",
+              "              )}",
+              "            </Tabs>",
+            ].join('\n'),
+            'tab panels',
+          );
+
+          fs.writeFileSync(file, source);
+          NODE
 
       - name: Remove study/demo folders not used by replication-studies
         run: |
