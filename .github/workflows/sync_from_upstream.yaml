@@ -4,6 +4,10 @@ name: Sync from Upstream
 # Resets the replication-studies branch to exactly match upstream, then restores
 # replication-study files on top and force-pushes. This keeps this repository
 # from falling behind upstream in git history.
+#
+# Note: deploy_website.yaml is synced from upstream but deployment-specific
+# values are controlled by GitHub Environment secrets, not the workflow file
+# itself, so syncing it is safe.
 
 on:
   workflow_dispatch:
@@ -42,7 +46,7 @@ jobs:
 
           # Reset the working tree to exactly match upstream. This handles
           # additions, modifications, and deletions in one step, and aligns
-          # the branch history so this repository is no longer "behind" upstream.
+          # the branch history so this replication-studies repository is no longer "behind" upstream.
           git reset --hard FETCH_HEAD
 
       - name: Restore replication-studies files
@@ -55,20 +59,23 @@ jobs:
             README.md \
             .github/workflows/sync_from_upstream.yaml \
             .github/workflows/sync_from_upstream_test.yaml \
-            public/255chart-study \
-            public/HeatmapJND-study \
-            public/HeatmapJNDNegative-study \
-            public/HexbinJND-study \
-            public/HexbinJNDNegative-study \
-            public/ParallelJND-study \
-            public/ParallelJNDNegative-study \
-            public/ScatterJND-study \
-            public/ScatterJNDNegative-study \
-            public/bubblechart-study \
             public/jnd-data \
-            public/pattern-design-study \
             src/public/bubblechart-study \
             src/public/jnd-replication
+
+          node -e "
+            const { execFileSync } = require('child_process');
+            const previous = JSON.parse(execFileSync(
+              'git',
+              ['show', process.env.REPLICATION_HEAD + ':public/global.json'],
+              { encoding: 'utf8' },
+            ));
+
+            // Restore each replication study folder listed in the previous public/global.json.
+            for (const study of previous.configsList ?? []) {
+              execFileSync('git', ['checkout', process.env.REPLICATION_HEAD, '--', 'public/' + study]);
+            }
+          "
 
       - name: Restore replication global.json with upstream schema version
         run: |
@@ -85,78 +92,72 @@ jobs:
             fs.writeFileSync('public/global.json', JSON.stringify(previous, null, 2) + '\n');
           "
 
-      - name: Remove upstream demo folders not used by replication-studies
+      - name: Remove study/demo folders not used by replication-studies
         run: |
-          # Top-level public/: keep shared framework assets, libraries, and
-          # the replication studies listed in public/global.json.
-          KEEP_PUBLIC=(
-            "255chart-study"
-            "404.html"
-            "HeatmapJND-study"
-            "HeatmapJNDNegative-study"
-            "HexbinJND-study"
-            "HexbinJNDNegative-study"
-            "ParallelJND-study"
-            "ParallelJNDNegative-study"
-            "README.md"
-            "ScatterJND-study"
-            "ScatterJNDNegative-study"
-            "bubblechart-study"
-            "global.json"
-            "jnd-data"
-            "libraries"
-            "library-demographics"
-            "library-mic-check"
-            "pattern-design-study"
-            "revisitAssets"
-            "revisitUtilities"
-            "vite.svg"
-          )
-          for item in public/*; do
-            name=$(basename "$item")
-            keep=false
-            for k in "${KEEP_PUBLIC[@]}"; do
-              [[ "$name" == "$k" ]] && keep=true && break
-            done
-            if [[ "$keep" == false ]]; then
-              echo "Removing non-replication public item: $item"
-              rm -rf "$item"
-            fi
-          done
+          node -e "
+            const fs = require('fs');
+            const { execFileSync } = require('child_process');
+            const previous = JSON.parse(execFileSync(
+              'git',
+              ['show', process.env.REPLICATION_HEAD + ':public/global.json'],
+              { encoding: 'utf8' },
+            ));
 
-          # src/public/: keep shared library React components plus custom
-          # replication React components.
-          KEEP_SRC_PUBLIC=("libraries" "bubblechart-study" "jnd-replication")
-          for item in src/public/*; do
-            [[ -e "$item" ]] || continue
-            name=$(basename "$item")
-            keep=false
-            for k in "${KEEP_SRC_PUBLIC[@]}"; do
-              [[ "$name" == "$k" ]] && keep=true && break
-            done
-            if [[ "$keep" == false ]]; then
-              echo "Removing non-replication src/public item: $item"
-              rm -rf "$item"
-            fi
-          done
+            // Top-level public/: keep shared assets, utilities, libraries,
+            // and the replication studies listed in public/global.json.
+            // All studies and other extras brought in by the reset are removed.
+            const keepPublic = new Set([
+              '404.html',
+              'README.md',
+              'global.json',
+              'jnd-data',
+              'libraries',
+              'library-demographics',
+              'library-mic-check',
+              'revisitAssets',
+              'revisitUtilities',
+              'vite.svg',
+              ...(previous.configsList ?? []),
+            ]);
 
-      - name: Remove dependencies only used by removed upstream demos
+            for (const item of fs.readdirSync('public')) {
+              if (!keepPublic.has(item)) {
+                console.log('Removing non-replication public item:', 'public/' + item);
+                fs.rmSync('public/' + item, { recursive: true, force: true });
+              }
+            }
+
+            // src/public/: keep library React components and replication-studies React components.
+            const keepSrcPublic = new Set(['libraries', 'bubblechart-study', 'jnd-replication']);
+            if (fs.existsSync('src/public')) {
+              for (const item of fs.readdirSync('src/public')) {
+                if (!keepSrcPublic.has(item)) {
+                  console.log('Removing non-replication src/public item:', 'src/public/' + item);
+                  fs.rmSync('src/public/' + item, { recursive: true, force: true });
+                }
+              }
+            }
+          "
+
+      - name: Remove unused dependencies from package.json
         run: |
           node -e "
             const fs = require('fs');
             const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
 
+            // Packages only used in upstream example studies removed from replication-studies.
             const unusedDeps = [
-              '@visdesignlab/upset2-react',
-              'arquero',
-              'topojson-client',
+              '@visdesignlab/upset2-react', // UpSet2 example study only
+              'arquero',                    // src/public/tutorial/ brush components only
+              'topojson-client',            // src/public/demo-choropleth-map/ only
+              // MUI packages — not imported anywhere in replication-studies
               '@emotion/react',
               '@emotion/styled',
               '@mui/icons-material',
               '@mui/material',
               '@mui/system',
               '@mui/x-data-grid',
-              'recoil',
+              'recoil',                     // not imported anywhere in replication-studies
             ];
             unusedDeps.forEach((dep) => {
               if (pkg.dependencies && dep in pkg.dependencies) {
@@ -165,9 +166,10 @@ jobs:
               }
             });
 
+            // devDependencies only needed for removed upstream example studies
             const unusedDevDeps = [
-              '@types/topojson-client',
-              '@types/topojson-specification',
+              '@types/topojson-client',        // only for demo-choropleth-map
+              '@types/topojson-specification', // only for demo-choropleth-map
             ];
             unusedDevDeps.forEach((dep) => {
               if (pkg.devDependencies && dep in pkg.devDependencies) {
