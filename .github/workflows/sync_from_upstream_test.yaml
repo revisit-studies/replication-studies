@@ -1,0 +1,303 @@
+name: Sync from Upstream (Test)
+
+# Test version of sync_from_upstream.yaml — identical logic but pushes to a
+# staging branch instead of main so the result can be reviewed before merging.
+
+on:
+  workflow_dispatch:
+    inputs:
+      upstream_ref:
+        description: 'Upstream branch or tag to sync from (e.g. main, v2.3.2)'
+        required: false
+        default: 'main'
+      target_branch:
+        description: 'Branch to push the sync result to'
+        required: false
+        default: 'sync-test'
+
+# Uses the org-level PAT secret for checkout so that git push can update
+# .github/workflows/ files. GITHUB_TOKEN cannot push workflow file changes;
+# a PAT with 'repo' and 'workflow' scopes is required.
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout replication-studies repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.PAT }}
+
+      - name: Fetch upstream and prepare target branch
+        run: |
+          # Save the current repository HEAD so we can restore replication-study
+          # files after the reset.
+          echo "REPLICATION_HEAD=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+
+          git remote add upstream https://github.com/revisit-studies/study.git
+          UPSTREAM_REF="${{ github.event.inputs.upstream_ref }}"
+          git fetch upstream -- "${UPSTREAM_REF:-main}"
+          UPSTREAM_SHA=$(git rev-parse FETCH_HEAD)
+          echo "UPSTREAM_SHA=$UPSTREAM_SHA" >> "$GITHUB_ENV"
+          echo "Syncing from upstream @ $UPSTREAM_SHA"
+
+          # Create (or reset) the target branch from current HEAD before resetting,
+          # so the branch exists for the subsequent force push.
+          TARGET_BRANCH="${{ github.event.inputs.target_branch }}"
+          TARGET_BRANCH="${TARGET_BRANCH:-sync-test}"
+          git check-ref-format --branch "$TARGET_BRANCH"
+          echo "TARGET_BRANCH=$TARGET_BRANCH" >> "$GITHUB_ENV"
+          git checkout -B "$TARGET_BRANCH"
+
+          # Reset the working tree to exactly match upstream. This handles
+          # additions, modifications, and deletions in one step, and aligns
+          # the branch history so this replication-studies repository is no longer "behind" upstream.
+          git reset --hard FETCH_HEAD
+
+      - name: Restore replication-studies files
+        run: |
+          # These files are intentionally different in replication-studies and must
+          # be restored from before the reset.
+          # Note: public/global.json is handled separately below so the schema
+          # version is always taken from upstream rather than frozen in REPLICATION_HEAD.
+          git checkout "$REPLICATION_HEAD" -- \
+            README.md \
+            .env \
+            .github/workflows/sync_from_upstream.yaml \
+            .github/workflows/sync_from_upstream_test.yaml \
+            public/jnd-data \
+            src/public/bubblechart-study \
+            src/public/jnd-replication
+
+          node -e "
+            const { execFileSync } = require('child_process');
+            const previous = JSON.parse(execFileSync(
+              'git',
+              ['show', process.env.REPLICATION_HEAD + ':public/global.json'],
+              { encoding: 'utf8' },
+            ));
+
+            // Restore each replication study folder listed in the previous public/global.json.
+            for (const study of previous.configsList ?? []) {
+              execFileSync('git', ['checkout', process.env.REPLICATION_HEAD, '--', 'public/' + study]);
+            }
+          "
+
+      - name: Restore replication global.json with upstream schema version
+        run: |
+          node -e "
+            const fs = require('fs');
+            const { execFileSync } = require('child_process');
+            const upstream = JSON.parse(fs.readFileSync('public/global.json', 'utf8'));
+            const previous = JSON.parse(execFileSync(
+              'git',
+              ['show', process.env.REPLICATION_HEAD + ':public/global.json'],
+              { encoding: 'utf8' },
+            ));
+            previous['\$schema'] = upstream['\$schema'];
+            fs.writeFileSync('public/global.json', JSON.stringify(previous, null, 2) + '\n');
+          "
+
+      - name: Restore replication ConfigSwitcher tabs
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const file = 'src/components/ConfigSwitcher.tsx';
+          let source = fs.readFileSync(file, 'utf8');
+
+          function replaceOrFail(pattern, replacement, label) {
+            if (!pattern.test(source)) {
+              console.error(`Could not find upstream ConfigSwitcher ${label} block.`);
+              process.exit(1);
+            }
+            source = source.replace(pattern, replacement);
+          }
+
+          // Keep upstream ConfigSwitcher changes, but restore replication-specific tab names
+          replaceOrFail(
+            /  const demos = useMemo\(\(\) => configsFiltered\.filter\(\(configName\) => configName\.startsWith\('demo-'\)\), \[configsFiltered\]\);[\s\S]*?  const navigate = useNavigate\(\);/,
+            [
+              "  const jndReplications = useMemo(() => configsFiltered.filter((configName) => configName.includes('JND')), [configsFiltered]);",
+              "  const searchReplications = useMemo(",
+              "    () => configsFiltered.filter((configName) => configName === 'bubblechart-study' || configName === '255chart-study'),",
+              "    [configsFiltered],",
+              "  );",
+              "  const patternReplications = useMemo(() => configsFiltered.filter((configName) => configName === 'pattern-design-study'), [configsFiltered]);",
+              "",
+              "  const [searchParams] = useSearchParams();",
+              "  const firstTab = useMemo(() => {",
+              "    if (jndReplications.length > 0) return 'jnd';",
+              "    if (searchReplications.length > 0) return 'search';",
+              "    if (patternReplications.length > 0) return 'pattern';",
+              "    return 'jnd';",
+              "  }, [jndReplications, patternReplications, searchReplications]);",
+              "  const tab = useMemo(() => searchParams.get('tab') || firstTab, [firstTab, searchParams]);",
+              "  const navigate = useNavigate();",
+            ].join('\n'),
+            'tab grouping',
+          );
+
+          replaceOrFail(
+            /              <Tabs\.List>\n(?:                <Tabs\.Tab value=".*?" disabled>.*?<\/Tabs\.Tab>\n)+              <\/Tabs\.List>/,
+            [
+              "              <Tabs.List>",
+              "                <Tabs.Tab value=\"jnd\" disabled>JND replications</Tabs.Tab>",
+              "                <Tabs.Tab value=\"search\" disabled>search replications</Tabs.Tab>",
+              "                <Tabs.Tab value=\"pattern\" disabled>pattern replications</Tabs.Tab>",
+              "              </Tabs.List>",
+            ].join('\n'),
+            'loading tabs',
+          );
+
+          replaceOrFail(
+            /            <Tabs variant="outline" defaultValue=\{firstTab\} value=\{tab\} onChange=\{\(value\) => navigate\(`\/\?tab=\$\{value\}`\)\}>[\s\S]*?            <\/Tabs>/,
+            [
+              "            <Tabs variant=\"outline\" defaultValue={firstTab} value={tab} onChange={(value) => navigate(`/?tab=${value}`)}>",
+              "              <Tabs.List>",
+              "                {jndReplications.length > 0 && (",
+              "                  <Tabs.Tab value=\"jnd\">JND replications</Tabs.Tab>",
+              "                )}",
+              "                {searchReplications.length > 0 && (",
+              "                  <Tabs.Tab value=\"search\">search replications</Tabs.Tab>",
+              "                )}",
+              "                {patternReplications.length > 0 && (",
+              "                  <Tabs.Tab value=\"pattern\">pattern replications</Tabs.Tab>",
+              "                )}",
+              "              </Tabs.List>",
+              "",
+              "              {jndReplications.length > 0 && (",
+              "                <Tabs.Panel value=\"jnd\">",
+              "                  <StudyCards configNames={jndReplications} studyConfigs={studyConfigs} modesByConfig={modesByConfig} />",
+              "                </Tabs.Panel>",
+              "              )}",
+              "",
+              "              {searchReplications.length > 0 && (",
+              "                <Tabs.Panel value=\"search\">",
+              "                  <StudyCards configNames={searchReplications} studyConfigs={studyConfigs} modesByConfig={modesByConfig} />",
+              "                </Tabs.Panel>",
+              "              )}",
+              "",
+              "              {patternReplications.length > 0 && (",
+              "                <Tabs.Panel value=\"pattern\">",
+              "                  <StudyCards configNames={patternReplications} studyConfigs={studyConfigs} modesByConfig={modesByConfig} />",
+              "                </Tabs.Panel>",
+              "              )}",
+              "            </Tabs>",
+            ].join('\n'),
+            'tab panels',
+          );
+
+          fs.writeFileSync(file, source);
+          NODE
+
+      - name: Remove study/demo folders not used by replication-studies
+        run: |
+          node -e "
+            const fs = require('fs');
+            const { execFileSync } = require('child_process');
+            const previous = JSON.parse(execFileSync(
+              'git',
+              ['show', process.env.REPLICATION_HEAD + ':public/global.json'],
+              { encoding: 'utf8' },
+            ));
+
+            // Top-level public/: keep shared assets, utilities, libraries,
+            // and the replication studies listed in public/global.json.
+            // All studies and other extras brought in by the reset are removed.
+            const keepPublic = new Set([
+              '404.html',
+              'README.md',
+              'global.json',
+              'jnd-data',
+              'libraries',
+              'library-demographics',
+              'library-mic-check',
+              'revisitAssets',
+              'revisitUtilities',
+              'vite.svg',
+              ...(previous.configsList ?? []),
+            ]);
+
+            for (const item of fs.readdirSync('public')) {
+              if (!keepPublic.has(item)) {
+                console.log('Removing non-replication public item:', 'public/' + item);
+                fs.rmSync('public/' + item, { recursive: true, force: true });
+              }
+            }
+
+            // src/public/: keep library React components and replication-studies React components.
+            const keepSrcPublic = new Set(['libraries', 'bubblechart-study', 'jnd-replication']);
+            if (fs.existsSync('src/public')) {
+              for (const item of fs.readdirSync('src/public')) {
+                if (!keepSrcPublic.has(item)) {
+                  console.log('Removing non-replication src/public item:', 'src/public/' + item);
+                  fs.rmSync('src/public/' + item, { recursive: true, force: true });
+                }
+              }
+            }
+          "
+
+      - name: Remove upstream demo tests not used by replication-studies
+        run: |
+          # Upstream e2e tests target demo/example studies removed from this repo.
+          rm -rf tests
+
+      - name: Remove unused dependencies from package.json
+        run: |
+          node -e "
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+
+            // Packages only used in upstream example studies removed from replication-studies.
+            const unusedDeps = [
+              '@visdesignlab/upset2-react', // UpSet2 example study only
+              'arquero',                    // src/public/tutorial/ brush components only
+              'topojson-client',            // src/public/demo-choropleth-map/ only
+              // MUI packages — not imported anywhere in replication-studies
+              '@emotion/react',
+              '@emotion/styled',
+              '@mui/icons-material',
+              '@mui/material',
+              '@mui/system',
+              '@mui/x-data-grid',
+              'recoil',                     // not imported anywhere in replication-studies
+            ];
+            unusedDeps.forEach((dep) => {
+              if (pkg.dependencies && dep in pkg.dependencies) {
+                console.log('Removing unused dep:', dep);
+                delete pkg.dependencies[dep];
+              }
+            });
+
+            // devDependencies only needed for removed upstream example studies
+            const unusedDevDeps = [
+              '@types/topojson-client',        // only for demo-choropleth-map
+              '@types/topojson-specification', // only for demo-choropleth-map
+            ];
+            unusedDevDeps.forEach((dep) => {
+              if (pkg.devDependencies && dep in pkg.devDependencies) {
+                console.log('Removing unused devDep:', dep);
+                delete pkg.devDependencies[dep];
+              }
+            });
+
+            fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
+          "
+
+      - name: Update yarn.lock after dependency cleanup
+        run: yarn install --ignore-scripts
+
+      - name: Commit and force push to target branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes detected — replication-studies is already up to date with upstream."
+          else
+            SHORT_SHA="${UPSTREAM_SHA:0:7}"
+            git commit -m "chore: sync from upstream revisit-studies/study@${SHORT_SHA}"
+            git push --force origin -- "$TARGET_BRANCH"
+            echo "Force-pushed sync commit to $TARGET_BRANCH."
+          fi
