@@ -385,23 +385,20 @@ export function ConfigSwitcher({
   const isLoadingStudies = isLoadingVisibility || isLoadingStudyConfigs;
   const configsFiltered = useMemo(() => configsList.filter((configName) => studyVisibility[configName] || user.isAdmin), [configsList, studyVisibility, user]);
 
-  const demos = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('demo-')), [configsFiltered]);
-  const tutorials = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('tutorial')), [configsFiltered]);
-  const examples = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('example-')), [configsFiltered]);
-  const tests = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('test-')), [configsFiltered]);
-  const libraries = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('library-')), [configsFiltered]);
-  const others = useMemo(() => configsFiltered.filter((configName) => !configName.startsWith('demo-') && !configName.startsWith('tutorial') && !configName.startsWith('example-') && !configName.startsWith('test-') && !configName.startsWith('library-')), [configsFiltered]);
+  const jndReplications = useMemo(() => configsFiltered.filter((configName) => configName.includes('JND')), [configsFiltered]);
+  const searchReplications = useMemo(
+    () => configsFiltered.filter((configName) => configName === 'bubblechart-study' || configName === '255chart-study'),
+    [configsFiltered],
+  );
+  const patternReplications = useMemo(() => configsFiltered.filter((configName) => configName === 'pattern-design-study'), [configsFiltered]);
 
   const [searchParams] = useSearchParams();
   const firstTab = useMemo(() => {
-    if (others.length > 0) return 'Others';
-    if (demos.length > 0) return 'Demos';
-    if (examples.length > 0) return 'Examples';
-    if (tutorials.length > 0) return 'Tutorials';
-    if (tests.length > 0) return 'Tests';
-    if (libraries.length > 0) return 'Libraries';
-    return 'Demos';
-  }, [others, demos, examples, tutorials, tests, libraries]);
+    if (jndReplications.length > 0) return 'jnd';
+    if (searchReplications.length > 0) return 'search';
+    if (patternReplications.length > 0) return 'pattern';
+    return 'jnd';
+  }, [jndReplications, patternReplications, searchReplications]);
   const tab = useMemo(() => searchParams.get('tab') || firstTab, [firstTab, searchParams]);
   const navigate = useNavigate();
 
@@ -420,11 +417,9 @@ export function ConfigSwitcher({
           <>
             <Tabs variant="outline" value={null} mb="md">
               <Tabs.List>
-                <Tabs.Tab value="demos" disabled>Demo Studies</Tabs.Tab>
-                <Tabs.Tab value="examples" disabled>Example Studies</Tabs.Tab>
-                <Tabs.Tab value="tutorials" disabled>Tutorials</Tabs.Tab>
-                <Tabs.Tab value="tests" disabled>Tests</Tabs.Tab>
-                <Tabs.Tab value="libraries" disabled>Libraries</Tabs.Tab>
+                <Tabs.Tab value="jnd" disabled>JND replications</Tabs.Tab>
+                <Tabs.Tab value="search" disabled>search replications</Tabs.Tab>
+                <Tabs.Tab value="pattern" disabled>pattern replications</Tabs.Tab>
               </Tabs.List>
             </Tabs>
             <Text c="dimmed" ta="center" mt="sm" mb="md">Loading studies...</Text>
@@ -465,64 +460,32 @@ export function ConfigSwitcher({
           <>
             <Tabs variant="outline" defaultValue={firstTab} value={tab} onChange={(value) => navigate(`/?tab=${value}`)}>
               <Tabs.List>
-                {others.length > 0 && (
-                  <Tabs.Tab value="Others">Your Studies</Tabs.Tab>
+                {jndReplications.length > 0 && (
+                  <Tabs.Tab value="jnd">JND replications</Tabs.Tab>
                 )}
-                {demos.length > 0 && (
-                  <Tabs.Tab value="Demos">Demo Studies</Tabs.Tab>
+                {searchReplications.length > 0 && (
+                  <Tabs.Tab value="search">search replications</Tabs.Tab>
                 )}
-                {examples.length > 0 && (
-                  <Tabs.Tab value="Examples">Example Studies</Tabs.Tab>
-                )}
-                {tutorials.length > 0 && (
-                  <Tabs.Tab value="Tutorials">Tutorials</Tabs.Tab>
-                )}
-                {tests.length > 0 && (
-                  <Tabs.Tab value="Tests">Tests</Tabs.Tab>
-                )}
-                {libraries.length > 0 && (
-                  <Tabs.Tab value="Libraries">Libraries</Tabs.Tab>
+                {patternReplications.length > 0 && (
+                  <Tabs.Tab value="pattern">pattern replications</Tabs.Tab>
                 )}
               </Tabs.List>
 
-              {others.length > 0 && (
-                <Tabs.Panel value="Others">
-                  <StudyCards configNames={others} studyConfigs={studyConfigs} modesByConfig={modesByConfig} />
+              {jndReplications.length > 0 && (
+                <Tabs.Panel value="jnd">
+                  <StudyCards configNames={jndReplications} studyConfigs={studyConfigs} modesByConfig={modesByConfig} />
                 </Tabs.Panel>
               )}
 
-              {demos.length > 0 && (
-                <Tabs.Panel value="Demos">
-                  <Text c="dimmed" mt="sm">These studies show off individual features of the reVISit platform.</Text>
-                  <StudyCards configNames={demos} studyConfigs={studyConfigs} modesByConfig={modesByConfig} />
+              {searchReplications.length > 0 && (
+                <Tabs.Panel value="search">
+                  <StudyCards configNames={searchReplications} studyConfigs={studyConfigs} modesByConfig={modesByConfig} />
                 </Tabs.Panel>
               )}
 
-              {examples.length > 0 && (
-                <Tabs.Panel value="Examples">
-                  <Text c="dimmed" mt="sm">These are full studies that demonstrate the capabilities of the reVISit platform.</Text>
-                  <StudyCards configNames={examples} studyConfigs={studyConfigs} modesByConfig={modesByConfig} />
-                </Tabs.Panel>
-              )}
-
-              {tutorials.length > 0 && (
-                <Tabs.Panel value="Tutorials">
-                  <Text c="dimmed" mt="sm">These studies are designed to help you learn how to use the reVISit platform.</Text>
-                  <StudyCards configNames={tutorials} studyConfigs={studyConfigs} modesByConfig={modesByConfig} />
-                </Tabs.Panel>
-              )}
-
-              {tests.length > 0 && (
-                <Tabs.Panel value="Tests">
-                  <Text c="dimmed" mt="sm">These studies exist for testing purposes.</Text>
-                  <StudyCards configNames={tests} studyConfigs={studyConfigs} modesByConfig={modesByConfig} />
-                </Tabs.Panel>
-              )}
-
-              {libraries.length > 0 && (
-                <Tabs.Panel value="Libraries">
-                  <Text c="dimmed" mt="sm">Here you can see an example of every library that we publish.</Text>
-                  <StudyCards configNames={libraries} studyConfigs={studyConfigs} modesByConfig={modesByConfig} />
+              {patternReplications.length > 0 && (
+                <Tabs.Panel value="pattern">
+                  <StudyCards configNames={patternReplications} studyConfigs={studyConfigs} modesByConfig={modesByConfig} />
                 </Tabs.Panel>
               )}
             </Tabs>
