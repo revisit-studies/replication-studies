@@ -243,11 +243,52 @@ jobs:
           # Upstream e2e tests target demo/example studies removed from this repo.
           rm -rf tests
 
-      - name: Remove unused dependencies from package.json
+      - name: Reconcile replication-studies dependencies
         run: |
           node -e "
             const fs = require('fs');
+            const { execFileSync } = require('child_process');
             const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            const previousPkg = JSON.parse(execFileSync(
+              'git',
+              ['show', process.env.REPLICATION_HEAD + ':package.json'],
+              { encoding: 'utf8' },
+            ));
+
+            // Restore replication-only packages using their pre-sync versions.
+            const requiredDeps = [
+              'clsx',
+              'd3-axis',
+              'd3-hexbin',
+              'd3-scale',
+              'd3-selection',
+              'jstat',
+              'mathjs',
+              'seedrandom',
+            ];
+            const requiredDevDeps = [
+              '@types/d3-hexbin',
+              '@types/seedrandom',
+            ];
+
+            pkg.dependencies ??= {};
+            pkg.devDependencies ??= {};
+            requiredDeps.forEach((dep) => {
+              if (!(dep in pkg.dependencies)) {
+                const version = previousPkg.dependencies?.[dep];
+                if (!version) throw new Error('Missing replication dep in pre-sync package.json: ' + dep);
+                console.log('Restoring replication dep:', dep);
+                pkg.dependencies[dep] = version;
+              }
+            });
+            requiredDevDeps.forEach((dep) => {
+              if (!(dep in pkg.devDependencies)) {
+                const version = previousPkg.devDependencies?.[dep];
+                if (!version) throw new Error('Missing replication devDep in pre-sync package.json: ' + dep);
+                console.log('Restoring replication devDep:', dep);
+                pkg.devDependencies[dep] = version;
+              }
+            });
 
             // Packages only used in upstream example studies removed from replication-studies.
             const unusedDeps = [
@@ -287,6 +328,11 @@ jobs:
 
       - name: Update yarn.lock after dependency cleanup
         run: yarn install --ignore-scripts
+
+      - name: Validate synchronized project
+        run: |
+          yarn typecheck
+          yarn build
 
       - name: Commit and force push to target branch
         run: |
