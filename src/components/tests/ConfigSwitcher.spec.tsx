@@ -127,7 +127,8 @@ vi.mock('../interface/DeviceRestrictionString', () => ({
 
 // ── fixtures ──────────────────────────────────────────────────────────────────
 
-const globalConfig = makeGlobalConfig({ configsList: ['test-study'] });
+const configName = 'JND-test-study';
+const globalConfig = makeGlobalConfig({ configsList: [configName] });
 
 const minimalStudyConfig = makeStudyConfig();
 
@@ -138,7 +139,7 @@ const parsedStudyConfig: ParsedConfig<StudyConfig> = {
 };
 
 const studyConfigs: Record<string, ParsedConfig<StudyConfig> | null> = {
-  'test-study': parsedStudyConfig,
+  [configName]: parsedStudyConfig,
 };
 
 // ── tests ─────────────────────────────────────────────────────────────────────
@@ -173,7 +174,7 @@ describe('ConfigSwitcher', () => {
       instancePath: '', message: 'Parse error occurred', params: {}, category: 'invalid-config',
     };
     const studyConfigsWithErrors: Record<string, ParsedConfig<StudyConfig> | null> = {
-      'test-study': {
+      [configName]: {
         ...minimalStudyConfig,
         errors: [mockError],
         warnings: [{ ...mockError, message: 'A warning', category: 'unused-component' }],
@@ -190,7 +191,7 @@ describe('ConfigSwitcher', () => {
       instancePath: '', message: 'A warning message', params: {}, category: 'unused-component',
     };
     const studyConfigsWithWarnings: Record<string, ParsedConfig<StudyConfig> | null> = {
-      'test-study': {
+      [configName]: {
         ...minimalStudyConfig,
         errors: [],
         warnings: [mockWarning],
@@ -227,7 +228,7 @@ describe('ConfigSwitcher', () => {
 
   test('renders with null config entry', async () => {
     const configsWithNull: Record<string, ParsedConfig<StudyConfig> | null> = {
-      'test-study': null,
+      [configName]: null,
     };
     const { container } = await act(async () => render(
       <ConfigSwitcher globalConfig={globalConfig} studyConfigs={configsWithNull} />,

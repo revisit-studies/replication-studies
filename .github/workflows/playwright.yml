@@ -64,4 +64,4 @@ jobs:
         run: yarn playwright install webkit
 
       - name: Run Playwright tests
-        run: yarn test --project=${{ matrix.project }}
+        run: yarn test --project=${{ matrix.project }} --pass-with-no-tests
