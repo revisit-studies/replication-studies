@@ -1,4 +1,4 @@
-import { renderHook, act } from '@testing-library/react';
+import { renderHook, act, waitFor } from '@testing-library/react';
 import {
   beforeEach, describe, expect, test, vi,
 } from 'vitest';
@@ -216,15 +216,17 @@ describe('useCurrentComponent', () => {
     vi.mocked(findFuncBlock).mockReturnValue({
       id: 'myFunc',
       order: 'dynamic',
-      functionPath: 'demo-dynamic/assets/dynamic.tsx',
+      functionPath: 'libraries/berlin-num/assets/dynamic.tsx',
     });
-    vi.mocked(getComponent).mockImplementation((name) => (name === 'HSLColorCodes'
-      ? { type: 'react-component', path: 'demo-dynamic/assets/HSL.tsx', response: [] } as IndividualComponent
+    vi.mocked(getComponent).mockImplementation((name) => (name === '$berlin-num.components.q1-choir-probability'
+      ? { type: 'react-component', path: 'libraries/berlin-num/assets/BerlinNum.tsx', response: [] } as IndividualComponent
       : null));
 
     const { result } = renderHook(() => useCurrentComponent());
 
-    expect(result.current).toBe('HSLColorCodes');
+    await waitFor(() => {
+      expect(result.current).toBe('$berlin-num.components.q1-choir-probability');
+    });
   });
 
   test('skips a malformed answer before a valid configured answer for the same iteration', async () => {

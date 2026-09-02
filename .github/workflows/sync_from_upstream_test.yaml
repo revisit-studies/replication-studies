@@ -29,6 +29,10 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.PAT }}
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
       - name: Fetch upstream and prepare target branch
         run: |
           # Save the current repository HEAD so we can restore replication-study
@@ -67,6 +71,7 @@ jobs:
             .github/workflows/sync_from_upstream.yaml \
             .github/workflows/sync_from_upstream_test.yaml \
             public/jnd-data \
+            scripts/reconcile-replication-tests.mjs \
             src/public/bubblechart-study \
             src/public/jnd-replication
 
@@ -83,6 +88,9 @@ jobs:
               execFileSync('git', ['checkout', process.env.REPLICATION_HEAD, '--', 'public/' + study]);
             }
           "
+
+      - name: Apply replication test adjustments
+        run: node scripts/reconcile-replication-tests.mjs
 
       - name: Restore replication global.json with upstream schema version
         run: |
@@ -326,11 +334,17 @@ jobs:
             fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
           "
 
-      - name: Update yarn.lock after dependency cleanup
-        run: yarn install --ignore-scripts
+      - name: Update dependency lockfiles
+        run: |
+          yarn install --ignore-scripts
+          cp yarn.lock "$RUNNER_TEMP/yarn.lock"
+          npx --yes npm@11.12.1 install --package-lock-only --ignore-scripts
+          cp "$RUNNER_TEMP/yarn.lock" yarn.lock
 
       - name: Validate synchronized project
         run: |
+          node scripts/check-lockfile-drift.mjs
+          yarn unittest run
           yarn typecheck
           yarn build
 
