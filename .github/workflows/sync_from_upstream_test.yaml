@@ -29,6 +29,10 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.PAT }}
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
       - name: Fetch upstream and prepare target branch
         run: |
           # Save the current repository HEAD so we can restore replication-study
@@ -67,6 +71,7 @@ jobs:
             .github/workflows/sync_from_upstream.yaml \
             .github/workflows/sync_from_upstream_test.yaml \
             public/jnd-data \
+            scripts/reconcile-replication-tests.mjs \
             src/public/bubblechart-study \
             src/public/jnd-replication
 
@@ -83,6 +88,9 @@ jobs:
               execFileSync('git', ['checkout', process.env.REPLICATION_HEAD, '--', 'public/' + study]);
             }
           "
+
+      - name: Apply replication test adjustments
+        run: node scripts/reconcile-replication-tests.mjs
 
       - name: Restore replication global.json with upstream schema version
         run: |
@@ -243,11 +251,52 @@ jobs:
           # Upstream e2e tests target demo/example studies removed from this repo.
           rm -rf tests
 
-      - name: Remove unused dependencies from package.json
+      - name: Reconcile replication-studies dependencies
         run: |
           node -e "
             const fs = require('fs');
+            const { execFileSync } = require('child_process');
             const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            const previousPkg = JSON.parse(execFileSync(
+              'git',
+              ['show', process.env.REPLICATION_HEAD + ':package.json'],
+              { encoding: 'utf8' },
+            ));
+
+            // Restore replication-only packages using their pre-sync versions.
+            const requiredDeps = [
+              'clsx',
+              'd3-axis',
+              'd3-hexbin',
+              'd3-scale',
+              'd3-selection',
+              'jstat',
+              'mathjs',
+              'seedrandom',
+            ];
+            const requiredDevDeps = [
+              '@types/d3-hexbin',
+              '@types/seedrandom',
+            ];
+
+            pkg.dependencies ??= {};
+            pkg.devDependencies ??= {};
+            requiredDeps.forEach((dep) => {
+              if (!(dep in pkg.dependencies)) {
+                const version = previousPkg.dependencies?.[dep];
+                if (!version) throw new Error('Missing replication dep in pre-sync package.json: ' + dep);
+                console.log('Restoring replication dep:', dep);
+                pkg.dependencies[dep] = version;
+              }
+            });
+            requiredDevDeps.forEach((dep) => {
+              if (!(dep in pkg.devDependencies)) {
+                const version = previousPkg.devDependencies?.[dep];
+                if (!version) throw new Error('Missing replication devDep in pre-sync package.json: ' + dep);
+                console.log('Restoring replication devDep:', dep);
+                pkg.devDependencies[dep] = version;
+              }
+            });
 
             // Packages only used in upstream example studies removed from replication-studies.
             const unusedDeps = [
@@ -285,8 +334,19 @@ jobs:
             fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
           "
 
-      - name: Update yarn.lock after dependency cleanup
-        run: yarn install --ignore-scripts
+      - name: Update dependency lockfiles
+        run: |
+          yarn install --ignore-scripts
+          cp yarn.lock "$RUNNER_TEMP/yarn.lock"
+          npx --yes npm@11.12.1 install --package-lock-only --ignore-scripts
+          cp "$RUNNER_TEMP/yarn.lock" yarn.lock
+
+      - name: Validate synchronized project
+        run: |
+          node scripts/check-lockfile-drift.mjs
+          yarn unittest run
+          yarn typecheck
+          yarn build
 
       - name: Commit and force push to target branch
         run: |

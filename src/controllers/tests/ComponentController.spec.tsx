@@ -47,6 +47,7 @@ let mockStoreActions = {
 // ── mocks ────────────────────────────────────────────────────────────────────
 
 vi.mock('@mantine/core', () => ({
+  Autocomplete: () => <input />,
   Image: ({ src }: { src?: string }) => <img src={src} alt="img" />,
   Text: ({ children }: { children: ReactNode }) => <p>{children}</p>,
   Box: ({ children }: { children: ReactNode }) => <div>{children}</div>,
