@@ -1,0 +1,1 @@
+var e=`/replication-studies/`;export{e as t};
