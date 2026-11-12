@@ -1,1 +1,0 @@
-import{r as e}from"./string-Qah-1JtV.js";function t(e){for(var t=e.length/6|0,n=Array(t),r=0;r<t;)n[r]=`#`+e.slice(r*6,++r*6);return n}var n=t=>e(t[t.length-1]);export{t as n,n as t};
