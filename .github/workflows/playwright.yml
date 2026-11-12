@@ -20,7 +20,7 @@ jobs:
       matrix:
         include:
           - project: chromium
-            os: ubuntu-latest
+            os: ubuntu-24.04
             cache_dir: /home/runner/.cache/ms-playwright
             workers: 3
 

@@ -264,6 +264,24 @@ describe('StepsPanel skip summaries', () => {
 });
 
 describe('StepsPanel skipped trial detection', () => {
+  test('treats missing skip arrays in older participant sequences as empty', () => {
+    const legacySequence = {
+      order: 'fixed',
+      orderPath: 'root',
+      components: [
+        { order: 'fixed', orderPath: 'root-0', components: ['trial1'] },
+        'middle',
+      ],
+      skip: [],
+    } as unknown as Sequence;
+
+    expect(getSkippedTrialOrders(
+      legacySequence,
+      { trial1_0: buildStoredAnswer('trial1', 0, { q1: 'Red' }) },
+      buildStudyConfig(legacySequence),
+    )).toEqual(new Set());
+  });
+
   test('marks only rows omitted by a triggered skip as skipped', () => {
     const sequence: Sequence = {
       order: 'fixed',
